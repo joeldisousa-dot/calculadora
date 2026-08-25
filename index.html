@@ -2,507 +2,1015 @@
 <html lang="pt-BR">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Calculadora de Empréstimo Consignado na Rescisão</title>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>
+    Calculadora de Empréstimos Consignados na Rescisão
+  </title>
+
 
   <style>
+
+    /* =====================================================
+       RESET
+    ===================================================== */
 
     * {
       box-sizing: border-box;
     }
 
+
     body {
+
       margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
+
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
       background: #f4f7fb;
+
       color: #1f2937;
+
     }
+
+
+    /* =====================================================
+       CONTAINER
+    ===================================================== */
 
     .container {
+
       width: 100%;
+
       max-width: 1250px;
+
       margin: 0 auto;
+
       padding: 25px;
+
     }
 
-    /* =========================
+
+    /* =====================================================
        CABEÇALHO
-    ========================= */
+    ===================================================== */
 
     .header {
+
       background: #ffffff;
+
       border-radius: 14px;
+
       padding: 25px 30px;
+
       margin-bottom: 20px;
-      box-shadow: 0 3px 15px rgba(0,0,0,.07);
+
+      box-shadow:
+        0 3px 15px rgba(0,0,0,.07);
+
       border: 1px solid #e5e7eb;
+
     }
+
 
     .header h1 {
+
       margin: 0 0 7px;
+
       font-size: 25px;
+
       color: #123b68;
+
     }
+
 
     .header p {
+
       margin: 0;
+
       color: #6b7280;
+
       font-size: 14px;
+
+      line-height: 1.5;
+
     }
 
-    /* =========================
+
+    /* =====================================================
        CARDS
-    ========================= */
+    ===================================================== */
 
     .card {
+
       background: #ffffff;
+
       border-radius: 14px;
+
       padding: 24px;
+
       margin-bottom: 20px;
-      box-shadow: 0 3px 15px rgba(0,0,0,.06);
+
+      box-shadow:
+        0 3px 15px rgba(0,0,0,.06);
+
       border: 1px solid #e5e7eb;
+
     }
+
 
     .card-title {
+
       font-size: 18px;
+
       font-weight: bold;
+
       color: #123b68;
+
       margin-bottom: 20px;
+
       display: flex;
+
       align-items: center;
+
       gap: 9px;
+
     }
 
-    /* =========================
+
+    /* =====================================================
        GRID
-    ========================= */
+    ===================================================== */
 
     .grid {
+
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 18px;
+
+      grid-template-columns:
+        repeat(2, 1fr);
+
+      gap: 20px;
+
     }
 
-    .grid-3 {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 15px;
-    }
 
     .campo {
+
       display: flex;
+
       flex-direction: column;
+
     }
+
 
     .campo label {
+
       font-size: 13px;
+
       font-weight: bold;
+
       margin-bottom: 7px;
+
       color: #374151;
+
     }
+
+
+    /* =====================================================
+       INPUTS
+    ===================================================== */
 
     input {
+
       width: 100%;
+
       height: 44px;
+
       border: 1px solid #d1d5db;
+
       border-radius: 8px;
+
       padding: 0 12px;
+
       font-size: 14px;
+
       outline: none;
+
       background: #fff;
+
       transition: .2s;
+
     }
+
 
     input:focus {
+
       border-color: #2563eb;
-      box-shadow: 0 0 0 3px rgba(37,99,235,.10);
+
+      box-shadow:
+        0 0 0 3px rgba(37,99,235,.10);
+
     }
+
 
     input[readonly] {
+
       background: #f3f4f6;
+
       color: #374151;
+
       font-weight: bold;
+
     }
+
+
+    /* =====================================================
+       NOTAS EXPLICATIVAS
+    ===================================================== */
 
     .ajuda {
+
       font-size: 11px;
-      color: #6b7280;
-      margin-top: 5px;
+
+      color: #64748b;
+
+      margin-top: 6px;
+
+      line-height: 1.45;
+
     }
 
-    /* =========================
+
+    .ajuda strong {
+
+      color: #475569;
+
+    }
+
+
+    /* =====================================================
+       AVISO DA BASE
+    ===================================================== */
+
+    .base-info {
+
+      margin-top: 20px;
+
+      background: #eff6ff;
+
+      border: 1px solid #bfdbfe;
+
+      border-radius: 9px;
+
+      padding: 13px 15px;
+
+      font-size: 12px;
+
+      color: #1e40af;
+
+      line-height: 1.5;
+
+    }
+
+
+    /* =====================================================
        BOTÕES
-    ========================= */
+    ===================================================== */
 
     .acoes {
+
       display: flex;
+
       gap: 10px;
+
       margin-top: 22px;
+
       flex-wrap: wrap;
+
     }
+
 
     button {
+
       border: 0;
+
       border-radius: 8px;
+
       height: 44px;
+
       padding: 0 20px;
+
       font-size: 14px;
+
       font-weight: bold;
+
       cursor: pointer;
+
       transition: .2s;
+
     }
+
 
     .btn-primary {
+
       background: #1769e0;
+
       color: #fff;
+
     }
+
 
     .btn-primary:hover {
+
       background: #1257bd;
+
     }
+
 
     .btn-secondary {
+
       background: #eef2f7;
+
       color: #374151;
+
     }
+
 
     .btn-secondary:hover {
+
       background: #e2e8f0;
+
     }
+
 
     .btn-success {
+
       background: #15803d;
+
       color: #fff;
+
     }
+
 
     .btn-success:hover {
+
       background: #166534;
+
     }
 
-    /* =========================
-       CONTRATOS
-    ========================= */
+
+    /* =====================================================
+       TABELA
+    ===================================================== */
 
     .contratos {
+
       overflow-x: auto;
+
     }
+
 
     table {
+
       width: 100%;
+
       border-collapse: collapse;
-      min-width: 850px;
+
+      min-width: 1000px;
+
     }
+
 
     th {
+
       background: #f1f5f9;
+
       color: #334155;
+
       font-size: 12px;
+
       text-align: left;
+
       padding: 12px 10px;
-      border-bottom: 1px solid #dbe2ea;
+
+      border-bottom:
+        1px solid #dbe2ea;
+
     }
+
 
     td {
-      padding: 8px 10px;
-      border-bottom: 1px solid #e5e7eb;
-      vertical-align: middle;
+
+      padding: 9px 10px;
+
+      border-bottom:
+        1px solid #e5e7eb;
+
+      vertical-align: top;
+
     }
+
 
     td input {
+
       height: 38px;
+
     }
+
 
     .percentual {
+
       max-width: 120px;
+
     }
+
 
     .saldo {
+
       max-width: 170px;
+
     }
+
 
     .resultado {
+
       font-weight: bold;
-      color: #0f5132;
+
+      color: #166534;
+
       white-space: nowrap;
+
+      display: inline-block;
+
+      padding-top: 10px;
+
     }
+
+
+    .calculoContrato {
+
+      font-size: 12px;
+
+      color: #334155;
+
+      display: inline-block;
+
+      padding-top: 10px;
+
+      white-space: nowrap;
+
+    }
+
+
+    /* =====================================================
+       BOTÃO REMOVER
+    ===================================================== */
 
     .btn-remover {
+
       width: 36px;
+
       height: 36px;
+
       padding: 0;
+
       border-radius: 7px;
+
       background: #fee2e2;
+
       color: #b91c1c;
-      font-size: 17px;
+
+      font-size: 18px;
+
     }
+
 
     .btn-remover:hover {
+
       background: #fecaca;
+
     }
 
-    /* =========================
+
+    /* =====================================================
        RESUMO
-    ========================= */
+    ===================================================== */
 
     .resumo-grid {
+
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+
+      grid-template-columns:
+        repeat(4, 1fr);
+
       gap: 15px;
+
     }
+
 
     .resumo {
+
       border-radius: 12px;
+
       padding: 18px;
+
       background: #f8fafc;
+
       border: 1px solid #e5e7eb;
+
     }
+
 
     .resumo .titulo {
+
       font-size: 12px;
+
       color: #64748b;
+
       margin-bottom: 8px;
+
     }
+
 
     .resumo .valor {
+
       font-size: 21px;
+
       font-weight: bold;
+
       color: #123b68;
+
     }
+
 
     .resumo.total {
+
       background: #eff6ff;
+
       border-color: #bfdbfe;
+
     }
+
 
     .resumo.desconto {
+
       background: #f0fdf4;
+
       border-color: #bbf7d0;
+
     }
+
 
     .resumo.limite {
+
       background: #fff7ed;
+
       border-color: #fed7aa;
+
     }
+
 
     .resumo.saldo {
+
       background: #f8fafc;
+
     }
 
-    /* =========================
+
+    /* =====================================================
+       BARRA DO LIMITE
+    ===================================================== */
+
+    .limite-container {
+
+      margin-top: 20px;
+
+    }
+
+
+    .limite-topo {
+
+      display: flex;
+
+      justify-content: space-between;
+
+      margin-bottom: 7px;
+
+      font-size: 12px;
+
+      color: #64748b;
+
+    }
+
+
+    .barra {
+
+      width: 100%;
+
+      height: 10px;
+
+      background: #e5e7eb;
+
+      border-radius: 20px;
+
+      overflow: hidden;
+
+    }
+
+
+    .barra-progresso {
+
+      height: 100%;
+
+      width: 0%;
+
+      background: #1769e0;
+
+      transition: width .3s;
+
+    }
+
+
+    /* =====================================================
        ALERTAS
-    ========================= */
+    ===================================================== */
 
     .alerta {
+
       display: none;
+
       padding: 14px 16px;
+
       border-radius: 9px;
+
       margin-top: 18px;
+
       font-size: 13px;
+
       line-height: 1.5;
+
     }
+
 
     .alerta.erro {
+
       background: #fef2f2;
+
       border: 1px solid #fecaca;
+
       color: #991b1b;
+
     }
+
 
     .alerta.sucesso {
+
       background: #f0fdf4;
+
       border: 1px solid #bbf7d0;
+
       color: #166534;
+
     }
+
 
     .alerta.aviso {
+
       background: #fffbeb;
+
       border: 1px solid #fde68a;
+
       color: #92400e;
+
     }
 
-    /* =========================
+
+    /* =====================================================
        MEMÓRIA
-    ========================= */
+    ===================================================== */
 
     .memoria {
+
       background: #f8fafc;
+
       border: 1px solid #e2e8f0;
+
       border-radius: 10px;
+
       padding: 20px;
+
       margin-top: 20px;
+
     }
+
 
     .memoria h3 {
+
       margin: 0 0 15px;
+
       color: #123b68;
+
       font-size: 16px;
+
     }
+
 
     .linha-memoria {
+
       display: flex;
+
       justify-content: space-between;
-      padding: 8px 0;
-      border-bottom: 1px solid #e5e7eb;
+
+      gap: 20px;
+
+      padding: 9px 0;
+
+      border-bottom:
+        1px solid #e5e7eb;
+
       font-size: 13px;
+
     }
+
 
     .linha-memoria:last-child {
+
       border-bottom: 0;
+
       font-weight: bold;
+
     }
 
-    /* =========================
+
+    /* =====================================================
        RODAPÉ
-    ========================= */
+    ===================================================== */
 
     .rodape {
+
       text-align: center;
+
       color: #94a3b8;
+
       font-size: 11px;
+
       padding: 10px;
+
+      line-height: 1.5;
+
     }
 
-    /* =========================
+
+    /* =====================================================
        RESPONSIVO
-    ========================= */
+    ===================================================== */
 
     @media (max-width: 900px) {
 
       .resumo-grid {
-        grid-template-columns: repeat(2, 1fr);
+
+        grid-template-columns:
+          repeat(2, 1fr);
+
       }
 
       .grid {
-        grid-template-columns: 1fr;
+
+        grid-template-columns:
+          1fr;
+
       }
 
     }
+
 
     @media (max-width: 600px) {
 
       .container {
+
         padding: 12px;
+
       }
 
       .header,
       .card {
+
         padding: 18px;
+
       }
 
       .header h1 {
+
         font-size: 20px;
+
       }
 
       .resumo-grid {
-        grid-template-columns: 1fr;
+
+        grid-template-columns:
+          1fr;
+
       }
 
       .acoes button {
+
         width: 100%;
+
       }
 
     }
 
-    /* =========================
+
+    /* =====================================================
        IMPRESSÃO
-    ========================= */
+    ===================================================== */
 
     @media print {
 
       body {
+
         background: #fff;
+
       }
 
+
       .container {
+
         max-width: 100%;
+
         padding: 0;
+
       }
+
 
       .header,
       .card {
+
         box-shadow: none;
+
         border: 1px solid #ccc;
+
       }
+
 
       .acoes,
       .btn-remover,
       .nao-imprimir {
+
         display: none !important;
+
       }
+
 
       input {
+
         border: 0;
+
         padding: 0;
+
       }
 
+
       .card {
+
         break-inside: avoid;
+
+      }
+
+
+      .ajuda {
+
+        color: #555;
+
       }
 
     }
 
   </style>
+
 </head>
+
 
 <body>
 
+
 <div class="container">
 
-  <!-- CABEÇALHO -->
+
+  <!-- =====================================================
+       CABEÇALHO
+  ====================================================== -->
 
   <div class="header">
 
-    <h1>🧮 Calculadora de Empréstimos Consignados</h1>
+    <h1>
+      🧮 Calculadora de Empréstimos Consignados
+    </h1>
 
     <p>
-      Cálculo do desconto dos empréstimos consignados sobre as verbas rescisórias
+      Cálculo dos descontos dos empréstimos consignados
+      sobre as verbas rescisórias.
     </p>
 
   </div>
 
 
-  <!-- BASE DE CÁLCULO -->
+
+  <!-- =====================================================
+       BASE DE CÁLCULO
+  ====================================================== -->
 
   <div class="card">
 
+
     <div class="card-title">
+
       📊 Base de cálculo
+
     </div>
+
 
     <div class="grid">
 
+
+      <!-- VALOR BRUTO -->
+
       <div class="campo">
 
-        <label>Valor bruto das verbas rescisórias</label>
+        <label>
+          Valor bruto das verbas rescisórias
+        </label>
 
         <input
           type="text"
           id="valorBruto"
           placeholder="R$ 0,00"
-          oninput="formatarMoeda(this); calcularBase()"
+          oninput="
+            formatarMoeda(this);
+            calcularBase();
+          "
         >
+
+        <div class="ajuda">
+
+          Informe o
+          <strong>
+            valor bruto total
+          </strong>
+          das verbas rescisórias consideradas
+          para o cálculo.
+
+        </div>
 
       </div>
 
 
+
+      <!-- OUTROS DESCONTOS -->
+
       <div class="campo">
 
-        <label>Outros descontos que compõem a redução da base</label>
+        <label>
+          Outros descontos que reduzem a base
+        </label>
 
         <input
           type="text"
           id="outrosDescontos"
           placeholder="R$ 0,00"
-          oninput="formatarMoeda(this); calcularBase()"
+          oninput="
+            formatarMoeda(this);
+            calcularBase();
+          "
         >
+
+        <div class="ajuda">
+
+          Informe os descontos que, conforme
+          a regra aplicável, devem ser deduzidos
+          para chegar à base de cálculo.
+
+        </div>
 
       </div>
 
 
+
+      <!-- BASE CALCULADA -->
+
       <div class="campo">
 
-        <label>Base calculada</label>
+        <label>
+          Base calculada
+        </label>
 
         <input
           type="text"
@@ -512,110 +1020,215 @@
         >
 
         <div class="ajuda">
-          Valor bruto menos os descontos informados.
+
+          Resultado automático de
+          <strong>
+            valor bruto menos os descontos informados
+          </strong>.
+
         </div>
 
       </div>
 
 
+
+      <!-- BASE OFICIAL -->
+
       <div class="campo">
 
-        <label>Base utilizada no cálculo</label>
+        <label>
+          Base oficial utilizada no cálculo
+        </label>
 
         <input
           type="text"
           id="baseManual"
           placeholder="R$ 11.711,07"
-          oninput="formatarMoeda(this)"
+          oninput="
+            formatarMoeda(this);
+          "
         >
 
         <div class="ajuda">
-          Informe diretamente a base oficial, caso já tenha sido apurada.
+
+          Se você já possui a
+          <strong>
+            base oficial apurada pelo sistema de folha
+          </strong>,
+          informe-a aqui. Ela terá prioridade
+          sobre a base calculada automaticamente.
+
         </div>
 
       </div>
 
+
+    </div>
+
+
+    <div class="base-info">
+
+      💡 <strong>Como utilizar:</strong>
+      você pode calcular a base automaticamente
+      informando o valor bruto e os descontos,
+      ou informar diretamente a base oficial.
+      Quando a base oficial estiver preenchida,
+      ela será utilizada no cálculo.
+
     </div>
 
 
-    <div class="alerta aviso" id="avisoBase">
+    <div
+      class="alerta aviso"
+      id="avisoBase"
+    >
 
-      ⚠️ Será utilizada a <strong>base manual</strong> informada acima.
-      Caso ela esteja preenchida, ela terá prioridade sobre a base calculada.
+      ⚠️ A base oficial informada manualmente
+      será utilizada no cálculo dos descontos.
 
     </div>
+
 
   </div>
 
 
-  <!-- CONTRATOS -->
+
+  <!-- =====================================================
+       CONTRATOS
+  ====================================================== -->
 
   <div class="card">
 
+
     <div class="card-title">
+
       💳 Empréstimos consignados
+
     </div>
+
 
     <div class="contratos">
 
+
       <table>
+
 
         <thead>
 
           <tr>
 
-            <th style="width: 22%;">Contrato</th>
+            <th>
+              Contrato
+            </th>
 
-            <th style="width: 15%;">Percentual</th>
+            <th>
+              Percentual
+            </th>
 
-            <th style="width: 20%;">Saldo devedor</th>
+            <th>
+              Saldo devedor
+            </th>
 
-            <th style="width: 25%;">Cálculo</th>
+            <th>
+              Cálculo
+            </th>
 
-            <th style="width: 15%;">Desconto</th>
+            <th>
+              Desconto
+            </th>
 
-            <th></th>
+            <th>
+              Ação
+            </th>
 
           </tr>
 
         </thead>
 
-        <tbody id="listaContratos"></tbody>
+
+        <tbody
+          id="listaContratos"
+        ></tbody>
+
 
       </table>
+
 
     </div>
 
 
     <div class="acoes">
 
+
       <button
+        type="button"
         class="btn-secondary"
         onclick="adicionarContrato()"
       >
+
         ＋ Adicionar contrato
+
       </button>
 
+
       <button
+        type="button"
         class="btn-primary"
         onclick="calcular()"
       >
+
         🧮 Calcular descontos
+
       </button>
 
+
       <button
+        type="button"
         class="btn-success"
         onclick="window.print()"
       >
-        🖨️ Imprimir
+
+        🖨️ Imprimir cálculo
+
       </button>
 
+
       <button
+        type="button"
+        class="btn-secondary"
+        onclick="carregarExemplo()"
+      >
+
+        📋 Carregar exemplo
+
+      </button>
+
+
+      <button
+        type="button"
         class="btn-secondary"
         onclick="limparTudo()"
       >
+
         ↺ Limpar
+
       </button>
+
+
+    </div>
+
+
+    <div
+      class="ajuda"
+      style="margin-top:15px;"
+    >
+
+      <strong>Orientação:</strong>
+      informe cada contrato separadamente.
+      O percentual deve ser aquele apresentado pelo
+      sistema para o respectivo contrato e o saldo devedor
+      deve corresponder ao saldo atualizado informado
+      pela instituição financeira/sistema.
 
     </div>
 
@@ -631,18 +1244,27 @@
       id="alertaSucesso"
     ></div>
 
+
   </div>
 
 
-  <!-- RESUMO -->
+
+  <!-- =====================================================
+       RESULTADO
+  ====================================================== -->
 
   <div class="card">
 
+
     <div class="card-title">
+
       📋 Resultado do cálculo
+
     </div>
 
+
     <div class="resumo-grid">
+
 
       <div class="resumo total">
 
@@ -658,6 +1280,7 @@
         </div>
 
       </div>
+
 
 
       <div class="resumo limite">
@@ -676,6 +1299,7 @@
       </div>
 
 
+
       <div class="resumo desconto">
 
         <div class="titulo">
@@ -690,6 +1314,7 @@
         </div>
 
       </div>
+
 
 
       <div class="resumo saldo">
@@ -707,107 +1332,276 @@
 
       </div>
 
+
     </div>
+
+
+
+    <!-- BARRA DO LIMITE -->
+
+    <div class="limite-container">
+
+
+      <div class="limite-topo">
+
+        <span>
+          Utilização do limite
+        </span>
+
+        <strong id="textoLimite">
+          0,00% de 35,00%
+        </strong>
+
+      </div>
+
+
+      <div class="barra">
+
+        <div
+          class="barra-progresso"
+          id="barraProgresso"
+        ></div>
+
+      </div>
+
+
+      <div class="ajuda">
+
+        O sistema verifica se a soma dos percentuais
+        informados permanece dentro do limite de
+        <strong>35%</strong> configurado para esta calculadora.
+
+      </div>
+
+
+    </div>
+
 
 
     <!-- MEMÓRIA DE CÁLCULO -->
 
-    <div
-      class="memoria"
-      id="memoria"
-    >
+    <div class="memoria">
+
 
       <h3>
         Memória de cálculo
       </h3>
 
+
       <div
         id="memoriaConteudo"
       >
 
-        Informe a base e os contratos para realizar o cálculo.
+        Informe a base e os contratos para realizar
+        o cálculo.
 
       </div>
 
+
     </div>
 
+
   </div>
+
+
+
+  <!-- =====================================================
+       OBSERVAÇÃO
+  ====================================================== -->
+
+  <div class="card">
+
+
+    <div class="card-title">
+
+      ℹ️ Observações sobre o cálculo
+
+    </div>
+
+
+    <div
+      style="
+        font-size:13px;
+        line-height:1.7;
+        color:#475569;
+      "
+    >
+
+      <p>
+
+        <strong>1. Base de cálculo:</strong>
+        o sistema utiliza a base oficial informada
+        pelo usuário quando disponível. Caso contrário,
+        utiliza a base calculada a partir dos valores
+        informados.
+
+      </p>
+
+
+      <p>
+
+        <strong>2. Percentual:</strong>
+        cada contrato é calculado individualmente
+        utilizando o percentual informado para aquele
+        contrato.
+
+      </p>
+
+
+      <p>
+
+        <strong>3. Fórmula:</strong>
+        desconto teórico =
+        base de cálculo × percentual ÷ 100.
+
+      </p>
+
+
+      <p>
+
+        <strong>4. Saldo devedor:</strong>
+        quando informado, o desconto final fica limitado
+        ao saldo devedor do respectivo contrato.
+
+      </p>
+
+
+      <p>
+
+        <strong>5. Limite:</strong>
+        a calculadora verifica se a soma dos percentuais
+        informados ultrapassa 35%.
+
+      </p>
+
+
+      <p>
+
+        <strong>6. Conferência:</strong>
+        esta ferramenta é destinada à conferência e
+        simulação. A apuração definitiva deve considerar
+        os dados oficiais disponibilizados pelos sistemas
+        competentes e as regras legais aplicáveis ao caso.
+
+      </p>
+
+
+    </div>
+
+
+  </div>
+
 
 
   <div class="rodape">
 
-    Calculadora de apoio para conferência de descontos de empréstimos consignados na rescisão.
+    Calculadora de apoio para conferência dos descontos
+    de empréstimos consignados na rescisão.
+
+    <br>
+
+    Os resultados devem ser conferidos com a documentação
+    e os dados oficiais do contrato.
 
   </div>
+
 
 </div>
 
 
+
 <script>
 
-  /* =========================================================
+
+  /* =====================================================
      CONFIGURAÇÕES
-  ========================================================= */
+  ===================================================== */
 
   const LIMITE_PERCENTUAL = 35;
 
   let contadorContratos = 0;
 
 
-  /* =========================================================
-     FORMATAÇÃO
-  ========================================================= */
+
+  /* =====================================================
+     FORMATAÇÃO NUMÉRICA
+  ===================================================== */
 
   function numero(valor) {
 
     if (!valor) {
+
       return 0;
+
     }
 
+
     valor = String(valor)
+
       .replace(/\s/g, '')
+
       .replace(/R\$/g, '')
+
       .replace(/\./g, '')
+
       .replace(',', '.');
 
-    const resultado = parseFloat(valor);
 
-    return isNaN(resultado) ? 0 : resultado;
+    const resultado =
+      parseFloat(valor);
+
+
+    return isNaN(resultado)
+      ? 0
+      : resultado;
 
   }
+
 
 
   function moeda(valor) {
 
-    return Number(valor || 0).toLocaleString(
-      'pt-BR',
-      {
-        style: 'currency',
-        currency: 'BRL'
-      }
-    );
+    return Number(valor || 0)
+      .toLocaleString(
+        'pt-BR',
+        {
+          style: 'currency',
+          currency: 'BRL'
+        }
+      );
 
   }
+
 
 
   function percentual(valor) {
 
-    return Number(valor || 0).toLocaleString(
-      'pt-BR',
-      {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2
-      }
-    ) + '%';
+    return Number(valor || 0)
+      .toLocaleString(
+        'pt-BR',
+        {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2
+        }
+      ) + '%';
 
   }
 
 
+
+  /* =====================================================
+     FORMATA MOEDA
+  ===================================================== */
+
   function formatarMoeda(campo) {
 
-    let valor = campo.value;
+    let valor =
+      campo.value;
 
-    valor = valor.replace(/\D/g, '');
+
+    valor =
+      valor.replace(/\D/g, '');
+
 
     if (!valor) {
 
@@ -817,192 +1611,36 @@
 
     }
 
-    valor = parseInt(valor, 10) / 100;
 
-    campo.value = valor.toLocaleString(
-      'pt-BR',
-      {
-        style: 'currency',
-        currency: 'BRL'
-      }
-    );
+    valor =
+      parseInt(valor, 10) / 100;
+
+
+    campo.value =
+      valor.toLocaleString(
+        'pt-BR',
+        {
+          style: 'currency',
+          currency: 'BRL'
+        }
+      );
 
   }
 
 
-  /* =========================================================
-     BASE DE CÁLCULO
-  ========================================================= */
 
-  function calcularBase() {
-
-    const bruto =
-      numero(
-        document.getElementById('valorBruto').value
-      );
-
-    const descontos =
-      numero(
-        document.getElementById('outrosDescontos').value
-      );
-
-    const base =
-      Math.max(0, bruto - descontos);
-
-    document.getElementById(
-      'baseCalculada'
-    ).value = moeda(base);
-
-  }
-
-
-  function obterBase() {
-
-    const manual =
-      numero(
-        document.getElementById('baseManual').value
-      );
-
-    if (manual > 0) {
-
-      document.getElementById(
-        'avisoBase'
-      ).style.display = 'block';
-
-      return manual;
-
-    }
-
-    document.getElementById(
-      'avisoBase'
-    ).style.display = 'none';
-
-    const calculada =
-      numero(
-        document.getElementById('baseCalculada').value
-      );
-
-    return calculada;
-
-  }
-
-
-  /* =========================================================
-     CONTRATOS
-  ========================================================= */
-
-  function adicionarContrato(
-    contrato = '',
-    percentualContrato = '',
-    saldo = ''
-  ) {
-
-    contadorContratos++;
-
-    const tbody =
-      document.getElementById(
-        'listaContratos'
-      );
-
-    const tr =
-      document.createElement('tr');
-
-    tr.dataset.id =
-      contadorContratos;
-
-    tr.innerHTML = `
-
-      <td>
-
-        <input
-          type="text"
-          class="contrato"
-          placeholder="Ex.: 0154597310"
-          value="${contrato}"
-        >
-
-      </td>
-
-
-      <td>
-
-        <input
-          type="text"
-          class="percentual"
-          placeholder="0,00%"
-          value="${percentualContrato}"
-          oninput="formatarPercentual(this)"
-        >
-
-      </td>
-
-
-      <td>
-
-        <input
-          type="text"
-          class="saldo"
-          placeholder="R$ 0,00"
-          value="${saldo}"
-          oninput="formatarMoeda(this)"
-        >
-
-      </td>
-
-
-      <td>
-
-        <span class="calculoContrato">
-          —
-        </span>
-
-      </td>
-
-
-      <td>
-
-        <span class="resultado">
-          R$ 0,00
-        </span>
-
-      </td>
-
-
-      <td>
-
-        <button
-          class="btn-remover"
-          onclick="removerContrato(this)"
-          title="Remover contrato"
-        >
-          ×
-        </button>
-
-      </td>
-
-    `;
-
-    tbody.appendChild(tr);
-
-  }
-
-
-  function removerContrato(botao) {
-
-    const linha =
-      botao.closest('tr');
-
-    linha.remove();
-
-  }
-
+  /* =====================================================
+     FORMATA PERCENTUAL
+  ===================================================== */
 
   function formatarPercentual(campo) {
 
     let valor =
       campo.value
         .replace('%', '')
+        .replace(/\s/g, '')
         .replace(',', '.');
+
 
     if (valor === '') {
 
@@ -1012,8 +1650,10 @@
 
     }
 
-    let numeroPercentual =
+
+    const numeroPercentual =
       parseFloat(valor);
+
 
     if (isNaN(numeroPercentual)) {
 
@@ -1022,6 +1662,7 @@
       return;
 
     }
+
 
     campo.value =
       numeroPercentual
@@ -1036,35 +1677,309 @@
   }
 
 
+
   function obterPercentual(campo) {
 
     let valor =
       campo.value
+
         .replace('%', '')
+
         .replace(/\s/g, '')
+
         .replace(/\./g, '')
+
         .replace(',', '.');
 
-    const numeroPercentual =
+
+    const resultado =
       parseFloat(valor);
 
-    return isNaN(numeroPercentual)
+
+    return isNaN(resultado)
       ? 0
-      : numeroPercentual;
+      : resultado;
 
   }
 
 
-  /* =========================================================
+
+  /* =====================================================
+     BASE DE CÁLCULO
+  ===================================================== */
+
+  function calcularBase() {
+
+    const bruto =
+      numero(
+        document.getElementById(
+          'valorBruto'
+        ).value
+      );
+
+
+    const descontos =
+      numero(
+        document.getElementById(
+          'outrosDescontos'
+        ).value
+      );
+
+
+    const base =
+      Math.max(
+        0,
+        bruto - descontos
+      );
+
+
+    document.getElementById(
+      'baseCalculada'
+    ).value =
+      moeda(base);
+
+  }
+
+
+
+  function obterBase() {
+
+    const manual =
+      numero(
+        document.getElementById(
+          'baseManual'
+        ).value
+      );
+
+
+    if (manual > 0) {
+
+      document.getElementById(
+        'avisoBase'
+      ).style.display =
+        'block';
+
+
+      return manual;
+
+    }
+
+
+    document.getElementById(
+      'avisoBase'
+    ).style.display =
+      'none';
+
+
+    return numero(
+      document.getElementById(
+        'baseCalculada'
+      ).value
+    );
+
+  }
+
+
+
+  /* =====================================================
+     ADICIONAR CONTRATO
+  ===================================================== */
+
+  function adicionarContrato(
+    contrato = '',
+    percentualContrato = '',
+    saldo = ''
+  ) {
+
+
+    contadorContratos++;
+
+
+    const tbody =
+      document.getElementById(
+        'listaContratos'
+      );
+
+
+    const tr =
+      document.createElement(
+        'tr'
+      );
+
+
+    tr.dataset.id =
+      contadorContratos;
+
+
+    tr.innerHTML = `
+
+      <td>
+
+        <input
+          type="text"
+          class="contrato"
+          placeholder="Ex.: 0154597310"
+          value="${contrato}"
+        >
+
+        <div class="ajuda">
+
+          Informe o número do
+          <strong>
+            contrato do empréstimo consignado
+          </strong>.
+
+        </div>
+
+      </td>
+
+
+      <td>
+
+        <input
+          type="text"
+          class="percentual"
+          placeholder="0,00%"
+          value="${percentualContrato}"
+          oninput="formatarPercentual(this)"
+        >
+
+        <div class="ajuda">
+
+          Percentual de garantia
+          <strong>
+            informado pelo sistema
+          </strong>
+          para este contrato.
+
+        </div>
+
+      </td>
+
+
+      <td>
+
+        <input
+          type="text"
+          class="saldo"
+          placeholder="R$ 0,00"
+          value="${saldo}"
+          oninput="formatarMoeda(this)"
+        >
+
+        <div class="ajuda">
+
+          Informe o
+          <strong>
+            saldo devedor atualizado
+          </strong>
+          do contrato.
+
+        </div>
+
+      </td>
+
+
+      <td>
+
+        <span class="calculoContrato">
+          —
+        </span>
+
+        <div class="ajuda">
+
+          Base de cálculo × percentual
+          informado para o contrato.
+
+        </div>
+
+      </td>
+
+
+      <td>
+
+        <span class="resultado">
+          R$ 0,00
+        </span>
+
+        <div class="ajuda">
+
+          Valor efetivamente considerado
+          para desconto na rescisão.
+
+        </div>
+
+      </td>
+
+
+      <td>
+
+        <button
+          type="button"
+          class="btn-remover"
+          onclick="removerContrato(this)"
+          title="Remover contrato"
+        >
+
+          ×
+
+        </button>
+
+        <div class="ajuda">
+
+          Remover contrato.
+
+        </div>
+
+      </td>
+
+    `;
+
+
+    tbody.appendChild(tr);
+
+  }
+
+
+
+  /* =====================================================
+     REMOVER CONTRATO
+  ===================================================== */
+
+  function removerContrato(botao) {
+
+    const linha =
+      botao.closest('tr');
+
+
+    if (!linha) {
+
+      return;
+
+    }
+
+
+    linha.remove();
+
+
+    calcularSilencioso();
+
+  }
+
+
+
+  /* =====================================================
      CALCULAR
-  ========================================================= */
+  ===================================================== */
 
   function calcular() {
 
     limparAlertas();
 
+
     const base =
       obterBase();
+
 
     if (base <= 0) {
 
@@ -1106,25 +2021,30 @@
     linhas.forEach(
       (linha, indice) => {
 
+
         const contrato =
           linha.querySelector(
             '.contrato'
           ).value.trim();
+
 
         const campoPercentual =
           linha.querySelector(
             '.percentual'
           );
 
+
         const campoSaldo =
           linha.querySelector(
             '.saldo'
           );
 
+
         const percentualContrato =
           obterPercentual(
             campoPercentual
           );
+
 
         const saldoDevedor =
           numero(
@@ -1145,13 +2065,16 @@
 
         contratosValidos++;
 
+
         percentualTotal +=
           percentualContrato;
 
 
-        /* -----------------------------------------
-           DESCONTO TEÓRICO
-        ----------------------------------------- */
+        /*
+          DESCONTO TEÓRICO
+
+          Base × percentual ÷ 100
+        */
 
         const descontoTeorico =
           base *
@@ -1160,17 +2083,32 @@
 
 
         /*
-          O desconto não pode ultrapassar
-          o saldo devedor informado.
+          DESCONTO FINAL
+
+          Quando existe saldo devedor,
+          o desconto fica limitado a ele.
         */
 
-        const descontoFinal =
-          saldoDevedor > 0
-            ? Math.min(
-                descontoTeorico,
-                saldoDevedor
-              )
-            : descontoTeorico;
+        let descontoFinal =
+          descontoTeorico;
+
+
+        let limitadoAoSaldo =
+          false;
+
+
+        if (
+          saldoDevedor > 0 &&
+          descontoTeorico > saldoDevedor
+        ) {
+
+          descontoFinal =
+            saldoDevedor;
+
+          limitadoAoSaldo =
+            true;
+
+        }
 
 
         totalDescontos +=
@@ -1182,41 +2120,38 @@
             '.resultado'
           );
 
+
         const calculo =
           linha.querySelector(
             '.calculoContrato'
           );
 
 
-        resultado.textContent =
-          moeda(descontoFinal);
-
-
         calculo.textContent =
           `${moeda(base)} × ${percentual(percentualContrato)}`;
 
 
-        /*
-          Destaca quando o saldo devedor
-          limita o desconto.
-        */
+        resultado.textContent =
+          moeda(descontoFinal);
 
-        if (
-          saldoDevedor > 0 &&
-          descontoTeorico > saldoDevedor
-        ) {
 
-          resultado.title =
-            'Desconto limitado ao saldo devedor.';
+        if (limitadoAoSaldo) {
 
           resultado.style.color =
             '#b45309';
+
+
+          resultado.title =
+            'O desconto foi limitado ao saldo devedor informado.';
 
         }
         else {
 
           resultado.style.color =
             '#166534';
+
+
+          resultado.title = '';
 
         }
 
@@ -1226,12 +2161,23 @@
           <div class="linha-memoria">
 
             <span>
-              ${contrato || 'Contrato ' + (indice + 1)}
-              — ${percentual(percentualContrato)}
+
+              ${
+                contrato ||
+                'Contrato ' +
+                (indice + 1)
+              }
+
+              —
+
+              ${percentual(percentualContrato)}
+
             </span>
 
             <strong>
+
               ${moeda(descontoFinal)}
+
             </strong>
 
           </div>
@@ -1253,29 +2199,40 @@
     }
 
 
-    /* =====================================================
-       VERIFICA LIMITE DE 35%
-    ===================================================== */
+    /* ===================================================
+       LIMITE DE 35%
+    =================================================== */
 
     if (
       percentualTotal >
       LIMITE_PERCENTUAL
     ) {
 
-      mostrarErro(
-        `O percentual total informado é de ${percentual(percentualTotal)}, ` +
-        `ultrapassando o limite de ${percentual(LIMITE_PERCENTUAL)}. ` +
-        `Revise os percentuais dos contratos.`
+
+      atualizarBarra(
+        percentualTotal
       );
+
+
+      mostrarErro(
+
+        `O percentual total informado é de
+        ${percentual(percentualTotal)},
+        ultrapassando o limite configurado
+        de ${percentual(LIMITE_PERCENTUAL)}.
+        Revise os percentuais dos contratos.`
+
+      );
+
 
       return;
 
     }
 
 
-    /* =====================================================
-       ATUALIZA RESUMO
-    ===================================================== */
+    /* ===================================================
+       RESUMO
+    =================================================== */
 
     const saldoRestante =
       Math.max(
@@ -1308,9 +2265,14 @@
       moeda(saldoRestante);
 
 
-    /* =====================================================
+    atualizarBarra(
+      percentualTotal
+    );
+
+
+    /* ===================================================
        MEMÓRIA
-    ===================================================== */
+    =================================================== */
 
     memoria += `
 
@@ -1352,6 +2314,19 @@
 
       </div>
 
+
+      <div class="linha-memoria">
+
+        <span>
+          Saldo restante da base
+        </span>
+
+        <strong>
+          ${moeda(saldoRestante)}
+        </strong>
+
+      </div>
+
     `;
 
 
@@ -1362,29 +2337,232 @@
 
 
     mostrarSucesso(
-      `Cálculo concluído. Foram considerados ${contratosValidos} contrato(s), ` +
-      `totalizando ${percentual(percentualTotal)} e ` +
-      `${moeda(totalDescontos)} em descontos.`
+
+      `Cálculo concluído.
+      Foram considerados ${contratosValidos}
+      contrato(s), totalizando
+      ${percentual(percentualTotal)}
+      e ${moeda(totalDescontos)}
+      em descontos.`
+
     );
 
   }
 
 
-  /* =========================================================
+
+  /* =====================================================
+     CÁLCULO SILENCIOSO
+  ===================================================== */
+
+  function calcularSilencioso() {
+
+    try {
+
+      const base =
+        obterBase();
+
+
+      if (base <= 0) {
+
+        return;
+
+      }
+
+
+      const linhas =
+        document.querySelectorAll(
+          '#listaContratos tr'
+        );
+
+
+      let percentualTotal = 0;
+
+      let totalDescontos = 0;
+
+
+      linhas.forEach(
+        linha => {
+
+          const percentualContrato =
+            obterPercentual(
+              linha.querySelector(
+                '.percentual'
+              )
+            );
+
+
+          const saldoDevedor =
+            numero(
+              linha.querySelector(
+                '.saldo'
+              ).value
+            );
+
+
+          const descontoTeorico =
+            base *
+            percentualContrato /
+            100;
+
+
+          const descontoFinal =
+            saldoDevedor > 0
+              ? Math.min(
+                  descontoTeorico,
+                  saldoDevedor
+                )
+              : descontoTeorico;
+
+
+          percentualTotal +=
+            percentualContrato;
+
+
+          totalDescontos +=
+            descontoFinal;
+
+
+          linha.querySelector(
+            '.resultado'
+          ).textContent =
+            moeda(descontoFinal);
+
+
+          linha.querySelector(
+            '.calculoContrato'
+          ).textContent =
+            `${moeda(base)} × ${percentual(percentualContrato)}`;
+
+        }
+      );
+
+
+      document.getElementById(
+        'resumoBase'
+      ).textContent =
+        moeda(base);
+
+
+      document.getElementById(
+        'resumoPercentual'
+      ).textContent =
+        percentual(percentualTotal);
+
+
+      document.getElementById(
+        'resumoDesconto'
+      ).textContent =
+        moeda(totalDescontos);
+
+
+      document.getElementById(
+        'resumoSaldo'
+      ).textContent =
+        moeda(
+          Math.max(
+            0,
+            base - totalDescontos
+          )
+        );
+
+
+      atualizarBarra(
+        percentualTotal
+      );
+
+    }
+    catch (erro) {
+
+      console.error(erro);
+
+    }
+
+  }
+
+
+
+  /* =====================================================
+     BARRA DE LIMITE
+  ===================================================== */
+
+  function atualizarBarra(valor) {
+
+    const percentualVisual =
+      Math.min(
+        100,
+        (valor /
+          LIMITE_PERCENTUAL) *
+          100
+      );
+
+
+    document.getElementById(
+      'barraProgresso'
+    ).style.width =
+      percentualVisual + '%';
+
+
+    document.getElementById(
+      'textoLimite'
+    ).textContent =
+      `${percentual(valor)}
+       de ${percentual(LIMITE_PERCENTUAL)}`;
+
+
+    const barra =
+      document.getElementById(
+        'barraProgresso'
+      );
+
+
+    if (
+      valor >
+      LIMITE_PERCENTUAL
+    ) {
+
+      barra.style.background =
+        '#dc2626';
+
+    }
+    else if (
+      valor >= 30
+    ) {
+
+      barra.style.background =
+        '#f59e0b';
+
+    }
+    else {
+
+      barra.style.background =
+        '#1769e0';
+
+    }
+
+  }
+
+
+
+  /* =====================================================
      ALERTAS
-  ========================================================= */
+  ===================================================== */
 
   function limparAlertas() {
 
     document.getElementById(
       'alertaErro'
-    ).style.display = 'none';
+    ).style.display =
+      'none';
+
 
     document.getElementById(
       'alertaSucesso'
-    ).style.display = 'none';
+    ).style.display =
+      'none';
 
   }
+
 
 
   function mostrarErro(mensagem) {
@@ -1394,13 +2572,16 @@
         'alertaErro'
       );
 
+
     alerta.innerHTML =
       '⚠️ ' + mensagem;
+
 
     alerta.style.display =
       'block';
 
   }
+
 
 
   function mostrarSucesso(mensagem) {
@@ -1410,8 +2591,10 @@
         'alertaSucesso'
       );
 
+
     alerta.innerHTML =
       '✓ ' + mensagem;
+
 
     alerta.style.display =
       'block';
@@ -1419,11 +2602,13 @@
   }
 
 
-  /* =========================================================
-     LIMPAR
-  ========================================================= */
+
+  /* =====================================================
+     LIMPAR TUDO
+  ===================================================== */
 
   function limparTudo() {
+
 
     if (
       !confirm(
@@ -1440,13 +2625,17 @@
       'valorBruto'
     ).value = '';
 
+
     document.getElementById(
       'outrosDescontos'
     ).value = '';
 
+
     document.getElementById(
       'baseCalculada'
-    ).value = 'R$ 0,00';
+    ).value =
+      'R$ 0,00';
+
 
     document.getElementById(
       'baseManual'
@@ -1460,19 +2649,26 @@
 
     document.getElementById(
       'resumoBase'
-    ).textContent = 'R$ 0,00';
+    ).textContent =
+      'R$ 0,00';
+
 
     document.getElementById(
       'resumoPercentual'
-    ).textContent = '0,00%';
+    ).textContent =
+      '0,00%';
+
 
     document.getElementById(
       'resumoDesconto'
-    ).textContent = 'R$ 0,00';
+    ).textContent =
+      'R$ 0,00';
+
 
     document.getElementById(
       'resumoSaldo'
-    ).textContent = 'R$ 0,00';
+    ).textContent =
+      'R$ 0,00';
 
 
     document.getElementById(
@@ -1481,7 +2677,23 @@
       'Informe a base e os contratos para realizar o cálculo.';
 
 
+    document.getElementById(
+      'barraProgresso'
+    ).style.width =
+      '0%';
+
+
+    document.getElementById(
+      'textoLimite'
+    ).textContent =
+      '0,00% de 35,00%';
+
+
     limparAlertas();
+
+
+    contadorContratos = 0;
+
 
     adicionarContrato();
 
@@ -1494,16 +2706,26 @@
   }
 
 
-  /* =========================================================
-     EXEMPLO DA RESCISÃO
-  ========================================================= */
+
+  /* =====================================================
+     CARREGAR EXEMPLO
+  ===================================================== */
 
   function carregarExemplo() {
+
 
     document.getElementById(
       'baseManual'
     ).value =
       'R$ 11.711,07';
+
+
+    document.getElementById(
+      'listaContratos'
+    ).innerHTML = '';
+
+
+    contadorContratos = 0;
 
 
     adicionarContrato(
@@ -1539,27 +2761,30 @@
   }
 
 
-  /* =========================================================
+
+  /* =====================================================
      INICIALIZAÇÃO
-  ========================================================= */
+  ===================================================== */
 
-  window.onload = function() {
+  window.onload =
+    function() {
 
-    /*
-      Quatro linhas vazias para começar.
-    */
 
-    adicionarContrato();
+      adicionarContrato();
 
-    adicionarContrato();
+      adicionarContrato();
 
-    adicionarContrato();
+      adicionarContrato();
 
-    adicionarContrato();
+      adicionarContrato();
 
-  };
+
+    };
+
 
 </script>
 
+
 </body>
+
 </html>

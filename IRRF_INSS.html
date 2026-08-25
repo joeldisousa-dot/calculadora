@@ -32,11 +32,6 @@ body{
     color:#1f2937;
 }
 
-
-/* =====================================================
-   CONTAINER
-===================================================== */
-
 .container{
 
     max-width:1150px;
@@ -395,6 +390,8 @@ button{
 
     justify-content:space-between;
 
+    align-items:flex-start;
+
     gap:20px;
 
     padding:10px 0;
@@ -410,6 +407,68 @@ button{
     border-bottom:0;
 
     font-weight:bold;
+}
+
+.memory-row strong{
+
+    text-align:right;
+}
+
+.memory-highlight{
+
+    background:#eff6ff;
+
+    border:1px solid #bfdbfe;
+
+    border-radius:8px;
+
+    padding:12px;
+
+    margin:10px 0;
+
+    color:#1e40af;
+
+    font-size:13px;
+
+    line-height:1.5;
+}
+
+.memory-success{
+
+    background:#f0fdf4;
+
+    border:1px solid #bbf7d0;
+
+    border-radius:8px;
+
+    padding:12px;
+
+    margin:10px 0;
+
+    color:#166534;
+
+    font-size:13px;
+
+    line-height:1.5;
+}
+
+.memory-warning{
+
+    background:#fffbeb;
+
+    border:1px solid #fde68a;
+
+    border-radius:8px;
+
+    padding:12px;
+
+    margin:10px 0;
+
+    color:#92400e;
+
+    font-size:13px;
+
+    line-height:1.5;
 }
 
 
@@ -555,6 +614,19 @@ td{
 
         width:100%;
     }
+
+    .memory-row{
+
+        flex-direction:column;
+
+        gap:5px;
+    }
+
+    .memory-row strong{
+
+        text-align:left;
+    }
+
 }
 
 
@@ -1231,11 +1303,11 @@ o teto de contribuição.
 <br><br>
 
 
-<strong>2. Base do IRRF</strong>
+<strong>2. Deduções do IRRF</strong>
 
 <br>
 
-O sistema parte da remuneração tributável e deduz:
+O sistema calcula as deduções legais considerando:
 
 <br>
 
@@ -1255,9 +1327,24 @@ O sistema parte da remuneração tributável e deduz:
 
 <br><br>
 
-Também compara as deduções legais com o
-<strong>desconto simplificado mensal de R$ 607,20</strong>
-e utiliza a opção mais vantajosa para o contribuinte.
+Em seguida, compara o total das deduções legais
+com o <strong>desconto simplificado mensal de R$ 607,20</strong>.
+
+<br><br>
+
+É utilizada a opção mais vantajosa.
+
+<br><br>
+
+<strong>Importante:</strong>
+
+Quando as deduções legais forem superiores a
+R$ 607,20, os dependentes serão considerados
+efetivamente na base de cálculo.
+
+Quando o desconto simplificado for superior,
+a base utilizará os R$ 607,20, e as deduções
+legais não serão somadas separadamente.
 
 <br><br>
 
@@ -1278,13 +1365,18 @@ progressiva mensal de 2026.
 
 Depois do cálculo pela tabela, é aplicada,
 quando cabível, a redução mensal instituída
-para os rendimentos de até R$ 7.350,00.
+para os rendimentos tributáveis dentro dos
+limites legais de 2026.
 
 </div>
 
 </div>
 
 
+
+<!-- =====================================================
+     OBSERVAÇÃO
+===================================================== -->
 
 <div class="card">
 
@@ -1325,8 +1417,8 @@ rescisão.
     "
 >
 
-Calculadora baseada nas tabelas oficiais vigentes
-para 2026.
+Calculadora baseada nos parâmetros de 2026 configurados
+nesta ferramenta.
 
 <br>
 
@@ -1348,9 +1440,9 @@ legal ou normativa.
 ===================================================== */
 
 
-/*
- * INSS
- */
+/* =====================================================
+   INSS
+===================================================== */
 
 const INSS_FAIXAS = [
 
@@ -1381,9 +1473,9 @@ const INSS_TETO =
     8475.55;
 
 
-/*
- * IRRF
- */
+/* =====================================================
+   IRRF
+===================================================== */
 
 const IRRF_FAIXAS = [
 
@@ -1420,6 +1512,10 @@ const IRRF_FAIXAS = [
 ];
 
 
+/* =====================================================
+   DEDUÇÕES
+===================================================== */
+
 const DEDUCAO_DEPENDENTE =
     189.59;
 
@@ -1428,9 +1524,9 @@ const DESCONTO_SIMPLIFICADO =
     607.20;
 
 
-/*
- * Redução IRRF 2026
- */
+/* =====================================================
+   REDUÇÃO IRRF 2026
+===================================================== */
 
 const LIMITE_IR_REDUCAO_TOTAL =
     5000.00;
@@ -1438,7 +1534,6 @@ const LIMITE_IR_REDUCAO_TOTAL =
 
 const LIMITE_IR_REDUCAO_PARCIAL =
     7350.00;
-
 
 
 /* =====================================================
@@ -1457,7 +1552,6 @@ function moeda(valor){
         );
 
 }
-
 
 
 function numero(valor){
@@ -1496,7 +1590,6 @@ function numero(valor){
 }
 
 
-
 /* =====================================================
    MÁSCARA DE MOEDA
 ===================================================== */
@@ -1531,7 +1624,6 @@ function formatarMoeda(campo){
         );
 
 }
-
 
 
 /* =====================================================
@@ -1594,7 +1686,6 @@ function calcularINSS(remuneracao){
 }
 
 
-
 /* =====================================================
    CALCULAR IRRF
 ===================================================== */
@@ -1607,18 +1698,34 @@ function calcularIRRF(
     outrasDeducoes
 ){
 
-
     /*
-     * Dedução por dependentes
+     * =================================================
+     * 1. DEDUÇÃO POR DEPENDENTES
+     * =================================================
      */
 
+    const quantidadeDependentes =
+        Math.max(
+            0,
+            dependentes
+        );
+
+
     const deducaoDependentes =
-        dependentes *
+        quantidadeDependentes *
         DEDUCAO_DEPENDENTE;
 
 
     /*
-     * Deduções legais
+     * =================================================
+     * 2. DEDUÇÕES LEGAIS
+     * =================================================
+     *
+     * INSS
+     * + dependentes
+     * + pensão
+     * + outras deduções
+     *
      */
 
     const deducoesLegais =
@@ -1629,21 +1736,33 @@ function calcularIRRF(
 
 
     /*
-     * Desconto simplificado
-     *
-     * Utiliza-se a opção mais vantajosa:
-     * deduções legais ou desconto simplificado.
+     * =================================================
+     * 3. COMPARAÇÃO
+     * =================================================
      */
 
-    const deducaoUtilizada =
-        Math.max(
-            deducoesLegais,
-            DESCONTO_SIMPLIFICADO
-        );
+    const utilizaDeducoesLegais =
+        deducoesLegais >
+        DESCONTO_SIMPLIFICADO;
 
 
     /*
-     * Base IR
+     * Se as deduções legais forem maiores,
+     * utiliza-se o valor legal.
+     *
+     * Caso contrário, utiliza-se o simplificado.
+     */
+
+    const deducaoUtilizada =
+        utilizaDeducoesLegais
+            ? deducoesLegais
+            : DESCONTO_SIMPLIFICADO;
+
+
+    /*
+     * =================================================
+     * 4. BASE DO IRRF
+     * =================================================
      */
 
     const baseIR =
@@ -1655,7 +1774,9 @@ function calcularIRRF(
 
 
     /*
-     * Identifica faixa
+     * =================================================
+     * 5. FAIXA DO IRRF
+     * =================================================
      */
 
     let faixaEncontrada =
@@ -1684,10 +1805,12 @@ function calcularIRRF(
 
 
     /*
-     * Imposto pela tabela
+     * =================================================
+     * 6. IMPOSTO PELA TABELA
+     * =================================================
      */
 
-    let imposto =
+    let impostoTabela =
         (
             baseIR *
             faixaEncontrada.aliquota
@@ -1696,50 +1819,50 @@ function calcularIRRF(
         faixaEncontrada.deducao;
 
 
-    imposto =
+    impostoTabela =
         Math.max(
             0,
-            imposto
+            impostoTabela
         );
 
 
     /*
-     * Redução adicional 2026
+     * =================================================
+     * 7. REDUÇÃO IRRF 2026
+     * =================================================
      *
-     * A redução é determinada pelos
-     * rendimentos tributáveis sujeitos
-     * à incidência mensal.
+     * A redução utiliza a remuneração tributável.
+     *
+     * NÃO utiliza a baseIR.
+     *
      */
 
-    let reducao =
-        0;
+    let reducao = 0;
 
+
+    /*
+     * Até R$ 5.000,00
+     */
 
     if(
         remuneracao <=
         LIMITE_IR_REDUCAO_TOTAL
     ){
 
-        /*
-         * Redução suficiente para zerar
-         * o imposto.
-         */
-
         reducao =
-            imposto;
+            impostoTabela;
 
     }
+
+
+    /*
+     * De R$ 5.000,01 a R$ 7.350,00
+     */
+
     else if(
         remuneracao <=
         LIMITE_IR_REDUCAO_PARCIAL
     ){
-
-        /*
-         * Fórmula oficial:
-         *
-         * R$ 978,62 -
-         * (0,133145 × rendimentos tributáveis)
-         */
 
         reducao =
             978.62 -
@@ -1753,7 +1876,7 @@ function calcularIRRF(
             Math.max(
                 0,
                 Math.min(
-                    imposto,
+                    impostoTabela,
                     reducao
                 )
             );
@@ -1761,16 +1884,41 @@ function calcularIRRF(
     }
 
 
+    /*
+     * Acima de R$ 7.350,00
+     */
+
+    else{
+
+        reducao = 0;
+
+    }
+
+
+    /*
+     * =================================================
+     * 8. IRRF FINAL
+     * =================================================
+     */
+
     const impostoFinal =
         Math.max(
             0,
-            imposto - reducao
+            impostoTabela -
+            reducao
         );
 
 
+    /*
+     * =================================================
+     * 9. RETORNO
+     * =================================================
+     */
+
     return {
 
-        baseIR:baseIR,
+        baseIR:
+            baseIR,
 
         deducaoDependentes:
             deducaoDependentes,
@@ -1778,11 +1926,17 @@ function calcularIRRF(
         deducoesLegais:
             deducoesLegais,
 
+        descontoSimplificado:
+            DESCONTO_SIMPLIFICADO,
+
+        utilizaDeducoesLegais:
+            utilizaDeducoesLegais,
+
         deducaoUtilizada:
             deducaoUtilizada,
 
         impostoTabela:
-            imposto,
+            impostoTabela,
 
         reducao:
             reducao,
@@ -1799,7 +1953,6 @@ function calcularIRRF(
     };
 
 }
-
 
 
 /* =====================================================
@@ -1855,8 +2008,22 @@ function calcular(){
     }
 
 
+    if(dependentes < 0){
+
+        mostrarAlerta(
+            'O número de dependentes não pode ser negativo.',
+            'warning'
+        );
+
+        return;
+
+    }
+
+
     /*
+     * =================================================
      * INSS
+     * =================================================
      */
 
     const inss =
@@ -1866,7 +2033,9 @@ function calcular(){
 
 
     /*
+     * =================================================
      * IRRF
+     * =================================================
      */
 
     const ir =
@@ -1880,7 +2049,9 @@ function calcular(){
 
 
     /*
-     * Líquido estimado
+     * =================================================
+     * LÍQUIDO
+     * =================================================
      */
 
     const liquido =
@@ -1893,7 +2064,9 @@ function calcular(){
 
 
     /*
-     * Resultado
+     * =================================================
+     * RESULTADOS
+     * =================================================
      */
 
     document.getElementById(
@@ -1921,7 +2094,9 @@ function calcular(){
 
 
     /*
-     * Memória
+     * =================================================
+     * MEMÓRIA DE CÁLCULO
+     * =================================================
      */
 
     let html = '';
@@ -1940,31 +2115,31 @@ function calcular(){
 
 
     html += linha(
-        'Dependentes',
-        `${dependentes} × ${moeda(DEDUCAO_DEPENDENTE)}`
+        'Número de dependentes',
+        dependentes
     );
 
 
     html += linha(
         'Dedução por dependentes',
-        moeda(ir.deducaoDependentes)
+        `${dependentes} × ${moeda(DEDUCAO_DEPENDENTE)} = ${moeda(ir.deducaoDependentes)}`
     );
 
 
     html += linha(
-        'Pensão alimentícia',
+        'Pensão alimentícia dedutível',
         moeda(pensao)
     );
 
 
     html += linha(
-        'Outras deduções',
+        'Outras deduções legais',
         moeda(outrasDeducoes)
     );
 
 
     html += linha(
-        'Deduções legais',
+        'Total das deduções legais',
         moeda(ir.deducoesLegais)
     );
 
@@ -1972,6 +2147,90 @@ function calcular(){
     html += linha(
         'Desconto simplificado disponível',
         moeda(DESCONTO_SIMPLIFICADO)
+    );
+
+
+    /*
+     * =================================================
+     * EXPLICAÇÃO DO CRITÉRIO
+     * =================================================
+     */
+
+    if(ir.utilizaDeducoesLegais){
+
+        html += `
+
+            <div class="memory-success">
+
+                <strong>
+                    ✓ Deduções legais utilizadas
+                </strong>
+
+                <br><br>
+
+                As deduções legais totalizaram
+                <strong>
+                    ${moeda(ir.deducoesLegais)}
+                </strong>,
+                valor superior ao desconto simplificado de
+                <strong>
+                    ${moeda(DESCONTO_SIMPLIFICADO)}
+                </strong>.
+
+                <br><br>
+
+                Portanto, a dedução por dependentes foi
+                efetivamente considerada na composição da
+                base de cálculo do IRRF.
+
+            </div>
+
+        `;
+
+    }
+    else{
+
+        html += `
+
+            <div class="memory-warning">
+
+                <strong>
+                    ⚠ Desconto simplificado utilizado
+                </strong>
+
+                <br><br>
+
+                As deduções legais totalizaram
+                <strong>
+                    ${moeda(ir.deducoesLegais)}
+                </strong>,
+                valor inferior ao desconto simplificado de
+                <strong>
+                    ${moeda(DESCONTO_SIMPLIFICADO)}
+                </strong>.
+
+                <br><br>
+
+                Portanto, foi utilizado o desconto simplificado
+                de <strong>
+                    ${moeda(DESCONTO_SIMPLIFICADO)}
+                </strong>.
+
+                As deduções legais, inclusive a dedução por
+                dependentes, não são somadas novamente à base.
+
+            </div>
+
+        `;
+
+    }
+
+
+    html += linha(
+        'Critério efetivamente utilizado',
+        ir.utilizaDeducoesLegais
+            ? 'Deduções legais'
+            : 'Desconto simplificado'
     );
 
 
@@ -1988,13 +2247,25 @@ function calcular(){
 
 
     html += linha(
+        'Alíquota da faixa',
+        `${(ir.aliquota * 100).toFixed(2).replace('.',',')}%`
+    );
+
+
+    html += linha(
+        'Dedução da faixa',
+        moeda(ir.deducaoFaixa)
+    );
+
+
+    html += linha(
         'IRRF antes da redução',
         moeda(ir.impostoTabela)
     );
 
 
     html += linha(
-        'Redução do IR 2026',
+        'Redução do IRRF 2026',
         moeda(ir.reducao)
     );
 
@@ -2025,7 +2296,6 @@ function calcular(){
 }
 
 
-
 /* =====================================================
    LINHA DA MEMÓRIA
 ===================================================== */
@@ -2054,7 +2324,6 @@ function linha(
 }
 
 
-
 /* =====================================================
    EXEMPLO
 ===================================================== */
@@ -2070,7 +2339,7 @@ function carregarExemplo(){
     document.getElementById(
         'dependentes'
     ).value =
-        0;
+        1;
 
 
     document.getElementById(
@@ -2090,7 +2359,6 @@ function carregarExemplo(){
 }
 
 
-
 /* =====================================================
    LIMPAR
 ===================================================== */
@@ -2099,22 +2367,26 @@ function limpar(){
 
     document.getElementById(
         'remuneracao'
-    ).value='';
+    ).value =
+        '';
 
 
     document.getElementById(
         'dependentes'
-    ).value=0;
+    ).value =
+        0;
 
 
     document.getElementById(
         'pensao'
-    ).value='';
+    ).value =
+        '';
 
 
     document.getElementById(
         'outrasDeducoes'
-    ).value='';
+    ).value =
+        '';
 
 
     document.getElementById(
@@ -2150,7 +2422,6 @@ function limpar(){
     esconderAlerta();
 
 }
-
 
 
 /* =====================================================
@@ -2195,7 +2466,6 @@ function esconderAlerta(){
         'none';
 
 }
-
 
 </script>
 

@@ -1,0 +1,1182 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Conferência de Empréstimos na Rescisão</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f4f6f8;
+      color: #172033;
+    }
+
+    header {
+      background: #0b4ea2;
+      color: white;
+      padding: 28px 20px;
+    }
+
+    header .container {
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    header h1 {
+      margin: 0 0 8px;
+      font-size: 26px;
+    }
+
+    header p {
+      margin: 0;
+      opacity: .9;
+      font-size: 14px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 25px auto;
+      padding: 0 20px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 22px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 10px rgba(0,0,0,.07);
+    }
+
+    .card h2 {
+      margin-top: 0;
+      font-size: 19px;
+      color: #0b4ea2;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    label {
+      font-size: 13px;
+      font-weight: bold;
+      color: #4b5563;
+    }
+
+    input {
+      width: 100%;
+      padding: 11px 12px;
+      border: 1px solid #ccd3dc;
+      border-radius: 7px;
+      font-size: 15px;
+      background: #fff;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: #0b4ea2;
+      box-shadow: 0 0 0 2px rgba(11,78,162,.1);
+    }
+
+    .table-wrapper {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 850px;
+    }
+
+    th {
+      background: #e9eef5;
+      color: #1f2937;
+      font-size: 13px;
+      text-align: left;
+      padding: 12px;
+    }
+
+    td {
+      padding: 10px 12px;
+      border-bottom: 1px solid #e5e7eb;
+      vertical-align: middle;
+    }
+
+    td input {
+      min-width: 120px;
+    }
+
+    .number {
+      text-align: right;
+    }
+
+    .status {
+      font-weight: bold;
+      padding: 5px 9px;
+      border-radius: 20px;
+      display: inline-block;
+      font-size: 12px;
+    }
+
+    .ok {
+      color: #087443;
+      background: #dff7e9;
+    }
+
+    .warning {
+      color: #a15c00;
+      background: #fff0cf;
+    }
+
+    .danger {
+      color: #a31621;
+      background: #ffe1e4;
+    }
+
+    .summary {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+    }
+
+    .summary-box {
+      background: #f8fafc;
+      border: 1px solid #e1e6ed;
+      border-radius: 10px;
+      padding: 18px;
+    }
+
+    .summary-box .label {
+      color: #667085;
+      font-size: 12px;
+      margin-bottom: 8px;
+    }
+
+    .summary-box .value {
+      font-size: 22px;
+      font-weight: bold;
+      color: #0b4ea2;
+    }
+
+    .difference-positive {
+      color: #a31621 !important;
+    }
+
+    .difference-negative {
+      color: #087443 !important;
+    }
+
+    .formula {
+      background: #eef5ff;
+      border-left: 4px solid #0b4ea2;
+      padding: 15px;
+      border-radius: 5px;
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    .alert {
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 15px;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .alert-info {
+      background: #eef5ff;
+      color: #174a8b;
+      border: 1px solid #c8dcfa;
+    }
+
+    .alert-warning {
+      background: #fff5dc;
+      color: #805300;
+      border: 1px solid #f0d58a;
+    }
+
+    .alert-danger {
+      background: #ffe8eb;
+      color: #951b27;
+      border: 1px solid #f0b7bd;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+    }
+
+    button {
+      border: 0;
+      border-radius: 7px;
+      padding: 11px 18px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .btn-primary {
+      background: #0b4ea2;
+      color: white;
+    }
+
+    .btn-secondary {
+      background: #e7ebf0;
+      color: #273142;
+    }
+
+    .btn-danger {
+      background: #b42318;
+      color: white;
+    }
+
+    button:hover {
+      opacity: .9;
+    }
+
+    footer {
+      max-width: 1200px;
+      margin: 30px auto;
+      padding: 0 20px 30px;
+      color: #667085;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 900px) {
+      .grid,
+      .summary {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .grid,
+      .summary {
+        grid-template-columns: 1fr;
+      }
+
+      header h1 {
+        font-size: 21px;
+      }
+
+      .card {
+        padding: 16px;
+      }
+    }
+
+    @media print {
+      body {
+        background: white;
+      }
+
+      header {
+        background: white;
+        color: black;
+        border-bottom: 2px solid #000;
+      }
+
+      .buttons {
+        display: none;
+      }
+
+      .card {
+        box-shadow: none;
+        border: 1px solid #ddd;
+      }
+
+      input {
+        border: 0;
+        padding: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="container">
+    <h1>Conferência de Empréstimos na Rescisão</h1>
+    <p>
+      Conferência por contrato — Crédito do Trabalhador / Empréstimo Consignado
+    </p>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- BASE -->
+  <section class="card">
+    <h2>1. Base da rescisão</h2>
+
+    <div class="grid">
+
+      <div class="field">
+        <label for="baseRescisao">
+          Base de cálculo das verbas rescisórias para o consignado
+        </label>
+
+        <input
+          type="number"
+          id="baseRescisao"
+          value="12943.55"
+          step="0.01"
+          min="0"
+          oninput="calcular()"
+        >
+      </div>
+
+      <div class="field">
+        <label for="limite">
+          Limite máximo de garantia (%)
+        </label>
+
+        <input
+          type="number"
+          id="limite"
+          value="35"
+          step="0.01"
+          min="0"
+          oninput="calcular()"
+        >
+      </div>
+
+      <div class="field">
+        <label for="totalBruto">
+          Total bruto do TRCT (informativo)
+        </label>
+
+        <input
+          type="number"
+          id="totalBruto"
+          value="12943.55"
+          step="0.01"
+          min="0"
+          oninput="calcular()"
+        >
+      </div>
+
+    </div>
+
+    <div class="formula" style="margin-top:18px;">
+      <strong>Fórmula utilizada:</strong><br>
+      Valor teórico do contrato = Base de cálculo × Percentual de garantia.<br>
+      Valor efetivo conferido = menor entre o valor teórico e o saldo devedor atualizado.
+    </div>
+  </section>
+
+
+  <!-- CONTRATOS -->
+  <section class="card">
+    <h2>2. Contratos</h2>
+
+    <div class="table-wrapper">
+
+      <table>
+
+        <thead>
+          <tr>
+            <th>Contrato</th>
+            <th>Instituição</th>
+            <th>% Garantia</th>
+            <th>Saldo devedor</th>
+            <th>Desconto no TRCT</th>
+            <th>Valor calculado</th>
+            <th>Diferença</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+
+        <tbody>
+
+          <tr>
+            <td>
+              <input
+                id="contrato1"
+                value="116"
+                oninput="calcular()"
+              >
+            </td>
+
+            <td>
+              <input
+                id="instituicao1"
+                value="PICPAY"
+                oninput="calcular()"
+              >
+            </td>
+
+            <td>
+              <input
+                type="number"
+                id="percentual1"
+                value="13.94"
+                step="0.01"
+                min="0"
+                oninput="calcular()"
+              >
+            </td>
+
+            <td>
+              <input
+                type="number"
+                id="saldo1"
+                value="19573.77"
+                step="0.01"
+                min="0"
+                oninput="calcular()"
+              >
+            </td>
+
+            <td>
+              <input
+                type="number"
+                id="desconto1"
+                value="1648.92"
+                step="0.01"
+                min="0"
+                oninput="calcular()"
+              >
+            </td>
+
+            <td class="number" id="calculado1">R$ 0,00</td>
+            <td class="number" id="diferenca1">R$ 0,00</td>
+            <td id="status1"></td>
+          </tr>
+
+
+          <tr>
+            <td>
+              <input
+                id="contrato2"
+                value="117"
+                oninput="calcular()"
+              >
+            </td>
+
+            <td>
+              <input
+                id="instituicao2"
+                value="QI SCD S.A."
+                oninput="calcular()"
+              >
+            </td>
+
+            <td>
+              <input
+                type="number"
+                id="percentual2"
+                value="14.08"
+                step="0.01"
+                min="0"
+                oninput="calcular()"
+              >
+            </td>
+
+            <td>
+              <input
+                type="number"
+                id="saldo2"
+                value="8054.44"
+                step="0.01"
+                min="0"
+                oninput="calcular()"
+              >
+            </td>
+
+            <td>
+              <input
+                type="number"
+                id="desconto2"
+                value="744.82"
+                step="0.01"
+                min="0"
+                oninput="calcular()"
+              >
+            </td>
+
+            <td class="number" id="calculado2">R$ 0,00</td>
+            <td class="number" id="diferenca2">R$ 0,00</td>
+            <td id="status2"></td>
+          </tr>
+
+
+          <tr>
+            <td>
+              <input
+                id="contrato3"
+                value="118"
+                oninput="calcular()"
+              >
+            </td>
+
+            <td>
+              <input
+                id="instituicao3"
+                value="PARATI CFI S.A."
+                oninput="calcular()"
+              >
+            </td>
+
+            <td>
+              <input
+                type="number"
+                id="percentual3"
+                value="0.59"
+                step="0.01"
+                min="0"
+                oninput="calcular()"
+              >
+            </td>
+
+            <td>
+              <input
+                type="number"
+                id="saldo3"
+                value="533.96"
+                step="0.01"
+                min="0"
+                oninput="calcular()"
+              >
+            </td>
+
+            <td>
+              <input
+                type="number"
+                id="desconto3"
+                value="1632.53"
+                step="0.01"
+                min="0"
+                oninput="calcular()"
+              >
+            </td>
+
+            <td class="number" id="calculado3">R$ 0,00</td>
+            <td class="number" id="diferenca3">R$ 0,00</td>
+            <td id="status3"></td>
+          </tr>
+
+
+          <tr>
+            <td>
+              <input
+                id="contrato4"
+                value="119"
+                oninput="calcular()"
+              >
+            </td>
+
+            <td>
+              <input
+                id="instituicao4"
+                value="PARATI CFI S.A."
+                oninput="calcular()"
+              >
+            </td>
+
+            <td>
+              <input
+                type="number"
+                id="percentual4"
+                value="6.36"
+                step="0.01"
+                min="0"
+                oninput="calcular()"
+              >
+            </td>
+
+            <td>
+              <input
+                type="number"
+                id="saldo4"
+                value="4349.67"
+                step="0.01"
+                min="0"
+                oninput="calcular()"
+              >
+            </td>
+
+            <td>
+              <input
+                type="number"
+                id="desconto4"
+                value="69.09"
+                step="0.01"
+                min="0"
+                oninput="calcular()"
+              >
+            </td>
+
+            <td class="number" id="calculado4">R$ 0,00</td>
+            <td class="number" id="diferenca4">R$ 0,00</td>
+            <td id="status4"></td>
+          </tr>
+
+        </tbody>
+
+        <tfoot>
+
+          <tr style="font-weight:bold;background:#f8fafc;">
+
+            <td colspan="2">
+              TOTAL
+            </td>
+
+            <td id="totalPercentual">
+              0,00%
+            </td>
+
+            <td id="totalSaldo">
+              R$ 0,00
+            </td>
+
+            <td id="totalDesconto">
+              R$ 0,00
+            </td>
+
+            <td id="totalCalculado">
+              R$ 0,00
+            </td>
+
+            <td id="totalDiferenca">
+              R$ 0,00
+            </td>
+
+            <td></td>
+
+          </tr>
+
+        </tfoot>
+
+      </table>
+
+    </div>
+
+  </section>
+
+
+  <!-- RESUMO -->
+  <section class="card">
+
+    <h2>3. Resultado da conferência</h2>
+
+    <div class="summary">
+
+      <div class="summary-box">
+        <div class="label">Base de cálculo</div>
+        <div class="value" id="resumoBase">
+          R$ 0,00
+        </div>
+      </div>
+
+      <div class="summary-box">
+        <div class="label">Percentual total</div>
+        <div class="value" id="resumoPercentual">
+          0,00%
+        </div>
+      </div>
+
+      <div class="summary-box">
+        <div class="label">Desconto informado</div>
+        <div class="value" id="resumoDesconto">
+          R$ 0,00
+        </div>
+      </div>
+
+      <div class="summary-box">
+        <div class="label">Desconto calculado</div>
+        <div class="value" id="resumoCalculado">
+          R$ 0,00
+        </div>
+      </div>
+
+    </div>
+
+
+    <div id="mensagem" class="alert alert-info">
+      Informe os dados para realizar a conferência.
+    </div>
+
+  </section>
+
+
+  <!-- EXPLICAÇÃO -->
+  <section class="card">
+
+    <h2>4. Como o cálculo é feito</h2>
+
+    <div class="formula">
+
+      <strong>Passo 1 — Percentual do contrato</strong><br>
+      Cada contrato possui seu próprio percentual de garantia.
+      <br><br>
+
+      <strong>Passo 2 — Aplicação sobre a base</strong><br>
+      Base da rescisão × percentual do contrato.
+      <br><br>
+
+      <strong>Passo 3 — Limite pelo saldo devedor</strong><br>
+      O valor calculado não deve superar o saldo devedor informado para aquele contrato.
+      <br><br>
+
+      <strong>Passo 4 — Comparação com o TRCT</strong><br>
+      O sistema compara o valor calculado com o valor efetivamente descontado na rescisão.
+      <br><br>
+
+      <strong>Passo 5 — Total</strong><br>
+      Soma os quatro contratos e compara o percentual total com o limite informado.
+    </div>
+
+    <div class="alert alert-warning">
+
+      <strong>Atenção:</strong><br>
+      Esta ferramenta é uma calculadora de conferência. 
+      A base efetivamente aplicável deve ser confirmada conforme os dados oficiais
+      retornados para cada contrato e as regras vigentes no processamento da rescisão.
+
+    </div>
+
+  </section>
+
+
+  <!-- BOTÕES -->
+  <section class="card">
+
+    <h2>5. Ações</h2>
+
+    <div class="buttons">
+
+      <button
+        class="btn-primary"
+        onclick="window.print()"
+      >
+        Imprimir / Salvar PDF
+      </button>
+
+      <button
+        class="btn-secondary"
+        onclick="carregarExemplo()"
+      >
+        Restaurar exemplo
+      </button>
+
+      <button
+        class="btn-danger"
+        onclick="limparDados()"
+      >
+        Limpar
+      </button>
+
+    </div>
+
+  </section>
+
+</div>
+
+
+<footer>
+
+  <strong>Observação:</strong><br>
+  Os valores exibidos são resultado de cálculo matemático a partir dos dados
+  inseridos pelo usuário. A ferramenta não substitui a consulta dos dados
+  oficiais do contrato, do saldo devedor atualizado ou das orientações
+  aplicáveis ao processamento da rescisão.
+
+</footer>
+
+
+<script>
+
+  function moeda(valor) {
+
+    return new Intl.NumberFormat(
+      'pt-BR',
+      {
+        style: 'currency',
+        currency: 'BRL'
+      }
+    ).format(valor || 0);
+
+  }
+
+
+  function percentual(valor) {
+
+    return new Intl.NumberFormat(
+      'pt-BR',
+      {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      }
+    ).format(valor || 0) + '%';
+
+  }
+
+
+  function numero(id) {
+
+    const valor = parseFloat(
+      document.getElementById(id).value
+    );
+
+    return isNaN(valor) ? 0 : valor;
+
+  }
+
+
+  function calcular() {
+
+    const base = numero('baseRescisao');
+    const limite = numero('limite');
+
+    let totalPercentual = 0;
+    let totalSaldo = 0;
+    let totalDesconto = 0;
+    let totalCalculado = 0;
+
+
+    for (let i = 1; i <= 4; i++) {
+
+      const pct = numero('percentual' + i);
+      const saldo = numero('saldo' + i);
+      const desconto = numero('desconto' + i);
+
+      totalPercentual += pct;
+      totalSaldo += saldo;
+      totalDesconto += desconto;
+
+      /*
+       * Cálculo teórico:
+       *
+       * Base × percentual / 100
+       *
+       * Depois é aplicado o limite do saldo devedor.
+       */
+
+      const teorico = base * pct / 100;
+
+      const calculado = Math.min(
+        teorico,
+        saldo
+      );
+
+      totalCalculado += calculado;
+
+
+      const diferenca = desconto - calculado;
+
+
+      document.getElementById(
+        'calculado' + i
+      ).textContent = moeda(calculado);
+
+
+      const campoDiferenca =
+        document.getElementById('diferenca' + i);
+
+      campoDiferenca.textContent =
+        moeda(diferenca);
+
+
+      campoDiferenca.className =
+        'number ' +
+        (
+          Math.abs(diferenca) < 0.01
+            ? ''
+            : diferenca > 0
+              ? 'difference-positive'
+              : 'difference-negative'
+        );
+
+
+      const status =
+        document.getElementById('status' + i);
+
+
+      if (Math.abs(diferenca) < 0.01) {
+
+        status.innerHTML =
+          '<span class="status ok">OK</span>';
+
+      }
+
+      else if (diferenca > 0) {
+
+        status.innerHTML =
+          '<span class="status danger">Maior</span>';
+
+      }
+
+      else {
+
+        status.innerHTML =
+          '<span class="status warning">Menor</span>';
+
+      }
+
+    }
+
+
+    document.getElementById(
+      'totalPercentual'
+    ).textContent = percentual(totalPercentual);
+
+
+    document.getElementById(
+      'totalSaldo'
+    ).textContent = moeda(totalSaldo);
+
+
+    document.getElementById(
+      'totalDesconto'
+    ).textContent = moeda(totalDesconto);
+
+
+    document.getElementById(
+      'totalCalculado'
+    ).textContent = moeda(totalCalculado);
+
+
+    document.getElementById(
+      'totalDiferenca'
+    ).textContent =
+      moeda(totalDesconto - totalCalculado);
+
+
+    document.getElementById(
+      'resumoBase'
+    ).textContent = moeda(base);
+
+
+    document.getElementById(
+      'resumoPercentual'
+    ).textContent = percentual(totalPercentual);
+
+
+    document.getElementById(
+      'resumoDesconto'
+    ).textContent = moeda(totalDesconto);
+
+
+    document.getElementById(
+      'resumoCalculado'
+    ).textContent = moeda(totalCalculado);
+
+
+    const mensagem =
+      document.getElementById('mensagem');
+
+
+    if (totalPercentual > limite) {
+
+      mensagem.className =
+        'alert alert-danger';
+
+      mensagem.innerHTML =
+        '<strong>Atenção:</strong> ' +
+        'o percentual total informado (' +
+        percentual(totalPercentual) +
+        ') ultrapassa o limite de ' +
+        percentual(limite) +
+        '.';
+
+    }
+
+    else if (
+      Math.abs(totalDesconto - totalCalculado) < 0.01
+    ) {
+
+      mensagem.className =
+        'alert alert-info';
+
+      mensagem.innerHTML =
+        '<strong>Conferência:</strong> ' +
+        'o total informado no TRCT coincide com o total calculado.';
+
+    }
+
+    else {
+
+      const diferencaTotal =
+        totalDesconto - totalCalculado;
+
+      mensagem.className =
+        'alert alert-warning';
+
+      mensagem.innerHTML =
+        '<strong>Diferença encontrada:</strong> ' +
+        'o total descontado no TRCT é ' +
+        moeda(Math.abs(diferencaTotal)) +
+        (
+          diferencaTotal > 0
+            ? ' maior'
+            : ' menor'
+        ) +
+        ' que o total calculado pela ferramenta.';
+
+    }
+
+  }
+
+
+  function carregarExemplo() {
+
+    document.getElementById(
+      'baseRescisao'
+    ).value = '12943.55';
+
+    document.getElementById(
+      'limite'
+    ).value = '35';
+
+    document.getElementById(
+      'totalBruto'
+    ).value = '12943.55';
+
+
+    document.getElementById(
+      'contrato1'
+    ).value = '116';
+
+    document.getElementById(
+      'instituicao1'
+    ).value = 'PICPAY';
+
+    document.getElementById(
+      'percentual1'
+    ).value = '13.94';
+
+    document.getElementById(
+      'saldo1'
+    ).value = '19573.77';
+
+    document.getElementById(
+      'desconto1'
+    ).value = '1648.92';
+
+
+    document.getElementById(
+      'contrato2'
+    ).value = '117';
+
+    document.getElementById(
+      'instituicao2'
+    ).value = 'QI SCD S.A.';
+
+    document.getElementById(
+      'percentual2'
+    ).value = '14.08';
+
+    document.getElementById(
+      'saldo2'
+    ).value = '8054.44';
+
+    document.getElementById(
+      'desconto2'
+    ).value = '744.82';
+
+
+    document.getElementById(
+      'contrato3'
+    ).value = '118';
+
+    document.getElementById(
+      'instituicao3'
+    ).value = 'PARATI CFI S.A.';
+
+    document.getElementById(
+      'percentual3'
+    ).value = '0.59';
+
+    document.getElementById(
+      'saldo3'
+    ).value = '533.96';
+
+    document.getElementById(
+      'desconto3'
+    ).value = '1632.53';
+
+
+    document.getElementById(
+      'contrato4'
+    ).value = '119';
+
+    document.getElementById(
+      'instituicao4'
+    ).value = 'PARATI CFI S.A.';
+
+    document.getElementById(
+      'percentual4'
+    ).value = '6.36';
+
+    document.getElementById(
+      'saldo4'
+    ).value = '4349.67';
+
+    document.getElementById(
+      'desconto4'
+    ).value = '69.09';
+
+
+    calcular();
+
+  }
+
+
+  function limparDados() {
+
+    document.getElementById(
+      'baseRescisao'
+    ).value = '0';
+
+    document.getElementById(
+      'totalBruto'
+    ).value = '0';
+
+
+    for (let i = 1; i <= 4; i++) {
+
+      document.getElementById(
+        'percentual' + i
+      ).value = '0';
+
+      document.getElementById(
+        'saldo' + i
+      ).value = '0';
+
+      document.getElementById(
+        'desconto' + i
+      ).value = '0';
+
+    }
+
+    calcular();
+
+  }
+
+
+  // Calcula automaticamente ao abrir a página.
+  calcular();
+
+</script>
+
+</body>
+</html>

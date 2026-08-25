@@ -17,10 +17,6 @@
 
   <style>
 
-    /* =====================================================
-       RESET
-    ===================================================== */
-
     * {
       box-sizing: border-box;
     }
@@ -50,7 +46,7 @@
 
       width: 100%;
 
-      max-width: 1250px;
+      max-width: 1280px;
 
       margin: 0 auto;
 
@@ -83,7 +79,7 @@
 
     .header h1 {
 
-      margin: 0 0 7px;
+      margin: 0 0 8px;
 
       font-size: 25px;
 
@@ -96,11 +92,30 @@
 
       margin: 0;
 
-      color: #6b7280;
+      color: #64748b;
 
       font-size: 14px;
 
-      line-height: 1.5;
+      line-height: 1.55;
+
+    }
+
+
+    .header .subinfo {
+
+      margin-top: 12px;
+
+      font-size: 12px;
+
+      color: #475569;
+
+      background: #f8fafc;
+
+      border-radius: 8px;
+
+      padding: 10px 12px;
+
+      border: 1px solid #e2e8f0;
 
     }
 
@@ -157,7 +172,7 @@
       grid-template-columns:
         repeat(2, 1fr);
 
-      gap: 20px;
+      gap: 22px;
 
     }
 
@@ -185,7 +200,7 @@
 
 
     /* =====================================================
-       INPUTS
+       INPUT
     ===================================================== */
 
     input {
@@ -216,7 +231,8 @@
       border-color: #2563eb;
 
       box-shadow:
-        0 0 0 3px rgba(37,99,235,.10);
+        0 0 0 3px
+        rgba(37,99,235,.10);
 
     }
 
@@ -233,7 +249,7 @@
 
 
     /* =====================================================
-       NOTAS EXPLICATIVAS
+       NOTAS
     ===================================================== */
 
     .ajuda {
@@ -242,9 +258,9 @@
 
       color: #64748b;
 
-      margin-top: 6px;
+      margin-top: 7px;
 
-      line-height: 1.45;
+      line-height: 1.55;
 
     }
 
@@ -257,7 +273,7 @@
 
 
     /* =====================================================
-       AVISO DA BASE
+       BASE INFO
     ===================================================== */
 
     .base-info {
@@ -270,13 +286,20 @@
 
       border-radius: 9px;
 
-      padding: 13px 15px;
+      padding: 15px;
 
       font-size: 12px;
 
       color: #1e40af;
 
-      line-height: 1.5;
+      line-height: 1.6;
+
+    }
+
+
+    .base-info strong {
+
+      color: #1e3a8a;
 
     }
 
@@ -384,7 +407,7 @@
 
       border-collapse: collapse;
 
-      min-width: 1000px;
+      min-width: 1100px;
 
     }
 
@@ -409,7 +432,7 @@
 
     td {
 
-      padding: 9px 10px;
+      padding: 10px;
 
       border-bottom:
         1px solid #e5e7eb;
@@ -435,22 +458,7 @@
 
     .saldo {
 
-      max-width: 170px;
-
-    }
-
-
-    .resultado {
-
-      font-weight: bold;
-
-      color: #166534;
-
-      white-space: nowrap;
-
-      display: inline-block;
-
-      padding-top: 10px;
+      max-width: 175px;
 
     }
 
@@ -466,6 +474,21 @@
       padding-top: 10px;
 
       white-space: nowrap;
+
+    }
+
+
+    .resultado {
+
+      font-weight: bold;
+
+      color: #166534;
+
+      white-space: nowrap;
+
+      display: inline-block;
+
+      padding-top: 10px;
 
     }
 
@@ -586,7 +609,7 @@
 
 
     /* =====================================================
-       BARRA DO LIMITE
+       BARRA DE LIMITE
     ===================================================== */
 
     .limite-container {
@@ -601,6 +624,8 @@
       display: flex;
 
       justify-content: space-between;
+
+      gap: 15px;
 
       margin-bottom: 7px;
 
@@ -655,7 +680,7 @@
 
       font-size: 13px;
 
-      line-height: 1.5;
+      line-height: 1.55;
 
     }
 
@@ -694,7 +719,7 @@
 
 
     /* =====================================================
-       MEMÓRIA
+       MEMÓRIA DE CÁLCULO
     ===================================================== */
 
     .memoria {
@@ -751,6 +776,35 @@
 
 
     /* =====================================================
+       OBSERVAÇÕES
+    ===================================================== */
+
+    .observacao {
+
+      font-size: 13px;
+
+      line-height: 1.7;
+
+      color: #475569;
+
+    }
+
+
+    .observacao p {
+
+      margin: 0 0 12px;
+
+    }
+
+
+    .observacao p:last-child {
+
+      margin-bottom: 0;
+
+    }
+
+
+    /* =====================================================
        RODAPÉ
     ===================================================== */
 
@@ -782,6 +836,7 @@
 
       }
 
+
       .grid {
 
         grid-template-columns:
@@ -800,6 +855,7 @@
 
       }
 
+
       .header,
       .card {
 
@@ -807,11 +863,13 @@
 
       }
 
+
       .header h1 {
 
         font-size: 20px;
 
       }
+
 
       .resumo-grid {
 
@@ -819,6 +877,7 @@
           1fr;
 
       }
+
 
       .acoes button {
 
@@ -862,8 +921,7 @@
 
 
       .acoes,
-      .btn-remover,
-      .nao-imprimir {
+      .btn-remover {
 
         display: none !important;
 
@@ -882,13 +940,6 @@
       .card {
 
         break-inside: avoid;
-
-      }
-
-
-      .ajuda {
-
-        color: #555;
 
       }
 
@@ -920,6 +971,15 @@
       sobre as verbas rescisórias.
     </p>
 
+    <div class="subinfo">
+
+      <strong>Objetivo:</strong>
+      informar a base de cálculo e os dados de cada
+      contrato para calcular individualmente o valor
+      a descontar na rescisão.
+
+    </div>
+
   </div>
 
 
@@ -933,7 +993,7 @@
 
     <div class="card-title">
 
-      📊 Base de cálculo
+      📊 Base de cálculo da remuneração disponível
 
     </div>
 
@@ -941,13 +1001,16 @@
     <div class="grid">
 
 
-      <!-- VALOR BRUTO -->
+      <!-- =================================================
+           RUBRICAS DA BASE
+      ================================================== -->
 
       <div class="campo">
 
         <label>
-          Valor bruto das verbas rescisórias
+          Valor das rubricas que compõem a base
         </label>
+
 
         <input
           type="text"
@@ -959,14 +1022,28 @@
           "
         >
 
+
         <div class="ajuda">
 
-          Informe o
+          Informe o valor das
           <strong>
-            valor bruto total
+            rubricas de vencimento que compõem
+            a remuneração disponível
           </strong>
-          das verbas rescisórias consideradas
-          para o cálculo.
+          para o cálculo do consignado.
+
+          <br><br>
+
+          Utilize as rubricas que devem integrar a base
+          conforme a regra aplicável ao Crédito do
+          Trabalhador.
+
+          <br><br>
+
+          <strong>Exemplos:</strong>
+          salário, saldo de salário e outras verbas
+          que, de acordo com sua natureza e incidência,
+          integrem a remuneração considerada para o cálculo.
 
         </div>
 
@@ -974,13 +1051,16 @@
 
 
 
-      <!-- OUTROS DESCONTOS -->
+      <!-- =================================================
+           DESCONTOS
+      ================================================== -->
 
       <div class="campo">
 
         <label>
-          Outros descontos que reduzem a base
+          Descontos que devem ser deduzidos da base
         </label>
+
 
         <input
           type="text"
@@ -992,11 +1072,57 @@
           "
         >
 
+
         <div class="ajuda">
 
-          Informe os descontos que, conforme
-          a regra aplicável, devem ser deduzidos
-          para chegar à base de cálculo.
+          Informe somente os descontos que,
+          <strong>
+            conforme a regra aplicável à remuneração
+            disponível,
+          </strong>
+          devem ser deduzidos para chegar à base do
+          empréstimo consignado.
+
+          <br><br>
+
+          <strong>
+            Exemplos de descontos a considerar:
+          </strong>
+
+          <br>
+
+          • contribuição previdenciária devida pelo
+          trabalhador (INSS);
+
+          <br>
+
+          • IRRF – Imposto de Renda Retido na Fonte;
+
+          <br>
+
+          • descontos com incidência de contribuição
+          previdenciária, quando aplicáveis;
+
+          <br>
+
+          • outras rubricas de descontos compulsórios,
+          quando aplicáveis.
+
+          <br><br>
+
+          <strong>
+            Atenção:
+          </strong>
+
+          não inclua automaticamente todos os descontos
+          existentes no recibo de rescisão.
+
+          <br><br>
+
+          Descontos voluntários autorizados pelo empregado,
+          como determinados benefícios, convênios ou
+          empréstimos particulares, não devem ser incluídos
+          nesta apuração simplesmente por constarem no TRCT.
 
         </div>
 
@@ -1004,13 +1130,16 @@
 
 
 
-      <!-- BASE CALCULADA -->
+      <!-- =================================================
+           BASE CALCULADA
+      ================================================== -->
 
       <div class="campo">
 
         <label>
-          Base calculada
+          Remuneração disponível calculada
         </label>
+
 
         <input
           type="text"
@@ -1019,12 +1148,31 @@
           value="R$ 0,00"
         >
 
+
         <div class="ajuda">
 
-          Resultado automático de
+          Resultado automático após a dedução dos valores
+          informados no campo anterior.
+
+          <br><br>
+
           <strong>
-            valor bruto menos os descontos informados
-          </strong>.
+            Fórmula utilizada:
+          </strong>
+
+          valor das rubricas que compõem a base
+
+          <br>
+
+          <strong>menos</strong>
+
+          descontos considerados dedutíveis
+
+          <br>
+
+          <strong>igual a</strong>
+
+          remuneração disponível.
 
         </div>
 
@@ -1032,7 +1180,9 @@
 
 
 
-      <!-- BASE OFICIAL -->
+      <!-- =================================================
+           BASE OFICIAL
+      ================================================== -->
 
       <div class="campo">
 
@@ -1040,23 +1190,40 @@
           Base oficial utilizada no cálculo
         </label>
 
+
         <input
           type="text"
           id="baseManual"
           placeholder="R$ 11.711,07"
           oninput="
             formatarMoeda(this);
+            atualizarAvisoBase();
           "
         >
 
+
         <div class="ajuda">
 
-          Se você já possui a
+          Se o sistema de folha, eSocial ou a plataforma
+          oficial já disponibilizou a
           <strong>
-            base oficial apurada pelo sistema de folha
+            remuneração disponível/base oficial
           </strong>,
-          informe-a aqui. Ela terá prioridade
-          sobre a base calculada automaticamente.
+          informe esse valor diretamente.
+
+          <br><br>
+
+          Essa é a opção recomendada quando a base oficial
+          já estiver disponível, pois evita recalcular
+          manualmente as rubricas.
+
+          <br><br>
+
+          Quando preenchido, este campo terá
+          <strong>
+            prioridade sobre a base calculada
+          </strong>
+          automaticamente.
 
         </div>
 
@@ -1066,16 +1233,48 @@
     </div>
 
 
+
+    <!-- =================================================
+         EXPLICAÇÃO GERAL DA BASE
+    ================================================== -->
+
     <div class="base-info">
 
-      💡 <strong>Como utilizar:</strong>
-      você pode calcular a base automaticamente
-      informando o valor bruto e os descontos,
-      ou informar diretamente a base oficial.
-      Quando a base oficial estiver preenchida,
-      ela será utilizada no cálculo.
+      💡 <strong>
+        Como apurar a base:
+      </strong>
+
+      a remuneração disponível deve ser apurada de acordo
+      com as rubricas e descontos previstos na regra
+      aplicável ao Crédito do Trabalhador.
+
+      <br><br>
+
+      Para a conferência manual, considere as rubricas
+      que efetivamente integram a remuneração disponível
+      e deduza os descontos que a legislação determina
+      para essa finalidade.
+
+      <br><br>
+
+      <strong>
+        Importante:
+      </strong>
+
+      não utilize simplesmente o valor líquido da
+      rescisão como base e não subtraia automaticamente
+      todos os descontos existentes no TRCT.
+
+      <br><br>
+
+      Quando houver uma
+      <strong>
+        base oficial disponibilizada pelo sistema
+      </strong>,
+      dê preferência a esse valor.
 
     </div>
+
 
 
     <div
@@ -1083,8 +1282,8 @@
       id="avisoBase"
     >
 
-      ⚠️ A base oficial informada manualmente
-      será utilizada no cálculo dos descontos.
+      ⚠️ A base oficial informada manualmente será utilizada
+      no cálculo dos descontos dos contratos.
 
     </div>
 
@@ -1157,6 +1356,7 @@
     </div>
 
 
+
     <div class="acoes">
 
 
@@ -1218,19 +1418,30 @@
     </div>
 
 
+
     <div
       class="ajuda"
       style="margin-top:15px;"
     >
 
-      <strong>Orientação:</strong>
-      informe cada contrato separadamente.
-      O percentual deve ser aquele apresentado pelo
-      sistema para o respectivo contrato e o saldo devedor
-      deve corresponder ao saldo atualizado informado
-      pela instituição financeira/sistema.
+      <strong>
+        Orientação:
+      </strong>
+
+      informe cada contrato separadamente utilizando
+      os dados apresentados na consulta oficial.
+
+      <br><br>
+
+      O percentual informado deve ser o
+      <strong>
+        percentual de garantia do respectivo contrato
+      </strong>,
+      e não a taxa de juros ou o percentual da parcela
+      mensal.
 
     </div>
+
 
 
     <div
@@ -1337,7 +1548,9 @@
 
 
 
-    <!-- BARRA DO LIMITE -->
+    <!-- =================================================
+         BARRA DE LIMITE
+    ================================================== -->
 
     <div class="limite-container">
 
@@ -1348,7 +1561,10 @@
           Utilização do limite
         </span>
 
-        <strong id="textoLimite">
+
+        <strong
+          id="textoLimite"
+        >
           0,00% de 35,00%
         </strong>
 
@@ -1367,9 +1583,9 @@
 
       <div class="ajuda">
 
-        O sistema verifica se a soma dos percentuais
-        informados permanece dentro do limite de
-        <strong>35%</strong> configurado para esta calculadora.
+        A calculadora verifica a soma dos percentuais
+        informados e sinaliza quando o total ultrapassar
+        o limite configurado de <strong>35%</strong>.
 
       </div>
 
@@ -1378,7 +1594,9 @@
 
 
 
-    <!-- MEMÓRIA DE CÁLCULO -->
+    <!-- =================================================
+         MEMÓRIA
+    ================================================== -->
 
     <div class="memoria">
 
@@ -1406,7 +1624,7 @@
 
 
   <!-- =====================================================
-       OBSERVAÇÃO
+       EXPLICAÇÃO DOS CONTRATOS
   ====================================================== -->
 
   <div class="card">
@@ -1414,74 +1632,74 @@
 
     <div class="card-title">
 
-      ℹ️ Observações sobre o cálculo
+      ℹ️ Como interpretar os dados dos contratos
 
     </div>
 
 
-    <div
-      style="
-        font-size:13px;
-        line-height:1.7;
-        color:#475569;
-      "
-    >
+    <div class="observacao">
+
 
       <p>
 
-        <strong>1. Base de cálculo:</strong>
-        o sistema utiliza a base oficial informada
-        pelo usuário quando disponível. Caso contrário,
-        utiliza a base calculada a partir dos valores
-        informados.
+        <strong>
+          Contrato:
+        </strong>
+
+        informe o número ou identificador do contrato
+        apresentado na consulta oficial.
 
       </p>
 
 
       <p>
 
-        <strong>2. Percentual:</strong>
-        cada contrato é calculado individualmente
-        utilizando o percentual informado para aquele
-        contrato.
+        <strong>
+          Percentual:
+        </strong>
+
+        informe o percentual de garantia disponibilizado
+        para aquele contrato. Não confunda esse percentual
+        com taxa de juros, quantidade de parcelas ou
+        percentual da parcela mensal.
 
       </p>
 
 
       <p>
 
-        <strong>3. Fórmula:</strong>
-        desconto teórico =
-        base de cálculo × percentual ÷ 100.
+        <strong>
+          Saldo devedor:
+        </strong>
+
+        informe o saldo devedor atualizado do contrato
+        apresentado pela instituição financeira ou pela
+        consulta oficial.
 
       </p>
 
 
       <p>
 
-        <strong>4. Saldo devedor:</strong>
-        quando informado, o desconto final fica limitado
-        ao saldo devedor do respectivo contrato.
+        <strong>
+          Cálculo:
+        </strong>
+
+        a calculadora aplica o percentual informado sobre
+        a base utilizada.
 
       </p>
 
 
       <p>
 
-        <strong>5. Limite:</strong>
-        a calculadora verifica se a soma dos percentuais
-        informados ultrapassa 35%.
+        <strong>
+          Desconto:
+        </strong>
 
-      </p>
-
-
-      <p>
-
-        <strong>6. Conferência:</strong>
-        esta ferramenta é destinada à conferência e
-        simulação. A apuração definitiva deve considerar
-        os dados oficiais disponibilizados pelos sistemas
-        competentes e as regras legais aplicáveis ao caso.
+        representa o valor calculado para aquele contrato,
+        respeitando o saldo devedor informado quando este
+        limitar o resultado.
 
       </p>
 
@@ -1493,6 +1711,66 @@
 
 
 
+  <!-- =====================================================
+       OBSERVAÇÃO FINAL
+  ====================================================== -->
+
+  <div class="card">
+
+
+    <div class="card-title">
+
+      ⚠️ Conferência
+
+    </div>
+
+
+    <div class="observacao">
+
+
+      <p>
+
+        Esta ferramenta foi desenvolvida para
+        <strong>
+          simulação e conferência dos valores
+        </strong>
+        dos empréstimos consignados na rescisão.
+
+      </p>
+
+
+      <p>
+
+        O resultado depende da correta identificação
+        das rubricas que compõem a remuneração disponível,
+        dos descontos legalmente dedutíveis, do percentual
+        de garantia e do saldo devedor de cada contrato.
+
+      </p>
+
+
+      <p>
+
+        Sempre que disponível, utilize a
+        <strong>
+          base oficial e os dados oficiais dos contratos
+        </strong>
+        fornecidos pelos sistemas competentes.
+
+      </p>
+
+
+    </div>
+
+
+  </div>
+
+
+
+  <!-- =====================================================
+       RODAPÉ
+  ====================================================== -->
+
   <div class="rodape">
 
     Calculadora de apoio para conferência dos descontos
@@ -1501,7 +1779,7 @@
     <br>
 
     Os resultados devem ser conferidos com a documentação
-    e os dados oficiais do contrato.
+    e os dados oficiais aplicáveis ao caso.
 
   </div>
 
@@ -1524,7 +1802,7 @@
 
 
   /* =====================================================
-     FORMATAÇÃO NUMÉRICA
+     CONVERSÃO PARA NÚMERO
   ===================================================== */
 
   function numero(valor) {
@@ -1559,6 +1837,10 @@
 
 
 
+  /* =====================================================
+     MOEDA
+  ===================================================== */
+
   function moeda(valor) {
 
     return Number(valor || 0)
@@ -1573,6 +1855,10 @@
   }
 
 
+
+  /* =====================================================
+     PERCENTUAL
+  ===================================================== */
 
   function percentual(valor) {
 
@@ -1637,8 +1923,11 @@
 
     let valor =
       campo.value
+
         .replace('%', '')
+
         .replace(/\s/g, '')
+
         .replace(',', '.');
 
 
@@ -1651,11 +1940,11 @@
     }
 
 
-    const numeroPercentual =
+    const valorNumerico =
       parseFloat(valor);
 
 
-    if (isNaN(numeroPercentual)) {
+    if (isNaN(valorNumerico)) {
 
       campo.value = '';
 
@@ -1665,18 +1954,21 @@
 
 
     campo.value =
-      numeroPercentual
-        .toLocaleString(
-          'pt-BR',
-          {
-            minimumFractionDigits: 2,
-            maximumFractionDigits: 2
-          }
-        ) + '%';
+      valorNumerico.toLocaleString(
+        'pt-BR',
+        {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2
+        }
+      ) + '%';
 
   }
 
 
+
+  /* =====================================================
+     OBTÉM PERCENTUAL
+  ===================================================== */
 
   function obterPercentual(campo) {
 
@@ -1705,12 +1997,12 @@
 
 
   /* =====================================================
-     BASE DE CÁLCULO
+     BASE
   ===================================================== */
 
   function calcularBase() {
 
-    const bruto =
+    const valorBase =
       numero(
         document.getElementById(
           'valorBruto'
@@ -1726,17 +2018,20 @@
       );
 
 
-    const base =
+    const resultado =
       Math.max(
         0,
-        bruto - descontos
+        valorBase - descontos
       );
 
 
     document.getElementById(
       'baseCalculada'
     ).value =
-      moeda(base);
+      moeda(resultado);
+
+
+    atualizarAvisoBase();
 
   }
 
@@ -1744,7 +2039,7 @@
 
   function obterBase() {
 
-    const manual =
+    const baseOficial =
       numero(
         document.getElementById(
           'baseManual'
@@ -1752,23 +2047,11 @@
       );
 
 
-    if (manual > 0) {
+    if (baseOficial > 0) {
 
-      document.getElementById(
-        'avisoBase'
-      ).style.display =
-        'block';
-
-
-      return manual;
+      return baseOficial;
 
     }
-
-
-    document.getElementById(
-      'avisoBase'
-    ).style.display =
-      'none';
 
 
     return numero(
@@ -1776,6 +2059,39 @@
         'baseCalculada'
       ).value
     );
+
+  }
+
+
+
+  function atualizarAvisoBase() {
+
+    const baseOficial =
+      numero(
+        document.getElementById(
+          'baseManual'
+        ).value
+      );
+
+
+    const aviso =
+      document.getElementById(
+        'avisoBase'
+      );
+
+
+    if (baseOficial > 0) {
+
+      aviso.style.display =
+        'block';
+
+    }
+    else {
+
+      aviso.style.display =
+        'none';
+
+    }
 
   }
 
@@ -1801,17 +2117,17 @@
       );
 
 
-    const tr =
+    const linha =
       document.createElement(
         'tr'
       );
 
 
-    tr.dataset.id =
+    linha.dataset.id =
       contadorContratos;
 
 
-    tr.innerHTML = `
+    linha.innerHTML = `
 
       <td>
 
@@ -1822,12 +2138,12 @@
           value="${contrato}"
         >
 
+
         <div class="ajuda">
 
-          Informe o número do
-          <strong>
-            contrato do empréstimo consignado
-          </strong>.
+          Informe o número ou identificador
+          do <strong>contrato</strong> apresentado
+          na consulta oficial.
 
         </div>
 
@@ -1844,13 +2160,20 @@
           oninput="formatarPercentual(this)"
         >
 
+
         <div class="ajuda">
 
-          Percentual de garantia
+          Informe o
           <strong>
-            informado pelo sistema
+            percentual de garantia
           </strong>
-          para este contrato.
+          disponibilizado para este contrato.
+
+          <br><br>
+
+          Não informe a taxa de juros,
+          o número de parcelas ou o percentual
+          da parcela mensal.
 
         </div>
 
@@ -1867,13 +2190,19 @@
           oninput="formatarMoeda(this)"
         >
 
+
         <div class="ajuda">
 
           Informe o
           <strong>
             saldo devedor atualizado
           </strong>
-          do contrato.
+          do contrato conforme a consulta oficial.
+
+          <br><br>
+
+          O desconto não poderá ultrapassar
+          o saldo devedor informado.
 
         </div>
 
@@ -1886,10 +2215,16 @@
           —
         </span>
 
+
         <div class="ajuda">
 
-          Base de cálculo × percentual
-          informado para o contrato.
+          Aplicação da fórmula:
+
+          <br>
+
+          <strong>
+            Base × percentual ÷ 100
+          </strong>
 
         </div>
 
@@ -1902,10 +2237,11 @@
           R$ 0,00
         </span>
 
+
         <div class="ajuda">
 
-          Valor efetivamente considerado
-          para desconto na rescisão.
+          Valor calculado para desconto
+          deste contrato.
 
         </div>
 
@@ -1920,14 +2256,13 @@
           onclick="removerContrato(this)"
           title="Remover contrato"
         >
-
           ×
-
         </button>
+
 
         <div class="ajuda">
 
-          Remover contrato.
+          Remover este contrato.
 
         </div>
 
@@ -1936,14 +2271,16 @@
     `;
 
 
-    tbody.appendChild(tr);
+    tbody.appendChild(
+      linha
+    );
 
   }
 
 
 
   /* =====================================================
-     REMOVER CONTRATO
+     REMOVER
   ===================================================== */
 
   function removerContrato(botao) {
@@ -1952,17 +2289,11 @@
       botao.closest('tr');
 
 
-    if (!linha) {
+    if (linha) {
 
-      return;
+      linha.remove();
 
     }
-
-
-    linha.remove();
-
-
-    calcularSilencioso();
 
   }
 
@@ -1998,7 +2329,7 @@
       );
 
 
-    if (linhas.length === 0) {
+    if (!linhas.length) {
 
       mostrarErro(
         'Adicione pelo menos um contrato.'
@@ -2071,7 +2402,7 @@
 
 
         /*
-          DESCONTO TEÓRICO
+          Fórmula:
 
           Base × percentual ÷ 100
         */
@@ -2083,17 +2414,15 @@
 
 
         /*
-          DESCONTO FINAL
-
-          Quando existe saldo devedor,
-          o desconto fica limitado a ele.
+          Limita ao saldo devedor
+          quando este estiver informado.
         */
 
         let descontoFinal =
           descontoTeorico;
 
 
-        let limitadoAoSaldo =
+        let limitado =
           false;
 
 
@@ -2105,7 +2434,7 @@
           descontoFinal =
             saldoDevedor;
 
-          limitadoAoSaldo =
+          limitado =
             true;
 
         }
@@ -2115,34 +2444,30 @@
           descontoFinal;
 
 
+        linha.querySelector(
+          '.calculoContrato'
+        ).textContent =
+          `${moeda(base)} × ${percentual(percentualContrato)}`;
+
+
         const resultado =
           linha.querySelector(
             '.resultado'
           );
 
 
-        const calculo =
-          linha.querySelector(
-            '.calculoContrato'
-          );
-
-
-        calculo.textContent =
-          `${moeda(base)} × ${percentual(percentualContrato)}`;
-
-
         resultado.textContent =
           moeda(descontoFinal);
 
 
-        if (limitadoAoSaldo) {
+        if (limitado) {
 
           resultado.style.color =
             '#b45309';
 
 
           resultado.title =
-            'O desconto foi limitado ao saldo devedor informado.';
+            'Desconto limitado ao saldo devedor informado.';
 
         }
         else {
@@ -2174,6 +2499,7 @@
 
             </span>
 
+
             <strong>
 
               ${moeda(descontoFinal)}
@@ -2200,27 +2526,26 @@
 
 
     /* ===================================================
-       LIMITE DE 35%
+       LIMITE 35%
     =================================================== */
+
+    atualizarBarra(
+      percentualTotal
+    );
+
 
     if (
       percentualTotal >
       LIMITE_PERCENTUAL
     ) {
 
-
-      atualizarBarra(
-        percentualTotal
-      );
-
-
       mostrarErro(
 
         `O percentual total informado é de
         ${percentual(percentualTotal)},
-        ultrapassando o limite configurado
-        de ${percentual(LIMITE_PERCENTUAL)}.
-        Revise os percentuais dos contratos.`
+        ultrapassando o limite de
+        ${percentual(LIMITE_PERCENTUAL)}.
+        Revise os percentuais informados.`
 
       );
 
@@ -2263,11 +2588,6 @@
       'resumoSaldo'
     ).textContent =
       moeda(saldoRestante);
-
-
-    atualizarBarra(
-      percentualTotal
-    );
 
 
     /* ===================================================
@@ -2339,11 +2659,11 @@
     mostrarSucesso(
 
       `Cálculo concluído.
-      Foram considerados ${contratosValidos}
-      contrato(s), totalizando
-      ${percentual(percentualTotal)}
-      e ${moeda(totalDescontos)}
-      em descontos.`
+      ${contratosValidos} contrato(s) processado(s).
+      Percentual total:
+      ${percentual(percentualTotal)}.
+      Total a descontar:
+      ${moeda(totalDescontos)}.`
 
     );
 
@@ -2352,138 +2672,7 @@
 
 
   /* =====================================================
-     CÁLCULO SILENCIOSO
-  ===================================================== */
-
-  function calcularSilencioso() {
-
-    try {
-
-      const base =
-        obterBase();
-
-
-      if (base <= 0) {
-
-        return;
-
-      }
-
-
-      const linhas =
-        document.querySelectorAll(
-          '#listaContratos tr'
-        );
-
-
-      let percentualTotal = 0;
-
-      let totalDescontos = 0;
-
-
-      linhas.forEach(
-        linha => {
-
-          const percentualContrato =
-            obterPercentual(
-              linha.querySelector(
-                '.percentual'
-              )
-            );
-
-
-          const saldoDevedor =
-            numero(
-              linha.querySelector(
-                '.saldo'
-              ).value
-            );
-
-
-          const descontoTeorico =
-            base *
-            percentualContrato /
-            100;
-
-
-          const descontoFinal =
-            saldoDevedor > 0
-              ? Math.min(
-                  descontoTeorico,
-                  saldoDevedor
-                )
-              : descontoTeorico;
-
-
-          percentualTotal +=
-            percentualContrato;
-
-
-          totalDescontos +=
-            descontoFinal;
-
-
-          linha.querySelector(
-            '.resultado'
-          ).textContent =
-            moeda(descontoFinal);
-
-
-          linha.querySelector(
-            '.calculoContrato'
-          ).textContent =
-            `${moeda(base)} × ${percentual(percentualContrato)}`;
-
-        }
-      );
-
-
-      document.getElementById(
-        'resumoBase'
-      ).textContent =
-        moeda(base);
-
-
-      document.getElementById(
-        'resumoPercentual'
-      ).textContent =
-        percentual(percentualTotal);
-
-
-      document.getElementById(
-        'resumoDesconto'
-      ).textContent =
-        moeda(totalDescontos);
-
-
-      document.getElementById(
-        'resumoSaldo'
-      ).textContent =
-        moeda(
-          Math.max(
-            0,
-            base - totalDescontos
-          )
-        );
-
-
-      atualizarBarra(
-        percentualTotal
-      );
-
-    }
-    catch (erro) {
-
-      console.error(erro);
-
-    }
-
-  }
-
-
-
-  /* =====================================================
-     BARRA DE LIMITE
+     BARRA
   ===================================================== */
 
   function atualizarBarra(valor) {
@@ -2604,7 +2793,7 @@
 
 
   /* =====================================================
-     LIMPAR TUDO
+     LIMPAR
   ===================================================== */
 
   function limparTudo() {
@@ -2689,10 +2878,10 @@
       '0,00% de 35,00%';
 
 
-    limparAlertas();
-
-
     contadorContratos = 0;
+
+
+    limparAlertas();
 
 
     adicionarContrato();
@@ -2708,7 +2897,7 @@
 
 
   /* =====================================================
-     CARREGAR EXEMPLO
+     EXEMPLO
   ===================================================== */
 
   function carregarExemplo() {
@@ -2721,8 +2910,21 @@
 
 
     document.getElementById(
+      'valorBruto'
+    ).value =
+      '';
+
+
+    document.getElementById(
+      'outrosDescontos'
+    ).value =
+      '';
+
+
+    document.getElementById(
       'listaContratos'
-    ).innerHTML = '';
+    ).innerHTML =
+      '';
 
 
     contadorContratos = 0;
@@ -2769,7 +2971,6 @@
   window.onload =
     function() {
 
-
       adicionarContrato();
 
       adicionarContrato();
@@ -2777,7 +2978,6 @@
       adicionarContrato();
 
       adicionarContrato();
-
 
     };
 

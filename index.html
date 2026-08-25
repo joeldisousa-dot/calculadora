@@ -8,9 +8,7 @@
 <meta name="viewport"
       content="width=device-width, initial-scale=1.0">
 
-<title>
-Calculadora INSS, IRRF e Crédito do Trabalhador
-</title>
+<title>Conferência eConsignado na Rescisão</title>
 
 <style>
 
@@ -34,11 +32,11 @@ body{
 
 .container{
 
-    max-width:1200px;
+    max-width:1100px;
 
     margin:auto;
 
-    padding:25px;
+    padding:22px;
 }
 
 
@@ -50,16 +48,16 @@ body{
 
     background:#fff;
 
-    border-radius:16px;
-
-    padding:28px;
-
-    margin-bottom:20px;
-
     border:1px solid #e5e7eb;
 
+    border-radius:16px;
+
+    padding:25px;
+
+    margin-bottom:18px;
+
     box-shadow:
-        0 4px 18px rgba(0,0,0,.06);
+        0 4px 18px rgba(0,0,0,.05);
 }
 
 .header h1{
@@ -68,7 +66,7 @@ body{
 
     color:#123b68;
 
-    font-size:26px;
+    font-size:25px;
 }
 
 .header p{
@@ -77,16 +75,16 @@ body{
 
     color:#64748b;
 
-    line-height:1.6;
-
     font-size:14px;
+
+    line-height:1.6;
 }
 
 .badge{
 
     display:inline-block;
 
-    margin-top:15px;
+    margin-top:14px;
 
     padding:7px 11px;
 
@@ -96,30 +94,30 @@ body{
 
     color:#1d4ed8;
 
-    font-size:12px;
+    font-size:11px;
 
     font-weight:bold;
 }
 
 
 /* =====================================================
-   CARD
+   CARDS
 ===================================================== */
 
 .card{
 
     background:#fff;
 
-    border-radius:16px;
-
-    padding:25px;
-
-    margin-bottom:20px;
-
     border:1px solid #e5e7eb;
 
+    border-radius:15px;
+
+    padding:22px;
+
+    margin-bottom:18px;
+
     box-shadow:
-        0 4px 18px rgba(0,0,0,.05);
+        0 3px 15px rgba(0,0,0,.04);
 }
 
 .card-title{
@@ -130,20 +128,20 @@ body{
 
     color:#123b68;
 
-    margin-bottom:20px;
+    margin-bottom:18px;
 }
 
 .card-subtitle{
 
-    color:#64748b;
-
     font-size:13px;
 
-    line-height:1.6;
+    color:#64748b;
 
     margin-top:-10px;
 
-    margin-bottom:20px;
+    margin-bottom:18px;
+
+    line-height:1.5;
 }
 
 
@@ -158,20 +156,24 @@ body{
     grid-template-columns:
         repeat(2,1fr);
 
-    gap:20px;
+    gap:16px;
 }
+
+.full{
+
+    grid-column:1 / -1;
+}
+
+
+/* =====================================================
+   CAMPOS
+===================================================== */
 
 .field{
 
     display:flex;
 
     flex-direction:column;
-}
-
-.field.full{
-
-    grid-column:
-        1 / -1;
 }
 
 label{
@@ -182,35 +184,27 @@ label{
 
     color:#374151;
 
-    margin-bottom:7px;
+    margin-bottom:6px;
 }
-
-
-/* =====================================================
-   INPUT
-===================================================== */
 
 input,
 select{
 
     width:100%;
 
-    height:44px;
+    height:43px;
+
+    padding:0 12px;
 
     border:1px solid #d1d5db;
 
     border-radius:8px;
 
-    padding:
-        0 12px;
+    background:#fff;
 
     font-size:14px;
 
     outline:none;
-
-    background:#fff;
-
-    transition:.2s;
 }
 
 input:focus,
@@ -225,13 +219,13 @@ select:focus{
 
 .help{
 
-    margin-top:7px;
+    margin-top:6px;
 
     font-size:11px;
 
     color:#64748b;
 
-    line-height:1.55;
+    line-height:1.5;
 }
 
 .help strong{
@@ -248,29 +242,28 @@ select:focus{
 
     display:flex;
 
-    flex-wrap:wrap;
-
     gap:10px;
 
-    margin-top:22px;
+    flex-wrap:wrap;
+
+    margin-top:20px;
 }
 
 button{
 
-    height:44px;
+    height:43px;
+
+    padding:0 20px;
 
     border:0;
 
     border-radius:8px;
 
-    padding:
-        0 20px;
+    cursor:pointer;
 
     font-weight:bold;
 
-    font-size:14px;
-
-    cursor:pointer;
+    font-size:13px;
 }
 
 .btn-primary{
@@ -292,12 +285,7 @@ button{
     color:#374151;
 }
 
-.btn-secondary:hover{
-
-    background:#e2e8f0;
-}
-
-.btn-print{
+.btn-success{
 
     background:#15803d;
 
@@ -316,302 +304,69 @@ button{
     grid-template-columns:
         repeat(4,1fr);
 
-    gap:15px;
+    gap:12px;
 }
 
 .result{
 
-    padding:18px;
+    padding:16px;
 
-    border-radius:12px;
-
-    border:1px solid #e5e7eb;
+    border-radius:11px;
 
     background:#f8fafc;
+
+    border:1px solid #e5e7eb;
 }
 
 .result-title{
 
-    font-size:12px;
+    font-size:11px;
 
     color:#64748b;
 
-    margin-bottom:8px;
+    margin-bottom:7px;
 }
 
 .result-value{
 
-    font-size:21px;
+    font-size:20px;
 
     font-weight:bold;
 
     color:#123b68;
 }
 
-.result.inss{
-
-    background:#fff7ed;
-
-    border-color:#fed7aa;
-}
-
-.result.irrf{
-
-    background:#fef2f2;
-
-    border-color:#fecaca;
-}
-
-.result.liquido{
-
-    background:#f0fdf4;
-
-    border-color:#bbf7d0;
-}
-
-.result.consignado{
+.result.limit{
 
     background:#eff6ff;
 
     border-color:#bfdbfe;
 }
 
+.result.discount{
 
-/* =====================================================
-   MEMÓRIA
-===================================================== */
+    background:#fff7ed;
 
-.memory{
-
-    margin-top:20px;
-
-    border:1px solid #e2e8f0;
-
-    background:#f8fafc;
-
-    border-radius:10px;
-
-    padding:20px;
+    border-color:#fed7aa;
 }
 
-.memory h3{
-
-    margin:
-        0 0 15px;
-
-    font-size:16px;
-
-    color:#123b68;
-}
-
-.memory-row{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:flex-start;
-
-    gap:20px;
-
-    padding:10px 0;
-
-    border-bottom:
-        1px solid #e5e7eb;
-
-    font-size:13px;
-}
-
-.memory-row:last-child{
-
-    border-bottom:0;
-
-    font-weight:bold;
-}
-
-.memory-row strong{
-
-    text-align:right;
-}
-
-.memory-highlight{
-
-    background:#eff6ff;
-
-    border:1px solid #bfdbfe;
-
-    border-radius:8px;
-
-    padding:13px;
-
-    margin:12px 0;
-
-    color:#1e40af;
-
-    font-size:13px;
-
-    line-height:1.6;
-}
-
-.memory-success{
+.result.ok{
 
     background:#f0fdf4;
 
-    border:1px solid #bbf7d0;
-
-    border-radius:8px;
-
-    padding:13px;
-
-    margin:12px 0;
-
-    color:#166534;
-
-    font-size:13px;
-
-    line-height:1.6;
+    border-color:#bbf7d0;
 }
 
-.memory-warning{
-
-    background:#fffbeb;
-
-    border:1px solid #fde68a;
-
-    border-radius:8px;
-
-    padding:13px;
-
-    margin:12px 0;
-
-    color:#92400e;
-
-    font-size:13px;
-
-    line-height:1.6;
-}
-
-.memory-danger{
+.result.error{
 
     background:#fef2f2;
 
-    border:1px solid #fecaca;
-
-    border-radius:8px;
-
-    padding:13px;
-
-    margin:12px 0;
-
-    color:#991b1b;
-
-    font-size:13px;
-
-    line-height:1.6;
+    border-color:#fecaca;
 }
 
 
 /* =====================================================
-   RUBRICAS
-===================================================== */
-
-.rubrica{
-
-    border:1px solid #e5e7eb;
-
-    border-radius:10px;
-
-    margin-bottom:10px;
-
-    background:#fff;
-
-    overflow:hidden;
-}
-
-.rubrica-header{
-
-    display:grid;
-
-    grid-template-columns:
-        1fr 140px 120px 100px;
-
-    gap:10px;
-
-    align-items:center;
-
-    padding:12px;
-
-    background:#f8fafc;
-
-    border-bottom:1px solid #e5e7eb;
-}
-
-.rubrica-body{
-
-    padding:12px;
-
-    display:grid;
-
-    grid-template-columns:
-        1fr 1fr;
-
-    gap:12px;
-}
-
-.rubrica-title{
-
-    font-weight:bold;
-
-    font-size:13px;
-
-    color:#334155;
-}
-
-.status{
-
-    display:inline-block;
-
-    padding:5px 8px;
-
-    border-radius:15px;
-
-    font-size:10px;
-
-    font-weight:bold;
-
-    text-align:center;
-}
-
-.status.sim{
-
-    background:#dcfce7;
-
-    color:#166534;
-}
-
-.status.nao{
-
-    background:#f1f5f9;
-
-    color:#64748b;
-}
-
-.btn-remover{
-
-    height:32px;
-
-    padding:0 10px;
-
-    background:#fee2e2;
-
-    color:#991b1b;
-
-    font-size:11px;
-}
-
-
-/* =====================================================
-   TABELAS
+   TABELA
 ===================================================== */
 
 .table-wrap{
@@ -651,47 +406,69 @@ td{
     font-size:12px;
 }
 
+td.valor{
+
+    text-align:right;
+
+    font-weight:bold;
+}
+
 
 /* =====================================================
-   ALERTAS
+   STATUS
 ===================================================== */
 
-.alert{
+.status{
 
-    display:none;
+    padding:16px;
 
-    padding:14px;
-
-    border-radius:9px;
+    border-radius:10px;
 
     margin-top:18px;
 
-    font-size:13px;
+    font-size:14px;
 
     line-height:1.6;
+
+    display:none;
 }
 
-.alert.warning{
+.status.ok{
 
-    background:#fffbeb;
-
-    color:#92400e;
-
-    border:1px solid #fde68a;
-}
-
-.alert.success{
+    display:block;
 
     background:#f0fdf4;
 
-    color:#166534;
-
     border:1px solid #bbf7d0;
+
+    color:#166534;
+}
+
+.status.error{
+
+    display:block;
+
+    background:#fef2f2;
+
+    border:1px solid #fecaca;
+
+    color:#991b1b;
+}
+
+.status.warning{
+
+    display:block;
+
+    background:#fffbeb;
+
+    border:1px solid #fde68a;
+
+    color:#92400e;
 }
 
 
 /* =====================================================
-   INFO
+   INFORMAÇÃO
 ===================================================== */
 
 .info{
@@ -702,9 +479,9 @@ td{
 
     color:#1e40af;
 
-    padding:16px;
-
     border-radius:10px;
+
+    padding:15px;
 
     font-size:12px;
 
@@ -713,22 +490,83 @@ td{
 
 
 /* =====================================================
+   MEMÓRIA
+===================================================== */
+
+.memory{
+
+    margin-top:18px;
+
+    border:1px solid #e2e8f0;
+
+    border-radius:10px;
+
+    background:#f8fafc;
+
+    padding:17px;
+}
+
+.memory-title{
+
+    font-size:15px;
+
+    font-weight:bold;
+
+    color:#123b68;
+
+    margin-bottom:12px;
+}
+
+.memory-row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    gap:20px;
+
+    padding:9px 0;
+
+    border-bottom:1px solid #e5e7eb;
+
+    font-size:12px;
+}
+
+.memory-row:last-child{
+
+    border-bottom:0;
+
+    font-weight:bold;
+}
+
+
+/* =====================================================
+   RODAPÉ
+===================================================== */
+
+.footer{
+
+    text-align:center;
+
+    color:#94a3b8;
+
+    font-size:11px;
+
+    padding:10px;
+}
+
+
+/* =====================================================
    RESPONSIVO
 ===================================================== */
 
-@media(max-width:900px){
+@media(max-width:850px){
 
     .results{
 
         grid-template-columns:
             repeat(2,1fr);
     }
-
-    .rubrica-header{
-
-        grid-template-columns:1fr 120px;
-    }
-
 }
 
 @media(max-width:650px){
@@ -743,14 +581,14 @@ td{
         grid-template-columns:1fr;
     }
 
+    .full{
+
+        grid-column:auto;
+    }
+
     .results{
 
         grid-template-columns:1fr;
-    }
-
-    .header h1{
-
-        font-size:21px;
     }
 
     .actions button{
@@ -758,24 +596,10 @@ td{
         width:100%;
     }
 
-    .rubrica-header,
-    .rubrica-body{
+    .header h1{
 
-        grid-template-columns:1fr;
+        font-size:21px;
     }
-
-    .memory-row{
-
-        flex-direction:column;
-
-        gap:5px;
-    }
-
-    .memory-row strong{
-
-        text-align:left;
-    }
-
 }
 
 
@@ -803,8 +627,7 @@ td{
         box-shadow:none;
     }
 
-    .actions,
-    .btn-remover{
+    .actions{
 
         display:none;
     }
@@ -818,7 +641,6 @@ td{
 
 <body>
 
-
 <div class="container">
 
 
@@ -829,19 +651,20 @@ td{
 <div class="header">
 
 <h1>
-🧮 Calculadora INSS, IRRF e Crédito do Trabalhador
+📋 Conferência de eConsignado na Rescisão
 </h1>
 
 <p>
 
-Ferramenta para conferência do cálculo tributário e da
-remuneração disponível para desconto de empréstimo
-consignado nas verbas rescisórias.
+Ferramenta para conferir a composição da
+<strong>remuneração disponível</strong> e verificar
+se o desconto do empréstimo consignado na rescisão
+está dentro do limite aplicável.
 
 </p>
 
 <span class="badge">
-REGRAS CONFIGURADAS — 2026
+CONFERÊNCIA — CRÉDITO DO TRABALHADOR
 </span>
 
 </div>
@@ -849,14 +672,23 @@ REGRAS CONFIGURADAS — 2026
 
 
 <!-- =====================================================
-     DADOS TRIBUTÁRIOS
+     1. DADOS DA RESCISÃO
 ===================================================== -->
 
 <div class="card">
 
 <div class="card-title">
-📋 1. Cálculo de INSS e IRRF
+1. Dados da rescisão
 </div>
+
+<div class="card-subtitle">
+
+Informe os valores constantes no cálculo da rescisão.
+A ferramenta utiliza esses dados para reconstruir
+a remuneração disponível.
+
+</div>
+
 
 <div class="grid">
 
@@ -864,81 +696,271 @@ REGRAS CONFIGURADAS — 2026
 <div class="field">
 
 <label>
-Remuneração tributável
+Total bruto da rescisão
 </label>
 
 <input
     type="text"
-    id="remuneracao"
-    inputmode="decimal"
+    id="bruto"
     placeholder="R$ 0,00"
     oninput="formatarMoeda(this)"
 >
 
 <div class="help">
 
-Informe a remuneração tributável utilizada
-para o cálculo mensal de INSS e IRRF.
+Valor bruto total das verbas da rescisão,
+antes dos descontos.
 
 </div>
 
 </div>
+
 
 
 <div class="field">
 
 <label>
-Número de dependentes
+Remuneração disponível informada pelo sistema
 </label>
 
 <input
-    type="number"
-    id="dependentes"
-    min="0"
-    step="1"
-    value="0"
+    type="text"
+    id="remuneracaoDisponivel"
+    placeholder="R$ 0,00"
+    oninput="formatarMoeda(this)"
 >
 
 <div class="help">
 
-Dedução mensal configurada:
-<strong>R$ 189,59 por dependente.</strong>
+Informe a base efetivamente utilizada pelo sistema
+para calcular o desconto do eConsignado.
+
+<strong>
+Ex.: R$ 11.711,24.
+</strong>
 
 </div>
 
 </div>
+
+
+
+</div>
+
+</div>
+
+
+
+<!-- =====================================================
+     2. COMPOSIÇÃO
+===================================================== -->
+
+<div class="card">
+
+<div class="card-title">
+2. Composição da remuneração disponível
+</div>
+
+<div class="card-subtitle">
+
+Informe as principais parcelas da rescisão. Os campos
+abaixo permitem visualizar de onde vem a diferença
+entre o valor bruto e a remuneração disponível.
+
+</div>
+
+
+<div class="grid">
 
 
 <div class="field">
 
 <label>
-Pensão alimentícia dedutível
+Salário / saldo de salário
 </label>
 
 <input
     type="text"
-    id="pensao"
-    inputmode="decimal"
+    id="salario"
     placeholder="R$ 0,00"
     oninput="formatarMoeda(this)"
 >
 
+<div class="help">
+
+Verba salarial utilizada na composição da remuneração
+disponível, conforme sua natureza.
+
 </div>
+
+</div>
+
 
 
 <div class="field">
 
 <label>
-Outras deduções legais para IRRF
+Aviso-prévio indenizado
 </label>
 
 <input
     type="text"
-    id="outrasDeducoes"
-    inputmode="decimal"
+    id="aviso"
     placeholder="R$ 0,00"
     oninput="formatarMoeda(this)"
 >
+
+<div class="help">
+
+Informe o valor do aviso-prévio indenizado.
+A ferramenta o apresenta separadamente para conferência.
+
+</div>
+
+</div>
+
+
+
+<div class="field">
+
+<label>
+Férias
+</label>
+
+<input
+    type="text"
+    id="ferias"
+    placeholder="R$ 0,00"
+    oninput="formatarMoeda(this)"
+>
+
+<div class="help">
+
+Informe as verbas de férias consideradas
+na composição da rescisão.
+
+</div>
+
+</div>
+
+
+
+<div class="field">
+
+<label>
+13º salário
+</label>
+
+<input
+    type="text"
+    id="decimoTerceiro"
+    placeholder="R$ 0,00"
+    oninput="formatarMoeda(this)"
+>
+
+<div class="help">
+
+Informe o 13º para permitir sua conferência separada.
+A incidência deve ser analisada conforme a regra própria.
+
+</div>
+
+</div>
+
+
+
+<div class="field">
+
+<label>
+INSS
+</label>
+
+<input
+    type="text"
+    id="inss"
+    placeholder="R$ 0,00"
+    oninput="formatarMoeda(this)"
+>
+
+<div class="help">
+
+Desconto previdenciário. Informe o valor efetivamente
+apurado na rescisão.
+
+</div>
+
+</div>
+
+
+
+<div class="field">
+
+<label>
+IRRF
+</label>
+
+<input
+    type="text"
+    id="irrf"
+    placeholder="R$ 0,00"
+    oninput="formatarMoeda(this)"
+>
+
+<div class="help">
+
+Informe o IRRF efetivamente descontado na rescisão.
+
+</div>
+
+</div>
+
+
+
+<div class="field">
+
+<label>
+Outros descontos compulsórios
+</label>
+
+<input
+    type="text"
+    id="outrosDescontos"
+    placeholder="R$ 0,00"
+    oninput="formatarMoeda(this)"
+>
+
+<div class="help">
+
+Informe somente descontos que, conforme a regra
+aplicável, possam ser deduzidos para determinar
+a remuneração disponível.
+
+</div>
+
+</div>
+
+
+
+<div class="field">
+
+<label>
+Outros descontos voluntários
+</label>
+
+<input
+    type="text"
+    id="voluntarios"
+    placeholder="R$ 0,00"
+    oninput="formatarMoeda(this)"
+>
+
+<div class="help">
+
+Campo informativo. Descontos voluntários não devem
+ser automaticamente tratados como dedução da
+remuneração disponível para o eConsignado.
+
+</div>
 
 </div>
 
@@ -950,16 +972,125 @@ Outras deduções legais para IRRF
 
 <button
     class="btn-primary"
-    onclick="calcularTributos()"
+    onclick="calcularComposicao()"
 >
-🧮 Calcular INSS + IRRF
+🔎 Conferir composição
 </button>
 
-<button
-    class="btn-secondary"
-    onclick="carregarExemplo()"
+</div>
+
+
+<div id="resultadoComposicao"></div>
+
+</div>
+
+
+
+<!-- =====================================================
+     3. CONTRATO
+===================================================== -->
+
+<div class="card">
+
+<div class="card-title">
+3. Contrato eConsignado
+</div>
+
+<div class="card-subtitle">
+
+Informe os dados do contrato que constam na consulta
+do Crédito do Trabalhador / Portal Emprega Brasil.
+
+</div>
+
+
+<div class="grid">
+
+
+<div class="field">
+
+<label>
+Percentual de garantia
+</label>
+
+<input
+    type="text"
+    id="percentual"
+    inputmode="decimal"
+    placeholder="Ex.: 35,00%"
 >
-📋 Carregar exemplo
+
+<div class="help">
+
+Informe o percentual de verbas rescisórias dado
+em garantia no contrato.
+
+<strong>
+Não utilize 35% automaticamente.
+</strong>
+
+</div>
+
+</div>
+
+
+
+<div class="field">
+
+<label>
+Saldo devedor do contrato
+</label>
+
+<input
+    type="text"
+    id="saldoDevedor"
+    placeholder="R$ 0,00"
+    oninput="formatarMoeda(this)"
+>
+
+<div class="help">
+
+Informe o saldo devedor considerado para a rescisão.
+
+</div>
+
+</div>
+
+
+
+<div class="field">
+
+<label>
+Desconto efetivamente realizado
+</label>
+
+<input
+    type="text"
+    id="descontoEfetivado"
+    placeholder="R$ 0,00"
+    oninput="formatarMoeda(this)"
+>
+
+<div class="help">
+
+Informe o valor do eConsignado que consta
+efetivamente como desconto na rescisão.
+
+</div>
+
+</div>
+
+
+</div>
+
+
+<div class="actions">
+
+<button
+    class="btn-primary"
+    onclick="calcularConsignado()"
+>
+🧮 Conferir eConsignado
 </button>
 
 <button
@@ -970,7 +1101,7 @@ Outras deduções legais para IRRF
 </button>
 
 <button
-    class="btn-print"
+    class="btn-success"
     onclick="window.print()"
 >
 🖨️ Imprimir
@@ -978,270 +1109,18 @@ Outras deduções legais para IRRF
 
 </div>
 
-
-<div
-    id="alertaTributos"
-    class="alert"
-></div>
-
 </div>
 
 
 
 <!-- =====================================================
-     RESULTADOS TRIBUTÁRIOS
+     4. RESULTADO
 ===================================================== -->
 
 <div class="card">
 
 <div class="card-title">
-📊 2. Resultado INSS e IRRF
-</div>
-
-
-<div class="results">
-
-
-<div class="result inss">
-
-<div class="result-title">
-INSS
-</div>
-
-<div
-    class="result-value"
-    id="resultadoINSS"
->
-R$ 0,00
-</div>
-
-</div>
-
-
-<div class="result">
-
-<div class="result-title">
-Base IRRF
-</div>
-
-<div
-    class="result-value"
-    id="resultadoBaseIR"
->
-R$ 0,00
-</div>
-
-</div>
-
-
-<div class="result irrf">
-
-<div class="result-title">
-IRRF
-</div>
-
-<div
-    class="result-value"
-    id="resultadoIRRF"
->
-R$ 0,00
-</div>
-
-</div>
-
-
-<div class="result liquido">
-
-<div class="result-title">
-Após INSS + IRRF
-</div>
-
-<div
-    class="result-value"
-    id="resultadoLiquido"
->
-R$ 0,00
-</div>
-
-</div>
-
-
-</div>
-
-
-<div class="memory">
-
-<h3>
-Memória do cálculo tributário
-</h3>
-
-<div id="memoriaTributos">
-
-Informe a remuneração e clique em
-<strong>Calcular INSS + IRRF</strong>.
-
-</div>
-
-</div>
-
-</div>
-
-
-
-<!-- =====================================================
-     CONSIGNADO RESCISÃO
-===================================================== -->
-
-<div class="card">
-
-<div class="card-title">
-🏦 3. Crédito do Trabalhador — Remuneração Disponível na Rescisão
-</div>
-
-<div class="card-subtitle">
-
-A apuração abaixo segue a lógica do item 5.7.3 do
-Manual de Orientação do Empregador do Crédito do Trabalhador.
-Informe as rubricas da rescisão e indique quais devem
-participar da remuneração disponível.
-
-</div>
-
-
-<div class="grid">
-
-
-<div class="field">
-
-<label>
-Percentual das verbas rescisórias dado em garantia
-</label>
-
-<input
-    type="text"
-    id="percentualGarantia"
-    inputmode="decimal"
-    placeholder="Ex.: 25%"
->
-
-<div class="help">
-
-Informe exatamente o percentual de garantia
-disponibilizado para o contrato no Portal Emprega Brasil.
-
-</div>
-
-</div>
-
-
-<div class="field">
-
-<label>
-Saldo devedor atualizado
-</label>
-
-<input
-    type="text"
-    id="saldoDevedor"
-    inputmode="decimal"
-    placeholder="R$ 0,00"
-    oninput="formatarMoeda(this)"
->
-
-<div class="help">
-
-Informe o saldo devedor atualizado disponibilizado
-para o contrato.
-
-</div>
-
-</div>
-
-
-</div>
-
-
-<div class="memory-highlight">
-
-<strong>Regra do desconto na rescisão:</strong>
-
-<br><br>
-
-O desconto permitido será o menor valor entre:
-
-<br>
-
-<strong>1.</strong> Remuneração disponível na rescisão
-× percentual dado em garantia;
-
-<br>
-
-<strong>2.</strong> Saldo devedor atualizado do contrato.
-
-<br><br>
-
-Se não houver percentual dado em garantia,
-o desconto na rescisão será <strong>R$ 0,00</strong>.
-
-</div>
-
-
-<div class="card-title"
-     style="margin-top:25px;">
-
-➕ Rubricas da rescisão
-
-</div>
-
-
-<div id="rubricas">
-
-</div>
-
-
-<div class="actions">
-
-<button
-    class="btn-primary"
-    onclick="adicionarRubrica()"
->
-➕ Adicionar rubrica
-</button>
-
-<button
-    class="btn-secondary"
-    onclick="carregarExemploRescisao()"
->
-📋 Carregar exemplo do manual
-</button>
-
-<button
-    class="btn-secondary"
-    onclick="calcularRescisao()"
->
-🧮 Calcular remuneração disponível
-</button>
-
-</div>
-
-
-<div
-    id="alertaRescisao"
-    class="alert"
-></div>
-
-</div>
-
-
-
-<!-- =====================================================
-     RESULTADO CONSIGNADO
-===================================================== -->
-
-<div class="card">
-
-<div class="card-title">
-📊 4. Resultado do Crédito do Trabalhador
+4. Resultado da conferência
 </div>
 
 
@@ -1249,38 +1128,6 @@ o desconto na rescisão será <strong>R$ 0,00</strong>.
 
 
 <div class="result">
-
-<div class="result-title">
-Total de vencimentos considerados
-</div>
-
-<div
-    class="result-value"
-    id="resultadoVencimentos"
->
-R$ 0,00
-</div>
-
-</div>
-
-
-<div class="result">
-
-<div class="result-title">
-Total de descontos considerados
-</div>
-
-<div
-    class="result-value"
-    id="resultadoDescontos"
->
-R$ 0,00
-</div>
-
-</div>
-
-
-<div class="result consignado">
 
 <div class="result-title">
 Remuneração disponível
@@ -1288,7 +1135,7 @@ Remuneração disponível
 
 <div
     class="result-value"
-    id="resultadoDisponivel"
+    id="resultadoBase"
 >
 R$ 0,00
 </div>
@@ -1296,15 +1143,50 @@ R$ 0,00
 </div>
 
 
-<div class="result liquido">
+
+<div class="result limit">
 
 <div class="result-title">
-Desconto permitido
+% de garantia
 </div>
 
 <div
     class="result-value"
-    id="resultadoConsignado"
+    id="resultadoPercentual"
+>
+0,00%
+</div>
+
+</div>
+
+
+
+<div class="result limit">
+
+<div class="result-title">
+Limite pela garantia
+</div>
+
+<div
+    class="result-value"
+    id="resultadoLimite"
+>
+R$ 0,00
+</div>
+
+</div>
+
+
+
+<div class="result discount">
+
+<div class="result-title">
+Desconto informado
+</div>
+
+<div
+    class="result-value"
+    id="resultadoDesconto"
 >
 R$ 0,00
 </div>
@@ -1315,16 +1197,19 @@ R$ 0,00
 </div>
 
 
+<div id="status"></div>
+
+
 <div class="memory">
 
-<h3>
-Memória de cálculo — Rescisão
-</h3>
+<div class="memory-title">
+Memória de cálculo
+</div>
 
-<div id="memoriaRescisao">
+<div id="memoria">
 
-Informe as rubricas e clique em
-<strong>Calcular remuneração disponível</strong>.
+Informe os dados e clique em
+<strong>Conferir eConsignado</strong>.
 
 </div>
 
@@ -1335,145 +1220,180 @@ Informe as rubricas e clique em
 
 
 <!-- =====================================================
-     REGRAS
+     5. ORIENTAÇÃO
 ===================================================== -->
 
 <div class="card">
 
 <div class="card-title">
-📌 Regras utilizadas — item 5.7.3
+5. Como interpretar o resultado
 </div>
 
 
 <div class="info">
 
-<strong>Vencimentos considerados</strong>
+<strong>Remuneração disponível</strong><br>
 
-<br><br>
-
-• Rubricas de vencimento com incidência previdenciária
-<strong>codIncCP = 11 ou 12</strong>;
-
-<br>
-
-• Aviso-prévio indenizado — natureza <strong>6003</strong>;
-
-<br>
-
-• Férias em dobro indenizadas — natureza <strong>6004</strong>;
-
-<br>
-
-• Férias proporcionais — natureza <strong>6006</strong>;
-
-<br>
-
-• Férias vencidas — natureza <strong>6007</strong>.
+É a base utilizada para a aplicação do percentual
+de garantia. Sua composição deve observar a regra
+específica aplicável à rescisão.
 
 <br><br>
 
 
-<strong>Descontos considerados</strong>
+<strong>Limite pela garantia</strong><br>
 
-<br><br>
-
-• Rubricas de desconto com incidência previdenciária
-<strong>codIncCP = 11 ou 12</strong>;
-
-<br>
-
-• Contribuição previdenciária do trabalhador:
-<strong>31, 32, 34 ou 35</strong>;
-
-<br>
-
-• IRRF:
-<strong>codIncIRRF = 31 ou 32</strong>;
-
-<br>
-
-• Pensão alimentícia — natureza <strong>9213</strong>;
-
-<br>
-
-• Adiantamento do 13º salário — natureza <strong>9214</strong>;
-
-<br>
-
-• Retenções judiciais — natureza <strong>9218</strong>;
-
-<br>
-
-• FIES — natureza <strong>9260</strong>;
-
-<br>
-
-• Desconto de aviso-prévio — natureza <strong>6901</strong>;
-
-<br>
-
-• Multa do art. 480 da CLT — natureza <strong>6904</strong>.
+É calculado multiplicando a remuneração disponível
+pelo percentual de garantia informado para o contrato.
 
 <br><br>
 
 
-<strong>Não considerados</strong>
+<strong>Limite efetivo</strong><br>
+
+O valor a ser considerado para o contrato deve ser
+confrontado com o saldo devedor, observando-se
+o limite aplicável.
 
 <br><br>
 
-• Rubricas de vencimento sem incidência previdenciária
-que não estejam expressamente previstas para a rescisão;
 
-<br>
+<strong>Importante</strong><br>
 
-• Descontos voluntários autorizados pelo empregado.
+A ferramenta não considera automaticamente todo
+desconto existente no TRCT como dedução da
+remuneração disponível.
+
+Os descontos devem ser classificados conforme
+a regra aplicável ao eConsignado.
 
 </div>
 
 </div>
 
 
+
+<!-- =====================================================
+     6. CHECKLIST
+===================================================== -->
 
 <div class="card">
 
 <div class="card-title">
-⚠️ Observação importante
-</div>
-
-<div class="help"
-     style="font-size:13px;">
-
-Esta ferramenta é destinada à
-<strong>simulação, conferência e validação dos cálculos</strong>.
-
-Para o desconto do Crédito do Trabalhador na rescisão,
-devem ser utilizadas as informações atualizadas do contrato
-disponibilizadas no <strong>Portal Emprega Brasil</strong>,
-especialmente o saldo devedor e o percentual de garantia.
-
-O cálculo realizado nesta página não substitui a escrituração
-e as validações realizadas pelo eSocial.
-
-</div>
-
+6. Checklist para conferência
 </div>
 
 
-<div
-    style="
-        text-align:center;
-        color:#94a3b8;
-        font-size:11px;
-        padding:10px;
-    "
->
+<div class="table-wrap">
 
-Calculadora configurada com base nas regras de 2026.
+<table>
+
+<thead>
+
+<tr>
+
+<th>
+Item
+</th>
+
+<th>
+O que conferir
+</th>
+
+<th>
+Resultado
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>
+Remuneração disponível
+</td>
+
+<td>
+A base foi composta conforme a regra aplicável?
+</td>
+
+<td id="checkBase">
+—
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Percentual de garantia
+</td>
+
+<td>
+O percentual corresponde ao contrato?
+</td>
+
+<td id="checkPercentual">
+—
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Saldo devedor
+</td>
+
+<td>
+O saldo utilizado corresponde ao contrato?
+</td>
+
+<td id="checkSaldo">
+—
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Desconto realizado
+</td>
+
+<td>
+O desconto está dentro do limite calculado?
+</td>
+
+<td id="checkDesconto">
+—
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+
+
+<div class="footer">
+
+Ferramenta de conferência.
+Os resultados devem ser validados com os dados
+oficiais do contrato e da rescisão.
 
 <br>
 
-Manual de Orientação do Empregador — Crédito do Trabalhador,
-versão 2.1, de 26/06/2026.
+Manual Operacional do Empregador —
+Crédito do Trabalhador — item 5.7.3.
 
 </div>
 
@@ -1484,99 +1404,41 @@ versão 2.1, de 26/06/2026.
 
 <script>
 
-
 /* =====================================================
-   CONFIGURAÇÕES
+   FUNÇÕES BÁSICAS
 ===================================================== */
 
+function numero(valor){
 
-/* =====================================================
-   INSS
-===================================================== */
+    if(!valor){
 
-const INSS_FAIXAS = [
+        return 0;
 
-    {
-        limite:1621.00,
-        aliquota:0.075
-    },
-
-    {
-        limite:2902.84,
-        aliquota:0.09
-    },
-
-    {
-        limite:4354.27,
-        aliquota:0.12
-    },
-
-    {
-        limite:8475.55,
-        aliquota:0.14
     }
 
-];
+    let texto =
+        String(valor)
+        .replace(/R\$/g,'')
+        .replace(/%/g,'')
+        .replace(/\s/g,'');
 
-const INSS_TETO =
-    8475.55;
+    if(texto.includes(',')){
 
+        texto =
+            texto
+            .replace(/\./g,'')
+            .replace(',','.');
 
-/* =====================================================
-   IRRF
-===================================================== */
-
-const IRRF_FAIXAS = [
-
-    {
-        limite:2428.80,
-        aliquota:0,
-        deducao:0
-    },
-
-    {
-        limite:2826.65,
-        aliquota:0.075,
-        deducao:182.16
-    },
-
-    {
-        limite:3751.05,
-        aliquota:0.15,
-        deducao:394.16
-    },
-
-    {
-        limite:4664.68,
-        aliquota:0.225,
-        deducao:675.49
-    },
-
-    {
-        limite:Infinity,
-        aliquota:0.275,
-        deducao:908.73
     }
 
-];
+    const resultado =
+        parseFloat(texto);
 
+    return isNaN(resultado)
+        ? 0
+        : resultado;
+}
 
-const DEDUCAO_DEPENDENTE =
-    189.59;
-
-const DESCONTO_SIMPLIFICADO =
-    607.20;
-
-const LIMITE_IR_REDUCAO_TOTAL =
-    5000.00;
-
-const LIMITE_IR_REDUCAO_PARCIAL =
-    7350.00;
-
-
-/* =====================================================
-   FORMATAÇÃO
-===================================================== */
 
 function moeda(valor){
 
@@ -1592,88 +1454,22 @@ function moeda(valor){
 }
 
 
-function numero(valor){
-
-    if(
-        valor === null ||
-        valor === undefined ||
-        valor === ''
-    ){
-
-        return 0;
-
-    }
-
-    let texto =
-        String(valor)
-        .replace(/R\$/g,'')
-        .replace(/\s/g,'');
-
-
-    if(texto.includes(',')){
-
-        texto =
-            texto
-            .replace(/\./g,'')
-            .replace(',','.');
-
-    }
-
-
-    const resultado =
-        parseFloat(texto);
-
-
-    return isNaN(resultado)
-        ? 0
-        : resultado;
-
-}
-
-
-/* =====================================================
-   PERCENTUAL
-===================================================== */
-
 function percentual(valor){
 
-    if(
-        valor === null ||
-        valor === undefined ||
-        valor === ''
-    ){
-
-        return 0;
-
-    }
-
-    let texto =
-        String(valor)
-        .replace('%','')
-        .replace(/\s/g,'')
-        .replace(',','.');
-
-
-    const numeroPercentual =
-        parseFloat(texto);
-
-
-    if(
-        isNaN(numeroPercentual)
-    ){
-
-        return 0;
-
-    }
-
-
-    return numeroPercentual / 100;
+    return Number(valor || 0)
+        .toLocaleString(
+            'pt-BR',
+            {
+                minimumFractionDigits:2,
+                maximumFractionDigits:2
+            }
+        ) + '%';
 
 }
 
 
 /* =====================================================
-   MÁSCARA MOEDA
+   MÁSCARA
 ===================================================== */
 
 function formatarMoeda(campo){
@@ -1681,7 +1477,6 @@ function formatarMoeda(campo){
     let valor =
         campo.value
         .replace(/\D/g,'');
-
 
     if(!valor){
 
@@ -1691,10 +1486,8 @@ function formatarMoeda(campo){
 
     }
 
-
     valor =
         parseInt(valor,10) / 100;
-
 
     campo.value =
         valor.toLocaleString(
@@ -1704,278 +1497,45 @@ function formatarMoeda(campo){
                 currency:'BRL'
             }
         );
-
 }
 
 
 /* =====================================================
-   INSS
+   COMPOSIÇÃO
 ===================================================== */
 
-function calcularINSS(remuneracao){
+function calcularComposicao(){
 
-    const base =
-        Math.min(
-            remuneracao,
-            INSS_TETO
-        );
-
-
-    let anterior = 0;
-
-    let total = 0;
-
-
-    for(
-        const faixa of INSS_FAIXAS
-    ){
-
-        if(base <= anterior){
-
-            break;
-
-        }
-
-
-        const parcela =
-            Math.min(
-                base,
-                faixa.limite
-            )
-            -
-            anterior;
-
-
-        if(parcela > 0){
-
-            total +=
-                parcela *
-                faixa.aliquota;
-
-        }
-
-
-        anterior =
-            faixa.limite;
-
-    }
-
-
-    return Math.max(
-        0,
-        total
-    );
-
-}
-
-
-/* =====================================================
-   IRRF
-===================================================== */
-
-function calcularIRRF(
-    remuneracao,
-    inss,
-    dependentes,
-    pensao,
-    outrasDeducoes
-){
-
-    const deducaoDependentes =
-        Math.max(0,dependentes)
-        *
-        DEDUCAO_DEPENDENTE;
-
-
-    const deducoesLegais =
-        inss +
-        deducaoDependentes +
-        pensao +
-        outrasDeducoes;
-
-
-    const utilizaDeducoesLegais =
-        deducoesLegais >
-        DESCONTO_SIMPLIFICADO;
-
-
-    const deducaoUtilizada =
-        utilizaDeducoesLegais
-            ?
-            deducoesLegais
-            :
-            DESCONTO_SIMPLIFICADO;
-
-
-    const baseIR =
-        Math.max(
-            0,
-            remuneracao -
-            deducaoUtilizada
-        );
-
-
-    let faixaEncontrada =
-        IRRF_FAIXAS[
-            IRRF_FAIXAS.length - 1
-        ];
-
-
-    for(
-        const faixa of IRRF_FAIXAS
-    ){
-
-        if(
-            baseIR <=
-            faixa.limite
-        ){
-
-            faixaEncontrada =
-                faixa;
-
-            break;
-
-        }
-
-    }
-
-
-    let impostoTabela =
-        (
-            baseIR *
-            faixaEncontrada.aliquota
-        )
-        -
-        faixaEncontrada.deducao;
-
-
-    impostoTabela =
-        Math.max(
-            0,
-            impostoTabela
-        );
-
-
-    let reducao = 0;
-
-
-    if(
-        remuneracao <=
-        LIMITE_IR_REDUCAO_TOTAL
-    ){
-
-        reducao =
-            impostoTabela;
-
-    }
-    else if(
-        remuneracao <=
-        LIMITE_IR_REDUCAO_PARCIAL
-    ){
-
-        reducao =
-            978.62 -
-            (
-                0.133145 *
-                remuneracao
-            );
-
-
-        reducao =
-            Math.max(
-                0,
-                Math.min(
-                    impostoTabela,
-                    reducao
-                )
-            );
-
-    }
-
-
-    const impostoFinal =
-        Math.max(
-            0,
-            impostoTabela -
-            reducao
-        );
-
-
-    return {
-
-        baseIR,
-
-        deducaoDependentes,
-
-        deducoesLegais,
-
-        deducaoUtilizada,
-
-        utilizaDeducoesLegais,
-
-        impostoTabela,
-
-        reducao,
-
-        impostoFinal,
-
-        aliquota:
-            faixaEncontrada.aliquota,
-
-        deducaoFaixa:
-            faixaEncontrada.deducao
-
-    };
-
-}
-
-
-/* =====================================================
-   CALCULAR TRIBUTOS
-===================================================== */
-
-function calcularTributos(){
-
-    const remuneracao =
+    const bruto =
         numero(
             document.getElementById(
-                'remuneracao'
+                'bruto'
             ).value
         );
 
-
-    const dependentes =
-        parseInt(
-            document.getElementById(
-                'dependentes'
-            ).value
-        ) || 0;
-
-
-    const pensao =
+    const baseInformada =
         numero(
             document.getElementById(
-                'pensao'
+                'remuneracaoDisponivel'
             ).value
         );
 
+    if(bruto <= 0){
 
-    const outrasDeducoes =
-        numero(
-            document.getElementById(
-                'outrasDeducoes'
-            ).value
+        mostrarStatus(
+            'Informe o total bruto da rescisão.',
+            'warning'
         );
 
+        return;
 
-    if(
-        remuneracao <= 0
-    ){
+    }
 
-        mostrarAlerta(
-            'Informe uma remuneração tributável válida.',
-            'warning',
-            'alertaTributos'
+    if(baseInformada <= 0){
+
+        mostrarStatus(
+            'Informe a remuneração disponível utilizada pelo sistema.',
+            'warning'
         );
 
         return;
@@ -1983,657 +1543,99 @@ function calcularTributos(){
     }
 
 
-    const inss =
-        calcularINSS(
-            remuneracao
-        );
-
-
-    const ir =
-        calcularIRRF(
-            remuneracao,
-            inss,
-            dependentes,
-            pensao,
-            outrasDeducoes
-        );
-
-
-    const liquido =
-        Math.max(
-            0,
-            remuneracao -
-            inss -
-            ir.impostoFinal
-        );
-
-
-    document.getElementById(
-        'resultadoINSS'
-    ).textContent =
-        moeda(inss);
-
-
-    document.getElementById(
-        'resultadoBaseIR'
-    ).textContent =
-        moeda(ir.baseIR);
-
-
-    document.getElementById(
-        'resultadoIRRF'
-    ).textContent =
-        moeda(ir.impostoFinal);
-
-
-    document.getElementById(
-        'resultadoLiquido'
-    ).textContent =
-        moeda(liquido);
+    const diferenca =
+        bruto - baseInformada;
 
 
     let html = '';
 
 
     html += linha(
-        'Remuneração tributável',
-        moeda(remuneracao)
+        'Total bruto da rescisão',
+        moeda(bruto)
     );
 
 
     html += linha(
-        'INSS',
-        moeda(inss)
+        'Remuneração disponível informada',
+        moeda(baseInformada)
     );
 
 
     html += linha(
-        'Dependentes',
-        dependentes
+        'Diferença entre bruto e base',
+        moeda(Math.abs(diferenca))
     );
 
 
-    html += linha(
-        'Dedução por dependentes',
-        moeda(ir.deducaoDependentes)
-    );
+    if(Math.abs(diferenca) > 0.01){
 
+        html += linha(
+            'Conferência',
+            'Existe diferença a justificar'
+        );
 
-    html += linha(
-        'Pensão alimentícia',
-        moeda(pensao)
-    );
+        mostrarStatus(
+            'A remuneração disponível é inferior ao total bruto. Confira quais rubricas e descontos foram considerados para chegar à base informada.',
+            'warning'
+        );
 
+    }
+    else{
 
-    html += linha(
-        'Outras deduções',
-        moeda(outrasDeducoes)
-    );
+        html += linha(
+            'Conferência',
+            'Sem diferença'
+        );
 
+        mostrarStatus(
+            'A remuneração disponível coincide com o total bruto informado.',
+            'ok'
+        );
 
-    html += linha(
-        'Deduções legais',
-        moeda(ir.deducoesLegais)
-    );
-
-
-    html += linha(
-        'Desconto simplificado',
-        moeda(DESCONTO_SIMPLIFICADO)
-    );
-
-
-    html += linha(
-        'Critério utilizado',
-        ir.utilizaDeducoesLegais
-            ?
-            'Deduções legais'
-            :
-            'Desconto simplificado'
-    );
-
-
-    html += linha(
-        'Dedução efetivamente utilizada',
-        moeda(ir.deducaoUtilizada)
-    );
-
-
-    html += linha(
-        'Base de cálculo do IRRF',
-        moeda(ir.baseIR)
-    );
-
-
-    html += linha(
-        'Alíquota',
-        (
-            ir.aliquota * 100
-        )
-        .toFixed(2)
-        .replace('.',',')
-        +
-        '%'
-    );
-
-
-    html += linha(
-        'IRRF antes da redução',
-        moeda(ir.impostoTabela)
-    );
-
-
-    html += linha(
-        'Redução IRRF 2026',
-        moeda(ir.reducao)
-    );
-
-
-    html += linha(
-        'IRRF final',
-        moeda(ir.impostoFinal)
-    );
+    }
 
 
     document.getElementById(
-        'memoriaTributos'
+        'resultadoComposicao'
     ).innerHTML =
-        html;
 
+        '<div class="memory">' +
 
-    mostrarAlerta(
-        'Cálculo tributário realizado.',
-        'success',
-        'alertaTributos'
-    );
+        '<div class="memory-title">' +
+        'Resumo da composição' +
+        '</div>' +
+
+        html +
+
+        '</div>';
 
 }
 
 
 /* =====================================================
-   RUBRICAS PREDEFINIDAS
+   CÁLCULO DO CONSIGNADO
 ===================================================== */
 
-const RUBRICAS_EXEMPLO = [
+function calcularConsignado(){
 
-    {
-        nome:'Saldo de salário',
-        natureza:'1000',
-        valor:5500,
-        tipo:'vencimento',
-        incluir:true,
-        motivo:'Incidência previdenciária'
-    },
-
-    {
-        nome:'Horas extras',
-        natureza:'1003',
-        valor:900,
-        tipo:'vencimento',
-        incluir:true,
-        motivo:'Incidência previdenciária'
-    },
-
-    {
-        nome:'Aviso prévio indenizado',
-        natureza:'6003',
-        valor:6000,
-        tipo:'vencimento',
-        incluir:true,
-        motivo:'Natureza 6003'
-    },
-
-    {
-        nome:'Férias proporcionais',
-        natureza:'6006',
-        valor:665,
-        tipo:'vencimento',
-        incluir:true,
-        motivo:'Natureza 6006'
-    },
-
-    {
-        nome:'Férias vencidas',
-        natureza:'6007',
-        valor:8000,
-        tipo:'vencimento',
-        incluir:true,
-        motivo:'Natureza 6007'
-    },
-
-    {
-        nome:'Prêmio',
-        natureza:'2501',
-        valor:1500,
-        tipo:'vencimento',
-        incluir:false,
-        motivo:'Não incluído pela regra'
-    },
-
-    {
-        nome:'Vale-transporte',
-        natureza:'1810',
-        valor:380,
-        tipo:'vencimento',
-        incluir:false,
-        motivo:'Não incluído pela regra'
-    },
-
-    {
-        nome:'Desconto de faltas',
-        natureza:'9207',
-        valor:200,
-        tipo:'desconto',
-        incluir:true,
-        motivo:'Desconto com incidência previdenciária'
-    },
-
-    {
-        nome:'Desconto de vale-transporte',
-        natureza:'9216',
-        valor:150,
-        tipo:'desconto',
-        incluir:false,
-        motivo:'Desconto voluntário'
-    },
-
-    {
-        nome:'IRRF',
-        natureza:'9203',
-        valor:450,
-        tipo:'desconto',
-        incluir:true,
-        motivo:'Retenção de IRRF'
-    },
-
-    {
-        nome:'Contribuição previdenciária',
-        natureza:'9201',
-        valor:670,
-        tipo:'desconto',
-        incluir:true,
-        motivo:'Contribuição previdenciária'
-    },
-
-    {
-        nome:'Pensão alimentícia',
-        natureza:'9213',
-        valor:2500,
-        tipo:'desconto',
-        incluir:true,
-        motivo:'Desconto compulsório'
-    }
-
-];
-
-
-/* =====================================================
-   ADICIONAR RUBRICA
-===================================================== */
-
-function adicionarRubrica(dados){
-
-    const container =
-        document.getElementById(
-            'rubricas'
-        );
-
-
-    const id =
-        'rubrica_' +
-        Date.now() +
-        Math.random()
-        .toString(16)
-        .slice(2);
-
-
-    const div =
-        document.createElement('div');
-
-
-    div.className =
-        'rubrica';
-
-
-    div.id =
-        id;
-
-
-    div.innerHTML = `
-
-        <div class="rubrica-header">
-
-            <div>
-
-                <div class="rubrica-title">
-                    Rubrica
-                </div>
-
-                <input
-                    type="text"
-                    class="rubrica-nome"
-                    placeholder="Ex.: Saldo de salário"
-                >
-
-            </div>
-
-
-            <div>
-
-                <div class="rubrica-title">
-                    Natureza
-                </div>
-
-                <input
-                    type="text"
-                    class="rubrica-natureza"
-                    placeholder="Ex.: 1000"
-                >
-
-            </div>
-
-
-            <div>
-
-                <div class="rubrica-title">
-                    Valor
-                </div>
-
-                <input
-                    type="text"
-                    class="rubrica-valor"
-                    inputmode="decimal"
-                    placeholder="R$ 0,00"
-                >
-
-            </div>
-
-
-            <button
-                class="btn-remover"
-                onclick="removerRubrica('${id}')"
-            >
-                Remover
-            </button>
-
-        </div>
-
-
-        <div class="rubrica-body">
-
-            <div>
-
-                <label>
-                    Tipo
-                </label>
-
-                <select class="rubrica-tipo">
-
-                    <option value="vencimento">
-                        Vencimento
-                    </option>
-
-                    <option value="desconto">
-                        Desconto
-                    </option>
-
-                </select>
-
-            </div>
-
-
-            <div>
-
-                <label>
-                    Participa da remuneração disponível?
-                </label>
-
-                <select class="rubrica-incluir">
-
-                    <option value="true">
-                        SIM — incluir
-                    </option>
-
-                    <option value="false">
-                        NÃO — excluir
-                    </option>
-
-                </select>
-
-            </div>
-
-
-            <div class="field full">
-
-                <label>
-                    Justificativa / critério
-                </label>
-
-                <input
-                    type="text"
-                    class="rubrica-motivo"
-                    placeholder="Ex.: codIncCP = 11"
-                >
-
-            </div>
-
-        </div>
-
-    `;
-
-
-    container.appendChild(div);
-
-
-    const valor =
-        div.querySelector(
-            '.rubrica-valor'
-        );
-
-
-    valor.addEventListener(
-        'input',
-        function(){
-
-            formatarMoeda(this);
-
-        }
-    );
-
-
-    if(dados){
-
-        div.querySelector(
-            '.rubrica-nome'
-        ).value =
-            dados.nome || '';
-
-
-        div.querySelector(
-            '.rubrica-natureza'
-        ).value =
-            dados.natureza || '';
-
-
-        div.querySelector(
-            '.rubrica-valor'
-        ).value =
-            moeda(dados.valor || 0);
-
-
-        div.querySelector(
-            '.rubrica-tipo'
-        ).value =
-            dados.tipo || 'vencimento';
-
-
-        div.querySelector(
-            '.rubrica-incluir'
-        ).value =
-            String(
-                dados.incluir !== false
-            );
-
-
-        div.querySelector(
-            '.rubrica-motivo'
-        ).value =
-            dados.motivo || '';
-
-    }
-
-}
-
-
-/* =====================================================
-   REMOVER
-===================================================== */
-
-function removerRubrica(id){
-
-    const elemento =
-        document.getElementById(id);
-
-
-    if(elemento){
-
-        elemento.remove();
-
-    }
-
-}
-
-
-/* =====================================================
-   LER RUBRICAS
-===================================================== */
-
-function obterRubricas(){
-
-    const elementos =
-        document.querySelectorAll(
-            '.rubrica'
-        );
-
-
-    const lista = [];
-
-
-    elementos.forEach(
-        function(elemento){
-
-            const nome =
-                elemento
-                .querySelector(
-                    '.rubrica-nome'
-                )
-                .value
-                .trim();
-
-
-            const natureza =
-                elemento
-                .querySelector(
-                    '.rubrica-natureza'
-                )
-                .value
-                .trim();
-
-
-            const valor =
-                numero(
-                    elemento
-                    .querySelector(
-                        '.rubrica-valor'
-                    )
-                    .value
-                );
-
-
-            const tipo =
-                elemento
-                .querySelector(
-                    '.rubrica-tipo'
-                )
-                .value;
-
-
-            const incluir =
-                elemento
-                .querySelector(
-                    '.rubrica-incluir'
-                )
-                .value === 'true';
-
-
-            const motivo =
-                elemento
-                .querySelector(
-                    '.rubrica-motivo'
-                )
-                .value
-                .trim();
-
-
-            lista.push({
-
-                nome,
-
-                natureza,
-
-                valor,
-
-                tipo,
-
-                incluir,
-
-                motivo
-
-            });
-
-        }
-    );
-
-
-    return lista;
-
-}
-
-
-/* =====================================================
-   CALCULAR RESCISÃO
-===================================================== */
-
-function calcularRescisao(){
-
-    const rubricas =
-        obterRubricas();
-
-
-    if(
-        rubricas.length === 0
-    ){
-
-        mostrarAlerta(
-            'Adicione pelo menos uma rubrica da rescisão.',
-            'warning',
-            'alertaRescisao'
-        );
-
-        return;
-
-    }
-
-
-    const percentual =
-        percentual(
+    const base =
+        numero(
             document.getElementById(
-                'percentualGarantia'
+                'remuneracaoDisponivel'
             ).value
         );
 
 
-    const saldoDevedor =
+    const perc =
+        numero(
+            document.getElementById(
+                'percentual'
+            ).value
+        );
+
+
+    const saldo =
         numero(
             document.getElementById(
                 'saldoDevedor'
@@ -2641,461 +1643,243 @@ function calcularRescisao(){
         );
 
 
-    let vencimentos = 0;
-
-    let descontos = 0;
-
-
-    const incluidos = [];
-
-
-    const excluidos = [];
-
-
-    rubricas.forEach(
-        function(r){
-
-            if(
-                !r.incluir ||
-                r.valor <= 0
-            ){
-
-                excluidos.push(r);
-
-                return;
-
-            }
-
-
-            if(
-                r.tipo ===
-                'vencimento'
-            ){
-
-                vencimentos +=
-                    r.valor;
-
-            }
-            else{
-
-                descontos +=
-                    r.valor;
-
-            }
-
-
-            incluidos.push(r);
-
-        }
-    );
-
-
-    const remuneracaoDisponivel =
-        Math.max(
-            0,
-            vencimentos -
-            descontos
+    const desconto =
+        numero(
+            document.getElementById(
+                'descontoEfetivado'
+            ).value
         );
 
 
-    const limiteGarantia =
-        remuneracaoDisponivel *
-        percentual;
+    if(base <= 0){
 
-
-    let descontoPermitido =
-        Math.min(
-            limiteGarantia,
-            saldoDevedor
+        mostrarStatus(
+            'Informe a remuneração disponível.',
+            'warning'
         );
 
-
-    if(
-        percentual <= 0
-    ){
-
-        descontoPermitido = 0;
+        return;
 
     }
 
 
-    /*
-     * =================================================
-     * RESULTADOS
-     * =================================================
-     */
+    if(perc <= 0){
 
-    document.getElementById(
-        'resultadoVencimentos'
-    ).textContent =
-        moeda(vencimentos);
+        mostrarStatus(
+            'Informe o percentual de garantia do contrato.',
+            'warning'
+        );
 
+        return;
 
-    document.getElementById(
-        'resultadoDescontos'
-    ).textContent =
-        moeda(descontos);
+    }
 
 
-    document.getElementById(
-        'resultadoDisponivel'
-    ).textContent =
-        moeda(remuneracaoDisponivel);
-
-
-    document.getElementById(
-        'resultadoConsignado'
-    ).textContent =
-        moeda(descontoPermitido);
+    const limiteGarantia =
+        base *
+        (perc / 100);
 
 
     /*
-     * =================================================
-     * MEMÓRIA
-     * =================================================
+     * O limite efetivo é o menor valor entre
+     * a garantia calculada e o saldo devedor.
      */
 
-    let html = '';
+    let limiteEfetivo =
+        limiteGarantia;
 
 
-    html += linha(
-        'Total de vencimentos considerados',
-        moeda(vencimentos)
+    if(saldo > 0){
+
+        limiteEfetivo =
+            Math.min(
+                limiteGarantia,
+                saldo
+            );
+
+    }
+
+
+    const diferenca =
+        limiteEfetivo -
+        desconto;
+
+
+    document.getElementById(
+        'resultadoBase'
+    ).textContent =
+        moeda(base);
+
+
+    document.getElementById(
+        'resultadoPercentual'
+    ).textContent =
+        percentual(perc);
+
+
+    document.getElementById(
+        'resultadoLimite'
+    ).textContent =
+        moeda(limiteEfetivo);
+
+
+    document.getElementById(
+        'resultadoDesconto'
+    ).textContent =
+        moeda(desconto);
+
+
+    let statusTexto = '';
+
+
+    if(desconto <= limiteEfetivo + 0.01){
+
+        statusTexto =
+            '<strong>🟢 DESCONTO DENTRO DO LIMITE</strong><br><br>' +
+
+            'O desconto informado de <strong>' +
+            moeda(desconto) +
+            '</strong> não ultrapassa o limite calculado de <strong>' +
+            moeda(limiteEfetivo) +
+            '</strong>.' +
+
+            '<br><br>' +
+
+            'Margem restante: <strong>' +
+            moeda(Math.max(0,diferenca)) +
+            '</strong>.';
+
+        document.getElementById(
+            'status'
+        ).className =
+            'status ok';
+
+    }
+    else{
+
+        statusTexto =
+            '<strong>🔴 DESCONTO ACIMA DO LIMITE</strong><br><br>' +
+
+            'O desconto informado de <strong>' +
+            moeda(desconto) +
+            '</strong> excede o limite calculado de <strong>' +
+            moeda(limiteEfetivo) +
+            '</strong>.' +
+
+            '<br><br>' +
+
+            'Excesso identificado: <strong>' +
+            moeda(Math.abs(diferenca)) +
+            '</strong>.';
+
+        document.getElementById(
+            'status'
+        ).className =
+            'status error';
+
+    }
+
+
+    document.getElementById(
+        'status'
+    ).innerHTML =
+        statusTexto;
+
+
+    montarMemoria(
+        base,
+        perc,
+        limiteGarantia,
+        saldo,
+        limiteEfetivo,
+        desconto,
+        diferenca
     );
 
 
-    html += linha(
-        'Total de descontos considerados',
-        moeda(descontos)
+    atualizarChecklist(
+        base,
+        perc,
+        saldo,
+        desconto,
+        limiteEfetivo
     );
+
+}
+
+
+/* =====================================================
+   MEMÓRIA
+===================================================== */
+
+function montarMemoria(
+    base,
+    perc,
+    limiteGarantia,
+    saldo,
+    limiteEfetivo,
+    desconto,
+    diferenca
+){
+
+    let html='';
 
 
     html += linha(
         'Remuneração disponível',
-        moeda(remuneracaoDisponivel)
+        moeda(base)
     );
 
 
     html += linha(
-        'Percentual dado em garantia',
-        (
-            percentual * 100
-        )
-        .toFixed(2)
-        .replace('.',',')
-        +
-        '%'
+        'Percentual de garantia',
+        percentual(perc)
     );
 
 
     html += linha(
-        'Limite pelo percentual de garantia',
+        'Remuneração disponível × percentual',
         moeda(limiteGarantia)
     );
 
 
-    html += linha(
-        'Saldo devedor',
-        moeda(saldoDevedor)
-    );
+    if(saldo > 0){
 
+        html += linha(
+            'Saldo devedor',
+            moeda(saldo)
+        );
 
-    html += linha(
-        'Desconto permitido',
-        moeda(descontoPermitido)
-    );
-
-
-    /*
-     * =================================================
-     * EXPLICAÇÃO
-     * =================================================
-     */
-
-    if(
-        percentual <= 0
-    ){
-
-        html += `
-
-            <div class="memory-warning">
-
-                <strong>
-                    ⚠ Nenhum desconto permitido pela garantia
-                </strong>
-
-                <br><br>
-
-                O percentual informado é zero ou não foi
-                informado. Sem percentual de garantia para
-                verbas rescisórias, não há desconto desse
-                contrato na rescisão.
-
-            </div>
-
-        `;
-
-    }
-    else if(
-        limiteGarantia <=
-        saldoDevedor
-    ){
-
-        html += `
-
-            <div class="memory-success">
-
-                <strong>
-                    ✓ Desconto limitado pelo percentual de garantia
-                </strong>
-
-                <br><br>
-
-                O limite calculado sobre a remuneração disponível
-                é de <strong>${moeda(limiteGarantia)}</strong>.
-
-                Como esse valor é inferior ao saldo devedor de
-                <strong>${moeda(saldoDevedor)}</strong>,
-                o desconto permitido é de
-                <strong>${moeda(descontoPermitido)}</strong>.
-
-            </div>
-
-        `;
-
-    }
-    else{
-
-        html += `
-
-            <div class="memory-highlight">
-
-                <strong>
-                    ✓ Desconto limitado pelo saldo devedor
-                </strong>
-
-                <br><br>
-
-                O percentual de garantia permitiria desconto de
-                <strong>${moeda(limiteGarantia)}</strong>.
-
-                Entretanto, o saldo devedor é de apenas
-                <strong>${moeda(saldoDevedor)}</strong>.
-
-                Portanto, o desconto fica limitado ao saldo devedor:
-                <strong>${moeda(descontoPermitido)}</strong>.
-
-            </div>
-
-        `;
-
-    }
-
-
-    /*
-     * =================================================
-     * RUBRICAS INCLUÍDAS
-     * =================================================
-     */
-
-    html += `
-
-        <div class="memory-highlight">
-
-            <strong>
-                Rubricas consideradas na remuneração disponível
-            </strong>
-
-            <br><br>
-
-    `;
-
-
-    if(
-        incluidos.length === 0
-    ){
-
-        html +=
-            'Nenhuma rubrica foi incluída.';
-
-    }
-    else{
-
-        incluidos.forEach(
-            function(r){
-
-                html +=
-                    `• ${r.nome || 'Rubrica sem descrição'} — `
-                    +
-                    `${moeda(r.valor)}`
-                    +
-                    (
-                        r.motivo
-                            ?
-                            ` (${r.motivo})`
-                            :
-                            ''
-                    )
-                    +
-                    '<br>';
-
-            }
+        html += linha(
+            'Limite efetivo considerado',
+            moeda(limiteEfetivo)
         );
 
     }
 
 
-    html += `
-        </div>
-    `;
+    html += linha(
+        'Desconto efetivamente realizado',
+        moeda(desconto)
+    );
 
 
-    /*
-     * =================================================
-     * RUBRICAS EXCLUÍDAS
-     * =================================================
-     */
-
-    if(
-        excluidos.length > 0
-    ){
-
-        html += `
-
-            <div class="memory-warning">
-
-                <strong>
-                    Rubricas não consideradas
-                </strong>
-
-                <br><br>
-
-        `;
-
-
-        excluidos.forEach(
-            function(r){
-
-                html +=
-                    `• ${r.nome || 'Rubrica sem descrição'} — `
-                    +
-                    `${moeda(r.valor)}`
-                    +
-                    (
-                        r.motivo
-                            ?
-                            ` (${r.motivo})`
-                            :
-                            ''
-                    )
-                    +
-                    '<br>';
-
-            }
-        );
-
-
-        html += `
-
-            </div>
-
-        `;
-
-    }
+    html += linha(
+        'Diferença',
+        moeda(Math.abs(diferenca))
+    );
 
 
     document.getElementById(
-        'memoriaRescisao'
+        'memoria'
     ).innerHTML =
         html;
 
-
-    mostrarAlerta(
-        'Remuneração disponível e limite do desconto calculados.',
-        'success',
-        'alertaRescisao'
-    );
-
 }
 
 
 /* =====================================================
-   EXEMPLO DO MANUAL
-===================================================== */
-
-function carregarExemploRescisao(){
-
-    document.getElementById(
-        'rubricas'
-    ).innerHTML =
-        '';
-
-
-    RUBRICAS_EXEMPLO.forEach(
-        function(r){
-
-            adicionarRubrica(r);
-
-        }
-    );
-
-
-    document.getElementById(
-        'percentualGarantia'
-    ).value =
-        '25%';
-
-
-    document.getElementById(
-        'saldoDevedor'
-    ).value =
-        'R$ 15.600,00';
-
-
-    calcularRescisao();
-
-}
-
-
-/* =====================================================
-   EXEMPLO COMPLETO
-===================================================== */
-
-function carregarExemplo(){
-
-    document.getElementById(
-        'remuneracao'
-    ).value =
-        'R$ 11.711,07';
-
-
-    document.getElementById(
-        'dependentes'
-    ).value =
-        1;
-
-
-    document.getElementById(
-        'pensao'
-    ).value =
-        '';
-
-
-    document.getElementById(
-        'outrasDeducoes'
-    ).value =
-        '';
-
-
-    calcularTributos();
-
-    carregarExemploRescisao();
-
-}
-
-
-/* =====================================================
-   LINHA MEMÓRIA
+   LINHA
 ===================================================== */
 
 function linha(
@@ -3123,190 +1907,185 @@ function linha(
 
 
 /* =====================================================
+   CHECKLIST
+===================================================== */
+
+function atualizarChecklist(
+    base,
+    perc,
+    saldo,
+    desconto,
+    limite
+){
+
+    document.getElementById(
+        'checkBase'
+    ).textContent =
+        base > 0
+        ? '✓ Informada'
+        : '—';
+
+
+    document.getElementById(
+        'checkPercentual'
+    ).textContent =
+        perc > 0
+        ? '✓ Informado'
+        : '—';
+
+
+    document.getElementById(
+        'checkSaldo'
+    ).textContent =
+        saldo > 0
+        ? '✓ Informado'
+        : '⚠ Não informado';
+
+
+    document.getElementById(
+        'checkDesconto'
+    ).textContent =
+        desconto <= limite + 0.01
+        ? '✓ Dentro do limite'
+        : '✕ Acima do limite';
+
+}
+
+
+/* =====================================================
+   STATUS
+===================================================== */
+
+function mostrarStatus(
+    mensagem,
+    tipo
+){
+
+    const status =
+        document.getElementById(
+            'status'
+        );
+
+    status.className =
+        'status ' +
+        tipo;
+
+    status.innerHTML =
+        mensagem;
+
+}
+
+
+/* =====================================================
    LIMPAR
 ===================================================== */
 
 function limpar(){
 
-    document.getElementById(
-        'remuneracao'
-    ).value =
-        '';
+    const campos = [
+
+        'bruto',
+        'remuneracaoDisponivel',
+        'salario',
+        'aviso',
+        'ferias',
+        'decimoTerceiro',
+        'inss',
+        'irrf',
+        'outrosDescontos',
+        'voluntarios',
+        'percentual',
+        'saldoDevedor',
+        'descontoEfetivado'
+
+    ];
 
 
-    document.getElementById(
-        'dependentes'
-    ).value =
-        0;
+    campos.forEach(
+        function(id){
 
+            document.getElementById(
+                id
+            ).value='';
 
-    document.getElementById(
-        'pensao'
-    ).value =
-        '';
-
-
-    document.getElementById(
-        'outrasDeducoes'
-    ).value =
-        '';
-
-
-    document.getElementById(
-        'percentualGarantia'
-    ).value =
-        '';
-
-
-    document.getElementById(
-        'saldoDevedor'
-    ).value =
-        '';
-
-
-    document.getElementById(
-        'rubricas'
-    ).innerHTML =
-        '';
-
-
-    document.getElementById(
-        'resultadoINSS'
-    ).textContent =
-        'R$ 0,00';
-
-
-    document.getElementById(
-        'resultadoBaseIR'
-    ).textContent =
-        'R$ 0,00';
-
-
-    document.getElementById(
-        'resultadoIRRF'
-    ).textContent =
-        'R$ 0,00';
-
-
-    document.getElementById(
-        'resultadoLiquido'
-    ).textContent =
-        'R$ 0,00';
-
-
-    document.getElementById(
-        'resultadoVencimentos'
-    ).textContent =
-        'R$ 0,00';
-
-
-    document.getElementById(
-        'resultadoDescontos'
-    ).textContent =
-        'R$ 0,00';
-
-
-    document.getElementById(
-        'resultadoDisponivel'
-    ).textContent =
-        'R$ 0,00';
-
-
-    document.getElementById(
-        'resultadoConsignado'
-    ).textContent =
-        'R$ 0,00';
-
-
-    document.getElementById(
-        'memoriaTributos'
-    ).innerHTML =
-        'Informe a remuneração e clique em <strong>Calcular INSS + IRRF</strong>.';
-
-
-    document.getElementById(
-        'memoriaRescisao'
-    ).innerHTML =
-        'Informe as rubricas e clique em <strong>Calcular remuneração disponível</strong>.';
-
-
-    esconderAlerta(
-        'alertaTributos'
+        }
     );
 
 
-    esconderAlerta(
-        'alertaRescisao'
-    );
+    document.getElementById(
+        'resultadoBase'
+    ).textContent =
+        'R$ 0,00';
+
+
+    document.getElementById(
+        'resultadoPercentual'
+    ).textContent =
+        '0,00%';
+
+
+    document.getElementById(
+        'resultadoLimite'
+    ).textContent =
+        'R$ 0,00';
+
+
+    document.getElementById(
+        'resultadoDesconto'
+    ).textContent =
+        'R$ 0,00';
+
+
+    document.getElementById(
+        'resultadoComposicao'
+    ).innerHTML =
+        '';
+
+
+    document.getElementById(
+        'memoria'
+    ).innerHTML =
+        'Informe os dados e clique em <strong>Conferir eConsignado</strong>.';
+
+
+    document.getElementById(
+        'status'
+    ).className =
+        'status';
+
+
+    document.getElementById(
+        'status'
+    ).innerHTML =
+        '';
+
+
+    document.getElementById(
+        'checkBase'
+    ).textContent =
+        '—';
+
+
+    document.getElementById(
+        'checkPercentual'
+    ).textContent =
+        '—';
+
+
+    document.getElementById(
+        'checkSaldo'
+    ).textContent =
+        '—';
+
+
+    document.getElementById(
+        'checkDesconto'
+    ).textContent =
+        '—';
 
 }
-
-
-/* =====================================================
-   ALERTAS
-===================================================== */
-
-function mostrarAlerta(
-    mensagem,
-    tipo,
-    id
-){
-
-    const alerta =
-        document.getElementById(id);
-
-
-    alerta.textContent =
-        mensagem;
-
-
-    alerta.className =
-        'alert ' +
-        tipo;
-
-
-    alerta.style.display =
-        'block';
-
-}
-
-
-function esconderAlerta(id){
-
-    const alerta =
-        document.getElementById(id);
-
-
-    if(alerta){
-
-        alerta.style.display =
-            'none';
-
-    }
-
-}
-
-
-/* =====================================================
-   INICIALIZAÇÃO
-===================================================== */
-
-window.addEventListener(
-    'DOMContentLoaded',
-    function(){
-
-        /*
-         * Começa com uma rubrica vazia
-         * para facilitar a utilização.
-         */
-
-        adicionarRubrica();
-
-    }
-);
 
 </script>
-
 
 </body>
 

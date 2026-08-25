@@ -21,6 +21,10 @@
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
 
       margin: 0;
@@ -76,6 +80,26 @@
     }
 
 
+    .header-top {
+
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: flex-start;
+
+      gap: 20px;
+
+    }
+
+
+    .header-content {
+
+      flex: 1;
+
+    }
+
+
     .header h1 {
 
       margin: 0 0 8px;
@@ -115,6 +139,61 @@
       padding: 10px 12px;
 
       border: 1px solid #e2e8f0;
+
+      line-height: 1.6;
+
+    }
+
+
+    /* =====================================================
+       BOTÃO IRRF / INSS
+    ===================================================== */
+
+    .btn-irrf {
+
+      display: inline-flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      gap: 8px;
+
+      min-height: 44px;
+
+      padding: 0 18px;
+
+      border-radius: 9px;
+
+      background: #123b68;
+
+      color: #ffffff;
+
+      text-decoration: none;
+
+      font-size: 13px;
+
+      font-weight: bold;
+
+      border: 0;
+
+      cursor: pointer;
+
+      white-space: nowrap;
+
+      transition: .2s;
+
+      box-shadow:
+        0 2px 6px rgba(18,59,104,.15);
+
+    }
+
+
+    .btn-irrf:hover {
+
+      background: #0d2d50;
+
+      transform: translateY(-1px);
 
     }
 
@@ -160,6 +239,21 @@
     }
 
 
+    .card-subtitle {
+
+      color: #64748b;
+
+      font-size: 12px;
+
+      line-height: 1.6;
+
+      margin-top: -10px;
+
+      margin-bottom: 18px;
+
+    }
+
+
     /* =====================================================
        GRID
     ===================================================== */
@@ -172,6 +266,18 @@
         repeat(2, 1fr);
 
       gap: 22px;
+
+    }
+
+
+    .grid-3 {
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap: 18px;
 
     }
 
@@ -199,10 +305,11 @@
 
 
     /* =====================================================
-       INPUT
+       INPUTS
     ===================================================== */
 
-    input {
+    input,
+    select {
 
       width: 100%;
 
@@ -225,7 +332,8 @@
     }
 
 
-    input:focus {
+    input:focus,
+    select:focus {
 
       border-color: #2563eb;
 
@@ -304,6 +412,269 @@
 
 
     /* =====================================================
+       RUBRICAS
+    ===================================================== */
+
+    .rubricas-wrapper {
+
+      overflow-x: auto;
+
+      border: 1px solid #e2e8f0;
+
+      border-radius: 10px;
+
+    }
+
+
+    .rubricas-table {
+
+      width: 100%;
+
+      border-collapse: collapse;
+
+      min-width: 980px;
+
+    }
+
+
+    .rubricas-table th {
+
+      background: #f1f5f9;
+
+      color: #334155;
+
+      font-size: 12px;
+
+      text-align: left;
+
+      padding: 12px 10px;
+
+      border-bottom:
+        1px solid #dbe2ea;
+
+      white-space: nowrap;
+
+    }
+
+
+    .rubricas-table td {
+
+      padding: 9px 10px;
+
+      border-bottom:
+        1px solid #e5e7eb;
+
+      vertical-align: middle;
+
+      font-size: 12px;
+
+    }
+
+
+    .rubricas-table tr:last-child td {
+
+      border-bottom: 0;
+
+    }
+
+
+    .rubricas-table input,
+    .rubricas-table select {
+
+      height: 38px;
+
+      font-size: 12px;
+
+    }
+
+
+    .rubrica-codigo {
+
+      width: 80px;
+
+      font-weight: bold;
+
+    }
+
+
+    .rubrica-descricao {
+
+      min-width: 300px;
+
+    }
+
+
+    .rubrica-valor {
+
+      width: 150px;
+
+    }
+
+
+    .rubrica-decisao {
+
+      width: 150px;
+
+    }
+
+
+    .rubrica-motivo {
+
+      min-width: 270px;
+
+    }
+
+
+    .status-rubrica {
+
+      display: inline-flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      padding: 5px 9px;
+
+      border-radius: 20px;
+
+      font-size: 10px;
+
+      font-weight: bold;
+
+      white-space: nowrap;
+
+    }
+
+
+    .status-sim {
+
+      background: #dcfce7;
+
+      color: #166534;
+
+    }
+
+
+    .status-nao {
+
+      background: #fee2e2;
+
+      color: #991b1b;
+
+    }
+
+
+    .status-manual {
+
+      background: #fef3c7;
+
+      color: #92400e;
+
+    }
+
+
+    .linha-sim {
+
+      background: #f8fffa;
+
+    }
+
+
+    .linha-nao {
+
+      background: #fffafa;
+
+    }
+
+
+    .linha-manual {
+
+      background: #fffdf5;
+
+    }
+
+
+    /* =====================================================
+       RESUMO RUBRICAS
+    ===================================================== */
+
+    .rubrica-resumo {
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap: 15px;
+
+      margin-top: 18px;
+
+    }
+
+
+    .rubrica-resumo-card {
+
+      border-radius: 11px;
+
+      padding: 16px;
+
+      border: 1px solid #e5e7eb;
+
+      background: #f8fafc;
+
+    }
+
+
+    .rubrica-resumo-card .titulo {
+
+      font-size: 11px;
+
+      color: #64748b;
+
+      margin-bottom: 7px;
+
+    }
+
+
+    .rubrica-resumo-card .valor {
+
+      font-size: 20px;
+
+      font-weight: bold;
+
+      color: #123b68;
+
+    }
+
+
+    .rubrica-resumo-card.entram {
+
+      background: #f0fdf4;
+
+      border-color: #bbf7d0;
+
+    }
+
+
+    .rubrica-resumo-card.nao-entram {
+
+      background: #fef2f2;
+
+      border-color: #fecaca;
+
+    }
+
+
+    .rubrica-resumo-card.total {
+
+      background: #eff6ff;
+
+      border-color: #bfdbfe;
+
+    }
+
+
+    /* =====================================================
        BOTÕES
     ===================================================== */
 
@@ -326,7 +697,7 @@
 
       border-radius: 8px;
 
-      min-height: 44px;
+      height: 44px;
 
       padding: 0 20px;
 
@@ -336,24 +707,7 @@
 
       cursor: pointer;
 
-      transition:
-        background .2s,
-        transform .15s,
-        box-shadow .2s;
-
-    }
-
-
-    button:hover {
-
-      transform: translateY(-1px);
-
-    }
-
-
-    button:active {
-
-      transform: translateY(0);
+      transition: .2s;
 
     }
 
@@ -370,9 +724,6 @@
     .btn-primary:hover {
 
       background: #1257bd;
-
-      box-shadow:
-        0 4px 10px rgba(23,105,224,.18);
 
     }
 
@@ -409,31 +760,24 @@
     }
 
 
-    /* =====================================================
-       BOTÃO INSS / IRRF
-    ===================================================== */
+    .btn-danger {
 
-    .btn-calculadora {
+      background: #fee2e2;
 
-      background: #123b68;
-
-      color: #ffffff;
+      color: #b91c1c;
 
     }
 
 
-    .btn-calculadora:hover {
+    .btn-danger:hover {
 
-      background: #0d2d50;
-
-      box-shadow:
-        0 4px 10px rgba(18,59,104,.20);
+      background: #fecaca;
 
     }
 
 
     /* =====================================================
-       TABELA
+       CONTRATOS
     ===================================================== */
 
     .contratos {
@@ -551,8 +895,6 @@
       width: 36px;
 
       height: 36px;
-
-      min-height: 36px;
 
       padding: 0;
 
@@ -769,6 +1111,17 @@
     }
 
 
+    .alerta.info {
+
+      background: #eff6ff;
+
+      border: 1px solid #bfdbfe;
+
+      color: #1e40af;
+
+    }
+
+
     /* =====================================================
        MEMÓRIA
     ===================================================== */
@@ -878,7 +1231,19 @@
        RESPONSIVO
     ===================================================== */
 
-    @media (max-width: 900px) {
+    @media (max-width: 1000px) {
+
+      .header-top {
+
+        flex-direction: column;
+
+      }
+
+      .btn-irrf {
+
+        width: 100%;
+
+      }
 
       .resumo-grid {
 
@@ -887,6 +1252,24 @@
 
       }
 
+      .rubrica-resumo {
+
+        grid-template-columns:
+          1fr;
+
+      }
+
+      .grid-3 {
+
+        grid-template-columns:
+          1fr;
+
+      }
+
+    }
+
+
+    @media (max-width: 900px) {
 
       .grid {
 
@@ -926,13 +1309,6 @@
 
         grid-template-columns:
           1fr;
-
-      }
-
-
-      .acoes {
-
-        flex-direction: column;
 
       }
 
@@ -979,14 +1355,16 @@
 
 
       .acoes,
-      .btn-remover {
+      .btn-remover,
+      .btn-irrf {
 
         display: none !important;
 
       }
 
 
-      input {
+      input,
+      select {
 
         border: 0;
 
@@ -1020,26 +1398,251 @@
 
   <div class="header">
 
-    <h1>
-      🧮 Calculadora de Empréstimos Consignados na Rescisão
-    </h1>
+    <div class="header-top">
 
-    <p>
-      Cálculo individual dos descontos dos empréstimos
-      consignados sobre as verbas rescisórias.
-    </p>
+      <div class="header-content">
 
-    <div class="subinfo">
+        <h1>
+          🧮 Calculadora de Empréstimos Consignados na Rescisão
+        </h1>
 
-      <strong>Objetivo:</strong>
+        <p>
+          Apuração da remuneração disponível e dos descontos
+          dos empréstimos consignados sobre as verbas rescisórias.
+        </p>
 
-      informe a base de cálculo e os dados de cada
-      contrato para calcular individualmente o valor
-      a descontar na rescisão.
+        <div class="subinfo">
+
+          <strong>Objetivo:</strong>
+
+          identificar as rubricas que efetivamente devem
+          participar da remuneração disponível, deduzir os
+          descontos legais aplicáveis e calcular o limite
+          de 35% para os contratos consignados.
+
+        </div>
+
+      </div>
+
+
+      <!-- =================================================
+           BOTÃO PARA CALCULADORA IRRF / INSS
+      ================================================== -->
+
+      <a
+        href="IRRF_INSS.html"
+        class="btn-irrf"
+        target="_blank"
+        rel="noopener"
+        title="Abrir calculadora de INSS e IRRF"
+      >
+
+        🧮 Calcular INSS / IRRF
+
+      </a>
 
     </div>
 
   </div>
+
+
+
+  <!-- =====================================================
+       RUBRICAS DA RESCISÃO
+  ====================================================== -->
+
+  <div class="card">
+
+
+    <div class="card-title">
+
+      📑 Conferência das rubricas da rescisão
+
+    </div>
+
+
+    <div class="card-subtitle">
+
+      Informe as rubricas exatamente como aparecem no TRCT.
+      O sistema permite indicar se cada verba
+      <strong>entra</strong> ou <strong>não entra</strong>
+      na remuneração disponível para o consignado.
+
+      <br><br>
+
+      <strong>
+        Atenção:
+      </strong>
+
+      o total bruto da rescisão não deve ser utilizado
+      automaticamente como base do empréstimo.
+
+    </div>
+
+
+    <div class="rubricas-wrapper">
+
+      <table class="rubricas-table">
+
+        <thead>
+
+          <tr>
+
+            <th>
+              Rubrica
+            </th>
+
+            <th>
+              Descrição
+            </th>
+
+            <th>
+              Valor
+            </th>
+
+            <th>
+              Participa?
+            </th>
+
+            <th>
+              Motivo / observação
+            </th>
+
+            <th>
+              Ação
+            </th>
+
+          </tr>
+
+        </thead>
+
+
+        <tbody id="listaRubricas"></tbody>
+
+      </table>
+
+    </div>
+
+
+    <!-- ===================================================
+         RESUMO DAS RUBRICAS
+    ==================================================== -->
+
+    <div class="rubrica-resumo">
+
+
+      <div class="rubrica-resumo-card entram">
+
+        <div class="titulo">
+          Rubricas que entram
+        </div>
+
+        <div
+          class="valor"
+          id="totalRubricasEntram"
+        >
+          R$ 0,00
+        </div>
+
+      </div>
+
+
+      <div class="rubrica-resumo-card nao-entram">
+
+        <div class="titulo">
+          Rubricas que não entram
+        </div>
+
+        <div
+          class="valor"
+          id="totalRubricasNaoEntram"
+        >
+          R$ 0,00
+        </div>
+
+      </div>
+
+
+      <div class="rubrica-resumo-card total">
+
+        <div class="titulo">
+          Total bruto informado
+        </div>
+
+        <div
+          class="valor"
+          id="totalRubricasBruto"
+        >
+          R$ 0,00
+        </div>
+
+      </div>
+
+
+    </div>
+
+
+    <div class="acoes">
+
+
+      <button
+        type="button"
+        class="btn-secondary"
+        onclick="adicionarRubrica()"
+      >
+
+        ＋ Adicionar rubrica
+
+      </button>
+
+
+      <button
+        type="button"
+        class="btn-primary"
+        onclick="calcularRubricas()"
+      >
+
+        ✓ Atualizar base
+
+      </button>
+
+
+      <button
+        type="button"
+        class="btn-secondary"
+        onclick="carregarRescisaoExemplo()"
+      >
+
+        📋 Carregar rescisão da imagem
+
+      </button>
+
+
+      <button
+        type="button"
+        class="btn-danger"
+        onclick="limparRubricas()"
+      >
+
+        ↺ Limpar rubricas
+
+      </button>
+
+
+    </div>
+
+
+    <div class="alerta info" id="infoRubricas">
+
+      ℹ️ A base de remuneração disponível será formada
+      pelas rubricas marcadas como "Sim", antes da dedução
+      dos descontos legais obrigatórios informados abaixo.
+
+    </div>
+
+
+  </div>
+
 
 
   <!-- =====================================================
@@ -1060,64 +1663,50 @@
 
 
       <!-- =================================================
-           VALOR DAS RUBRICAS
+           TOTAL DAS RUBRICAS QUE ENTRAM
       ================================================== -->
 
       <div class="campo">
 
         <label>
-          Valor das rubricas que compõem a base
+          Rubricas que compõem a remuneração disponível
         </label>
 
 
         <input
           type="text"
           id="valorBruto"
-          inputmode="decimal"
-          placeholder="R$ 0,00"
-          oninput="
-            formatarMoeda(this);
-            calcularBase();
-          "
+          readonly
+          value="R$ 0,00"
         >
 
 
         <div class="ajuda">
 
-          Informe o valor das
+          Resultado automático da soma somente das rubricas
+          classificadas como <strong>"Sim"</strong> na
+          conferência acima.
+
+          <br><br>
+
           <strong>
-            rubricas de vencimento que compõem
-            a remuneração disponível
+            Não utilize o total bruto do TRCT automaticamente.
           </strong>
-          para o cálculo do consignado.
-
-          <br><br>
-
-          Utilize as rubricas que devem integrar a base
-          conforme a regra aplicável ao Crédito do
-          Trabalhador.
-
-          <br><br>
-
-          <strong>Exemplos:</strong>
-
-          salário, saldo de salário e outras verbas que,
-          de acordo com sua natureza e incidência,
-          integrem a remuneração considerada para o cálculo.
 
         </div>
 
       </div>
 
 
+
       <!-- =================================================
-           DESCONTOS
+           DESCONTOS OBRIGATÓRIOS
       ================================================== -->
 
       <div class="campo">
 
         <label>
-          Descontos que devem ser deduzidos da base
+          Descontos legais obrigatórios
         </label>
 
 
@@ -1135,56 +1724,30 @@
 
         <div class="ajuda">
 
-          Informe somente os descontos que,
-          <strong>
-            conforme a regra aplicável à remuneração
-            disponível,
-          </strong>
-          devem ser deduzidos para chegar à base do
-          empréstimo consignado.
+          Informe os descontos que, conforme a regra aplicável,
+          devem ser deduzidos para chegar à remuneração
+          disponível.
 
           <br><br>
 
-          <strong>
-            Exemplos de descontos a considerar:
-          </strong>
+          <strong>Exemplos:</strong>
 
-          <br>
-
-          • contribuição previdenciária devida pelo
-          trabalhador (INSS);
-
-          <br>
-
-          • IRRF – Imposto de Renda Retido na Fonte;
-
-          <br>
-
-          • descontos com incidência de contribuição
-          previdenciária, quando aplicáveis;
-
-          <br>
-
-          • outras rubricas de descontos compulsórios,
-          quando aplicáveis.
+          INSS do trabalhador e IRRF, quando aplicáveis,
+          além de outros descontos compulsórios que a regra
+          determinar.
 
           <br><br>
 
-          <strong>Atenção:</strong>
+          <strong>Não inclua:</strong>
 
-          não inclua automaticamente todos os descontos
-          existentes no recibo de rescisão.
-
-          <br><br>
-
-          Descontos voluntários autorizados pelo empregado,
-          como determinados benefícios, convênios ou
-          empréstimos particulares, não devem ser incluídos
-          nesta apuração simplesmente por constarem no TRCT.
+          convênios, benefícios, empréstimos particulares,
+          mensalidades ou outros descontos voluntários
+          simplesmente porque aparecem no TRCT.
 
         </div>
 
       </div>
+
 
 
       <!-- =================================================
@@ -1208,18 +1771,13 @@
 
         <div class="ajuda">
 
-          Resultado automático após a dedução dos valores
-          informados.
-
-          <br><br>
-
           <strong>Fórmula:</strong>
 
-          valor das rubricas que compõem a base
+          rubricas participantes
 
           <strong>−</strong>
 
-          descontos considerados dedutíveis
+          descontos legais obrigatórios
 
           <strong>=</strong>
 
@@ -1228,6 +1786,7 @@
         </div>
 
       </div>
+
 
 
       <!-- =================================================
@@ -1245,7 +1804,7 @@
           type="text"
           id="baseManual"
           inputmode="decimal"
-          placeholder="R$ 11.711,07"
+          placeholder="R$ 0,00"
           oninput="
             formatarMoeda(this);
             atualizarAvisoBase();
@@ -1255,25 +1814,14 @@
 
         <div class="ajuda">
 
-          Se o sistema de folha, eSocial ou a plataforma
-          oficial já disponibilizou a
-          <strong>
-            remuneração disponível/base oficial
-          </strong>,
-          informe esse valor diretamente.
-
-          <br><br>
-
-          Essa é a opção recomendada quando a base oficial
-          já estiver disponível.
+          Se o sistema oficial, folha, eSocial ou outra
+          fonte oficial disponibilizar diretamente a
+          remuneração disponível, informe o valor aqui.
 
           <br><br>
 
           Quando preenchido, este campo terá
-          <strong>
-            prioridade sobre a base calculada
-          </strong>
-          automaticamente.
+          <strong>prioridade</strong> sobre a base calculada.
 
         </div>
 
@@ -1286,37 +1834,28 @@
     <div class="base-info">
 
       💡 <strong>
-        Como apurar a base:
+        Regra de conferência:
       </strong>
 
-      a remuneração disponível deve ser apurada de acordo
-      com as rubricas e descontos previstos na regra
-      aplicável ao Crédito do Trabalhador.
+      o sistema não utiliza automaticamente o TOTAL BRUTO
+      da rescisão como base.
 
       <br><br>
 
-      Para a conferência manual, considere as rubricas
-      que efetivamente integram a remuneração disponível
-      e deduza os descontos que a legislação determina
-      para essa finalidade.
+      A remuneração disponível deve ser apurada conforme
+      a classificação das rubricas e as deduções legais
+      obrigatórias aplicáveis ao caso.
 
       <br><br>
 
       <strong>
-        Importante:
+        Exemplo oficial de desligamento:
       </strong>
 
-      não utilize simplesmente o valor líquido da
-      rescisão como base e não subtraia automaticamente
-      todos os descontos existentes no TRCT.
-
-      <br><br>
-
-      Quando houver uma
-      <strong>
-        base oficial disponibilizada pelo sistema
-      </strong>,
-      dê preferência a esse valor.
+      saldo de salários e 13º salário proporcional
+      impactam a remuneração disponível, enquanto
+      férias proporcionais e terço de férias proporcional
+      não impactam.
 
     </div>
 
@@ -1335,6 +1874,7 @@
   </div>
 
 
+
   <!-- =====================================================
        CONTRATOS
   ====================================================== -->
@@ -1345,6 +1885,15 @@
     <div class="card-title">
 
       💳 Empréstimos consignados
+
+    </div>
+
+
+    <div class="card-subtitle">
+
+      Informe cada contrato separadamente utilizando os
+      dados apresentados na consulta oficial do Crédito
+      do Trabalhador.
 
     </div>
 
@@ -1399,9 +1948,6 @@
     </div>
 
 
-    <!-- ===================================================
-         AÇÕES
-    ==================================================== -->
 
     <div class="acoes">
 
@@ -1461,24 +2007,8 @@
       </button>
 
 
-      <!-- =================================================
-           NOVO BOTÃO
-           CALCULADORA INSS E IRRF
-      ================================================== -->
-
-      <button
-        type="button"
-        class="btn-calculadora"
-        onclick="abrirCalculadoraIRRFINSS()"
-        title="Abrir Calculadora de INSS e IRRF"
-      >
-
-        🧮 Calcular INSS e IRRF
-
-      </button>
-
-
     </div>
+
 
 
     <div
@@ -1497,12 +2027,17 @@
 
       O percentual informado deve ser o
       <strong>
-        percentual de garantia do respectivo contrato
-      </strong>,
-      e não a taxa de juros ou o percentual da parcela
-      mensal.
+        percentual de garantia das verbas rescisórias
+      </strong>
+      daquele contrato.
+
+      <br><br>
+
+      Não confunda com taxa de juros ou percentual
+      da parcela mensal.
 
     </div>
+
 
 
     <div
@@ -1518,6 +2053,7 @@
 
 
   </div>
+
 
 
   <!-- =====================================================
@@ -1553,6 +2089,7 @@
       </div>
 
 
+
       <div class="resumo limite">
 
         <div class="titulo">
@@ -1569,6 +2106,7 @@
       </div>
 
 
+
       <div class="resumo desconto">
 
         <div class="titulo">
@@ -1583,6 +2121,7 @@
         </div>
 
       </div>
+
 
 
       <div class="resumo saldo">
@@ -1602,6 +2141,7 @@
 
 
     </div>
+
 
 
     <div class="limite-container">
@@ -1645,6 +2185,7 @@
     </div>
 
 
+
     <div class="memoria">
 
 
@@ -1657,8 +2198,8 @@
         id="memoriaConteudo"
       >
 
-        Informe a base e os contratos para realizar
-        o cálculo.
+        Informe as rubricas, os descontos obrigatórios
+        e os contratos para realizar o cálculo.
 
       </div>
 
@@ -1667,6 +2208,7 @@
 
 
   </div>
+
 
 
   <!-- =====================================================
@@ -1678,7 +2220,7 @@
 
     <div class="card-title">
 
-      ℹ️ Como preencher os contratos
+      ℹ️ Como utilizar
 
     </div>
 
@@ -1689,11 +2231,11 @@
       <p>
 
         <strong>
-          Contrato:
+          1. Conferir rubricas:
         </strong>
 
-        informe o número ou identificador do contrato
-        apresentado na consulta oficial.
+        informe as verbas do TRCT e marque se cada uma
+        participa ou não da remuneração disponível.
 
       </p>
 
@@ -1701,16 +2243,17 @@
       <p>
 
         <strong>
-          Percentual:
+          2. Calcular INSS e IRRF:
         </strong>
 
-        informe o percentual de garantia disponibilizado
-        para aquele contrato.
+        utilize o botão
 
         <strong>
-          Não confunda com taxa de juros ou percentual
-          da parcela mensal.
+          "Calcular INSS / IRRF"
         </strong>
+
+        no topo da página para abrir a calculadora
+        específica.
 
       </p>
 
@@ -1718,12 +2261,11 @@
       <p>
 
         <strong>
-          Saldo devedor:
+          3. Descontos legais:
         </strong>
 
-        informe o saldo devedor atualizado do contrato
-        apresentado pela instituição financeira ou
-        consulta oficial.
+        informe o INSS, IRRF e outros descontos compulsórios
+        aplicáveis no campo correspondente.
 
       </p>
 
@@ -1731,12 +2273,36 @@
       <p>
 
         <strong>
-          Desconto:
+          4. Base:
         </strong>
 
-        representa o valor calculado para aquele contrato,
-        respeitando o saldo devedor informado quando este
-        limitar o resultado.
+        o sistema calculará automaticamente a remuneração
+        disponível.
+
+      </p>
+
+
+      <p>
+
+        <strong>
+          5. Contratos:
+        </strong>
+
+        informe o percentual de garantia e o saldo devedor
+        de cada contrato.
+
+      </p>
+
+
+      <p>
+
+        <strong>
+          6. Resultado:
+        </strong>
+
+        o sistema calculará o valor correspondente ao
+        percentual de cada contrato, respeitando o saldo
+        devedor informado.
 
       </p>
 
@@ -1745,6 +2311,7 @@
 
 
   </div>
+
 
 
   <!-- =====================================================
@@ -1766,21 +2333,22 @@
 
       <p>
 
-        Esta ferramenta foi desenvolvida para
+        Esta ferramenta é destinada à
         <strong>
-          simulação e conferência dos valores
+          simulação e conferência
         </strong>
-        dos empréstimos consignados na rescisão.
+        dos valores.
 
       </p>
 
 
       <p>
 
-        O resultado depende da correta identificação
-        das rubricas que compõem a remuneração disponível,
-        dos descontos dedutíveis, do percentual de garantia
-        e do saldo devedor de cada contrato.
+        A classificação automática das rubricas serve como
+        auxílio. Quando a natureza ou incidência da rubrica
+        não estiver clara, confirme a natureza da rubrica
+        no eSocial ou na documentação oficial antes de
+        concluir a apuração.
 
       </p>
 
@@ -1789,7 +2357,7 @@
 
         Sempre que disponível, utilize a
         <strong>
-          base oficial e os dados oficiais dos contratos
+          remuneração disponível e os dados oficiais
         </strong>
         fornecidos pelos sistemas competentes.
 
@@ -1800,6 +2368,7 @@
 
 
   </div>
+
 
 
   <div class="rodape">
@@ -1818,6 +2387,7 @@
 </div>
 
 
+
 <script>
 
 
@@ -1829,28 +2399,8 @@
 
   let contadorContratos = 0;
 
+  let contadorRubricas = 0;
 
-  /* =====================================================
-     URL DA CALCULADORA INSS / IRRF
-  ===================================================== */
-
-  const URL_CALCULADORA_IRRF_INSS =
-    'https://joeldisousa-dot.github.io/calculadora/IRRF_INSS.html';
-
-
-  /* =====================================================
-     ABRIR CALCULADORA INSS E IRRF
-  ===================================================== */
-
-  function abrirCalculadoraIRRFINSS() {
-
-    window.open(
-      URL_CALCULADORA_IRRF_INSS,
-      '_blank',
-      'noopener,noreferrer'
-    );
-
-  }
 
 
   /* =====================================================
@@ -1896,6 +2446,7 @@
   }
 
 
+
   /* =====================================================
      MOEDA
   ===================================================== */
@@ -1914,8 +2465,9 @@
   }
 
 
+
   /* =====================================================
-     PERCENTUAL PARA EXIBIÇÃO
+     PERCENTUAL
   ===================================================== */
 
   function percentual(valor) {
@@ -1930,6 +2482,7 @@
       ) + '%';
 
   }
+
 
 
   /* =====================================================
@@ -1971,8 +2524,9 @@
   }
 
 
+
   /* =====================================================
-     PERMITE DIGITAR PERCENTUAL
+     PERCENTUAL - DIGITAÇÃO
   ===================================================== */
 
   function limitarPercentual(campo) {
@@ -2067,8 +2621,9 @@
   }
 
 
+
   /* =====================================================
-     FORMATA PERCENTUAL AO SAIR DO CAMPO
+     FORMATAR PERCENTUAL
   ===================================================== */
 
   function formatarPercentual(campo) {
@@ -2115,8 +2670,9 @@
   }
 
 
+
   /* =====================================================
-     OBTÉM PERCENTUAL
+     OBTER PERCENTUAL
   ===================================================== */
 
   function obterPercentual(campo) {
@@ -2148,6 +2704,681 @@
       : resultado;
 
   }
+
+
+
+  /* =====================================================
+     RUBRICAS PADRÃO DA RESCISÃO DA IMAGEM
+  ===================================================== */
+
+  const RUBRICAS_EXEMPLO = [
+
+    {
+      codigo: '50',
+      descricao: 'Saldo de 17 dias de salário (líquido de faltas e DSR)',
+      valor: '918,57',
+      participa: 'sim',
+      motivo: 'Saldo de salário: participa da remuneração disponível.'
+    },
+
+    {
+      codigo: '53',
+      descricao: 'Adicional de insalubridade',
+      valor: '183,71',
+      participa: 'sim',
+      motivo: 'Adicional remuneratório com incidência previdenciária.'
+    },
+
+    {
+      codigo: '55',
+      descricao: 'Adicional noturno 63 horas a 0,4%',
+      valor: '226,53',
+      participa: 'sim',
+      motivo: 'Adicional remuneratório.'
+    },
+
+    {
+      codigo: '56',
+      descricao: 'Horas Extras 9 horas a 75%',
+      valor: '141,58',
+      participa: 'sim',
+      motivo: 'Horas extras: verba remuneratória.'
+    },
+
+    {
+      codigo: '58',
+      descricao: 'Descanso Semanal Remunerado (DSR)',
+      valor: '30,34',
+      participa: 'sim',
+      motivo: 'DSR remuneratório.'
+    },
+
+    {
+      codigo: '61',
+      descricao: 'Férias vencidas 10/03/2025 a 09/03/2026',
+      valor: '2301,55',
+      participa: 'nao',
+      motivo: 'Férias indenizadas na rescisão não impactam a remuneração disponível.'
+    },
+
+    {
+      codigo: '63',
+      descricao: '13º Salário Proporcional 8/12 avos',
+      valor: '1778,37',
+      participa: 'sim',
+      motivo: '13º salário proporcional participa da remuneração disponível.'
+    },
+
+    {
+      codigo: '65',
+      descricao: 'Férias proporcionais 5/12 avos',
+      valor: '1134,90',
+      participa: 'nao',
+      motivo: 'Férias proporcionais indenizadas não impactam a remuneração disponível.'
+    },
+
+    {
+      codigo: '68',
+      descricao: 'Terço Constitucional de Férias',
+      valor: '1221,14',
+      participa: 'nao',
+      motivo: 'Terço relativo às férias indenizadas não impacta a remuneração disponível.'
+    },
+
+    {
+      codigo: '69',
+      descricao: 'Aviso Prévio Indenizado 36 dias',
+      valor: '2933,86',
+      participa: 'nao',
+      motivo: 'Aviso prévio indenizado não deve ser tratado como remuneração disponível.'
+    },
+
+    {
+      codigo: '70',
+      descricao: '13º Salário sobre Aviso Prévio Indenizado',
+      valor: '222,30',
+      participa: 'sim',
+      motivo: '13º salário relativo ao aviso prévio indenizado: natureza 6001, com impacto na remuneração disponível.'
+    },
+
+    {
+      codigo: '71',
+      descricao: 'Férias sobre Aviso Prévio Indenizado',
+      valor: '226,98',
+      participa: 'nao',
+      motivo: 'Parcela de férias indenizadas: não impacta a remuneração disponível.'
+    },
+
+    {
+      codigo: '72',
+      descricao: '1 DIA FOLGA ESCALA 12 X 36',
+      valor: '54,03',
+      participa: 'sim',
+      motivo: 'Verba remuneratória, sujeita à confirmação da natureza cadastrada no eSocial.'
+    },
+
+    {
+      codigo: '73',
+      descricao: 'Assist. Fin. Comp. União - Lei 14.434/22',
+      valor: '1462,59',
+      participa: 'sim',
+      motivo: 'Tratada como verba remuneratória; confirmar a natureza/incidência da rubrica no eSocial.'
+    },
+
+    {
+      codigo: '74',
+      descricao: '1/3 Férias Assist. Fin. Comp. União - Lei 14.434/22',
+      valor: '40,63',
+      participa: 'nao',
+      motivo: 'Parcela vinculada ao terço de férias; confirmar a natureza específica no eSocial.'
+    },
+
+    {
+      codigo: '75',
+      descricao: 'Reembolso multa 40% FGTS Assist. Financ. União',
+      valor: '48,10',
+      participa: 'nao',
+      motivo: 'Reembolso/indenização: não corresponde a remuneração pelo trabalho.'
+    },
+
+    {
+      codigo: '76',
+      descricao: 'Anuênio CCT 10% (1,13%)',
+      valor: '18,37',
+      participa: 'sim',
+      motivo: 'Adicional por tempo de serviço/verba remuneratória.'
+    }
+
+  ];
+
+
+
+  /* =====================================================
+     ADICIONAR RUBRICA
+  ===================================================== */
+
+  function adicionarRubrica(
+    codigo = '',
+    descricao = '',
+    valor = '',
+    participa = 'sim',
+    motivo = ''
+  ) {
+
+
+    contadorRubricas++;
+
+
+    const tbody =
+      document.getElementById(
+        'listaRubricas'
+      );
+
+
+    const linha =
+      document.createElement(
+        'tr'
+      );
+
+
+    linha.dataset.id =
+      contadorRubricas;
+
+
+    linha.innerHTML = `
+
+      <td>
+
+        <input
+          type="text"
+          class="rubrica-codigo"
+          placeholder="Ex.: 50"
+          value="${esc(codigo)}"
+        >
+
+      </td>
+
+
+      <td>
+
+        <input
+          type="text"
+          class="rubrica-descricao"
+          placeholder="Descrição da rubrica"
+          value="${esc(descricao)}"
+        >
+
+      </td>
+
+
+      <td>
+
+        <input
+          type="text"
+          class="rubrica-valor"
+          inputmode="decimal"
+          placeholder="R$ 0,00"
+          value="${valor ? moeda(numero(valor)) : ''}"
+          oninput="formatarMoeda(this); atualizarResumoRubricas();"
+        >
+
+      </td>
+
+
+      <td>
+
+        <select
+          class="rubrica-participa"
+          onchange="atualizarVisualRubrica(this)"
+        >
+
+          <option
+            value="sim"
+            ${participa === 'sim' ? 'selected' : ''}
+          >
+            SIM
+          </option>
+
+          <option
+            value="nao"
+            ${participa === 'nao' ? 'selected' : ''}
+          >
+            NÃO
+          </option>
+
+        </select>
+
+
+        <div class="status-rubrica"></div>
+
+      </td>
+
+
+      <td>
+
+        <input
+          type="text"
+          class="rubrica-motivo"
+          placeholder="Motivo da classificação"
+          value="${esc(motivo)}"
+        >
+
+      </td>
+
+
+      <td>
+
+        <button
+          type="button"
+          class="btn-remover"
+          onclick="removerRubrica(this)"
+          title="Remover rubrica"
+        >
+          ×
+        </button>
+
+      </td>
+
+    `;
+
+
+    tbody.appendChild(
+      linha
+    );
+
+
+    atualizarVisualRubrica(
+      linha.querySelector(
+        '.rubrica-participa'
+      )
+    );
+
+
+    atualizarResumoRubricas();
+
+  }
+
+
+
+  /* =====================================================
+     ESCAPAR HTML
+  ===================================================== */
+
+  function esc(valor) {
+
+    return String(valor || '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
+
+  }
+
+
+
+  /* =====================================================
+     VISUAL DA RUBRICA
+  ===================================================== */
+
+  function atualizarVisualRubrica(select) {
+
+    const linha =
+      select.closest('tr');
+
+
+    if (!linha) {
+
+      return;
+
+    }
+
+
+    linha.classList.remove(
+      'linha-sim',
+      'linha-nao',
+      'linha-manual'
+    );
+
+
+    const status =
+      linha.querySelector(
+        '.status-rubrica'
+      );
+
+
+    status.className =
+      'status-rubrica';
+
+
+    if (
+      select.value === 'sim'
+    ) {
+
+      linha.classList.add(
+        'linha-sim'
+      );
+
+      status.classList.add(
+        'status-sim'
+      );
+
+      status.textContent =
+        'ENTRA';
+
+    }
+    else {
+
+      linha.classList.add(
+        'linha-nao'
+      );
+
+      status.classList.add(
+        'status-nao'
+      );
+
+      status.textContent =
+        'NÃO ENTRA';
+
+    }
+
+
+    atualizarResumoRubricas();
+
+  }
+
+
+
+  /* =====================================================
+     REMOVER RUBRICA
+  ===================================================== */
+
+  function removerRubrica(botao) {
+
+    const linha =
+      botao.closest('tr');
+
+
+    if (linha) {
+
+      linha.remove();
+
+    }
+
+
+    atualizarResumoRubricas();
+
+  }
+
+
+
+  /* =====================================================
+     RESUMO DAS RUBRICAS
+  ===================================================== */
+
+  function obterTotaisRubricas() {
+
+    const linhas =
+      document.querySelectorAll(
+        '#listaRubricas tr'
+      );
+
+
+    let entram = 0;
+
+    let naoEntram = 0;
+
+
+    linhas.forEach(
+      linha => {
+
+        const valor =
+          numero(
+            linha.querySelector(
+              '.rubrica-valor'
+            ).value
+          );
+
+
+        const participa =
+          linha.querySelector(
+            '.rubrica-participa'
+          ).value;
+
+
+        if (
+          participa === 'sim'
+        ) {
+
+          entram += valor;
+
+        }
+        else {
+
+          naoEntram += valor;
+
+        }
+
+      }
+    );
+
+
+    return {
+
+      entram,
+
+      naoEntram,
+
+      bruto:
+        entram + naoEntram
+
+    };
+
+  }
+
+
+
+  function atualizarResumoRubricas() {
+
+    const totais =
+      obterTotaisRubricas();
+
+
+    document.getElementById(
+      'totalRubricasEntram'
+    ).textContent =
+      moeda(totais.entram);
+
+
+    document.getElementById(
+      'totalRubricasNaoEntram'
+    ).textContent =
+      moeda(totais.naoEntram);
+
+
+    document.getElementById(
+      'totalRubricasBruto'
+    ).textContent =
+      moeda(totais.bruto);
+
+
+    document.getElementById(
+      'valorBruto'
+    ).value =
+      moeda(totais.entram);
+
+
+    calcularBase();
+
+  }
+
+
+
+  /* =====================================================
+     CALCULAR RUBRICAS
+  ===================================================== */
+
+  function calcularRubricas() {
+
+    atualizarResumoRubricas();
+
+
+    const totais =
+      obterTotaisRubricas();
+
+
+    const info =
+      document.getElementById(
+        'infoRubricas'
+      );
+
+
+    info.innerHTML = `
+
+      ✓ Foram classificadas as rubricas da rescisão.
+
+      <br><br>
+
+      <strong>
+        Rubricas participantes:
+      </strong>
+
+      ${moeda(totais.entram)}
+
+      <br>
+
+      <strong>
+        Rubricas não participantes:
+      </strong>
+
+      ${moeda(totais.naoEntram)}
+
+      <br>
+
+      <strong>
+        Total bruto informado:
+      </strong>
+
+      ${moeda(totais.bruto)}
+
+      <br><br>
+
+      A base utilizada para o consignado será
+      calculada a partir das rubricas participantes,
+      após as deduções legais informadas.
+
+    `;
+
+
+    info.style.display =
+      'block';
+
+
+    document.getElementById(
+      'valorBruto'
+    ).scrollIntoView({
+      behavior: 'smooth',
+      block: 'center'
+    });
+
+  }
+
+
+
+  /* =====================================================
+     LIMPAR RUBRICAS
+  ===================================================== */
+
+  function limparRubricas() {
+
+    if (
+      !confirm(
+        'Deseja excluir todas as rubricas?'
+      )
+    ) {
+
+      return;
+
+    }
+
+
+    document.getElementById(
+      'listaRubricas'
+    ).innerHTML = '';
+
+
+    contadorRubricas = 0;
+
+
+    atualizarResumoRubricas();
+
+  }
+
+
+
+  /* =====================================================
+     CARREGAR RESCISÃO DA IMAGEM
+  ===================================================== */
+
+  function carregarRescisaoExemplo() {
+
+    document.getElementById(
+      'listaRubricas'
+    ).innerHTML = '';
+
+
+    contadorRubricas = 0;
+
+
+    RUBRICAS_EXEMPLO.forEach(
+      rubrica => {
+
+        adicionarRubrica(
+          rubrica.codigo,
+          rubrica.descricao,
+          rubrica.valor,
+          rubrica.participa,
+          rubrica.motivo
+        );
+
+      }
+    );
+
+
+    atualizarResumoRubricas();
+
+
+    document.getElementById(
+      'infoRubricas'
+    ).innerHTML = `
+
+      ✓ Exemplo carregado com as rubricas
+      apresentadas na rescisão.
+
+      <br><br>
+
+      <strong>
+        Atenção:
+      </strong>
+
+      as classificações automáticas são uma ferramenta
+      de conferência. Rubricas cuja natureza específica
+      não esteja identificada devem ser confirmadas
+      no eSocial.
+
+    `;
+
+
+    document.getElementById(
+      'infoRubricas'
+    ).style.display =
+      'block';
+
+
+    calcular();
+
+  }
+
 
 
   /* =====================================================
@@ -2190,6 +3421,7 @@
   }
 
 
+
   /* =====================================================
      OBTER BASE
   ===================================================== */
@@ -2218,6 +3450,7 @@
     );
 
   }
+
 
 
   /* =====================================================
@@ -2254,6 +3487,7 @@
     }
 
   }
+
 
 
   /* =====================================================
@@ -2294,7 +3528,7 @@
           type="text"
           class="contrato"
           placeholder="Ex.: 0154597310"
-          value="${contrato}"
+          value="${esc(contrato)}"
         >
 
         <div class="ajuda">
@@ -2316,7 +3550,7 @@
           inputmode="decimal"
           autocomplete="off"
           placeholder="Ex.: 13,94"
-          value="${percentualContrato}"
+          value="${esc(percentualContrato)}"
           oninput="limitarPercentual(this)"
           onblur="formatarPercentual(this)"
         >
@@ -2333,9 +3567,9 @@
 
           <strong>Exemplos:</strong>
 
-          13,94 &nbsp;|&nbsp;
-          14,08 &nbsp;|&nbsp;
-          0,59 &nbsp;|&nbsp;
+          13,94 |
+          14,08 |
+          0,59 |
           6,36
 
           <br><br>
@@ -2356,7 +3590,7 @@
           class="saldo"
           inputmode="decimal"
           placeholder="R$ 0,00"
-          value="${saldo}"
+          value="${saldo ? moeda(numero(saldo)) : ''}"
           oninput="formatarMoeda(this)"
         >
 
@@ -2366,12 +3600,7 @@
           <strong>
             saldo devedor atualizado
           </strong>
-          do contrato conforme a consulta oficial.
-
-          <br><br>
-
-          O desconto não poderá ultrapassar
-          o saldo devedor informado.
+          conforme a consulta oficial.
 
         </div>
 
@@ -2434,6 +3663,7 @@
   }
 
 
+
   /* =====================================================
      REMOVER CONTRATO
   ===================================================== */
@@ -2453,6 +3683,7 @@
   }
 
 
+
   /* =====================================================
      CALCULAR CONTRATOS
   ===================================================== */
@@ -2462,6 +3693,9 @@
     limparAlertas();
 
 
+    calcularBase();
+
+
     const base =
       obterBase();
 
@@ -2469,7 +3703,7 @@
     if (base <= 0) {
 
       mostrarErro(
-        'Informe uma base de cálculo válida.'
+        'Informe ou calcule uma remuneração disponível válida.'
       );
 
       return;
@@ -2797,6 +4031,7 @@
   }
 
 
+
   /* =====================================================
      BARRA DE LIMITE
   ===================================================== */
@@ -2859,6 +4094,7 @@
   }
 
 
+
   /* =====================================================
      ALERTAS
   ===================================================== */
@@ -2879,6 +4115,7 @@
   }
 
 
+
   function mostrarErro(mensagem) {
 
     const alerta =
@@ -2897,6 +4134,7 @@
   }
 
 
+
   function mostrarSucesso(mensagem) {
 
     const alerta =
@@ -2913,6 +4151,7 @@
       'block';
 
   }
+
 
 
   /* =====================================================
@@ -2934,7 +4173,8 @@
 
     document.getElementById(
       'valorBruto'
-    ).value = '';
+    ).value =
+      'R$ 0,00';
 
 
     document.getElementById(
@@ -2985,7 +4225,7 @@
     document.getElementById(
       'memoriaConteudo'
     ).innerHTML =
-      'Informe a base e os contratos para realizar o cálculo.';
+      'Informe as rubricas, os descontos obrigatórios e os contratos para realizar o cálculo.';
 
 
     document.getElementById(
@@ -3000,7 +4240,20 @@
       '0,00% de 35,00%';
 
 
+    document.getElementById(
+      'listaRubricas'
+    ).innerHTML = '';
+
+
+    document.getElementById(
+      'infoRubricas'
+    ).style.display =
+      'none';
+
+
     contadorContratos = 0;
+
+    contadorRubricas = 0;
 
 
     limparAlertas();
@@ -3017,38 +4270,39 @@
   }
 
 
+
   /* =====================================================
-     CARREGAR EXEMPLO
+     CARREGAR EXEMPLO DOS CONTRATOS
   ===================================================== */
 
   function carregarExemplo() {
 
+    carregarRescisaoExemplo();
+
 
     document.getElementById(
       'baseManual'
-    ).value =
-      'R$ 11.711,07';
-
-
-    document.getElementById(
-      'valorBruto'
-    ).value =
-      '';
-
-
-    document.getElementById(
-      'outrosDescontos'
-    ).value =
-      '';
+    ).value = '';
 
 
     document.getElementById(
       'listaContratos'
-    ).innerHTML =
-      '';
+    ).innerHTML = '';
 
 
     contadorContratos = 0;
+
+
+    /*
+     * Percentuais:
+     *
+     * 13,94%
+     * 14,08%
+     * 0,59%
+     * 6,36%
+     *
+     * Total = 34,97%
+     */
 
 
     adicionarContrato(
@@ -3084,6 +4338,7 @@
   }
 
 
+
   /* =====================================================
      INICIALIZAÇÃO
   ===================================================== */
@@ -3092,13 +4347,25 @@
     'DOMContentLoaded',
     function() {
 
-      adicionarContrato();
+      /*
+       * Cria quatro contratos vazios.
+       */
 
       adicionarContrato();
 
       adicionarContrato();
 
       adicionarContrato();
+
+      adicionarContrato();
+
+
+      /*
+       * Cria as rubricas da rescisão
+       * automaticamente.
+       */
+
+      carregarRescisaoExemplo();
 
     }
   );

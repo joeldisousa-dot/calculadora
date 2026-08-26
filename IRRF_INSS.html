@@ -291,6 +291,32 @@ button{
     color:#fff;
 }
 
+.btn-debug{
+
+    background:#7c3aed;
+
+    color:#fff;
+}
+
+.btn-debug:hover{
+
+    background:#6d28d9;
+}
+
+.btn-danger{
+
+    background:#fee2e2;
+
+    color:#991b1b;
+}
+
+.btn-copy{
+
+    background:#e0f2fe;
+
+    color:#075985;
+}
+
 
 /* =====================================================
    RESULTADOS
@@ -469,6 +495,117 @@ button{
     font-size:13px;
 
     line-height:1.5;
+}
+
+
+/* =====================================================
+   DEPURAÇÃO
+===================================================== */
+
+.debug-card{
+
+    background:#111827;
+
+    border:1px solid #374151;
+
+    color:#e5e7eb;
+}
+
+.debug-card .card-title{
+
+    color:#fff;
+}
+
+.debug-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:10px;
+
+    flex-wrap:wrap;
+
+    margin-bottom:15px;
+}
+
+.debug-status{
+
+    display:inline-block;
+
+    padding:6px 10px;
+
+    border-radius:20px;
+
+    background:#1f2937;
+
+    color:#93c5fd;
+
+    font-size:11px;
+
+    font-weight:bold;
+}
+
+.debug-log{
+
+    background:#020617;
+
+    border:1px solid #334155;
+
+    border-radius:10px;
+
+    padding:18px;
+
+    min-height:150px;
+
+    max-height:650px;
+
+    overflow:auto;
+
+    white-space:pre-wrap;
+
+    word-break:break-word;
+
+    font-family:
+        Consolas,
+        Monaco,
+        monospace;
+
+    font-size:12px;
+
+    line-height:1.65;
+
+    color:#d1d5db;
+}
+
+.debug-info{
+
+    margin-top:12px;
+
+    padding:12px;
+
+    border-radius:8px;
+
+    background:#1e293b;
+
+    color:#cbd5e1;
+
+    font-size:11px;
+
+    line-height:1.6;
+}
+
+.debug-actions{
+
+    display:flex;
+
+    gap:8px;
+
+    flex-wrap:wrap;
+
+    margin-top:12px;
 }
 
 
@@ -654,7 +791,8 @@ td{
         box-shadow:none;
     }
 
-    .actions{
+    .actions,
+    .debug-card{
 
         display:none;
     }
@@ -986,6 +1124,74 @@ Informe a remuneração e clique em
 <strong>Calcular</strong>.
 
 </div>
+
+</div>
+
+</div>
+
+
+
+<!-- =====================================================
+     DEPURAÇÃO / LOG
+===================================================== -->
+
+<div class="card debug-card">
+
+<div class="debug-header">
+
+<div class="card-title"
+     style="margin-bottom:0;">
+🔎 Depuração / Log do cálculo
+</div>
+
+<div
+    id="debugStatus"
+    class="debug-status"
+>
+Aguardando cálculo
+</div>
+
+</div>
+
+
+<div class="debug-info">
+
+Este painel mostra detalhadamente como os valores
+foram calculados. Ele é destinado principalmente à
+<strong>conferência e identificação de diferenças</strong>.
+
+O mesmo log também é enviado para o
+<strong>Console do navegador</strong>.
+
+Pressione <strong>F12 → Console</strong> para visualizar
+a versão técnica do log.
+
+</div>
+
+
+<div
+    id="debugLog"
+    class="debug-log"
+>
+Nenhum cálculo executado ainda.
+</div>
+
+
+<div class="debug-actions">
+
+<button
+    class="btn-copy"
+    onclick="copiarLog()"
+>
+📋 Copiar log
+</button>
+
+<button
+    class="btn-danger"
+    onclick="limparLog()"
+>
+🗑️ Limpar log
+</button>
 
 </div>
 
@@ -1537,6 +1743,13 @@ const LIMITE_IR_REDUCAO_PARCIAL =
 
 
 /* =====================================================
+   VARIÁVEIS DO LOG
+===================================================== */
+
+let logCalculo = [];
+
+
+/* =====================================================
    FORMATAÇÃO
 ===================================================== */
 
@@ -1627,16 +1840,135 @@ function formatarMoeda(campo){
 
 
 /* =====================================================
+   SISTEMA DE LOG
+===================================================== */
+
+function iniciarLog(){
+
+    logCalculo = [];
+
+    logCalculo.push(
+        '===================================================='
+    );
+
+    logCalculo.push(
+        'DEPURAÇÃO DO CÁLCULO INSS + IRRF'
+    );
+
+    logCalculo.push(
+        '===================================================='
+    );
+
+    logCalculo.push(
+        'Data/Hora: ' +
+        new Date().toLocaleString('pt-BR')
+    );
+
+    logCalculo.push('');
+
+}
+
+
+function log(mensagem){
+
+    logCalculo.push(
+        mensagem
+    );
+
+}
+
+
+function logValor(rotulo, valor){
+
+    logCalculo.push(
+        rotulo +
+        ': ' +
+        moeda(valor)
+    );
+
+}
+
+
+function finalizarLog(){
+
+    const texto =
+        logCalculo.join('\n');
+
+
+    document.getElementById(
+        'debugLog'
+    ).textContent =
+        texto;
+
+
+    document.getElementById(
+        'debugStatus'
+    ).textContent =
+        'Cálculo registrado';
+
+
+    console.clear();
+
+    console.log(
+        '===================================================='
+    );
+
+    console.log(
+        'DEPURAÇÃO DO CÁLCULO INSS + IRRF'
+    );
+
+    console.log(
+        '===================================================='
+    );
+
+    console.log(texto);
+
+}
+
+
+/* =====================================================
    CALCULAR INSS
 ===================================================== */
 
 function calcularINSS(remuneracao){
 
-    let base =
+    log('');
+    log('----------------------------------------------------');
+    log('ETAPA 1 — CÁLCULO DO INSS');
+    log('----------------------------------------------------');
+
+
+    logValor(
+        'Remuneração informada',
+        remuneracao
+    );
+
+
+    const base =
         Math.min(
             remuneracao,
             INSS_TETO
         );
+
+
+    logValor(
+        'Base limitada ao teto',
+        base
+    );
+
+
+    if(remuneracao > INSS_TETO){
+
+        log(
+            '⚠ Remuneração superior ao teto do INSS.'
+        );
+
+        logValor(
+            'Teto utilizado',
+            INSS_TETO
+        );
+
+    }
 
 
     let anterior = 0;
@@ -1644,38 +1976,88 @@ function calcularINSS(remuneracao){
     let total = 0;
 
 
-    for(
-        const faixa of INSS_FAIXAS
-    ){
+    INSS_FAIXAS.forEach(
+        function(faixa, indice){
 
-        if(base <= anterior){
+            if(base <= anterior){
 
-            break;
+                return;
+
+            }
+
+
+            const parcela =
+                Math.min(
+                    base,
+                    faixa.limite
+                )
+                -
+                anterior;
+
+
+            if(parcela > 0){
+
+                const valorFaixa =
+                    parcela *
+                    faixa.aliquota;
+
+
+                total +=
+                    valorFaixa;
+
+
+                log('');
+
+                log(
+                    'Faixa INSS ' +
+                    (indice + 1)
+                );
+
+                logValor(
+                    'Limite da faixa',
+                    faixa.limite
+                );
+
+                logValor(
+                    'Parcela da remuneração',
+                    parcela
+                );
+
+                log(
+                    'Alíquota: ' +
+                    (
+                        faixa.aliquota * 100
+                    ).toFixed(2)
+                    +
+                    '%'
+                );
+
+                logValor(
+                    'INSS da faixa',
+                    valorFaixa
+                );
+
+                logValor(
+                    'INSS acumulado',
+                    total
+                );
+
+            }
+
+
+            anterior =
+                faixa.limite;
 
         }
+    );
 
 
-        const parcela =
-            Math.min(
-                base,
-                faixa.limite
-            )
-            - anterior;
+    log('');
 
-
-        if(parcela > 0){
-
-            total +=
-                parcela *
-                faixa.aliquota;
-
-        }
-
-
-        anterior =
-            faixa.limite;
-
-    }
+    logValor(
+        'TOTAL INSS',
+        total
+    );
 
 
     return Math.max(
@@ -1698,10 +2080,27 @@ function calcularIRRF(
     outrasDeducoes
 ){
 
+
+    log('');
+    log('----------------------------------------------------');
+    log('ETAPA 2 — CÁLCULO DO IRRF');
+    log('----------------------------------------------------');
+
+
+    logValor(
+        'Remuneração tributável',
+        remuneracao
+    );
+
+
+    logValor(
+        'INSS utilizado',
+        inss
+    );
+
+
     /*
-     * =================================================
-     * 1. DEDUÇÃO POR DEPENDENTES
-     * =================================================
+     * DEPENDENTES
      */
 
     const quantidadeDependentes =
@@ -1716,16 +2115,25 @@ function calcularIRRF(
         DEDUCAO_DEPENDENTE;
 
 
+    log('');
+
+    log(
+        'DEPENDENTES'
+    );
+
+    log(
+        'Quantidade: ' +
+        quantidadeDependentes
+    );
+
+    logValor(
+        'Dedução por dependentes',
+        deducaoDependentes
+    );
+
+
     /*
-     * =================================================
-     * 2. DEDUÇÕES LEGAIS
-     * =================================================
-     *
-     * INSS
-     * + dependentes
-     * + pensão
-     * + outras deduções
-     *
+     * DEDUÇÕES LEGAIS
      */
 
     const deducoesLegais =
@@ -1735,10 +2143,56 @@ function calcularIRRF(
         outrasDeducoes;
 
 
+    log('');
+
+    log(
+        'DEDUÇÕES LEGAIS'
+    );
+
+    logValor(
+        'INSS',
+        inss
+    );
+
+    logValor(
+        'Dependentes',
+        deducaoDependentes
+    );
+
+    logValor(
+        'Pensão alimentícia',
+        pensao
+    );
+
+    logValor(
+        'Outras deduções',
+        outrasDeducoes
+    );
+
+    logValor(
+        'TOTAL DEDUÇÕES LEGAIS',
+        deducoesLegais
+    );
+
+
     /*
-     * =================================================
-     * 3. COMPARAÇÃO
-     * =================================================
+     * DESCONTO SIMPLIFICADO
+     */
+
+    log('');
+
+    log(
+        'DESCONTO SIMPLIFICADO'
+    );
+
+    logValor(
+        'Valor disponível',
+        DESCONTO_SIMPLIFICADO
+    );
+
+
+    /*
+     * COMPARAÇÃO
      */
 
     const utilizaDeducoesLegais =
@@ -1746,11 +2200,43 @@ function calcularIRRF(
         DESCONTO_SIMPLIFICADO;
 
 
+    log('');
+
+    log(
+        'COMPARAÇÃO DAS DEDUÇÕES'
+    );
+
+
+    logValor(
+        'Deduções legais',
+        deducoesLegais
+    );
+
+
+    logValor(
+        'Desconto simplificado',
+        DESCONTO_SIMPLIFICADO
+    );
+
+
+    if(utilizaDeducoesLegais){
+
+        log(
+            '✓ RESULTADO: Deduções legais serão utilizadas.'
+        );
+
+    }
+    else{
+
+        log(
+            '✓ RESULTADO: Desconto simplificado será utilizado.'
+        );
+
+    }
+
+
     /*
-     * Se as deduções legais forem maiores,
-     * utiliza-se o valor legal.
-     *
-     * Caso contrário, utiliza-se o simplificado.
+     * DEDUÇÃO EFETIVAMENTE UTILIZADA
      */
 
     const deducaoUtilizada =
@@ -1759,10 +2245,16 @@ function calcularIRRF(
             : DESCONTO_SIMPLIFICADO;
 
 
+    log('');
+
+    logValor(
+        'DEDUÇÃO EFETIVAMENTE UTILIZADA',
+        deducaoUtilizada
+    );
+
+
     /*
-     * =================================================
-     * 4. BASE DO IRRF
-     * =================================================
+     * BASE IRRF
      */
 
     const baseIR =
@@ -1773,10 +2265,30 @@ function calcularIRRF(
         );
 
 
+    log('');
+
+    log(
+        'BASE DE CÁLCULO DO IRRF'
+    );
+
+    logValor(
+        'Remuneração',
+        remuneracao
+    );
+
+    log(
+        '- Dedução utilizada: ' +
+        moeda(deducaoUtilizada)
+    );
+
+    logValor(
+        'BASE IRRF',
+        baseIR
+    );
+
+
     /*
-     * =================================================
-     * 5. FAIXA DO IRRF
-     * =================================================
+     * LOCALIZAR FAIXA
      */
 
     let faixaEncontrada =
@@ -1785,9 +2297,18 @@ function calcularIRRF(
         ];
 
 
+    let indiceFaixa = 0;
+
+
     for(
-        const faixa of IRRF_FAIXAS
+        let i = 0;
+        i < IRRF_FAIXAS.length;
+        i++
     ){
+
+        const faixa =
+            IRRF_FAIXAS[i];
+
 
         if(
             baseIR <=
@@ -1797,6 +2318,9 @@ function calcularIRRF(
             faixaEncontrada =
                 faixa;
 
+            indiceFaixa =
+                i;
+
             break;
 
         }
@@ -1804,10 +2328,34 @@ function calcularIRRF(
     }
 
 
+    log('');
+
+    log(
+        'FAIXA IRRF ENCONTRADA: ' +
+        (indiceFaixa + 1) +
+        'ª faixa'
+    );
+
+
+    log(
+        'Alíquota: ' +
+        (
+            faixaEncontrada.aliquota *
+            100
+        ).toFixed(2)
+        +
+        '%'
+    );
+
+
+    logValor(
+        'Dedução da faixa',
+        faixaEncontrada.deducao
+    );
+
+
     /*
-     * =================================================
-     * 6. IMPOSTO PELA TABELA
-     * =================================================
+     * IMPOSTO PELA TABELA
      */
 
     let impostoTabela =
@@ -1826,23 +2374,45 @@ function calcularIRRF(
         );
 
 
+    log('');
+
+    log(
+        'CÁLCULO DO IRRF PELA TABELA'
+    );
+
+
+    log(
+        '(' +
+        moeda(baseIR) +
+        ' × ' +
+        (
+            faixaEncontrada.aliquota *
+            100
+        ).toFixed(2) +
+        '%) - ' +
+        moeda(faixaEncontrada.deducao)
+    );
+
+
+    logValor(
+        'IRRF ANTES DA REDUÇÃO',
+        impostoTabela
+    );
+
+
     /*
-     * =================================================
-     * 7. REDUÇÃO IRRF 2026
-     * =================================================
-     *
-     * A redução utiliza a remuneração tributável.
-     *
-     * NÃO utiliza a baseIR.
-     *
+     * REDUÇÃO
      */
 
     let reducao = 0;
 
 
-    /*
-     * Até R$ 5.000,00
-     */
+    log('');
+
+    log(
+        'REDUÇÃO IRRF 2026'
+    );
+
 
     if(
         remuneracao <=
@@ -1852,12 +2422,17 @@ function calcularIRRF(
         reducao =
             impostoTabela;
 
+
+        log(
+            'Remuneração até R$ 5.000,00.'
+        );
+
+        log(
+            'Redução aplicada integralmente.'
+        );
+
     }
 
-
-    /*
-     * De R$ 5.000,01 a R$ 7.350,00
-     */
 
     else if(
         remuneracao <=
@@ -1881,24 +2456,46 @@ function calcularIRRF(
                 )
             );
 
+
+        log(
+            'Remuneração entre R$ 5.000,01 e R$ 7.350,00.'
+        );
+
+        log(
+            'Fórmula da redução:'
+        );
+
+        log(
+            '978,62 - (0,133145 × remuneração)'
+        );
+
     }
 
-
-    /*
-     * Acima de R$ 7.350,00
-     */
 
     else{
 
         reducao = 0;
 
+
+        log(
+            'Remuneração superior a R$ 7.350,00.'
+        );
+
+        log(
+            'Não há redução adicional aplicada.'
+        );
+
     }
 
 
+    logValor(
+        'Redução calculada',
+        reducao
+    );
+
+
     /*
-     * =================================================
-     * 8. IRRF FINAL
-     * =================================================
+     * IR FINAL
      */
 
     const impostoFinal =
@@ -1909,11 +2506,30 @@ function calcularIRRF(
         );
 
 
-    /*
-     * =================================================
-     * 9. RETORNO
-     * =================================================
-     */
+    log('');
+
+    log(
+        'RESULTADO FINAL DO IRRF'
+    );
+
+
+    logValor(
+        'IRRF antes da redução',
+        impostoTabela
+    );
+
+
+    logValor(
+        '(-) Redução',
+        reducao
+    );
+
+
+    logValor(
+        'IRRF FINAL',
+        impostoFinal
+    );
+
 
     return {
 
@@ -1961,8 +2577,19 @@ function calcularIRRF(
 
 function calcular(){
 
+    iniciarLog();
+
     esconderAlerta();
 
+
+    log(
+        'INICIANDO CÁLCULO...'
+    );
+
+
+    /*
+     * ENTRADAS
+     */
 
     const remuneracao =
         numero(
@@ -1996,7 +2623,60 @@ function calcular(){
         );
 
 
+    log('');
+
+    log(
+        '===================================================='
+    );
+
+    log(
+        'DADOS INFORMADOS'
+    );
+
+    log(
+        '===================================================='
+    );
+
+
+    logValor(
+        'Remuneração',
+        remuneracao
+    );
+
+
+    log(
+        'Dependentes: ' +
+        dependentes
+    );
+
+
+    logValor(
+        'Pensão',
+        pensao
+    );
+
+
+    logValor(
+        'Outras deduções',
+        outrasDeducoes
+    );
+
+
+    /*
+     * VALIDAÇÃO
+     */
+
     if(remuneracao <= 0){
+
+        log('');
+
+        log(
+            '❌ ERRO: remuneração inválida.'
+        );
+
+
+        finalizarLog();
+
 
         mostrarAlerta(
             'Informe uma remuneração tributável válida.',
@@ -2010,6 +2690,16 @@ function calcular(){
 
     if(dependentes < 0){
 
+        log('');
+
+        log(
+            '❌ ERRO: quantidade de dependentes inválida.'
+        );
+
+
+        finalizarLog();
+
+
         mostrarAlerta(
             'O número de dependentes não pode ser negativo.',
             'warning'
@@ -2021,9 +2711,7 @@ function calcular(){
 
 
     /*
-     * =================================================
      * INSS
-     * =================================================
      */
 
     const inss =
@@ -2033,9 +2721,7 @@ function calcular(){
 
 
     /*
-     * =================================================
      * IRRF
-     * =================================================
      */
 
     const ir =
@@ -2049,9 +2735,7 @@ function calcular(){
 
 
     /*
-     * =================================================
      * LÍQUIDO
-     * =================================================
      */
 
     const liquido =
@@ -2063,10 +2747,47 @@ function calcular(){
         );
 
 
+    log('');
+
+    log(
+        '----------------------------------------------------'
+    );
+
+    log(
+        'ETAPA 3 — RESULTADO FINAL'
+    );
+
+    log(
+        '----------------------------------------------------'
+    );
+
+
+    logValor(
+        'Remuneração',
+        remuneracao
+    );
+
+
+    logValor(
+        '(-) INSS',
+        inss
+    );
+
+
+    logValor(
+        '(-) IRRF',
+        ir.impostoFinal
+    );
+
+
+    logValor(
+        'LÍQUIDO',
+        liquido
+    );
+
+
     /*
-     * =================================================
      * RESULTADOS
-     * =================================================
      */
 
     document.getElementById(
@@ -2094,9 +2815,7 @@ function calcular(){
 
 
     /*
-     * =================================================
-     * MEMÓRIA DE CÁLCULO
-     * =================================================
+     * MEMÓRIA
      */
 
     let html = '';
@@ -2150,12 +2869,6 @@ function calcular(){
     );
 
 
-    /*
-     * =================================================
-     * EXPLICAÇÃO DO CRITÉRIO
-     * =================================================
-     */
-
     if(ir.utilizaDeducoesLegais){
 
         html += `
@@ -2204,7 +2917,7 @@ function calcular(){
                 <strong>
                     ${moeda(ir.deducoesLegais)}
                 </strong>,
-                valor inferior ao desconto simplificado de
+                valor inferior ou igual ao desconto simplificado de
                 <strong>
                     ${moeda(DESCONTO_SIMPLIFICADO)}
                 </strong>.
@@ -2288,8 +3001,30 @@ function calcular(){
         html;
 
 
+    /*
+     * FINALIZA LOG
+     */
+
+    log('');
+
+    log(
+        '===================================================='
+    );
+
+    log(
+        'CÁLCULO CONCLUÍDO COM SUCESSO'
+    );
+
+    log(
+        '===================================================='
+    );
+
+
+    finalizarLog();
+
+
     mostrarAlerta(
-        'Cálculo realizado conforme os parâmetros de 2026 configurados nesta ferramenta.',
+        'Cálculo realizado. A memória e a depuração foram atualizadas.',
         'success'
     );
 
@@ -2320,6 +3055,86 @@ function linha(
         </div>
 
     `;
+
+}
+
+
+/* =====================================================
+   COPIAR LOG
+===================================================== */
+
+function copiarLog(){
+
+    const texto =
+        document.getElementById(
+            'debugLog'
+        ).textContent;
+
+
+    if(
+        !texto ||
+        texto ===
+        'Nenhum cálculo executado ainda.'
+    ){
+
+        mostrarAlerta(
+            'Não existe log para copiar.',
+            'warning'
+        );
+
+        return;
+
+    }
+
+
+    navigator.clipboard
+        .writeText(texto)
+        .then(
+            function(){
+
+                mostrarAlerta(
+                    'Log copiado para a área de transferência.',
+                    'success'
+                );
+
+            }
+        )
+        .catch(
+            function(){
+
+                mostrarAlerta(
+                    'Não foi possível copiar automaticamente o log.',
+                    'warning'
+                );
+
+            }
+        );
+
+}
+
+
+/* =====================================================
+   LIMPAR LOG
+===================================================== */
+
+function limparLog(){
+
+    logCalculo = [];
+
+
+    document.getElementById(
+        'debugLog'
+    ).textContent =
+        'Nenhum cálculo executado ainda.';
+
+
+    document.getElementById(
+        'debugStatus'
+    ).textContent =
+        'Aguardando cálculo';
+
+
+    console.clear();
 
 }
 
@@ -2419,6 +3234,9 @@ function limpar(){
         'Informe a remuneração e clique em <strong>Calcular</strong>.';
 
 
+    limparLog();
+
+
     esconderAlerta();
 
 }
@@ -2466,6 +3284,26 @@ function esconderAlerta(){
         'none';
 
 }
+
+
+/* =====================================================
+   INICIALIZAÇÃO
+===================================================== */
+
+document.addEventListener(
+    'DOMContentLoaded',
+    function(){
+
+        console.log(
+            'Calculadora INSS + IRRF 2026 carregada.'
+        );
+
+        console.log(
+            'Painel de depuração disponível na página.'
+        );
+
+    }
+);
 
 </script>
 

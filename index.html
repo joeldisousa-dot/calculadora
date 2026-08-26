@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -141,7 +142,9 @@ input:focus{
   border-radius:5px;
 }
 
-/* CONTRATOS */
+/* =========================================================
+   CONTRATOS
+========================================================= */
 
 .contratos{
   display:grid;
@@ -201,7 +204,9 @@ input:focus{
   font-size:14px;
 }
 
-/* RESUMO */
+/* =========================================================
+   RESUMO
+========================================================= */
 
 .resumo-contratos{
   margin-top:20px;
@@ -229,7 +234,9 @@ input:focus{
   font-weight:bold;
 }
 
-/* LIMITE */
+/* =========================================================
+   LIMITE
+========================================================= */
 
 .limite-card{
   margin-top:18px;
@@ -318,7 +325,9 @@ input:focus{
   color:#166534;
 }
 
-/* RESULTADOS */
+/* =========================================================
+   RESULTADOS
+========================================================= */
 
 .results{
   display:grid;
@@ -365,7 +374,9 @@ input:focus{
   border-color:#fecaca;
 }
 
-/* MEMÓRIA */
+/* =========================================================
+   MEMÓRIA
+========================================================= */
 
 .memory{
   margin-top:18px;
@@ -402,7 +413,9 @@ input:focus{
   border-radius:6px;
 }
 
-/* TABELA */
+/* =========================================================
+   TABELA
+========================================================= */
 
 .table-wrap{
   overflow-x:auto;
@@ -456,7 +469,9 @@ td{
   color:#991b1b;
 }
 
-/* ALERTA */
+/* =========================================================
+   ALERTA
+========================================================= */
 
 .alert{
   display:none;
@@ -487,7 +502,9 @@ td{
   color:#991b1b;
 }
 
-/* BOTÕES */
+/* =========================================================
+   BOTÕES
+========================================================= */
 
 .actions{
   display:flex;
@@ -503,6 +520,7 @@ button{
   padding:0 18px;
   font-weight:bold;
   cursor:pointer;
+  transition:.2s;
 }
 
 .btn-primary{
@@ -520,11 +538,25 @@ button{
   color:#fff;
 }
 
-button:hover{
-  opacity:.92;
+/* NOVO BOTÃO INSS / IRRF */
+
+.btn-irrf{
+  background:#7c3aed;
+  color:#fff;
 }
 
-/* RESPONSIVO */
+.btn-irrf:hover{
+  background:#6d28d9;
+}
+
+button:hover{
+  opacity:.92;
+  transform:translateY(-1px);
+}
+
+/* =========================================================
+   RESPONSIVO
+========================================================= */
 
 @media(max-width:1000px){
 
@@ -561,6 +593,10 @@ button:hover{
     grid-template-columns:1fr;
   }
 
+  .actions{
+    flex-direction:column;
+  }
+
   .actions button{
     width:100%;
   }
@@ -576,7 +612,9 @@ button:hover{
 
 }
 
-/* IMPRESSÃO */
+/* =========================================================
+   IMPRESSÃO
+========================================================= */
 
 @media print{
 
@@ -630,6 +668,10 @@ REGRA DOS 35% — GARANTIA SOBRE VERBAS RESCISÓRIAS
 </header>
 
 
+<!-- =====================================================
+     COMO UTILIZAR
+===================================================== -->
+
 <section class="card">
 
 <div class="card-title">
@@ -670,7 +712,7 @@ respeitando o saldo devedor e o limite global de
 
 <!-- =====================================================
      CONTRATOS
-====================================================== -->
+===================================================== -->
 
 <section class="card">
 
@@ -1017,7 +1059,9 @@ R$ 0,00
 </div>
 
 
-<!-- RESUMO CONTRATOS -->
+<!-- =====================================================
+     RESUMO CONTRATOS
+===================================================== -->
 
 <div class="resumo-contratos">
 
@@ -1081,7 +1125,9 @@ LIMITE GLOBAL
 </div>
 
 
-<!-- CONFERÊNCIA -->
+<!-- =====================================================
+     CONFERÊNCIA
+===================================================== -->
 
 <div class="limite-card">
 
@@ -1179,7 +1225,7 @@ Informe os percentuais dos contratos e clique em
 
 <!-- =====================================================
      VENCIMENTOS
-====================================================== -->
+===================================================== -->
 
 <section class="card">
 
@@ -1198,7 +1244,7 @@ id="vencimentos"
 
 <!-- =====================================================
      DESCONTOS
-====================================================== -->
+===================================================== -->
 
 <section class="card">
 
@@ -1222,7 +1268,9 @@ devem ser deduzidos para chegar à remuneração disponível.
 </section>
 
 
-<!-- 13º -->
+<!-- =====================================================
+     13º
+===================================================== -->
 
 <section class="card">
 
@@ -1282,7 +1330,9 @@ oninput="formatarMoeda(this)"
 </section>
 
 
-<!-- RESULTADO -->
+<!-- =====================================================
+     RESULTADO
+===================================================== -->
 
 <section class="card">
 
@@ -1393,7 +1443,9 @@ Informe os valores e clique em
 </section>
 
 
-<!-- REGRA -->
+<!-- =====================================================
+     REGRA
+===================================================== -->
 
 <section class="card">
 
@@ -1538,6 +1590,10 @@ class="alert"
 ></div>
 
 
+<!-- =====================================================
+     AÇÕES
+===================================================== -->
+
 <div class="actions">
 
 <button
@@ -1547,12 +1603,14 @@ onclick="calcular()"
 🧮 Calcular conferência
 </button>
 
+
 <button
 class="btn-secondary"
 onclick="carregarExemplo()"
 >
 📋 Carregar exemplo
 </button>
+
 
 <button
 class="btn-secondary"
@@ -1561,11 +1619,25 @@ onclick="limpar()"
 ↺ Limpar
 </button>
 
+
 <button
 class="btn-success"
 onclick="window.print()"
 >
 🖨️ Imprimir
+</button>
+
+
+<!-- =====================================================
+     NOVO BOTÃO
+     INSS / IRRF
+===================================================== -->
+
+<button
+class="btn-irrf"
+onclick="abrirIRRFINSS()"
+>
+🧾 INSS / IRRF
 </button>
 
 </div>
@@ -1611,6 +1683,25 @@ Programa Crédito do Trabalhador.
 const LIMITE_GARANTIA = 35;
 
 const QUANTIDADE_CONTRATOS = 4;
+
+
+/* =========================================================
+   NAVEGAÇÃO — INSS / IRRF
+========================================================= */
+
+function abrirIRRFINSS(){
+
+  /*
+   * Página IRRF_INSS.html do mesmo Web App.
+   *
+   * Utiliza o parâmetro ?page=IRRF_INSS
+   * para funcionar corretamente com o doGet(e).
+   */
+
+  window.top.location.href =
+    '?page=IRRF_INSS';
+
+}
 
 
 /* =========================================================
@@ -2049,20 +2140,12 @@ function calcularContratos(remuneracao){
     LIMITE_GARANTIA /
     100;
 
-
   let totalPercentual = 0;
 
   let totalSaldo = 0;
 
   let quantidade = 0;
 
-
-  /*
-   * PRIMEIRA ETAPA:
-   *
-   * Calcula quanto cada contrato pediria
-   * considerando o percentual e o saldo devedor.
-   */
 
   contratos.forEach(
     contrato => {
@@ -2079,20 +2162,10 @@ function calcularContratos(remuneracao){
 
       }
 
-
       const valorPorPercentual =
         remuneracao *
         contrato.percentual /
         100;
-
-
-      /*
-       * O valor solicitado nunca pode ser
-       * superior ao saldo devedor.
-       *
-       * Se não houver saldo informado,
-       * considera-se o valor pelo percentual.
-       */
 
       const valorSolicitado =
         contrato.saldo > 0
@@ -2101,7 +2174,6 @@ function calcularContratos(remuneracao){
               contrato.saldo
             )
           : valorPorPercentual;
-
 
       contrato.valorPorPercentual =
         valorPorPercentual;
@@ -2113,12 +2185,6 @@ function calcularContratos(remuneracao){
   );
 
 
-  /*
-   * SEGUNDA ETAPA:
-   *
-   * Soma os valores solicitados.
-   */
-
   const totalSolicitado =
     contratos.reduce(
       (s,c) =>
@@ -2127,15 +2193,8 @@ function calcularContratos(remuneracao){
     );
 
 
-  /*
-   * TERCEIRA ETAPA:
-   *
-   * Se o total solicitado ultrapassar
-   * o limite financeiro de 35%, reduz
-   * proporcionalmente os contratos.
-   */
-
   let fatorRateio = 1;
+
 
   if(
     totalSolicitado >
@@ -2159,16 +2218,10 @@ function calcularContratos(remuneracao){
       contrato.fatorRateio =
         fatorRateio;
 
-
       contrato.valorEfetivo =
         contrato.valorSolicitado *
         fatorRateio;
 
-
-      /*
-       * Proteção adicional:
-       * nunca ultrapassar o saldo devedor.
-       */
 
       if(
         contrato.saldo > 0 &&
@@ -2206,10 +2259,6 @@ function calcularContratos(remuneracao){
   );
 
 
-  /*
-   * Percentual excedente informado.
-   */
-
   const percentualExcedente =
     Math.max(
       0,
@@ -2226,10 +2275,6 @@ function calcularContratos(remuneracao){
     );
 
 
-  /*
-   * Percentual efetivamente utilizado.
-   */
-
   const percentualEfetivo =
     remuneracao > 0
       ? (
@@ -2239,11 +2284,6 @@ function calcularContratos(remuneracao){
         )
       : 0;
 
-
-  /*
-   * Valor excedente solicitado
-   * acima do limite financeiro.
-   */
 
   const valorExcedente =
     Math.max(
@@ -2597,11 +2637,6 @@ function montarMemoriaContratos(
 
 function calcular(){
 
-
-  /*
-   * VENCIMENTOS
-   */
-
   const totalVencimentos =
     VENCIMENTOS.reduce(
       (s,[id]) =>
@@ -2609,10 +2644,6 @@ function calcular(){
       0
     );
 
-
-  /*
-   * DESCONTOS
-   */
 
   const totalDescontos =
     DESCONTOS.reduce(
@@ -2622,10 +2653,6 @@ function calcular(){
     );
 
 
-  /*
-   * REMUNERAÇÃO DISPONÍVEL
-   */
-
   const remuneracao =
     Math.max(
       0,
@@ -2634,19 +2661,11 @@ function calcular(){
     );
 
 
-  /*
-   * CONTRATOS
-   */
-
   const dadosContratos =
     calcularContratos(
       remuneracao
     );
 
-
-  /*
-   * RESULTADOS
-   */
 
   document
     .getElementById(
@@ -2688,18 +2707,10 @@ function calcular(){
       );
 
 
-  /*
-   * RESUMO
-   */
-
   atualizarResumoContratos(
     dadosContratos
   );
 
-
-  /*
-   * MEMÓRIA DOS CONTRATOS
-   */
 
   document
     .getElementById(
@@ -2711,10 +2722,6 @@ function calcular(){
         remuneracao
       );
 
-
-  /*
-   * MEMÓRIA PRINCIPAL
-   */
 
   let m = [];
 
@@ -2868,6 +2875,7 @@ function calcular(){
       )
     );
 
+
     m.push(
       linha(
         'INSS sobre 13º — conferência separada',
@@ -2876,6 +2884,7 @@ function calcular(){
         )
       )
     );
+
 
     m.push(
       linha(
@@ -3264,3 +3273,29 @@ criarCampos(
 </body>
 
 </html>
+```
+
+### Alterações realizadas
+
+1. **Novo botão**
+
+   * 🧾 **INSS / IRRF**
+   * Cor roxa para diferenciá-lo das ações de cálculo.
+
+2. **Nova função**
+
+   ```javascript
+   function abrirIRRFINSS(){
+     window.top.location.href = '?page=IRRF_INSS';
+   }
+   ```
+
+3. **Não alterei a lógica dos cálculos existentes**, contratos, vencimentos, descontos, memória de cálculo, limite de 35%, exemplo ou impressão.
+
+4. O botão funciona considerando que o `Código.gs` tenha uma rota para:
+
+   ```text
+   ?page=IRRF_INSS
+   ```
+
+**Importante:** no `Código.gs`, a página precisa estar cadastrada no `doGet(e)`. Se ainda não estiver, acrescente o tratamento `IRRF_INSS` no seu `doGet`.

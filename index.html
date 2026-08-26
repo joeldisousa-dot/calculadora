@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -142,6 +141,7 @@ input:focus{
   border-radius:5px;
 }
 
+
 /* =========================================================
    CONTRATOS
 ========================================================= */
@@ -204,6 +204,7 @@ input:focus{
   font-size:14px;
 }
 
+
 /* =========================================================
    RESUMO
 ========================================================= */
@@ -233,6 +234,7 @@ input:focus{
   font-size:20px;
   font-weight:bold;
 }
+
 
 /* =========================================================
    LIMITE
@@ -325,6 +327,7 @@ input:focus{
   color:#166534;
 }
 
+
 /* =========================================================
    RESULTADOS
 ========================================================= */
@@ -374,6 +377,7 @@ input:focus{
   border-color:#fecaca;
 }
 
+
 /* =========================================================
    MEMÓRIA
 ========================================================= */
@@ -412,6 +416,7 @@ input:focus{
   padding:10px;
   border-radius:6px;
 }
+
 
 /* =========================================================
    TABELA
@@ -469,6 +474,7 @@ td{
   color:#991b1b;
 }
 
+
 /* =========================================================
    ALERTA
 ========================================================= */
@@ -502,6 +508,7 @@ td{
   color:#991b1b;
 }
 
+
 /* =========================================================
    BOTÕES
 ========================================================= */
@@ -523,6 +530,11 @@ button{
   transition:.2s;
 }
 
+button:hover{
+  opacity:.92;
+  transform:translateY(-1px);
+}
+
 .btn-primary{
   background:#1769e0;
   color:#fff;
@@ -538,7 +550,10 @@ button{
   color:#fff;
 }
 
-/* NOVO BOTÃO INSS / IRRF */
+
+/* =========================================================
+   NOVO BOTÃO IRRF / INSS
+========================================================= */
 
 .btn-irrf{
   background:#7c3aed;
@@ -549,10 +564,6 @@ button{
   background:#6d28d9;
 }
 
-button:hover{
-  opacity:.92;
-  transform:translateY(-1px);
-}
 
 /* =========================================================
    RESPONSIVO
@@ -593,10 +604,6 @@ button:hover{
     grid-template-columns:1fr;
   }
 
-  .actions{
-    flex-direction:column;
-  }
-
   .actions button{
     width:100%;
   }
@@ -611,6 +618,7 @@ button:hover{
   }
 
 }
+
 
 /* =========================================================
    IMPRESSÃO
@@ -646,6 +654,7 @@ button:hover{
 
 <div class="container">
 
+
 <header class="header">
 
 <h1>
@@ -667,10 +676,6 @@ REGRA DOS 35% — GARANTIA SOBRE VERBAS RESCISÓRIAS
 
 </header>
 
-
-<!-- =====================================================
-     COMO UTILIZAR
-===================================================== -->
 
 <section class="card">
 
@@ -1059,9 +1064,7 @@ R$ 0,00
 </div>
 
 
-<!-- =====================================================
-     RESUMO CONTRATOS
-===================================================== -->
+<!-- RESUMO CONTRATOS -->
 
 <div class="resumo-contratos">
 
@@ -1125,9 +1128,7 @@ LIMITE GLOBAL
 </div>
 
 
-<!-- =====================================================
-     CONFERÊNCIA
-===================================================== -->
+<!-- CONFERÊNCIA -->
 
 <div class="limite-card">
 
@@ -1597,6 +1598,7 @@ class="alert"
 <div class="actions">
 
 <button
+type="button"
 class="btn-primary"
 onclick="calcular()"
 >
@@ -1605,6 +1607,7 @@ onclick="calcular()"
 
 
 <button
+type="button"
 class="btn-secondary"
 onclick="carregarExemplo()"
 >
@@ -1613,6 +1616,7 @@ onclick="carregarExemplo()"
 
 
 <button
+type="button"
 class="btn-secondary"
 onclick="limpar()"
 >
@@ -1621,6 +1625,7 @@ onclick="limpar()"
 
 
 <button
+type="button"
 class="btn-success"
 onclick="window.print()"
 >
@@ -1628,16 +1633,14 @@ onclick="window.print()"
 </button>
 
 
-<!-- =====================================================
-     NOVO BOTÃO
-     INSS / IRRF
-===================================================== -->
+<!-- NOVO BOTÃO -->
 
 <button
+type="button"
 class="btn-irrf"
 onclick="abrirIRRFINSS()"
 >
-🧾 INSS / IRRF
+🧾 IRRF / INSS
 </button>
 
 </div>
@@ -1686,20 +1689,24 @@ const QUANTIDADE_CONTRATOS = 4;
 
 
 /* =========================================================
-   NAVEGAÇÃO — INSS / IRRF
+   URL DA CALCULADORA IRRF / INSS
+========================================================= */
+
+const URL_IRRF_INSS =
+  'https://joeldisousa-dot.github.io/calculadora/IRRF_INSS.html';
+
+
+/* =========================================================
+   ABRIR IRRF / INSS
 ========================================================= */
 
 function abrirIRRFINSS(){
 
-  /*
-   * Página IRRF_INSS.html do mesmo Web App.
-   *
-   * Utiliza o parâmetro ?page=IRRF_INSS
-   * para funcionar corretamente com o doGet(e).
-   */
-
-  window.top.location.href =
-    '?page=IRRF_INSS';
+  window.open(
+    URL_IRRF_INSS,
+    '_blank',
+    'noopener,noreferrer'
+  );
 
 }
 
@@ -2856,10 +2863,6 @@ function calcular(){
   );
 
 
-  /*
-   * 13º
-   */
-
   if(
     valor('decimoTerceiro') ||
     valor('inss13') ||
@@ -2905,10 +2908,6 @@ function calcular(){
     .innerHTML =
       m.join('');
 
-
-  /*
-   * ALERTA
-   */
 
   if(
     dadosContratos.totalPercentual >
@@ -3159,9 +3158,6 @@ function carregarExemplo(){
     horasExtras:
       'R$ 900,00',
 
-    anuênio:
-      '',
-
     avisoPrevio:
       'R$ 6.000,00',
 
@@ -3273,29 +3269,3 @@ criarCampos(
 </body>
 
 </html>
-```
-
-### Alterações realizadas
-
-1. **Novo botão**
-
-   * 🧾 **INSS / IRRF**
-   * Cor roxa para diferenciá-lo das ações de cálculo.
-
-2. **Nova função**
-
-   ```javascript
-   function abrirIRRFINSS(){
-     window.top.location.href = '?page=IRRF_INSS';
-   }
-   ```
-
-3. **Não alterei a lógica dos cálculos existentes**, contratos, vencimentos, descontos, memória de cálculo, limite de 35%, exemplo ou impressão.
-
-4. O botão funciona considerando que o `Código.gs` tenha uma rota para:
-
-   ```text
-   ?page=IRRF_INSS
-   ```
-
-**Importante:** no `Código.gs`, a página precisa estar cadastrada no `doGet(e)`. Se ainda não estiver, acrescente o tratamento `IRRF_INSS` no seu `doGet`.

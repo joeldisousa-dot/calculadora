@@ -1,15 +1,31 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
+
 <title>Conferência do eConsignado na Rescisão</title>
 
 <style>
 
+/* =========================================================
+   RESET
+========================================================= */
+
 *{
   box-sizing:border-box;
 }
+
+
+/* =========================================================
+   BASE
+========================================================= */
 
 body{
   margin:0;
@@ -19,10 +35,15 @@ body{
 }
 
 .container{
-  max-width:1200px;
+  max-width:1250px;
   margin:auto;
   padding:20px;
 }
+
+
+/* =========================================================
+   CARDS
+========================================================= */
 
 .header,
 .card{
@@ -33,6 +54,11 @@ body{
   margin-bottom:18px;
   box-shadow:0 4px 18px rgba(0,0,0,.05);
 }
+
+
+/* =========================================================
+   CABEÇALHO
+========================================================= */
 
 .header h1{
   margin:0 0 8px;
@@ -58,12 +84,22 @@ body{
   font-weight:bold;
 }
 
+
+/* =========================================================
+   TÍTULOS
+========================================================= */
+
 .card-title{
   color:#123b68;
   font-size:18px;
   font-weight:bold;
   margin-bottom:18px;
 }
+
+
+/* =========================================================
+   INFORMAÇÕES
+========================================================= */
 
 .info,
 .warning{
@@ -85,11 +121,21 @@ body{
   color:#92400e;
 }
 
+
+/* =========================================================
+   GRID
+========================================================= */
+
 .grid{
   display:grid;
   grid-template-columns:repeat(2,1fr);
   gap:16px;
 }
+
+
+/* =========================================================
+   CAMPOS
+========================================================= */
 
 .field{
   display:flex;
@@ -134,34 +180,197 @@ input:focus{
   border-radius:5px;
 }
 
-.nature strong{
+
+/* =========================================================
+   CONTRATOS
+========================================================= */
+
+.contratos{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:18px;
+}
+
+.contrato{
+  border:1px solid #dbe3ec;
+  border-radius:14px;
+  background:#f8fafc;
+  padding:18px;
+  position:relative;
+}
+
+.contrato-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:16px;
+}
+
+.contrato-title{
   color:#123b68;
+  font-size:16px;
+  font-weight:bold;
+}
+
+.contrato-badge{
+  background:#e0ecff;
+  color:#1d4ed8;
+  padding:5px 9px;
+  border-radius:15px;
+  font-size:10px;
+  font-weight:bold;
+}
+
+.contrato-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+}
+
+.contrato-total{
+  margin-top:14px;
+  padding:11px;
+  border-radius:9px;
+  background:#fff;
+  border:1px solid #e2e8f0;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  font-size:12px;
+}
+
+.contrato-total strong{
+  color:#123b68;
+  font-size:14px;
 }
 
 
 /* =========================================================
-   RUBRICAS ADICIONAIS
-   ========================================================= */
+   RESUMO DOS CONTRATOS
+========================================================= */
 
-.rubrica-adicional{
-  background:#f8fafc;
-  border:1px dashed #cbd5e1;
-  border-radius:10px;
-  padding:14px;
+.resumo-contratos{
+  margin-top:20px;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:14px;
 }
 
-.rubrica-adicional label{
+.resumo-item{
+  background:#f8fafc;
+  border:1px solid #e2e8f0;
+  border-radius:12px;
+  padding:15px;
+}
+
+.resumo-label{
+  font-size:11px;
+  color:#64748b;
+  margin-bottom:6px;
+}
+
+.resumo-value{
+  color:#123b68;
+  font-size:20px;
+  font-weight:bold;
+}
+
+
+/* =========================================================
+   STATUS 35%
+========================================================= */
+
+.limite-card{
+  margin-top:18px;
+  border-radius:14px;
+  padding:18px;
+  border:1px solid #bfdbfe;
+  background:#eff6ff;
+}
+
+.limite-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+  margin-bottom:15px;
+}
+
+.limite-title{
+  font-size:16px;
+  font-weight:bold;
   color:#123b68;
 }
 
-.rubrica-adicional .nature{
-  border-left-color:#2563eb;
+.status{
+  padding:7px 12px;
+  border-radius:20px;
+  font-size:11px;
+  font-weight:bold;
+}
+
+.status.ok{
+  background:#dcfce7;
+  color:#166534;
+}
+
+.status.excesso{
+  background:#fee2e2;
+  color:#991b1b;
+}
+
+.status.atenção{
+  background:#fef3c7;
+  color:#92400e;
+}
+
+.limite-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+}
+
+.limite-item{
+  background:#fff;
+  border:1px solid #dbeafe;
+  border-radius:10px;
+  padding:13px;
+}
+
+.limite-item .titulo{
+  font-size:10px;
+  color:#64748b;
+  margin-bottom:6px;
+}
+
+.limite-item .valor{
+  font-size:18px;
+  color:#123b68;
+  font-weight:bold;
+}
+
+.excesso{
+  background:#fff1f2;
+  border-color:#fecdd3;
+}
+
+.excesso .valor{
+  color:#be123c;
+}
+
+.permitido{
+  background:#f0fdf4;
+  border-color:#bbf7d0;
+}
+
+.permitido .valor{
+  color:#166534;
 }
 
 
 /* =========================================================
    RESULTADOS
-   ========================================================= */
+========================================================= */
 
 .results{
   display:grid;
@@ -211,7 +420,7 @@ input:focus{
 
 /* =========================================================
    MEMÓRIA
-   ========================================================= */
+========================================================= */
 
 .memory{
   margin-top:18px;
@@ -244,7 +453,7 @@ input:focus{
 
 /* =========================================================
    TABELA
-   ========================================================= */
+========================================================= */
 
 .table-wrap{
   overflow-x:auto;
@@ -253,7 +462,7 @@ input:focus{
 table{
   width:100%;
   border-collapse:collapse;
-  min-width:700px;
+  min-width:750px;
 }
 
 th{
@@ -288,15 +497,15 @@ td{
   color:#9a3412;
 }
 
-.tag.nao{
-  background:#e2e8f0;
-  color:#475569;
+.tag.limite{
+  background:#dbeafe;
+  color:#1d4ed8;
 }
 
 
 /* =========================================================
    ALERTA
-   ========================================================= */
+========================================================= */
 
 .alert{
   display:none;
@@ -320,10 +529,17 @@ td{
   color:#92400e;
 }
 
+.alert.danger{
+  display:block;
+  background:#fef2f2;
+  border:1px solid #fecaca;
+  color:#991b1b;
+}
+
 
 /* =========================================================
    BOTÕES
-   ========================================================= */
+========================================================= */
 
 .actions{
   display:flex;
@@ -363,7 +579,20 @@ button:hover{
 
 /* =========================================================
    RESPONSIVO
-   ========================================================= */
+========================================================= */
+
+@media(max-width:1000px){
+
+  .contratos{
+    grid-template-columns:1fr;
+  }
+
+  .resumo-contratos,
+  .limite-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+}
 
 @media(max-width:850px){
 
@@ -380,7 +609,10 @@ button:hover{
   }
 
   .grid,
-  .results{
+  .results,
+  .resumo-contratos,
+  .limite-grid,
+  .contrato-grid{
     grid-template-columns:1fr;
   }
 
@@ -392,12 +624,17 @@ button:hover{
     font-size:21px;
   }
 
+  .limite-header{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+
 }
 
 
 /* =========================================================
    IMPRESSÃO
-   ========================================================= */
+========================================================= */
 
 @media print{
 
@@ -422,10 +659,12 @@ button:hover{
 }
 
 </style>
+
 </head>
 
 
 <body>
+
 
 <div class="container">
 
@@ -441,13 +680,18 @@ button:hover{
 </h1>
 
 <p>
-Apure a <strong>remuneração disponível na rescisão</strong> e calcule o
-desconto das verbas rescisórias dado em garantia, conforme a regra vigente
-a partir de <strong>23 de julho de 2026</strong>.
+
+Apure a <strong>remuneração disponível na rescisão</strong>,
+calcule as garantias dos contratos de eConsignado e confira
+se o somatório dos percentuais ultrapassa o limite de
+<strong>35%</strong> das verbas rescisórias.
+
 </p>
 
 <span class="badge">
-REGRA DO ITEM 5.7.3 — MANUAL DO CRÉDITO DO TRABALHADOR
+
+REGRA DOS 35% — GARANTIA SOBRE VERBAS RESCISÓRIAS
+
 </span>
 
 </header>
@@ -466,24 +710,28 @@ REGRA DO ITEM 5.7.3 — MANUAL DO CRÉDITO DO TRABALHADOR
 <div class="info">
 
 <strong>1.</strong>
-Informe os valores das verbas e descontos aplicáveis.
+Informe os valores das verbas rescisórias elegíveis.
 
 <br>
 
 <strong>2.</strong>
-Confira a natureza da rubrica e os códigos de incidência no eSocial.
+Informe os descontos aplicáveis para chegar à remuneração disponível.
 
 <br>
 
 <strong>3.</strong>
-O sistema calcula a remuneração disponível e aplica o percentual dado em
-garantia.
+Cadastre até <strong>4 contratos</strong> de eConsignado.
 
 <br>
 
 <strong>4.</strong>
-O saldo devedor é exibido apenas para conferência e
-<strong>não limita novamente</strong> o desconto rescisório.
+Informe o saldo devedor e o percentual de garantia de cada contrato.
+
+<br>
+
+<strong>5.</strong>
+O sistema soma os percentuais dos contratos e verifica se o total ultrapassa
+o limite de <strong>35%</strong>.
 
 </div>
 
@@ -491,60 +739,551 @@ O saldo devedor é exibido apenas para conferência e
 
 
 <!-- =====================================================
-     DADOS DO ECONSIGNADO
+     CONTRATOS
 ====================================================== -->
 
 <section class="card">
 
 <div class="card-title">
-🏦 Dados do eConsignado
+🏦 Contratos de eConsignado
 </div>
 
-<div class="grid">
+<div class="info" style="margin-bottom:18px">
+
+Informe os contratos ativos que possuem garantia sobre as verbas rescisórias.
+O sistema fará a conferência individual e também o somatório dos quatro
+contratos.
+
+</div>
+
+
+<div class="contratos">
+
+
+<!-- CONTRATO 1 -->
+
+<div class="contrato">
+
+<div class="contrato-header">
+
+<div class="contrato-title">
+Contrato 1
+</div>
+
+<div class="contrato-badge">
+ECONSIGNADO
+</div>
+
+</div>
+
+
+<div class="contrato-grid">
 
 
 <div class="field">
 
-<label for="saldoDevedor">
-Saldo devedor informado pela instituição financeira
+<label for="instituicao1">
+Instituição financeira
 </label>
 
 <input
-id="saldoDevedor"
+id="instituicao1"
+type="text"
+placeholder="Ex.: Banco 1"
+>
+
+</div>
+
+
+<div class="field">
+
+<label for="percentual1">
+Percentual de garantia
+</label>
+
+<input
+id="percentual1"
+type="number"
+min="0"
+max="35"
+step="0.01"
+placeholder="Ex.: 10"
+>
+
+</div>
+
+
+<div class="field">
+
+<label for="saldo1">
+Saldo devedor
+</label>
+
+<input
+id="saldo1"
 type="text"
 placeholder="R$ 0,00"
 oninput="formatarMoeda(this)"
 >
 
-<div class="help">
-Valor atualizado apresentado no Portal Emprega Brasil.
-É informativo e não é usado como teto adicional.
 </div>
+
+
+</div>
+
+
+<div class="contrato-total">
+
+<span>
+Valor da garantia sobre a remuneração
+</span>
+
+<strong id="valorGarantia1">
+R$ 0,00
+</strong>
+
+</div>
+
+</div>
+
+
+<!-- CONTRATO 2 -->
+
+<div class="contrato">
+
+<div class="contrato-header">
+
+<div class="contrato-title">
+Contrato 2
+</div>
+
+<div class="contrato-badge">
+ECONSIGNADO
+</div>
+
+</div>
+
+
+<div class="contrato-grid">
+
+
+<div class="field">
+
+<label for="instituicao2">
+Instituição financeira
+</label>
+
+<input
+id="instituicao2"
+type="text"
+placeholder="Ex.: Banco 2"
+>
 
 </div>
 
 
 <div class="field">
 
-<label for="percentualGarantia">
-Percentual das verbas rescisórias dado em garantia
+<label for="percentual2">
+Percentual de garantia
 </label>
 
 <input
-id="percentualGarantia"
+id="percentual2"
 type="number"
 min="0"
-max="100"
+max="35"
 step="0.01"
-placeholder="Ex.: 25"
+placeholder="Ex.: 10"
 >
 
-<div class="help">
-Percentual previsto no contrato/Portal Emprega Brasil.
+</div>
+
+
+<div class="field">
+
+<label for="saldo2">
+Saldo devedor
+</label>
+
+<input
+id="saldo2"
+type="text"
+placeholder="R$ 0,00"
+oninput="formatarMoeda(this)"
+>
+
+</div>
+
+
+</div>
+
+
+<div class="contrato-total">
+
+<span>
+Valor da garantia sobre a remuneração
+</span>
+
+<strong id="valorGarantia2">
+R$ 0,00
+</strong>
+
+</div>
+
+</div>
+
+
+<!-- CONTRATO 3 -->
+
+<div class="contrato">
+
+<div class="contrato-header">
+
+<div class="contrato-title">
+Contrato 3
+</div>
+
+<div class="contrato-badge">
+ECONSIGNADO
 </div>
 
 </div>
 
+
+<div class="contrato-grid">
+
+
+<div class="field">
+
+<label for="instituicao3">
+Instituição financeira
+</label>
+
+<input
+id="instituicao3"
+type="text"
+placeholder="Ex.: Banco 3"
+>
+
+</div>
+
+
+<div class="field">
+
+<label for="percentual3">
+Percentual de garantia
+</label>
+
+<input
+id="percentual3"
+type="number"
+min="0"
+max="35"
+step="0.01"
+placeholder="Ex.: 5"
+>
+
+</div>
+
+
+<div class="field">
+
+<label for="saldo3">
+Saldo devedor
+</label>
+
+<input
+id="saldo3"
+type="text"
+placeholder="R$ 0,00"
+oninput="formatarMoeda(this)"
+>
+
+</div>
+
+
+</div>
+
+
+<div class="contrato-total">
+
+<span>
+Valor da garantia sobre a remuneração
+</span>
+
+<strong id="valorGarantia3">
+R$ 0,00
+</strong>
+
+</div>
+
+</div>
+
+
+<!-- CONTRATO 4 -->
+
+<div class="contrato">
+
+<div class="contrato-header">
+
+<div class="contrato-title">
+Contrato 4
+</div>
+
+<div class="contrato-badge">
+ECONSIGNADO
+</div>
+
+</div>
+
+
+<div class="contrato-grid">
+
+
+<div class="field">
+
+<label for="instituicao4">
+Instituição financeira
+</label>
+
+<input
+id="instituicao4"
+type="text"
+placeholder="Ex.: Banco 4"
+>
+
+</div>
+
+
+<div class="field">
+
+<label for="percentual4">
+Percentual de garantia
+</label>
+
+<input
+id="percentual4"
+type="number"
+min="0"
+max="35"
+step="0.01"
+placeholder="Ex.: 5"
+>
+
+</div>
+
+
+<div class="field">
+
+<label for="saldo4">
+Saldo devedor
+</label>
+
+<input
+id="saldo4"
+type="text"
+placeholder="R$ 0,00"
+oninput="formatarMoeda(this)"
+>
+
+</div>
+
+
+</div>
+
+
+<div class="contrato-total">
+
+<span>
+Valor da garantia sobre a remuneração
+</span>
+
+<strong id="valorGarantia4">
+R$ 0,00
+</strong>
+
+</div>
+
+</div>
+
+
+</div>
+
+
+<!-- =====================================================
+     RESUMO DOS CONTRATOS
+====================================================== -->
+
+<div class="resumo-contratos">
+
+
+<div class="resumo-item">
+
+<div class="resumo-label">
+TOTAL DE CONTRATOS INFORMADOS
+</div>
+
+<div
+class="resumo-value"
+id="quantidadeContratos"
+>
+0
+</div>
+
+</div>
+
+
+<div class="resumo-item">
+
+<div class="resumo-label">
+SALDOS DEVEDORES
+</div>
+
+<div
+class="resumo-value"
+id="totalSaldos"
+>
+R$ 0,00
+</div>
+
+</div>
+
+
+<div class="resumo-item">
+
+<div class="resumo-label">
+PERCENTUAL TOTAL
+</div>
+
+<div
+class="resumo-value"
+id="percentualTotal"
+>
+0,00%
+</div>
+
+</div>
+
+
+<div class="resumo-item">
+
+<div class="resumo-label">
+LIMITE DA REGRA
+</div>
+
+<div
+class="resumo-value"
+>
+35,00%
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     CONFERÊNCIA DOS 35%
+====================================================== -->
+
+<div class="limite-card">
+
+<div class="limite-header">
+
+<div class="limite-title">
+📊 Conferência do limite de 35%
+</div>
+
+<div
+id="status35"
+class="status atenção"
+>
+AGUARDANDO CÁLCULO
+</div>
+
+</div>
+
+
+<div class="limite-grid">
+
+
+<div class="limite-item">
+
+<div class="titulo">
+PERCENTUAL INFORMADO
+</div>
+
+<div
+class="valor"
+id="percentualInformado"
+>
+0,00%
+</div>
+
+</div>
+
+
+<div class="limite-item">
+
+<div class="titulo">
+LIMITE MÁXIMO
+</div>
+
+<div
+class="valor"
+>
+35,00%
+</div>
+
+</div>
+
+
+<div class="limite-item permitido">
+
+<div class="titulo">
+PERCENTUAL DISPONÍVEL
+</div>
+
+<div
+class="valor"
+id="percentualDisponivel"
+>
+35,00%
+</div>
+
+</div>
+
+
+<div class="limite-item excesso">
+
+<div class="titulo">
+PERCENTUAL EXCEDENTE
+</div>
+
+<div
+class="valor"
+id="percentualExcedente"
+>
+0,00%
+</div>
+
+</div>
+
+
+</div>
+
+
+<div
+id="mensagemLimite"
+class="help"
+style="margin-top:14px"
+>
+
+Informe os percentuais dos contratos e clique em
+<strong>Calcular conferência</strong>.
+
+</div>
 
 </div>
 
@@ -561,7 +1300,11 @@ Percentual previsto no contrato/Portal Emprega Brasil.
 ➕ Vencimentos considerados
 </div>
 
-<div class="grid" id="vencimentos"></div>
+<div
+class="grid"
+id="vencimentos"
+>
+</div>
 
 </section>
 
@@ -576,10 +1319,16 @@ Percentual previsto no contrato/Portal Emprega Brasil.
 ➖ Descontos considerados
 </div>
 
-<div class="grid" id="descontos"></div>
+<div
+class="grid"
+id="descontos"
+>
+</div>
 
 <div class="help">
+
 Descontos voluntários não são incluídos automaticamente no cálculo.
+
 </div>
 
 </section>
@@ -716,12 +1465,12 @@ R$ 0,00
 <div class="result consignado">
 
 <div class="result-title">
-DESCONTO DO eCONSIGNADO
+DESCONTO MÁXIMO — 35%
 </div>
 
 <div
 class="result-value"
-id="descontoConsignado"
+id="descontoMaximo35"
 >
 R$ 0,00
 </div>
@@ -731,6 +1480,33 @@ R$ 0,00
 
 </div>
 
+
+<!-- =====================================================
+     RESUMO FINANCEIRO DOS CONTRATOS
+====================================================== -->
+
+<div
+class="memory"
+style="margin-top:18px"
+>
+
+<h3>
+🏦 Resumo dos contratos
+</h3>
+
+<div id="memoriaContratos">
+
+Informe os contratos e clique em
+<strong>Calcular conferência</strong>.
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     MEMÓRIA DE CÁLCULO
+====================================================== -->
 
 <div class="memory">
 
@@ -760,6 +1536,7 @@ Informe os valores e clique em
 📌 Regra aplicada
 </div>
 
+
 <div class="table-wrap">
 
 <table>
@@ -773,7 +1550,7 @@ Etapa
 </th>
 
 <th>
-Fórmula/tratamento
+Fórmula / tratamento
 </th>
 
 </tr>
@@ -797,7 +1574,7 @@ VENCIMENTOS
 <td>
 
 Somatório das verbas rescisórias elegíveis informadas,
-incluindo as quatro rubricas adicionais quando preenchidas.
+incluindo as quatro rubricas adicionais.
 
 </td>
 
@@ -816,7 +1593,7 @@ DESCONTOS
 
 <td>
 
-Dedução dos descontos legalmente aplicáveis e compulsórios informados.
+Dedução dos descontos informados para obtenção da remuneração disponível.
 
 </td>
 
@@ -835,8 +1612,46 @@ REMUNERAÇÃO DISPONÍVEL
 
 <td>
 
-Vencimentos considerados − descontos considerados,
-nunca inferior a zero.
+Vencimentos considerados menos descontos considerados,
+sem resultado negativo.
+
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>
+
+<span class="tag limite">
+LIMITE 35%
+</span>
+
+</td>
+
+<td>
+
+Remuneração disponível × 35%.
+
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>
+
+<span class="tag limite">
+CONTRATOS
+</span>
+
+</td>
+
+<td>
+
+Somatório dos percentuais de garantia informados nos quatro contratos.
 
 </td>
 
@@ -848,15 +1663,15 @@ nunca inferior a zero.
 <td>
 
 <span class="tag desconto">
-eCONSIGNADO
+EXCESSO
 </span>
 
 </td>
 
 <td>
 
-Remuneração disponível × percentual dado em garantia.
-O saldo devedor permanece apenas como conferência.
+Caso o somatório dos percentuais ultrapasse 35%, o excedente é demonstrado
+separadamente para conferência.
 
 </td>
 
@@ -900,7 +1715,7 @@ onclick="calcular()"
 class="btn-secondary"
 onclick="carregarExemplo()"
 >
-📋 Carregar exemplo do Manual
+📋 Carregar exemplo
 </button>
 
 
@@ -932,10 +1747,10 @@ onclick="window.print()"
 
 <strong>⚠️ Atenção:</strong>
 
-ferramenta destinada à conferência. A classificação final deve ser confrontada
-com o cadastro da folha/eSocial, especialmente natureza, codIncCP e codIncIRRF.
-A regra apresentada corresponde à versão indicada como válida a partir de
-23/07/2026.
+esta ferramenta é destinada à conferência. A classificação final das rubricas
+deve ser confrontada com a folha/eSocial e com as informações disponíveis no
+Portal Emprega Brasil. O somatório dos percentuais é apresentado para verificar
+eventual ultrapassagem do limite de 35% das verbas rescisórias.
 
 </div>
 
@@ -946,8 +1761,8 @@ A regra apresentada corresponde à versão indicada como válida a partir de
 style="text-align:center;color:#94a3b8;font-size:11px;padding:15px"
 >
 
-Conferência baseada no Manual de Orientação do Empregador —
-Crédito do Trabalhador — versão 2.1 — 26/06/2026.
+Conferência baseada na regulamentação vigente do
+Programa Crédito do Trabalhador.
 
 </footer>
 
@@ -961,7 +1776,14 @@ Crédito do Trabalhador — versão 2.1 — 26/06/2026.
 
 
 /* =========================================================
-   VENCIMENTOS CONSIDERADOS
+   CONSTANTES
+========================================================= */
+
+const LIMITE_GARANTIA = 35;
+
+
+/* =========================================================
+   VENCIMENTOS
 ========================================================= */
 
 const VENCIMENTOS = [
@@ -1035,10 +1857,6 @@ const VENCIMENTOS = [
     'outrasFerias',
     'Outras férias indenizadas'
   ],
-
-  /* =====================================================
-     QUATRO RUBRICAS NOVAS
-  ===================================================== */
 
   [
     'proventoAdicional1',
@@ -1122,6 +1940,13 @@ const DESCONTOS = [
 
 
 /* =========================================================
+   CONTRATOS
+========================================================= */
+
+const CONTRATOS = [1,2,3,4];
+
+
+/* =========================================================
    CRIA CAMPOS
 ========================================================= */
 
@@ -1145,7 +1970,7 @@ function criarCampos(lista,destino){
             : 'field';
 
 
-        const identificacao =
+        const texto =
           adicional
             ? 'Rubrica adicional — informe somente se aplicável.'
             : 'Informe o valor aplicável e confira a classificação da rubrica no eSocial.';
@@ -1167,7 +1992,7 @@ function criarCampos(lista,destino){
             >
 
             <div class="nature">
-              ${identificacao}
+              ${texto}
             </div>
 
           </div>
@@ -1181,7 +2006,7 @@ function criarCampos(lista,destino){
 
 
 /* =========================================================
-   FORMATA MOEDA PARA EXIBIÇÃO
+   MOEDA
 ========================================================= */
 
 function moeda(v){
@@ -1199,7 +2024,7 @@ function moeda(v){
 
 
 /* =========================================================
-   CONVERTE VALOR
+   NÚMERO
 ========================================================= */
 
 function numero(v){
@@ -1241,7 +2066,7 @@ function numero(v){
 
 
 /* =========================================================
-   FORMATA INPUT COMO MOEDA
+   FORMATA MOEDA
 ========================================================= */
 
 function formatarMoeda(c){
@@ -1268,7 +2093,7 @@ function formatarMoeda(c){
 
 
 /* =========================================================
-   OBTÉM VALOR
+   VALOR
 ========================================================= */
 
 function valor(id){
@@ -1279,6 +2104,32 @@ function valor(id){
 
   return e
     ? numero(e.value)
+    : 0;
+
+}
+
+
+/* =========================================================
+   PERCENTUAL
+========================================================= */
+
+function percentual(id){
+
+  const e =
+    document.getElementById(id);
+
+
+  if(!e){
+    return 0;
+  }
+
+
+  const n =
+    Number.parseFloat(e.value);
+
+
+  return Number.isFinite(n)
+    ? Math.max(0,n)
     : 0;
 
 }
@@ -1310,6 +2161,451 @@ function linha(d,v){
 
 
 /* =========================================================
+   DADOS DOS CONTRATOS
+========================================================= */
+
+function obterContratos(){
+
+  return CONTRATOS.map(numeroContrato => {
+
+    const percentualContrato =
+      percentual(
+        'percentual' + numeroContrato
+      );
+
+
+    const saldo =
+      valor(
+        'saldo' + numeroContrato
+      );
+
+
+    const instituicao =
+      document
+        .getElementById(
+          'instituicao' + numeroContrato
+        )
+        ?.value
+        ?.trim() || 'Não informada';
+
+
+    return {
+
+      numero:
+        numeroContrato,
+
+      instituicao:
+        instituicao,
+
+      percentual:
+        percentualContrato,
+
+      saldo:
+        saldo
+
+    };
+
+  });
+
+}
+
+
+/* =========================================================
+   CALCULA CONTRATOS
+========================================================= */
+
+function calcularContratos(remuneracao){
+
+  const contratos =
+    obterContratos();
+
+
+  let totalPercentual = 0;
+
+  let totalSaldo = 0;
+
+  let quantidade = 0;
+
+
+  contratos.forEach(
+    contrato => {
+
+      totalPercentual +=
+        contrato.percentual;
+
+
+      totalSaldo +=
+        contrato.saldo;
+
+
+      if(
+        contrato.percentual > 0 ||
+        contrato.saldo > 0 ||
+        contrato.instituicao !== 'Não informada'
+      ){
+
+        quantidade++;
+
+      }
+
+
+      const valorGarantia =
+        remuneracao *
+        contrato.percentual /
+        100;
+
+
+      const valorGarantiaLimitado =
+        contrato.saldo > 0
+          ? Math.min(
+              valorGarantia,
+              contrato.saldo
+            )
+          : valorGarantia;
+
+
+      const campo =
+        document.getElementById(
+          'valorGarantia' + contrato.numero
+        );
+
+
+      if(campo){
+
+        campo.textContent =
+          moeda(valorGarantiaLimitado);
+
+      }
+
+    }
+  );
+
+
+  const percentualExcedente =
+    Math.max(
+      0,
+      totalPercentual -
+      LIMITE_GARANTIA
+    );
+
+
+  const percentualDisponivel =
+    Math.max(
+      0,
+      LIMITE_GARANTIA -
+      totalPercentual
+    );
+
+
+  const percentualConsiderado =
+    Math.min(
+      LIMITE_GARANTIA,
+      totalPercentual
+    );
+
+
+  const valorTotalInformado =
+    remuneracao *
+    totalPercentual /
+    100;
+
+
+  const valorMaximo35 =
+    remuneracao *
+    LIMITE_GARANTIA /
+    100;
+
+
+  const valorConsiderado =
+    remuneracao *
+    percentualConsiderado /
+    100;
+
+
+  return {
+
+    contratos,
+
+    quantidade,
+
+    totalPercentual,
+
+    totalSaldo,
+
+    percentualExcedente,
+
+    percentualDisponivel,
+
+    percentualConsiderado,
+
+    valorTotalInformado,
+
+    valorMaximo35,
+
+    valorConsiderado
+
+  };
+
+}
+
+
+/* =========================================================
+   ATUALIZA RESUMO
+========================================================= */
+
+function atualizarResumoContratos(dados){
+
+  document
+    .getElementById(
+      'quantidadeContratos'
+    )
+    .textContent =
+      dados.quantidade;
+
+
+  document
+    .getElementById(
+      'totalSaldos'
+    )
+    .textContent =
+      moeda(
+        dados.totalSaldo
+      );
+
+
+  document
+    .getElementById(
+      'percentualTotal'
+    )
+    .textContent =
+      dados.totalPercentual.toFixed(2)
+      + '%';
+
+
+  document
+    .getElementById(
+      'percentualInformado'
+    )
+    .textContent =
+      dados.totalPercentual.toFixed(2)
+      + '%';
+
+
+  document
+    .getElementById(
+      'percentualDisponivel'
+    )
+    .textContent =
+      dados.percentualDisponivel.toFixed(2)
+      + '%';
+
+
+  document
+    .getElementById(
+      'percentualExcedente'
+    )
+    .textContent =
+      dados.percentualExcedente.toFixed(2)
+      + '%';
+
+
+  const status =
+    document.getElementById(
+      'status35'
+    );
+
+
+  const mensagem =
+    document.getElementById(
+      'mensagemLimite'
+    );
+
+
+  if(
+    dados.totalPercentual >
+    LIMITE_GARANTIA
+  ){
+
+    status.className =
+      'status excesso';
+
+    status.textContent =
+      'ULTRAPASSOU 35%';
+
+
+    mensagem.innerHTML = `
+
+      <strong>Atenção:</strong>
+      o somatório dos percentuais informados nos contratos é de
+      <strong>${dados.totalPercentual.toFixed(2)}%</strong>,
+      ultrapassando o limite de
+      <strong>${LIMITE_GARANTIA.toFixed(2)}%</strong>
+      em
+      <strong>${dados.percentualExcedente.toFixed(2)} ponto(s) percentual(is)</strong>.
+
+      O valor máximo correspondente a 35% da remuneração disponível
+      permanece sendo demonstrado separadamente.
+
+    `;
+
+  }
+
+  else if(
+    dados.totalPercentual ===
+    LIMITE_GARANTIA
+  ){
+
+    status.className =
+      'status ok';
+
+    status.textContent =
+      'EXATAMENTE 35%';
+
+
+    mensagem.innerHTML = `
+
+      O somatório dos contratos corresponde exatamente ao limite
+      de <strong>35%</strong> das verbas rescisórias.
+
+    `;
+
+  }
+
+  else if(
+    dados.totalPercentual > 0
+  ){
+
+    status.className =
+      'status ok';
+
+    status.textContent =
+      'DENTRO DO LIMITE';
+
+
+    mensagem.innerHTML = `
+
+      O somatório dos contratos é de
+      <strong>${dados.totalPercentual.toFixed(2)}%</strong>.
+
+      Ainda há
+      <strong>${dados.percentualDisponivel.toFixed(2)}%</strong>
+      de margem até o limite de 35%.
+
+    `;
+
+  }
+
+  else{
+
+    status.className =
+      'status atenção';
+
+    status.textContent =
+      'AGUARDANDO DADOS';
+
+
+    mensagem.innerHTML = `
+
+      Informe pelo menos um percentual de garantia
+      para realizar a conferência.
+
+    `;
+
+  }
+
+}
+
+
+/* =========================================================
+   MEMÓRIA DOS CONTRATOS
+========================================================= */
+
+function montarMemoriaContratos(dados){
+
+  let html = '';
+
+
+  dados.contratos.forEach(
+    contrato => {
+
+      if(
+        contrato.percentual === 0 &&
+        contrato.saldo === 0 &&
+        contrato.instituicao === 'Não informada'
+      ){
+
+        return;
+
+      }
+
+
+      const valorGarantia =
+        dados.valorConsiderado *
+        contrato.percentual /
+        Math.max(
+          dados.percentualConsiderado,
+          0.000001
+        );
+
+
+      html +=
+        linha(
+          `Contrato ${contrato.numero} — ${contrato.instituicao}`,
+          `${contrato.percentual.toFixed(2)}%`
+        );
+
+
+      html +=
+        linha(
+          `Saldo devedor — Contrato ${contrato.numero}`,
+          moeda(contrato.saldo)
+        );
+
+    }
+  );
+
+
+  html +=
+    linha(
+      'SOMATÓRIO DOS PERCENTUAIS',
+      dados.totalPercentual.toFixed(2) + '%'
+    );
+
+
+  html +=
+    linha(
+      'LIMITE DA REGRA',
+      LIMITE_GARANTIA.toFixed(2) + '%'
+    );
+
+
+  html +=
+    linha(
+      'PERCENTUAL EXCEDENTE',
+      dados.percentualExcedente.toFixed(2) + '%'
+    );
+
+
+  html +=
+    linha(
+      'VALOR TOTAL DAS GARANTIAS INFORMADAS',
+      moeda(dados.valorTotalInformado)
+    );
+
+
+  html +=
+    linha(
+      'VALOR MÁXIMO CORRESPONDENTE A 35%',
+      moeda(dados.valorMaximo35)
+    );
+
+
+  return html;
+
+}
+
+
+/* =========================================================
    CÁLCULO PRINCIPAL
 ========================================================= */
 
@@ -1317,7 +2613,7 @@ function calcular(){
 
 
   /* -------------------------------------------------------
-     TOTAL DE VENCIMENTOS
+     VENCIMENTOS
   ------------------------------------------------------- */
 
   const totalVencimentos =
@@ -1332,7 +2628,7 @@ function calcular(){
 
 
   /* -------------------------------------------------------
-     TOTAL DE DESCONTOS
+     DESCONTOS
   ------------------------------------------------------- */
 
   const totalDescontos =
@@ -1359,55 +2655,17 @@ function calcular(){
 
 
   /* -------------------------------------------------------
-     SALDO DEVEDOR
+     CONTRATOS
   ------------------------------------------------------- */
 
-  const saldo =
-    valor('saldoDevedor');
-
-
-  /* -------------------------------------------------------
-     PERCENTUAL
-  ------------------------------------------------------- */
-
-  let percentual =
-    Number.parseFloat(
-      document
-        .getElementById(
-          'percentualGarantia'
-        )
-        .value
-    ) || 0;
-
-
-  percentual =
-    Math.max(
-      0,
-      Math.min(
-        100,
-        percentual
-      )
+  const dadosContratos =
+    calcularContratos(
+      remuneracao
     );
 
 
   /* -------------------------------------------------------
-     VALOR DO DESCONTO
-  ------------------------------------------------------- */
-
-  const limite =
-    remuneracao *
-    percentual /
-    100;
-
-
-  const desconto =
-    percentual > 0
-      ? limite
-      : 0;
-
-
-  /* -------------------------------------------------------
-     MOSTRA RESULTADOS
+     RESULTADOS PRINCIPAIS
   ------------------------------------------------------- */
 
   document
@@ -1436,22 +2694,43 @@ function calcular(){
 
   document
     .getElementById(
-      'descontoConsignado'
+      'descontoMaximo35'
     )
     .textContent =
-      moeda(desconto);
+      moeda(
+        dadosContratos.valorMaximo35
+      );
 
 
   /* -------------------------------------------------------
-     MEMÓRIA DE CÁLCULO
+     RESUMO
+  ------------------------------------------------------- */
+
+  atualizarResumoContratos(
+    dadosContratos
+  );
+
+
+  /* -------------------------------------------------------
+     MEMÓRIA DOS CONTRATOS
+  ------------------------------------------------------- */
+
+  document
+    .getElementById(
+      'memoriaContratos'
+    )
+    .innerHTML =
+      montarMemoriaContratos(
+        dadosContratos
+      );
+
+
+  /* -------------------------------------------------------
+     MEMÓRIA PRINCIPAL
   ------------------------------------------------------- */
 
   let m = [];
 
-
-  /* -------------------------------------------------------
-     VENCIMENTOS
-  ------------------------------------------------------- */
 
   VENCIMENTOS.forEach(
     ([id,nome,adicional]) => {
@@ -1462,15 +2741,11 @@ function calcular(){
 
       if(v){
 
-        let nomeExibicao =
-          adicional
-            ? nome + ' — rubrica adicional'
-            : nome;
-
-
         m.push(
           linha(
-            nomeExibicao,
+            adicional
+              ? nome + ' — rubrica adicional'
+              : nome,
             moeda(v)
           )
         );
@@ -1481,10 +2756,6 @@ function calcular(){
   );
 
 
-  /* -------------------------------------------------------
-     TOTAL DE VENCIMENTOS
-  ------------------------------------------------------- */
-
   m.push(
     linha(
       'TOTAL DE VENCIMENTOS CONSIDERADOS',
@@ -1492,10 +2763,6 @@ function calcular(){
     )
   );
 
-
-  /* -------------------------------------------------------
-     DESCONTOS
-  ------------------------------------------------------- */
 
   DESCONTOS.forEach(
     ([id,nome]) => {
@@ -1519,10 +2786,6 @@ function calcular(){
   );
 
 
-  /* -------------------------------------------------------
-     TOTAL DE DESCONTOS
-  ------------------------------------------------------- */
-
   m.push(
     linha(
       'TOTAL DE DESCONTOS CONSIDERADOS',
@@ -1530,10 +2793,6 @@ function calcular(){
     )
   );
 
-
-  /* -------------------------------------------------------
-     REMUNERAÇÃO DISPONÍVEL
-  ------------------------------------------------------- */
 
   m.push(
     linha(
@@ -1543,44 +2802,52 @@ function calcular(){
   );
 
 
-  /* -------------------------------------------------------
-     PERCENTUAL
-  ------------------------------------------------------- */
+  m.push(
+    linha(
+      'SOMATÓRIO DOS CONTRATOS',
+      dadosContratos.totalPercentual.toFixed(2) + '%'
+    )
+  );
+
 
   m.push(
     linha(
-      `Percentual dado em garantia (${percentual.toFixed(2)}%)`,
-      moeda(limite)
+      'LIMITE MÁXIMO DE GARANTIA',
+      '35,00%'
+    )
+  );
+
+
+  m.push(
+    linha(
+      'PERCENTUAL EXCEDENTE',
+      dadosContratos.percentualExcedente.toFixed(2) + '%'
+    )
+  );
+
+
+  m.push(
+    linha(
+      'VALOR MÁXIMO — 35%',
+      moeda(
+        dadosContratos.valorMaximo35
+      )
+    )
+  );
+
+
+  m.push(
+    linha(
+      'VALOR DAS GARANTIAS INFORMADAS',
+      moeda(
+        dadosContratos.valorTotalInformado
+      )
     )
   );
 
 
   /* -------------------------------------------------------
-     SALDO DEVEDOR
-  ------------------------------------------------------- */
-
-  m.push(
-    linha(
-      'Saldo devedor — conferência',
-      moeda(saldo)
-    )
-  );
-
-
-  /* -------------------------------------------------------
-     DESCONTO ECONSIGNADO
-  ------------------------------------------------------- */
-
-  m.push(
-    linha(
-      'DESCONTO DO eConsignado na rescisão',
-      moeda(desconto)
-    )
-  );
-
-
-  /* -------------------------------------------------------
-     13º — CONFERÊNCIA SEPARADA
+     13º
   ------------------------------------------------------- */
 
   if(
@@ -1621,10 +2888,6 @@ function calcular(){
   }
 
 
-  /* -------------------------------------------------------
-     EXIBE MEMÓRIA
-  ------------------------------------------------------- */
-
   document
     .getElementById(
       'memoria'
@@ -1637,17 +2900,34 @@ function calcular(){
      ALERTA
   ------------------------------------------------------- */
 
-  if(percentual){
+  if(
+    dadosContratos.totalPercentual >
+    LIMITE_GARANTIA
+  ){
 
     mostrarAlerta(
-      'Cálculo realizado: o percentual dado em garantia foi aplicado à remuneração disponível. O saldo devedor foi exibido apenas para conferência.',
+      `ATENÇÃO: o somatório dos quatro contratos é de ${dadosContratos.totalPercentual.toFixed(2)}%, ultrapassando o limite de 35% em ${dadosContratos.percentualExcedente.toFixed(2)} ponto(s) percentual(is).`,
+      'danger'
+    );
+
+  }
+
+  else if(
+    dadosContratos.totalPercentual >
+    0
+  ){
+
+    mostrarAlerta(
+      `Conferência realizada. O somatório dos contratos é de ${dadosContratos.totalPercentual.toFixed(2)}%, dentro do limite de 35%.`,
       'success'
     );
 
-  }else{
+  }
+
+  else{
 
     mostrarAlerta(
-      'Não há percentual de verbas rescisórias dado em garantia informado. Não há desconto rescisório a calcular.',
+      'Nenhum percentual de garantia foi informado nos contratos.',
       'warning'
     );
 
@@ -1657,7 +2937,7 @@ function calcular(){
 
 
 /* =========================================================
-   MOSTRAR ALERTA
+   ALERTA
 ========================================================= */
 
 function mostrarAlerta(msg,tipo){
@@ -1682,10 +2962,6 @@ function mostrarAlerta(msg,tipo){
 }
 
 
-/* =========================================================
-   ESCONDER ALERTA
-========================================================= */
-
 function esconderAlerta(){
 
   document
@@ -1708,7 +2984,9 @@ function limpar(){
     .querySelectorAll('input')
     .forEach(
       e => {
+
         e.value = '';
+
       }
     );
 
@@ -1717,7 +2995,25 @@ function limpar(){
     'totalVencimentos',
     'totalDescontos',
     'remuneracaoDisponivel',
-    'descontoConsignado'
+    'descontoMaximo35'
+  ]
+  .forEach(
+    id => {
+
+      document
+        .getElementById(id)
+        .textContent =
+          'R$ 0,00';
+
+    }
+  );
+
+
+  [
+    'valorGarantia1',
+    'valorGarantia2',
+    'valorGarantia3',
+    'valorGarantia4'
   ]
   .forEach(
     id => {
@@ -1733,10 +3029,90 @@ function limpar(){
 
   document
     .getElementById(
+      'quantidadeContratos'
+    )
+    .textContent =
+      '0';
+
+
+  document
+    .getElementById(
+      'totalSaldos'
+    )
+    .textContent =
+      'R$ 0,00';
+
+
+  document
+    .getElementById(
+      'percentualTotal'
+    )
+    .textContent =
+      '0,00%';
+
+
+  document
+    .getElementById(
+      'percentualInformado'
+    )
+    .textContent =
+      '0,00%';
+
+
+  document
+    .getElementById(
+      'percentualDisponivel'
+    )
+    .textContent =
+      '35,00%';
+
+
+  document
+    .getElementById(
+      'percentualExcedente'
+    )
+    .textContent =
+      '0,00%';
+
+
+  document
+    .getElementById(
+      'status35'
+    )
+    .className =
+      'status atenção';
+
+
+  document
+    .getElementById(
+      'status35'
+    )
+    .textContent =
+      'AGUARDANDO CÁLCULO';
+
+
+  document
+    .getElementById(
+      'mensagemLimite'
+    )
+    .innerHTML =
+      'Informe os percentuais dos contratos e clique em <strong>Calcular conferência</strong>.';
+
+
+  document
+    .getElementById(
       'memoria'
     )
     .innerHTML =
       'Informe os valores e clique em <strong>Calcular conferência</strong>.';
+
+
+  document
+    .getElementById(
+      'memoriaContratos'
+    )
+    .innerHTML =
+      'Informe os contratos e clique em <strong>Calcular conferência</strong>.';
 
 
   esconderAlerta();
@@ -1745,7 +3121,7 @@ function limpar(){
 
 
 /* =========================================================
-   CARREGAR EXEMPLO
+   EXEMPLO
 ========================================================= */
 
 function carregarExemplo(){
@@ -1753,7 +3129,7 @@ function carregarExemplo(){
   limpar();
 
 
-  const v = {
+  const exemplo = {
 
     saldoSalario:
       'R$ 5.500,00',
@@ -1779,19 +3155,53 @@ function carregarExemplo(){
     pensao:
       'R$ 2.500,00',
 
-    saldoDevedor:
-      'R$ 15.600,00',
 
-    percentualGarantia:
-      '25'
+    instituicao1:
+      'Banco A',
+
+    percentual1:
+      '15',
+
+    saldo1:
+      'R$ 10.000,00',
+
+
+    instituicao2:
+      'Banco B',
+
+    percentual2:
+      '10',
+
+    saldo2:
+      'R$ 8.000,00',
+
+
+    instituicao3:
+      'Banco C',
+
+    percentual3:
+      '8',
+
+    saldo3:
+      'R$ 5.000,00',
+
+
+    instituicao4:
+      'Banco D',
+
+    percentual4:
+      '5',
+
+    saldo4:
+      'R$ 3.000,00'
 
   };
 
 
   Object
-    .entries(v)
+    .entries(exemplo)
     .forEach(
-      ([id,x]) => {
+      ([id,valorCampo]) => {
 
         const campo =
           document.getElementById(id);
@@ -1800,7 +3210,7 @@ function carregarExemplo(){
         if(campo){
 
           campo.value =
-            x;
+            valorCampo;
 
         }
 
@@ -1831,4 +3241,5 @@ criarCampos(
 </script>
 
 </body>
+
 </html>

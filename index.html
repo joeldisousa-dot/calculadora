@@ -6,7 +6,10 @@
 <title>Conferência do eConsignado na Rescisão</title>
 
 <style>
-*{box-sizing:border-box}
+
+*{
+  box-sizing:border-box;
+}
 
 body{
   margin:0;
@@ -21,7 +24,8 @@ body{
   padding:20px;
 }
 
-.header,.card{
+.header,
+.card{
   background:#fff;
   border:1px solid #e5e7eb;
   border-radius:16px;
@@ -61,7 +65,8 @@ body{
   margin-bottom:18px;
 }
 
-.info,.warning{
+.info,
+.warning{
   padding:14px;
   border-radius:10px;
   font-size:13px;
@@ -114,7 +119,8 @@ input:focus{
   box-shadow:0 0 0 3px rgba(37,99,235,.1);
 }
 
-.help,.nature{
+.help,
+.nature{
   margin-top:7px;
   color:#64748b;
   font-size:11px;
@@ -132,21 +138,30 @@ input:focus{
   color:#123b68;
 }
 
-/* CAMPOS ADICIONAIS */
-.adicional{
+
+/* =========================================================
+   RUBRICAS ADICIONAIS
+   ========================================================= */
+
+.rubrica-adicional{
   background:#f8fafc;
   border:1px dashed #cbd5e1;
-  padding:14px;
   border-radius:10px;
+  padding:14px;
 }
 
-.adicional label{
+.rubrica-adicional label{
   color:#123b68;
 }
 
-.adicional input{
-  background:#fff;
+.rubrica-adicional .nature{
+  border-left-color:#2563eb;
 }
+
+
+/* =========================================================
+   RESULTADOS
+   ========================================================= */
 
 .results{
   display:grid;
@@ -173,25 +188,30 @@ input:focus{
   font-weight:bold;
 }
 
-.somar{
+.result.somar{
   background:#f0fdf4;
   border-color:#bbf7d0;
 }
 
-.desconto{
+.result.desconto{
   background:#fff7ed;
   border-color:#fed7aa;
 }
 
-.final{
+.result.final{
   background:#eff6ff;
   border-color:#bfdbfe;
 }
 
-.consignado{
+.result.consignado{
   background:#fef2f2;
   border-color:#fecaca;
 }
+
+
+/* =========================================================
+   MEMÓRIA
+   ========================================================= */
 
 .memory{
   margin-top:18px;
@@ -220,6 +240,11 @@ input:focus{
   border-bottom:0;
   font-weight:bold;
 }
+
+
+/* =========================================================
+   TABELA
+   ========================================================= */
 
 .table-wrap{
   overflow-x:auto;
@@ -268,6 +293,11 @@ td{
   color:#475569;
 }
 
+
+/* =========================================================
+   ALERTA
+   ========================================================= */
+
 .alert{
   display:none;
   padding:13px;
@@ -289,6 +319,11 @@ td{
   border:1px solid #fde68a;
   color:#92400e;
 }
+
+
+/* =========================================================
+   BOTÕES
+   ========================================================= */
 
 .actions{
   display:flex;
@@ -325,18 +360,27 @@ button:hover{
   opacity:.92;
 }
 
+
+/* =========================================================
+   RESPONSIVO
+   ========================================================= */
+
 @media(max-width:850px){
+
   .results{
     grid-template-columns:repeat(2,1fr);
   }
+
 }
 
 @media(max-width:650px){
+
   .container{
     padding:10px;
   }
 
-  .grid,.results{
+  .grid,
+  .results{
     grid-template-columns:1fr;
   }
 
@@ -347,9 +391,16 @@ button:hover{
   .header h1{
     font-size:21px;
   }
+
 }
 
+
+/* =========================================================
+   IMPRESSÃO
+   ========================================================= */
+
 @media print{
+
   body{
     background:#fff;
   }
@@ -359,29 +410,40 @@ button:hover{
     padding:0;
   }
 
-  .header,.card{
+  .header,
+  .card{
     box-shadow:none;
   }
 
   .actions{
     display:none;
   }
+
 }
+
 </style>
 </head>
+
 
 <body>
 
 <div class="container">
 
+
+<!-- =====================================================
+     CABEÇALHO
+====================================================== -->
+
 <header class="header">
 
-<h1>🧮 Conferência do eConsignado na Rescisão</h1>
+<h1>
+🧮 Conferência do eConsignado na Rescisão
+</h1>
 
 <p>
-Apure a <strong>remuneração disponível na rescisão</strong> e calcule o desconto
-das verbas rescisórias dado em garantia, conforme a regra vigente a partir de
-<strong>23 de julho de 2026</strong>.
+Apure a <strong>remuneração disponível na rescisão</strong> e calcule o
+desconto das verbas rescisórias dado em garantia, conforme a regra vigente
+a partir de <strong>23 de julho de 2026</strong>.
 </p>
 
 <span class="badge">
@@ -391,19 +453,36 @@ REGRA DO ITEM 5.7.3 — MANUAL DO CRÉDITO DO TRABALHADOR
 </header>
 
 
+<!-- =====================================================
+     COMO UTILIZAR
+====================================================== -->
+
 <section class="card">
 
-<div class="card-title">📌 Como utilizar</div>
+<div class="card-title">
+📌 Como utilizar
+</div>
 
 <div class="info">
 
-<strong>1.</strong> Informe os valores das verbas e descontos aplicáveis.<br>
+<strong>1.</strong>
+Informe os valores das verbas e descontos aplicáveis.
 
-<strong>2.</strong> Confira a natureza da rubrica e os códigos de incidência no eSocial.<br>
+<br>
 
-<strong>3.</strong> O sistema calcula a remuneração disponível e aplica o percentual dado em garantia.<br>
+<strong>2.</strong>
+Confira a natureza da rubrica e os códigos de incidência no eSocial.
 
-<strong>4.</strong> O saldo devedor é exibido apenas para conferência e
+<br>
+
+<strong>3.</strong>
+O sistema calcula a remuneração disponível e aplica o percentual dado em
+garantia.
+
+<br>
+
+<strong>4.</strong>
+O saldo devedor é exibido apenas para conferência e
 <strong>não limita novamente</strong> o desconto rescisório.
 
 </div>
@@ -411,11 +490,18 @@ REGRA DO ITEM 5.7.3 — MANUAL DO CRÉDITO DO TRABALHADOR
 </section>
 
 
+<!-- =====================================================
+     DADOS DO ECONSIGNADO
+====================================================== -->
+
 <section class="card">
 
-<div class="card-title">🏦 Dados do eConsignado</div>
+<div class="card-title">
+🏦 Dados do eConsignado
+</div>
 
 <div class="grid">
+
 
 <div class="field">
 
@@ -459,126 +545,36 @@ Percentual previsto no contrato/Portal Emprega Brasil.
 
 </div>
 
+
 </div>
 
 </section>
 
 
+<!-- =====================================================
+     VENCIMENTOS
+====================================================== -->
+
 <section class="card">
 
-<div class="card-title">➕ Vencimentos considerados</div>
+<div class="card-title">
+➕ Vencimentos considerados
+</div>
 
 <div class="grid" id="vencimentos"></div>
 
 </section>
 
 
-<!-- NOVA SEÇÃO COM 4 CAMPOS LIVRES -->
+<!-- =====================================================
+     DESCONTOS
+====================================================== -->
 
 <section class="card">
 
 <div class="card-title">
-➕ Outras rubricas de proventos — lançamento manual
+➖ Descontos considerados
 </div>
-
-<div class="info" style="margin-bottom:16px">
-
-Utilize estes campos para informar alguma rubrica de provento que não esteja
-relacionada acima. Informe o nome da rubrica e o respectivo valor.
-Os valores preenchidos serão <strong>somados aos vencimentos</strong> e
-considerados na remuneração disponível.
-
-</div>
-
-<div class="grid">
-
-<div class="field adicional">
-
-<label for="proventoAdicional1">
-Provento adicional 1
-</label>
-
-<input
-id="proventoAdicional1"
-type="text"
-placeholder="R$ 0,00"
-oninput="formatarMoeda(this)"
->
-
-<div class="help">
-Rubrica adicional — informe somente se aplicável.
-</div>
-
-</div>
-
-
-<div class="field adicional">
-
-<label for="proventoAdicional2">
-Provento adicional 2
-</label>
-
-<input
-id="proventoAdicional2"
-type="text"
-placeholder="R$ 0,00"
-oninput="formatarMoeda(this)"
->
-
-<div class="help">
-Rubrica adicional — informe somente se aplicável.
-</div>
-
-</div>
-
-
-<div class="field adicional">
-
-<label for="proventoAdicional3">
-Provento adicional 3
-</label>
-
-<input
-id="proventoAdicional3"
-type="text"
-placeholder="R$ 0,00"
-oninput="formatarMoeda(this)"
->
-
-<div class="help">
-Rubrica adicional — informe somente se aplicável.
-</div>
-
-</div>
-
-
-<div class="field adicional">
-
-<label for="proventoAdicional4">
-Provento adicional 4
-</label>
-
-<input
-id="proventoAdicional4"
-type="text"
-placeholder="R$ 0,00"
-oninput="formatarMoeda(this)"
->
-
-<div class="help">
-Rubrica adicional — informe somente se aplicável.
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-
-<section class="card">
-
-<div class="card-title">➖ Descontos considerados</div>
 
 <div class="grid" id="descontos"></div>
 
@@ -589,6 +585,10 @@ Descontos voluntários não são incluídos automaticamente no cálculo.
 </section>
 
 
+<!-- =====================================================
+     13º
+====================================================== -->
+
 <section class="card">
 
 <div class="card-title">
@@ -596,6 +596,7 @@ Descontos voluntários não são incluídos automaticamente no cálculo.
 </div>
 
 <div class="grid">
+
 
 <div class="field">
 
@@ -644,10 +645,15 @@ oninput="formatarMoeda(this)"
 
 </div>
 
+
 </div>
 
 </section>
 
+
+<!-- =====================================================
+     RESULTADO
+====================================================== -->
 
 <section class="card">
 
@@ -655,7 +661,9 @@ oninput="formatarMoeda(this)"
 📊 Resultado da conferência
 </div>
 
+
 <div class="results">
+
 
 <div class="result somar">
 
@@ -663,7 +671,10 @@ oninput="formatarMoeda(this)"
 TOTAL DE VENCIMENTOS
 </div>
 
-<div class="result-value" id="totalVencimentos">
+<div
+class="result-value"
+id="totalVencimentos"
+>
 R$ 0,00
 </div>
 
@@ -676,7 +687,10 @@ R$ 0,00
 TOTAL DE DESCONTOS
 </div>
 
-<div class="result-value" id="totalDescontos">
+<div
+class="result-value"
+id="totalDescontos"
+>
 R$ 0,00
 </div>
 
@@ -689,7 +703,10 @@ R$ 0,00
 REMUNERAÇÃO DISPONÍVEL
 </div>
 
-<div class="result-value" id="remuneracaoDisponivel">
+<div
+class="result-value"
+id="remuneracaoDisponivel"
+>
 R$ 0,00
 </div>
 
@@ -702,28 +719,40 @@ R$ 0,00
 DESCONTO DO eCONSIGNADO
 </div>
 
-<div class="result-value" id="descontoConsignado">
+<div
+class="result-value"
+id="descontoConsignado"
+>
 R$ 0,00
 </div>
 
 </div>
+
 
 </div>
 
 
 <div class="memory">
 
-<h3>🧾 Memória de cálculo</h3>
+<h3>
+🧾 Memória de cálculo
+</h3>
 
 <div id="memoria">
+
 Informe os valores e clique em
 <strong>Calcular conferência</strong>.
+
 </div>
 
 </div>
 
 </section>
 
+
+<!-- =====================================================
+     REGRA
+====================================================== -->
 
 <section class="card">
 
@@ -738,25 +767,38 @@ Informe os valores e clique em
 <thead>
 
 <tr>
-<th>Etapa</th>
-<th>Fórmula/tratamento</th>
+
+<th>
+Etapa
+</th>
+
+<th>
+Fórmula/tratamento
+</th>
+
 </tr>
 
 </thead>
 
+
 <tbody>
+
 
 <tr>
 
 <td>
+
 <span class="tag somar">
 VENCIMENTOS
 </span>
+
 </td>
 
 <td>
+
 Somatório das verbas rescisórias elegíveis informadas,
-incluindo as rubricas adicionais preenchidas manualmente.
+incluindo as quatro rubricas adicionais quando preenchidas.
+
 </td>
 
 </tr>
@@ -765,13 +807,17 @@ incluindo as rubricas adicionais preenchidas manualmente.
 <tr>
 
 <td>
+
 <span class="tag desconto">
 DESCONTOS
 </span>
+
 </td>
 
 <td>
+
 Dedução dos descontos legalmente aplicáveis e compulsórios informados.
+
 </td>
 
 </tr>
@@ -780,14 +826,18 @@ Dedução dos descontos legalmente aplicáveis e compulsórios informados.
 <tr>
 
 <td>
+
 <span class="tag somar">
 REMUNERAÇÃO DISPONÍVEL
 </span>
+
 </td>
 
 <td>
+
 Vencimentos considerados − descontos considerados,
 nunca inferior a zero.
+
 </td>
 
 </tr>
@@ -796,17 +846,22 @@ nunca inferior a zero.
 <tr>
 
 <td>
+
 <span class="tag desconto">
 eCONSIGNADO
 </span>
+
 </td>
 
 <td>
+
 Remuneração disponível × percentual dado em garantia.
 O saldo devedor permanece apenas como conferência.
+
 </td>
 
 </tr>
+
 
 </tbody>
 
@@ -817,8 +872,19 @@ O saldo devedor permanece apenas como conferência.
 </section>
 
 
-<div id="alerta" class="alert"></div>
+<!-- =====================================================
+     ALERTA
+====================================================== -->
 
+<div
+id="alerta"
+class="alert"
+></div>
+
+
+<!-- =====================================================
+     AÇÕES
+====================================================== -->
 
 <div class="actions">
 
@@ -856,6 +922,10 @@ onclick="window.print()"
 </div>
 
 
+<!-- =====================================================
+     ATENÇÃO
+====================================================== -->
+
 <section class="card">
 
 <div class="warning">
@@ -881,6 +951,7 @@ Crédito do Trabalhador — versão 2.1 — 26/06/2026.
 
 </footer>
 
+
 </div>
 
 
@@ -890,143 +961,246 @@ Crédito do Trabalhador — versão 2.1 — 26/06/2026.
 
 
 /* =========================================================
-   VENCIMENTOS PADRÃO
-   ========================================================= */
+   VENCIMENTOS CONSIDERADOS
+========================================================= */
 
 const VENCIMENTOS = [
 
-  ['saldoSalario','Saldo de salário'],
+  [
+    'saldoSalario',
+    'Saldo de salário'
+  ],
 
-  ['horasExtras','Horas extras'],
+  [
+    'horasExtras',
+    'Horas extras'
+  ],
 
-  ['anuenio','Anuênio / adicional por tempo de serviço'],
+  [
+    'anuenio',
+    'Anuênio / adicional por tempo de serviço'
+  ],
 
-  ['adicionalNoturno','Adicional noturno'],
+  [
+    'adicionalNoturno',
+    'Adicional noturno'
+  ],
 
-  ['insalubridade','Adicional de insalubridade'],
+  [
+    'insalubridade',
+    'Adicional de insalubridade'
+  ],
 
-  ['periculosidade','Adicional de periculosidade'],
+  [
+    'periculosidade',
+    'Adicional de periculosidade'
+  ],
 
-  ['dsr','DSR / reflexos'],
+  [
+    'dsr',
+    'DSR / reflexos'
+  ],
 
-  ['outrasSalariais','Outras verbas salariais com incidência previdenciária'],
+  [
+    'outrasSalariais',
+    'Outras verbas salariais com incidência previdenciária'
+  ],
 
-  ['avisoPrevio','Aviso-prévio indenizado'],
+  [
+    'avisoPrevio',
+    'Aviso-prévio indenizado'
+  ],
 
-  ['feriasProporcionais','Férias proporcionais'],
+  [
+    'feriasProporcionais',
+    'Férias proporcionais'
+  ],
 
-  ['feriasVencidas','Férias vencidas'],
+  [
+    'feriasVencidas',
+    'Férias vencidas'
+  ],
 
-  ['feriasDobro','Férias em dobro indenizadas'],
+  [
+    'feriasDobro',
+    'Férias em dobro indenizadas'
+  ],
 
-  ['tercoFerias','1/3 constitucional sobre férias'],
+  [
+    'tercoFerias',
+    '1/3 constitucional sobre férias'
+  ],
 
-  ['outrasFerias','Outras férias indenizadas']
+  [
+    'outrasFerias',
+    'Outras férias indenizadas'
+  ],
 
-];
+  /* =====================================================
+     QUATRO RUBRICAS NOVAS
+  ===================================================== */
 
+  [
+    'proventoAdicional1',
+    'Provento adicional 1',
+    true
+  ],
 
-/* =========================================================
-   4 RUBRICAS ADICIONAIS
-   ========================================================= */
+  [
+    'proventoAdicional2',
+    'Provento adicional 2',
+    true
+  ],
 
-const PROVENTOS_ADICIONAIS = [
+  [
+    'proventoAdicional3',
+    'Provento adicional 3',
+    true
+  ],
 
-  ['proventoAdicional1','Provento adicional 1'],
-
-  ['proventoAdicional2','Provento adicional 2'],
-
-  ['proventoAdicional3','Provento adicional 3'],
-
-  ['proventoAdicional4','Provento adicional 4']
+  [
+    'proventoAdicional4',
+    'Provento adicional 4',
+    true
+  ]
 
 ];
 
 
 /* =========================================================
    DESCONTOS
-   ========================================================= */
+========================================================= */
 
 const DESCONTOS = [
 
-  ['inss','INSS sobre remuneração'],
+  [
+    'inss',
+    'INSS sobre remuneração'
+  ],
 
-  ['irrf','IRRF sobre remuneração'],
+  [
+    'irrf',
+    'IRRF sobre remuneração'
+  ],
 
-  ['pensao','Pensão alimentícia'],
+  [
+    'pensao',
+    'Pensão alimentícia'
+  ],
 
-  ['retencaoJudicial','Retenção judicial'],
+  [
+    'retencaoJudicial',
+    'Retenção judicial'
+  ],
 
-  ['adiantamento13','Desconto de adiantamento do 13º'],
+  [
+    'adiantamento13',
+    'Desconto de adiantamento do 13º'
+  ],
 
-  ['fies','FIES'],
+  [
+    'fies',
+    'FIES'
+  ],
 
-  ['descontoAviso','Desconto de aviso-prévio'],
+  [
+    'descontoAviso',
+    'Desconto de aviso-prévio'
+  ],
 
-  ['multa480','Multa do art. 480 da CLT'],
+  [
+    'multa480',
+    'Multa do art. 480 da CLT'
+  ],
 
-  ['outrosCompulsorios','Outros descontos compulsórios']
+  [
+    'outrosCompulsorios',
+    'Outros descontos compulsórios'
+  ]
 
 ];
 
 
 /* =========================================================
    CRIA CAMPOS
-   ========================================================= */
+========================================================= */
 
 function criarCampos(lista,destino){
 
-  const elemento = document.getElementById(destino);
+  const elemento =
+    document.getElementById(destino);
 
-  if(!elemento) return;
+  if(!elemento){
+    return;
+  }
 
-  elemento.innerHTML = lista.map(([id,nome]) => `
 
-    <div class="field">
+  elemento.innerHTML =
+    lista.map(
+      ([id,nome,adicional]) => {
 
-      <label for="${id}">
-        ${nome}
-      </label>
+        const classe =
+          adicional
+            ? 'field rubrica-adicional'
+            : 'field';
 
-      <input
-        id="${id}"
-        type="text"
-        placeholder="R$ 0,00"
-        oninput="formatarMoeda(this)"
-      >
 
-      <div class="nature">
-        Informe o valor aplicável e confira a classificação
-        da rubrica no eSocial.
-      </div>
+        const identificacao =
+          adicional
+            ? 'Rubrica adicional — informe somente se aplicável.'
+            : 'Informe o valor aplicável e confira a classificação da rubrica no eSocial.';
 
-    </div>
 
-  `).join('');
+        return `
+
+          <div class="${classe}">
+
+            <label for="${id}">
+              ${nome}
+            </label>
+
+            <input
+              id="${id}"
+              type="text"
+              placeholder="R$ 0,00"
+              oninput="formatarMoeda(this)"
+            >
+
+            <div class="nature">
+              ${identificacao}
+            </div>
+
+          </div>
+
+        `;
+
+      }
+    ).join('');
 
 }
 
 
 /* =========================================================
-   FORMATA MOEDA
-   ========================================================= */
+   FORMATA MOEDA PARA EXIBIÇÃO
+========================================================= */
 
 function moeda(v){
 
-  return Number(v || 0).toLocaleString(
-    'pt-BR',
-    {
-      style:'currency',
-      currency:'BRL'
-    }
-  );
+  return Number(v || 0)
+    .toLocaleString(
+      'pt-BR',
+      {
+        style:'currency',
+        currency:'BRL'
+      }
+    );
 
 }
 
 
 /* =========================================================
-   CONVERTE TEXTO PARA NÚMERO
-   ========================================================= */
+   CONVERTE VALOR
+========================================================= */
 
 function numero(v){
 
@@ -1038,63 +1212,81 @@ function numero(v){
     return 0;
   }
 
-  let s = String(v)
-    .replace(/R\$/g,'')
-    .replace(/\s/g,'');
+
+  let s =
+    String(v)
+      .replace(/R\$/g,'')
+      .replace(/\s/g,'');
+
 
   if(s.includes(',')){
-    s = s
-      .replace(/\./g,'')
-      .replace(',','.');
+
+    s =
+      s
+        .replace(/\./g,'')
+        .replace(',','.');
+
   }
 
-  const n = Number.parseFloat(s);
 
-  return Number.isFinite(n) ? n : 0;
+  const n =
+    Number.parseFloat(s);
+
+
+  return Number.isFinite(n)
+    ? n
+    : 0;
 
 }
 
 
 /* =========================================================
-   FORMATA INPUT MONETÁRIO
-   ========================================================= */
+   FORMATA INPUT COMO MOEDA
+========================================================= */
 
 function formatarMoeda(c){
 
-  const a = String(c.value)
-    .replace(/\D/g,'');
+  const a =
+    String(c.value)
+      .replace(/\D/g,'');
 
-  c.value = a
-    ? (
-        Number.parseInt(a,10) / 100
-      ).toLocaleString(
-        'pt-BR',
-        {
-          style:'currency',
-          currency:'BRL'
-        }
-      )
-    : '';
+
+  c.value =
+    a
+      ? (
+          Number.parseInt(a,10) / 100
+        ).toLocaleString(
+          'pt-BR',
+          {
+            style:'currency',
+            currency:'BRL'
+          }
+        )
+      : '';
 
 }
 
 
 /* =========================================================
-   OBTÉM VALOR DO CAMPO
-   ========================================================= */
+   OBTÉM VALOR
+========================================================= */
 
 function valor(id){
 
-  const e = document.getElementById(id);
+  const e =
+    document.getElementById(id);
 
-  return e ? numero(e.value) : 0;
+
+  return e
+    ? numero(e.value)
+    : 0;
 
 }
 
 
 /* =========================================================
-   LINHA DA MEMÓRIA DE CÁLCULO
-   ========================================================= */
+   LINHA DA MEMÓRIA
+========================================================= */
 
 function linha(d,v){
 
@@ -1102,9 +1294,13 @@ function linha(d,v){
 
     <div class="memory-row">
 
-      <span>${d}</span>
+      <span>
+        ${d}
+      </span>
 
-      <strong>${v}</strong>
+      <strong>
+        ${v}
+      </strong>
 
     </div>
 
@@ -1114,81 +1310,73 @@ function linha(d,v){
 
 
 /* =========================================================
-   CALCULAR
-   ========================================================= */
+   CÁLCULO PRINCIPAL
+========================================================= */
 
 function calcular(){
 
-  /* ---------------------------------------------
-     VENCIMENTOS PADRÃO
-  --------------------------------------------- */
 
-  const totalVencimentosPadrao =
-    VENCIMENTOS.reduce(
-      (s,[id]) => s + valor(id),
-      0
-    );
-
-
-  /* ---------------------------------------------
-     PROVENTOS ADICIONAIS
-  --------------------------------------------- */
-
-  const totalProventosAdicionais =
-    PROVENTOS_ADICIONAIS.reduce(
-      (s,[id]) => s + valor(id),
-      0
-    );
-
-
-  /* ---------------------------------------------
-     TOTAL GERAL DE VENCIMENTOS
-  --------------------------------------------- */
+  /* -------------------------------------------------------
+     TOTAL DE VENCIMENTOS
+  ------------------------------------------------------- */
 
   const totalVencimentos =
-    totalVencimentosPadrao +
-    totalProventosAdicionais;
+    VENCIMENTOS.reduce(
+      (s,[id]) => {
+
+        return s + valor(id);
+
+      },
+      0
+    );
 
 
-  /* ---------------------------------------------
-     DESCONTOS
-  --------------------------------------------- */
+  /* -------------------------------------------------------
+     TOTAL DE DESCONTOS
+  ------------------------------------------------------- */
 
   const totalDescontos =
     DESCONTOS.reduce(
-      (s,[id]) => s + valor(id),
+      (s,[id]) => {
+
+        return s + valor(id);
+
+      },
       0
     );
 
 
-  /* ---------------------------------------------
+  /* -------------------------------------------------------
      REMUNERAÇÃO DISPONÍVEL
-  --------------------------------------------- */
+  ------------------------------------------------------- */
 
   const remuneracao =
     Math.max(
       0,
-      totalVencimentos - totalDescontos
+      totalVencimentos -
+      totalDescontos
     );
 
 
-  /* ---------------------------------------------
+  /* -------------------------------------------------------
      SALDO DEVEDOR
-  --------------------------------------------- */
+  ------------------------------------------------------- */
 
   const saldo =
     valor('saldoDevedor');
 
 
-  /* ---------------------------------------------
+  /* -------------------------------------------------------
      PERCENTUAL
-  --------------------------------------------- */
+  ------------------------------------------------------- */
 
   let percentual =
     Number.parseFloat(
-      document.getElementById(
-        'percentualGarantia'
-      ).value
+      document
+        .getElementById(
+          'percentualGarantia'
+        )
+        .value
     ) || 0;
 
 
@@ -1202,9 +1390,9 @@ function calcular(){
     );
 
 
-  /* ---------------------------------------------
-     LIMITE / DESCONTO
-  --------------------------------------------- */
+  /* -------------------------------------------------------
+     VALOR DO DESCONTO
+  ------------------------------------------------------- */
 
   const limite =
     remuneracao *
@@ -1218,53 +1406,71 @@ function calcular(){
       : 0;
 
 
-  /* ---------------------------------------------
-     RESULTADOS
-  --------------------------------------------- */
+  /* -------------------------------------------------------
+     MOSTRA RESULTADOS
+  ------------------------------------------------------- */
 
-  document.getElementById(
-    'totalVencimentos'
-  ).textContent =
-    moeda(totalVencimentos);
-
-
-  document.getElementById(
-    'totalDescontos'
-  ).textContent =
-    moeda(totalDescontos);
+  document
+    .getElementById(
+      'totalVencimentos'
+    )
+    .textContent =
+      moeda(totalVencimentos);
 
 
-  document.getElementById(
-    'remuneracaoDisponivel'
-  ).textContent =
-    moeda(remuneracao);
+  document
+    .getElementById(
+      'totalDescontos'
+    )
+    .textContent =
+      moeda(totalDescontos);
 
 
-  document.getElementById(
-    'descontoConsignado'
-  ).textContent =
-    moeda(desconto);
+  document
+    .getElementById(
+      'remuneracaoDisponivel'
+    )
+    .textContent =
+      moeda(remuneracao);
 
 
-  /* ---------------------------------------------
+  document
+    .getElementById(
+      'descontoConsignado'
+    )
+    .textContent =
+      moeda(desconto);
+
+
+  /* -------------------------------------------------------
      MEMÓRIA DE CÁLCULO
-  --------------------------------------------- */
+  ------------------------------------------------------- */
 
   let m = [];
 
 
-  /* VENCIMENTOS */
+  /* -------------------------------------------------------
+     VENCIMENTOS
+  ------------------------------------------------------- */
 
   VENCIMENTOS.forEach(
-    ([id,n]) => {
+    ([id,nome,adicional]) => {
 
-      const v = valor(id);
+      const v =
+        valor(id);
+
 
       if(v){
 
+        let nomeExibicao =
+          adicional
+            ? nome + ' — rubrica adicional'
+            : nome;
+
+
         m.push(
           linha(
-            n,
+            nomeExibicao,
             moeda(v)
           )
         );
@@ -1275,29 +1481,9 @@ function calcular(){
   );
 
 
-  /* PROVENTOS ADICIONAIS */
-
-  PROVENTOS_ADICIONAIS.forEach(
-    ([id,n]) => {
-
-      const v = valor(id);
-
-      if(v){
-
-        m.push(
-          linha(
-            n + ' — rubrica adicional',
-            moeda(v)
-          )
-        );
-
-      }
-
-    }
-  );
-
-
-  /* TOTAL */
+  /* -------------------------------------------------------
+     TOTAL DE VENCIMENTOS
+  ------------------------------------------------------- */
 
   m.push(
     linha(
@@ -1307,18 +1493,22 @@ function calcular(){
   );
 
 
-  /* DESCONTOS */
+  /* -------------------------------------------------------
+     DESCONTOS
+  ------------------------------------------------------- */
 
   DESCONTOS.forEach(
-    ([id,n]) => {
+    ([id,nome]) => {
 
-      const v = valor(id);
+      const v =
+        valor(id);
+
 
       if(v){
 
         m.push(
           linha(
-            '(-) ' + n,
+            '(-) ' + nome,
             moeda(v)
           )
         );
@@ -1329,7 +1519,9 @@ function calcular(){
   );
 
 
-  /* TOTAL DESCONTOS */
+  /* -------------------------------------------------------
+     TOTAL DE DESCONTOS
+  ------------------------------------------------------- */
 
   m.push(
     linha(
@@ -1339,7 +1531,9 @@ function calcular(){
   );
 
 
-  /* REMUNERAÇÃO */
+  /* -------------------------------------------------------
+     REMUNERAÇÃO DISPONÍVEL
+  ------------------------------------------------------- */
 
   m.push(
     linha(
@@ -1349,7 +1543,9 @@ function calcular(){
   );
 
 
-  /* PERCENTUAL */
+  /* -------------------------------------------------------
+     PERCENTUAL
+  ------------------------------------------------------- */
 
   m.push(
     linha(
@@ -1359,7 +1555,9 @@ function calcular(){
   );
 
 
-  /* SALDO */
+  /* -------------------------------------------------------
+     SALDO DEVEDOR
+  ------------------------------------------------------- */
 
   m.push(
     linha(
@@ -1369,7 +1567,9 @@ function calcular(){
   );
 
 
-  /* DESCONTO */
+  /* -------------------------------------------------------
+     DESCONTO ECONSIGNADO
+  ------------------------------------------------------- */
 
   m.push(
     linha(
@@ -1379,9 +1579,9 @@ function calcular(){
   );
 
 
-  /* ---------------------------------------------
-     13º — FORA DO CÁLCULO PRINCIPAL
-  --------------------------------------------- */
+  /* -------------------------------------------------------
+     13º — CONFERÊNCIA SEPARADA
+  ------------------------------------------------------- */
 
   if(
     valor('decimoTerceiro') ||
@@ -1421,15 +1621,21 @@ function calcular(){
   }
 
 
-  document.getElementById(
-    'memoria'
-  ).innerHTML =
-    m.join('');
+  /* -------------------------------------------------------
+     EXIBE MEMÓRIA
+  ------------------------------------------------------- */
+
+  document
+    .getElementById(
+      'memoria'
+    )
+    .innerHTML =
+      m.join('');
 
 
-  /* ---------------------------------------------
+  /* -------------------------------------------------------
      ALERTA
-  --------------------------------------------- */
+  ------------------------------------------------------- */
 
   if(percentual){
 
@@ -1451,18 +1657,24 @@ function calcular(){
 
 
 /* =========================================================
-   ALERTA
-   ========================================================= */
+   MOSTRAR ALERTA
+========================================================= */
 
 function mostrarAlerta(msg,tipo){
 
   const a =
-    document.getElementById('alerta');
+    document.getElementById(
+      'alerta'
+    );
 
-  a.textContent = msg;
+
+  a.textContent =
+    msg;
+
 
   a.className =
     'alert ' + tipo;
+
 
   a.style.display =
     'block';
@@ -1470,26 +1682,34 @@ function mostrarAlerta(msg,tipo){
 }
 
 
+/* =========================================================
+   ESCONDER ALERTA
+========================================================= */
+
 function esconderAlerta(){
 
-  document.getElementById(
-    'alerta'
-  ).style.display =
-    'none';
+  document
+    .getElementById(
+      'alerta'
+    )
+    .style.display =
+      'none';
 
 }
 
 
 /* =========================================================
    LIMPAR
-   ========================================================= */
+========================================================= */
 
 function limpar(){
 
   document
     .querySelectorAll('input')
     .forEach(
-      e => e.value = ''
+      e => {
+        e.value = '';
+      }
     );
 
 
@@ -1498,22 +1718,25 @@ function limpar(){
     'totalDescontos',
     'remuneracaoDisponivel',
     'descontoConsignado'
-  ].forEach(
+  ]
+  .forEach(
     id => {
 
-      document.getElementById(
-        id
-      ).textContent =
-        'R$ 0,00';
+      document
+        .getElementById(id)
+        .textContent =
+          'R$ 0,00';
 
     }
   );
 
 
-  document.getElementById(
-    'memoria'
-  ).innerHTML =
-    'Informe os valores e clique em <strong>Calcular conferência</strong>.';
+  document
+    .getElementById(
+      'memoria'
+    )
+    .innerHTML =
+      'Informe os valores e clique em <strong>Calcular conferência</strong>.';
 
 
   esconderAlerta();
@@ -1522,8 +1745,8 @@ function limpar(){
 
 
 /* =========================================================
-   EXEMPLO
-   ========================================================= */
+   CARREGAR EXEMPLO
+========================================================= */
 
 function carregarExemplo(){
 
@@ -1565,16 +1788,19 @@ function carregarExemplo(){
   };
 
 
-  Object.entries(v)
+  Object
+    .entries(v)
     .forEach(
       ([id,x]) => {
 
         const campo =
           document.getElementById(id);
 
+
         if(campo){
 
-          campo.value = x;
+          campo.value =
+            x;
 
         }
 
@@ -1589,7 +1815,7 @@ function carregarExemplo(){
 
 /* =========================================================
    INICIALIZAÇÃO
-   ========================================================= */
+========================================================= */
 
 criarCampos(
   VENCIMENTOS,

@@ -8,7 +8,7 @@
 <meta name="viewport"
       content="width=device-width, initial-scale=1.0">
 
-<title>Conferência eConsignado na Rescisão</title>
+<title>Conferência eConsignado - Rescisão</title>
 
 <style>
 
@@ -32,11 +32,11 @@ body{
 
 .container{
 
-    max-width:1100px;
+    max-width:1000px;
 
     margin:auto;
 
-    padding:22px;
+    padding:20px;
 }
 
 
@@ -48,25 +48,25 @@ body{
 
     background:#fff;
 
+    padding:24px;
+
+    border-radius:15px;
+
     border:1px solid #e5e7eb;
-
-    border-radius:16px;
-
-    padding:25px;
 
     margin-bottom:18px;
 
     box-shadow:
-        0 4px 18px rgba(0,0,0,.05);
+        0 3px 15px rgba(0,0,0,.05);
 }
 
 .header h1{
 
-    margin:0 0 8px;
+    margin:0 0 7px;
+
+    font-size:24px;
 
     color:#123b68;
-
-    font-size:25px;
 }
 
 .header p{
@@ -75,7 +75,7 @@ body{
 
     color:#64748b;
 
-    font-size:14px;
+    font-size:13px;
 
     line-height:1.6;
 }
@@ -84,9 +84,9 @@ body{
 
     display:inline-block;
 
-    margin-top:14px;
+    margin-top:12px;
 
-    padding:7px 11px;
+    padding:6px 10px;
 
     border-radius:20px;
 
@@ -101,47 +101,45 @@ body{
 
 
 /* =====================================================
-   CARDS
+   CARD
 ===================================================== */
 
 .card{
 
     background:#fff;
 
+    padding:21px;
+
+    border-radius:14px;
+
     border:1px solid #e5e7eb;
 
-    border-radius:15px;
-
-    padding:22px;
-
-    margin-bottom:18px;
+    margin-bottom:17px;
 
     box-shadow:
-        0 3px 15px rgba(0,0,0,.04);
+        0 3px 14px rgba(0,0,0,.04);
 }
 
 .card-title{
 
-    font-size:18px;
+    color:#123b68;
+
+    font-size:17px;
 
     font-weight:bold;
 
-    color:#123b68;
-
-    margin-bottom:18px;
+    margin-bottom:5px;
 }
 
-.card-subtitle{
-
-    font-size:13px;
+.card-description{
 
     color:#64748b;
 
-    margin-top:-10px;
-
-    margin-bottom:18px;
+    font-size:12px;
 
     line-height:1.5;
+
+    margin-bottom:18px;
 }
 
 
@@ -157,11 +155,6 @@ body{
         repeat(2,1fr);
 
     gap:16px;
-}
-
-.full{
-
-    grid-column:1 / -1;
 }
 
 
@@ -187,28 +180,24 @@ label{
     margin-bottom:6px;
 }
 
-input,
-select{
+input{
 
     width:100%;
 
-    height:43px;
-
-    padding:0 12px;
+    height:42px;
 
     border:1px solid #d1d5db;
 
     border-radius:8px;
 
-    background:#fff;
+    padding:0 11px;
 
     font-size:14px;
 
     outline:none;
 }
 
-input:focus,
-select:focus{
+input:focus{
 
     border-color:#2563eb;
 
@@ -217,20 +206,63 @@ select:focus{
         rgba(37,99,235,.10);
 }
 
-.help{
+
+/* =====================================================
+   NATUREZA
+===================================================== */
+
+.natureza{
 
     margin-top:6px;
 
     font-size:11px;
 
-    color:#64748b;
+    line-height:1.45;
 
-    line-height:1.5;
+    color:#64748b;
 }
 
-.help strong{
+.natureza strong{
 
     color:#475569;
+}
+
+.somar{
+
+    color:#166534;
+
+    font-weight:bold;
+}
+
+.deduzir{
+
+    color:#b45309;
+
+    font-weight:bold;
+}
+
+.neutro{
+
+    color:#64748b;
+
+    font-weight:bold;
+}
+
+.alerta-natureza{
+
+    margin-top:6px;
+
+    font-size:11px;
+
+    color:#92400e;
+
+    background:#fffbeb;
+
+    border:1px solid #fde68a;
+
+    padding:7px 9px;
+
+    border-radius:6px;
 }
 
 
@@ -242,7 +274,7 @@ select:focus{
 
     display:flex;
 
-    gap:10px;
+    gap:9px;
 
     flex-wrap:wrap;
 
@@ -251,41 +283,41 @@ select:focus{
 
 button{
 
-    height:43px;
-
-    padding:0 20px;
-
     border:0;
 
     border-radius:8px;
 
-    cursor:pointer;
+    height:42px;
+
+    padding:0 18px;
+
+    font-size:13px;
 
     font-weight:bold;
 
-    font-size:13px;
+    cursor:pointer;
 }
 
-.btn-primary{
+.primary{
 
     background:#1769e0;
 
     color:#fff;
 }
 
-.btn-primary:hover{
+.primary:hover{
 
     background:#1257bd;
 }
 
-.btn-secondary{
+.secondary{
 
     background:#eef2f7;
 
     color:#374151;
 }
 
-.btn-success{
+.green{
 
     background:#15803d;
 
@@ -309,9 +341,9 @@ button{
 
 .result{
 
-    padding:16px;
+    padding:15px;
 
-    border-radius:11px;
+    border-radius:10px;
 
     background:#f8fafc;
 
@@ -320,95 +352,90 @@ button{
 
 .result-title{
 
-    font-size:11px;
-
     color:#64748b;
 
-    margin-bottom:7px;
+    font-size:11px;
+
+    margin-bottom:6px;
 }
 
 .result-value{
 
-    font-size:20px;
+    color:#123b68;
+
+    font-size:19px;
 
     font-weight:bold;
-
-    color:#123b68;
 }
 
-.result.limit{
+.result.blue{
 
     background:#eff6ff;
 
     border-color:#bfdbfe;
 }
 
-.result.discount{
+.result.orange{
 
     background:#fff7ed;
 
     border-color:#fed7aa;
 }
 
-.result.ok{
+.result.green{
 
     background:#f0fdf4;
 
     border-color:#bbf7d0;
 }
 
-.result.error{
-
-    background:#fef2f2;
-
-    border-color:#fecaca;
-}
-
 
 /* =====================================================
-   TABELA
+   MEMÓRIA
 ===================================================== */
 
-.table-wrap{
+.memory{
 
-    overflow-x:auto;
+    margin-top:18px;
+
+    background:#f8fafc;
+
+    border:1px solid #e2e8f0;
+
+    border-radius:9px;
+
+    padding:16px;
 }
 
-table{
+.memory-title{
 
-    width:100%;
+    font-weight:bold;
 
-    border-collapse:collapse;
+    color:#123b68;
 
-    min-width:700px;
+    font-size:14px;
+
+    margin-bottom:10px;
 }
 
-th{
+.memory-row{
 
-    background:#f1f5f9;
+    display:flex;
 
-    color:#334155;
+    justify-content:space-between;
 
-    text-align:left;
+    gap:15px;
 
-    padding:11px;
+    padding:8px 0;
+
+    border-bottom:1px solid #e5e7eb;
 
     font-size:12px;
 }
 
-td{
+.memory-row:last-child{
 
-    padding:10px;
-
-    border-bottom:
-        1px solid #e5e7eb;
-
-    font-size:12px;
-}
-
-td.valor{
-
-    text-align:right;
+    border-bottom:0;
 
     font-weight:bold;
 }
@@ -420,17 +447,17 @@ td.valor{
 
 .status{
 
-    padding:16px;
+    display:none;
 
-    border-radius:10px;
+    margin-top:16px;
 
-    margin-top:18px;
+    padding:15px;
 
-    font-size:14px;
+    border-radius:9px;
+
+    font-size:13px;
 
     line-height:1.6;
-
-    display:none;
 }
 
 .status.ok{
@@ -468,99 +495,10 @@ td.valor{
 
 
 /* =====================================================
-   INFORMAÇÃO
-===================================================== */
-
-.info{
-
-    background:#eff6ff;
-
-    border:1px solid #bfdbfe;
-
-    color:#1e40af;
-
-    border-radius:10px;
-
-    padding:15px;
-
-    font-size:12px;
-
-    line-height:1.65;
-}
-
-
-/* =====================================================
-   MEMÓRIA
-===================================================== */
-
-.memory{
-
-    margin-top:18px;
-
-    border:1px solid #e2e8f0;
-
-    border-radius:10px;
-
-    background:#f8fafc;
-
-    padding:17px;
-}
-
-.memory-title{
-
-    font-size:15px;
-
-    font-weight:bold;
-
-    color:#123b68;
-
-    margin-bottom:12px;
-}
-
-.memory-row{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    gap:20px;
-
-    padding:9px 0;
-
-    border-bottom:1px solid #e5e7eb;
-
-    font-size:12px;
-}
-
-.memory-row:last-child{
-
-    border-bottom:0;
-
-    font-weight:bold;
-}
-
-
-/* =====================================================
-   RODAPÉ
-===================================================== */
-
-.footer{
-
-    text-align:center;
-
-    color:#94a3b8;
-
-    font-size:11px;
-
-    padding:10px;
-}
-
-
-/* =====================================================
    RESPONSIVO
 ===================================================== */
 
-@media(max-width:850px){
+@media(max-width:800px){
 
     .results{
 
@@ -569,21 +507,16 @@ td.valor{
     }
 }
 
-@media(max-width:650px){
+@media(max-width:600px){
 
     .container{
 
-        padding:12px;
+        padding:10px;
     }
 
     .grid{
 
         grid-template-columns:1fr;
-    }
-
-    .full{
-
-        grid-column:auto;
     }
 
     .results{
@@ -594,11 +527,6 @@ td.valor{
     .actions button{
 
         width:100%;
-    }
-
-    .header h1{
-
-        font-size:21px;
     }
 }
 
@@ -621,8 +549,8 @@ td.valor{
         padding:0;
     }
 
-    .header,
-    .card{
+    .card,
+    .header{
 
         box-shadow:none;
     }
@@ -641,6 +569,7 @@ td.valor{
 
 <body>
 
+
 <div class="container">
 
 
@@ -651,20 +580,20 @@ td.valor{
 <div class="header">
 
 <h1>
-📋 Conferência de eConsignado na Rescisão
+📋 Conferência do eConsignado na Rescisão
 </h1>
 
 <p>
 
-Ferramenta para conferir a composição da
-<strong>remuneração disponível</strong> e verificar
-se o desconto do empréstimo consignado na rescisão
-está dentro do limite aplicável.
+Informe as rubricas exatamente como aparecem no
+TRCT/folha e confira a composição da
+<strong>remuneração disponível</strong> utilizada
+para o desconto do Crédito do Trabalhador.
 
 </p>
 
 <span class="badge">
-CONFERÊNCIA — CRÉDITO DO TRABALHADOR
+CONFERÊNCIA DE RESCISÃO
 </span>
 
 </div>
@@ -672,20 +601,20 @@ CONFERÊNCIA — CRÉDITO DO TRABALHADOR
 
 
 <!-- =====================================================
-     1. DADOS DA RESCISÃO
+     DADOS BÁSICOS
 ===================================================== -->
 
 <div class="card">
 
 <div class="card-title">
-1. Dados da rescisão
+1. Dados principais
 </div>
 
-<div class="card-subtitle">
+<div class="card-description">
 
-Informe os valores constantes no cálculo da rescisão.
-A ferramenta utiliza esses dados para reconstruir
-a remuneração disponível.
+Primeiro informe os valores gerais da rescisão.
+A base utilizada pelo sistema será comparada
+com a base calculada nesta conferência.
 
 </div>
 
@@ -700,15 +629,17 @@ Total bruto da rescisão
 </label>
 
 <input
-    type="text"
     id="bruto"
+    type="text"
     placeholder="R$ 0,00"
     oninput="formatarMoeda(this)"
 >
 
-<div class="help">
+<div class="natureza">
 
-Valor bruto total das verbas da rescisão,
+<strong>Natureza:</strong>
+
+Valor bruto de todas as verbas da rescisão,
 antes dos descontos.
 
 </div>
@@ -720,29 +651,26 @@ antes dos descontos.
 <div class="field">
 
 <label>
-Remuneração disponível informada pelo sistema
+Base utilizada pelo sistema
 </label>
 
 <input
+    id="baseSistema"
     type="text"
-    id="remuneracaoDisponivel"
     placeholder="R$ 0,00"
     oninput="formatarMoeda(this)"
 >
 
-<div class="help">
+<div class="natureza">
 
-Informe a base efetivamente utilizada pelo sistema
-para calcular o desconto do eConsignado.
+<strong>Natureza:</strong>
 
-<strong>
-Ex.: R$ 11.711,24.
-</strong>
+Remuneração disponível efetivamente utilizada
+pelo sistema para o cálculo do eConsignado.
 
 </div>
 
 </div>
-
 
 
 </div>
@@ -752,20 +680,20 @@ Ex.: R$ 11.711,24.
 
 
 <!-- =====================================================
-     2. COMPOSIÇÃO
+     SOMAR
 ===================================================== -->
 
 <div class="card">
 
 <div class="card-title">
-2. Composição da remuneração disponível
+2. Rubricas que devem ser consideradas na composição
 </div>
 
-<div class="card-subtitle">
+<div class="card-description">
 
-Informe as principais parcelas da rescisão. Os campos
-abaixo permitem visualizar de onde vem a diferença
-entre o valor bruto e a remuneração disponível.
+Informe as verbas da rescisão conforme aparecem
+no TRCT. Abaixo de cada campo está indicada
+a natureza para facilitar a conferência.
 
 </div>
 
@@ -776,20 +704,185 @@ entre o valor bruto e a remuneração disponível.
 <div class="field">
 
 <label>
-Salário / saldo de salário
+Saldo de salário
 </label>
 
 <input
+    id="saldoSalario"
     type="text"
-    id="salario"
     placeholder="R$ 0,00"
     oninput="formatarMoeda(this)"
 >
 
-<div class="help">
+<div class="natureza">
 
-Verba salarial utilizada na composição da remuneração
-disponível, conforme sua natureza.
+<strong>Natureza:</strong>
+
+<span class="somar">
+VERBA REMUNERATÓRIA — SOMAR
+</span>
+
+<br>
+
+Salário devido pelos dias trabalhados.
+
+</div>
+
+</div>
+
+
+
+<div class="field">
+
+<label>
+Horas extras
+</label>
+
+<input
+    id="horasExtras"
+    type="text"
+    placeholder="R$ 0,00"
+    oninput="formatarMoeda(this)"
+>
+
+<div class="natureza">
+
+<strong>Natureza:</strong>
+
+<span class="somar">
+VERBA REMUNERATÓRIA — SOMAR
+</span>
+
+<br>
+
+Horas extras e seus reflexos remuneratórios.
+
+</div>
+
+</div>
+
+
+
+<div class="field">
+
+<label>
+Adicionais
+</label>
+
+<input
+    id="adicionais"
+    type="text"
+    placeholder="R$ 0,00"
+    oninput="formatarMoeda(this)"
+>
+
+<div class="natureza">
+
+<strong>Natureza:</strong>
+
+<span class="somar">
+VERBA REMUNERATÓRIA — SOMAR
+</span>
+
+<br>
+
+Ex.: adicional noturno, insalubridade,
+periculosidade e outros adicionais remuneratórios.
+
+</div>
+
+</div>
+
+
+
+<div class="field">
+
+<label>
+Férias vencidas
+</label>
+
+<input
+    id="feriasVencidas"
+    type="text"
+    placeholder="R$ 0,00"
+    oninput="formatarMoeda(this)"
+>
+
+<div class="natureza">
+
+<strong>Natureza:</strong>
+
+<span class="somar">
+VERBA RESCISÓRIA — CONSIDERAR
+</span>
+
+<br>
+
+Informe o valor da rubrica de férias vencidas
+constante do TRCT.
+
+</div>
+
+</div>
+
+
+
+<div class="field">
+
+<label>
+Férias proporcionais
+</label>
+
+<input
+    id="feriasProporcionais"
+    type="text"
+    placeholder="R$ 0,00"
+    oninput="formatarMoeda(this)"
+>
+
+<div class="natureza">
+
+<strong>Natureza:</strong>
+
+<span class="somar">
+VERBA RESCISÓRIA — CONSIDERAR
+</span>
+
+<br>
+
+Informe o valor das férias proporcionais
+constante do TRCT.
+
+</div>
+
+</div>
+
+
+
+<div class="field">
+
+<label>
+1/3 constitucional de férias
+</label>
+
+<input
+    id="tercoFerias"
+    type="text"
+    placeholder="R$ 0,00"
+    oninput="formatarMoeda(this)"
+>
+
+<div class="natureza">
+
+<strong>Natureza:</strong>
+
+<span class="somar">
+VERBA RESCISÓRIA — CONSIDERAR
+</span>
+
+<br>
+
+Parcela constitucional vinculada às férias.
 
 </div>
 
@@ -804,16 +897,24 @@ Aviso-prévio indenizado
 </label>
 
 <input
-    type="text"
     id="aviso"
+    type="text"
     placeholder="R$ 0,00"
     oninput="formatarMoeda(this)"
 >
 
-<div class="help">
+<div class="natureza">
 
-Informe o valor do aviso-prévio indenizado.
-A ferramenta o apresenta separadamente para conferência.
+<strong>Natureza:</strong>
+
+<span class="somar">
+VERBA RESCISÓRIA — CONSIDERAR
+</span>
+
+<br>
+
+Informe o valor do aviso-prévio indenizado
+apresentado no TRCT.
 
 </div>
 
@@ -824,20 +925,33 @@ A ferramenta o apresenta separadamente para conferência.
 <div class="field">
 
 <label>
-Férias
+Outras verbas remuneratórias
 </label>
 
 <input
+    id="outrasVerbas"
     type="text"
-    id="ferias"
     placeholder="R$ 0,00"
     oninput="formatarMoeda(this)"
 >
 
-<div class="help">
+<div class="natureza">
 
-Informe as verbas de férias consideradas
-na composição da rescisão.
+<strong>Natureza:</strong>
+
+<span class="somar">
+VERBA REMUNERATÓRIA — ANALISAR E SOMAR
+</span>
+
+<br>
+
+Utilize somente quando a natureza da rubrica
+for compatível com a composição aplicável.
+
+</div>
+
+</div>
+
 
 </div>
 
@@ -845,28 +959,27 @@ na composição da rescisão.
 
 
 
-<div class="field">
+<!-- =====================================================
+     DESCONTOS
+===================================================== -->
 
-<label>
-13º salário
-</label>
+<div class="card">
 
-<input
-    type="text"
-    id="decimoTerceiro"
-    placeholder="R$ 0,00"
-    oninput="formatarMoeda(this)"
->
+<div class="card-title">
+3. Descontos que podem reduzir a remuneração disponível
+</div>
 
-<div class="help">
+<div class="card-description">
 
-Informe o 13º para permitir sua conferência separada.
-A incidência deve ser analisada conforme a regra própria.
+Informe somente descontos que tenham fundamento
+para serem deduzidos na apuração da remuneração
+disponível. Não desconte automaticamente todos
+os valores existentes no TRCT.
 
 </div>
 
-</div>
 
+<div class="grid">
 
 
 <div class="field">
@@ -876,16 +989,24 @@ INSS
 </label>
 
 <input
-    type="text"
     id="inss"
+    type="text"
     placeholder="R$ 0,00"
     oninput="formatarMoeda(this)"
 >
 
-<div class="help">
+<div class="natureza">
 
-Desconto previdenciário. Informe o valor efetivamente
-apurado na rescisão.
+<strong>Natureza:</strong>
+
+<span class="deduzir">
+DESCONTO LEGAL — DEDUZIR
+</span>
+
+<br>
+
+Contribuição previdenciária do empregado,
+quando aplicável.
 
 </div>
 
@@ -900,15 +1021,24 @@ IRRF
 </label>
 
 <input
-    type="text"
     id="irrf"
+    type="text"
     placeholder="R$ 0,00"
     oninput="formatarMoeda(this)"
 >
 
-<div class="help">
+<div class="natureza">
 
-Informe o IRRF efetivamente descontado na rescisão.
+<strong>Natureza:</strong>
+
+<span class="deduzir">
+DESCONTO LEGAL — DEDUZIR
+</span>
+
+<br>
+
+Imposto de renda retido na fonte,
+quando aplicável.
 
 </div>
 
@@ -919,21 +1049,28 @@ Informe o IRRF efetivamente descontado na rescisão.
 <div class="field">
 
 <label>
-Outros descontos compulsórios
+Pensão alimentícia
 </label>
 
 <input
+    id="pensao"
     type="text"
-    id="outrosDescontos"
     placeholder="R$ 0,00"
     oninput="formatarMoeda(this)"
 >
 
-<div class="help">
+<div class="natureza">
 
-Informe somente descontos que, conforme a regra
-aplicável, possam ser deduzidos para determinar
-a remuneração disponível.
+<strong>Natureza:</strong>
+
+<span class="deduzir">
+DESCONTO LEGAL/JUDICIAL — ANALISAR
+</span>
+
+<br>
+
+Somente quando houver fundamento legal
+para a dedução.
 
 </div>
 
@@ -944,63 +1081,131 @@ a remuneração disponível.
 <div class="field">
 
 <label>
-Outros descontos voluntários
+Outros descontos obrigatórios
 </label>
 
 <input
+    id="outrosObrigatorios"
     type="text"
-    id="voluntarios"
     placeholder="R$ 0,00"
     oninput="formatarMoeda(this)"
 >
 
-<div class="help">
+<div class="natureza">
 
-Campo informativo. Descontos voluntários não devem
-ser automaticamente tratados como dedução da
-remuneração disponível para o eConsignado.
+<strong>Natureza:</strong>
+
+<span class="deduzir">
+DESCONTO OBRIGATÓRIO — ANALISAR
+</span>
+
+<br>
+
+Informe somente descontos que possam
+ser deduzidos conforme a regra aplicável.
 
 </div>
-
-</div>
-
-
-</div>
-
-
-<div class="actions">
-
-<button
-    class="btn-primary"
-    onclick="calcularComposicao()"
->
-🔎 Conferir composição
-</button>
 
 </div>
 
 
-<div id="resultadoComposicao"></div>
+</div>
 
 </div>
 
 
 
 <!-- =====================================================
-     3. CONTRATO
+     NÃO DEDUZIR AUTOMATICAMENTE
 ===================================================== -->
 
 <div class="card">
 
 <div class="card-title">
-3. Contrato eConsignado
+4. Descontos que não devem ser deduzidos automaticamente
 </div>
 
-<div class="card-subtitle">
 
-Informe os dados do contrato que constam na consulta
-do Crédito do Trabalhador / Portal Emprega Brasil.
+<div class="grid">
 
+
+<div class="field">
+
+<label>
+Descontos voluntários
+</label>
+
+<input
+    id="voluntarios"
+    type="text"
+    placeholder="R$ 0,00"
+    oninput="formatarMoeda(this)"
+>
+
+<div class="natureza">
+
+<strong>Natureza:</strong>
+
+<span class="neutro">
+DESCONTO VOLUNTÁRIO — NÃO DEDUZIR AUTOMATICAMENTE
+</span>
+
+<br>
+
+Ex.: descontos facultativos, convênios e outros
+descontos sem natureza de dedução legal.
+
+</div>
+
+</div>
+
+
+
+<div class="field">
+
+<label>
+eConsignado da rescisão
+</label>
+
+<input
+    id="consignado"
+    type="text"
+    placeholder="R$ 0,00"
+    oninput="formatarMoeda(this)"
+>
+
+<div class="natureza">
+
+<strong>Natureza:</strong>
+
+<span class="neutro">
+NÃO DEDUZIR PARA FORMAR A BASE
+</span>
+
+<br>
+
+Este é o valor que será posteriormente
+confrontado com o limite calculado.
+
+</div>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+
+<!-- =====================================================
+     CONTRATO
+===================================================== -->
+
+<div class="card">
+
+<div class="card-title">
+5. Dados do contrato eConsignado
 </div>
 
 
@@ -1014,20 +1219,22 @@ Percentual de garantia
 </label>
 
 <input
-    type="text"
     id="percentual"
-    inputmode="decimal"
+    type="text"
     placeholder="Ex.: 35,00%"
 >
 
-<div class="help">
+<div class="natureza">
 
-Informe o percentual de verbas rescisórias dado
-em garantia no contrato.
+<strong>Natureza:</strong>
 
-<strong>
-Não utilize 35% automaticamente.
-</strong>
+Percentual de garantia previsto para o contrato.
+
+<br>
+
+<span class="neutro">
+Não assumir 35% automaticamente.
+</span>
 
 </div>
 
@@ -1038,43 +1245,22 @@ Não utilize 35% automaticamente.
 <div class="field">
 
 <label>
-Saldo devedor do contrato
+Saldo devedor
 </label>
 
 <input
-    type="text"
     id="saldoDevedor"
-    placeholder="R$ 0,00"
-    oninput="formatarMoeda(this)"
->
-
-<div class="help">
-
-Informe o saldo devedor considerado para a rescisão.
-
-</div>
-
-</div>
-
-
-
-<div class="field">
-
-<label>
-Desconto efetivamente realizado
-</label>
-
-<input
     type="text"
-    id="descontoEfetivado"
     placeholder="R$ 0,00"
     oninput="formatarMoeda(this)"
 >
 
-<div class="help">
+<div class="natureza">
 
-Informe o valor do eConsignado que consta
-efetivamente como desconto na rescisão.
+<strong>Natureza:</strong>
+
+Saldo informado para o contrato na consulta
+correspondente.
 
 </div>
 
@@ -1087,21 +1273,21 @@ efetivamente como desconto na rescisão.
 <div class="actions">
 
 <button
-    class="btn-primary"
-    onclick="calcularConsignado()"
+    class="primary"
+    onclick="calcular()"
 >
-🧮 Conferir eConsignado
+🧮 Calcular conferência
 </button>
 
 <button
-    class="btn-secondary"
+    class="secondary"
     onclick="limpar()"
 >
 ↺ Limpar
 </button>
 
 <button
-    class="btn-success"
+    class="green"
     onclick="window.print()"
 >
 🖨️ Imprimir
@@ -1114,13 +1300,13 @@ efetivamente como desconto na rescisão.
 
 
 <!-- =====================================================
-     4. RESULTADO
+     RESULTADO
 ===================================================== -->
 
 <div class="card">
 
 <div class="card-title">
-4. Resultado da conferência
+6. Resultado
 </div>
 
 
@@ -1130,12 +1316,12 @@ efetivamente como desconto na rescisão.
 <div class="result">
 
 <div class="result-title">
-Remuneração disponível
+Total das rubricas consideradas
 </div>
 
 <div
     class="result-value"
-    id="resultadoBase"
+    id="totalSomado"
 >
 R$ 0,00
 </div>
@@ -1144,32 +1330,15 @@ R$ 0,00
 
 
 
-<div class="result limit">
+<div class="result orange">
 
 <div class="result-title">
-% de garantia
+Total das deduções
 </div>
 
 <div
     class="result-value"
-    id="resultadoPercentual"
->
-0,00%
-</div>
-
-</div>
-
-
-
-<div class="result limit">
-
-<div class="result-title">
-Limite pela garantia
-</div>
-
-<div
-    class="result-value"
-    id="resultadoLimite"
+    id="totalDeduzido"
 >
 R$ 0,00
 </div>
@@ -1178,15 +1347,32 @@ R$ 0,00
 
 
 
-<div class="result discount">
+<div class="result blue">
 
 <div class="result-title">
-Desconto informado
+Base calculada
 </div>
 
 <div
     class="result-value"
-    id="resultadoDesconto"
+    id="baseCalculada"
+>
+R$ 0,00
+</div>
+
+</div>
+
+
+
+<div class="result green">
+
+<div class="result-title">
+Diferença para a base do sistema
+</div>
+
+<div
+    class="result-value"
+    id="diferencaBase"
 >
 R$ 0,00
 </div>
@@ -1197,7 +1383,9 @@ R$ 0,00
 </div>
 
 
-<div id="status"></div>
+<div id="status"
+     class="status">
+</div>
 
 
 <div class="memory">
@@ -1208,8 +1396,8 @@ Memória de cálculo
 
 <div id="memoria">
 
-Informe os dados e clique em
-<strong>Conferir eConsignado</strong>.
+Preencha os campos e clique em
+<strong>Calcular conferência</strong>.
 
 </div>
 
@@ -1220,164 +1408,91 @@ Informe os dados e clique em
 
 
 <!-- =====================================================
-     5. ORIENTAÇÃO
+     RESULTADO CONSIGNADO
 ===================================================== -->
 
 <div class="card">
 
 <div class="card-title">
-5. Como interpretar o resultado
+7. Conferência do desconto eConsignado
 </div>
 
 
-<div class="info">
-
-<strong>Remuneração disponível</strong><br>
-
-É a base utilizada para a aplicação do percentual
-de garantia. Sua composição deve observar a regra
-específica aplicável à rescisão.
-
-<br><br>
+<div class="results">
 
 
-<strong>Limite pela garantia</strong><br>
+<div class="result">
 
-É calculado multiplicando a remuneração disponível
-pelo percentual de garantia informado para o contrato.
+<div class="result-title">
+Base calculada
+</div>
 
-<br><br>
-
-
-<strong>Limite efetivo</strong><br>
-
-O valor a ser considerado para o contrato deve ser
-confrontado com o saldo devedor, observando-se
-o limite aplicável.
-
-<br><br>
-
-
-<strong>Importante</strong><br>
-
-A ferramenta não considera automaticamente todo
-desconto existente no TRCT como dedução da
-remuneração disponível.
-
-Os descontos devem ser classificados conforme
-a regra aplicável ao eConsignado.
-
+<div
+    class="result-value"
+    id="baseConsignado"
+>
+R$ 0,00
 </div>
 
 </div>
 
 
 
-<!-- =====================================================
-     6. CHECKLIST
-===================================================== -->
+<div class="result blue">
 
-<div class="card">
+<div class="result-title">
+Limite pela garantia
+</div>
 
-<div class="card-title">
-6. Checklist para conferência
+<div
+    class="result-value"
+    id="limiteGarantia"
+>
+R$ 0,00
+</div>
+
 </div>
 
 
-<div class="table-wrap">
 
-<table>
+<div class="result orange">
 
-<thead>
-
-<tr>
-
-<th>
-Item
-</th>
-
-<th>
-O que conferir
-</th>
-
-<th>
-Resultado
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td>
-Remuneração disponível
-</td>
-
-<td>
-A base foi composta conforme a regra aplicável?
-</td>
-
-<td id="checkBase">
-—
-</td>
-
-</tr>
-
-<tr>
-
-<td>
-Percentual de garantia
-</td>
-
-<td>
-O percentual corresponde ao contrato?
-</td>
-
-<td id="checkPercentual">
-—
-</td>
-
-</tr>
-
-<tr>
-
-<td>
-Saldo devedor
-</td>
-
-<td>
-O saldo utilizado corresponde ao contrato?
-</td>
-
-<td id="checkSaldo">
-—
-</td>
-
-</tr>
-
-<tr>
-
-<td>
+<div class="result-title">
 Desconto realizado
-</td>
+</div>
 
-<td>
-O desconto está dentro do limite calculado?
-</td>
+<div
+    class="result-value"
+    id="descontoRealizado"
+>
+R$ 0,00
+</div>
 
-<td id="checkDesconto">
-—
-</td>
+</div>
 
-</tr>
 
-</tbody>
 
-</table>
+<div class="result green">
 
+<div class="result-title">
+Diferença
+</div>
+
+<div
+    class="result-value"
+    id="margem"
+>
+R$ 0,00
+</div>
+
+</div>
+
+
+</div>
+
+
+<div id="statusConsignado"
+     class="status">
 </div>
 
 </div>
@@ -1387,13 +1502,9 @@ O desconto está dentro do limite calculado?
 <div class="footer">
 
 Ferramenta de conferência.
-Os resultados devem ser validados com os dados
-oficiais do contrato e da rescisão.
-
-<br>
-
-Manual Operacional do Empregador —
-Crédito do Trabalhador — item 5.7.3.
+A classificação das rubricas deve ser validada
+conforme a legislação, o contrato e os dados oficiais
+da rescisão.
 
 </div>
 
@@ -1404,8 +1515,9 @@ Crédito do Trabalhador — item 5.7.3.
 
 <script>
 
+
 /* =====================================================
-   FUNÇÕES BÁSICAS
+   CONVERSÃO
 ===================================================== */
 
 function numero(valor){
@@ -1431,12 +1543,13 @@ function numero(valor){
 
     }
 
-    const resultado =
+    const n =
         parseFloat(texto);
 
-    return isNaN(resultado)
+    return isNaN(n)
         ? 0
-        : resultado;
+        : n;
+
 }
 
 
@@ -1453,24 +1566,6 @@ function moeda(valor){
 
 }
 
-
-function percentual(valor){
-
-    return Number(valor || 0)
-        .toLocaleString(
-            'pt-BR',
-            {
-                minimumFractionDigits:2,
-                maximumFractionDigits:2
-            }
-        ) + '%';
-
-}
-
-
-/* =====================================================
-   MÁSCARA
-===================================================== */
 
 function formatarMoeda(campo){
 
@@ -1497,137 +1592,238 @@ function formatarMoeda(campo){
                 currency:'BRL'
             }
         );
+
 }
 
 
 /* =====================================================
-   COMPOSIÇÃO
+   CÁLCULO
 ===================================================== */
 
-function calcularComposicao(){
+function calcular(){
 
-    const bruto =
+
+    /*
+     * RUBRICAS A CONSIDERAR
+     */
+
+    const somar = [
+
+        'saldoSalario',
+        'horasExtras',
+        'adicionais',
+        'feriasVencidas',
+        'feriasProporcionais',
+        'tercoFerias',
+        'aviso',
+        'outrasVerbas'
+
+    ];
+
+
+    let totalSomado = 0;
+
+
+    somar.forEach(
+        function(id){
+
+            totalSomado +=
+                numero(
+                    document.getElementById(
+                        id
+                    ).value
+                );
+
+        }
+    );
+
+
+    /*
+     * DEDUÇÕES
+     */
+
+    const deducoes = [
+
+        'inss',
+        'irrf',
+        'pensao',
+        'outrosObrigatorios'
+
+    ];
+
+
+    let totalDeduzido = 0;
+
+
+    deducoes.forEach(
+        function(id){
+
+            totalDeduzido +=
+                numero(
+                    document.getElementById(
+                        id
+                    ).value
+                );
+
+        }
+    );
+
+
+    /*
+     * BASE
+     */
+
+    const base =
+        Math.max(
+            0,
+            totalSomado -
+            totalDeduzido
+        );
+
+
+    /*
+     * BASE DO SISTEMA
+     */
+
+    const baseSistema =
         numero(
             document.getElementById(
-                'bruto'
+                'baseSistema'
             ).value
         );
-
-    const baseInformada =
-        numero(
-            document.getElementById(
-                'remuneracaoDisponivel'
-            ).value
-        );
-
-    if(bruto <= 0){
-
-        mostrarStatus(
-            'Informe o total bruto da rescisão.',
-            'warning'
-        );
-
-        return;
-
-    }
-
-    if(baseInformada <= 0){
-
-        mostrarStatus(
-            'Informe a remuneração disponível utilizada pelo sistema.',
-            'warning'
-        );
-
-        return;
-
-    }
 
 
     const diferenca =
-        bruto - baseInformada;
+        base -
+        baseSistema;
 
 
-    let html = '';
+    /*
+     * RESULTADOS
+     */
+
+    document.getElementById(
+        'totalSomado'
+    ).textContent =
+        moeda(totalSomado);
+
+
+    document.getElementById(
+        'totalDeduzido'
+    ).textContent =
+        moeda(totalDeduzido);
+
+
+    document.getElementById(
+        'baseCalculada'
+    ).textContent =
+        moeda(base);
+
+
+    document.getElementById(
+        'diferencaBase'
+    ).textContent =
+        moeda(Math.abs(diferenca));
+
+
+    /*
+     * MEMÓRIA
+     */
+
+    let html='';
 
 
     html += linha(
-        'Total bruto da rescisão',
-        moeda(bruto)
+        'Total das rubricas consideradas',
+        moeda(totalSomado)
     );
 
 
     html += linha(
-        'Remuneração disponível informada',
-        moeda(baseInformada)
+        '(-) Deduções',
+        moeda(totalDeduzido)
     );
 
 
     html += linha(
-        'Diferença entre bruto e base',
+        'Remuneração disponível calculada',
+        moeda(base)
+    );
+
+
+    html += linha(
+        'Base utilizada pelo sistema',
+        moeda(baseSistema)
+    );
+
+
+    html += linha(
+        'Diferença',
         moeda(Math.abs(diferenca))
     );
 
 
-    if(Math.abs(diferenca) > 0.01){
+    document.getElementById(
+        'memoria'
+    ).innerHTML =
+        html;
 
-        html += linha(
-            'Conferência',
-            'Existe diferença a justificar'
-        );
+
+    /*
+     * STATUS DA BASE
+     */
+
+    if(baseSistema <= 0){
 
         mostrarStatus(
-            'A remuneração disponível é inferior ao total bruto. Confira quais rubricas e descontos foram considerados para chegar à base informada.',
+            'A base foi calculada. Informe também a base utilizada pelo sistema para realizar a comparação.',
             'warning'
+        );
+
+    }
+    else if(
+        Math.abs(diferenca) <= 0.01
+    ){
+
+        mostrarStatus(
+            '<strong>🟢 BASE CONFERIDA</strong><br><br>' +
+            'A base calculada coincide com a base utilizada pelo sistema.',
+            'ok'
         );
 
     }
     else{
 
-        html += linha(
-            'Conferência',
-            'Sem diferença'
-        );
-
         mostrarStatus(
-            'A remuneração disponível coincide com o total bruto informado.',
-            'ok'
+            '<strong>⚠️ DIFERENÇA IDENTIFICADA</strong><br><br>' +
+            'A base calculada apresenta diferença de ' +
+            '<strong>' +
+            moeda(Math.abs(diferenca)) +
+            '</strong> em relação à base utilizada pelo sistema.',
+            'warning'
         );
 
     }
 
 
-    document.getElementById(
-        'resultadoComposicao'
-    ).innerHTML =
+    /*
+     * CONSIGNADO
+     */
 
-        '<div class="memory">' +
-
-        '<div class="memory-title">' +
-        'Resumo da composição' +
-        '</div>' +
-
-        html +
-
-        '</div>';
+    calcularConsignado(
+        base
+    );
 
 }
 
 
 /* =====================================================
-   CÁLCULO DO CONSIGNADO
+   CONSIGNADO
 ===================================================== */
 
-function calcularConsignado(){
+function calcularConsignado(base){
 
-    const base =
-        numero(
-            document.getElementById(
-                'remuneracaoDisponivel'
-            ).value
-        );
-
-
-    const perc =
+    const percentual =
         numero(
             document.getElementById(
                 'percentual'
@@ -1646,27 +1842,23 @@ function calcularConsignado(){
     const desconto =
         numero(
             document.getElementById(
-                'descontoEfetivado'
+                'consignado'
             ).value
         );
 
 
-    if(base <= 0){
-
-        mostrarStatus(
-            'Informe a remuneração disponível.',
-            'warning'
-        );
-
-        return;
-
-    }
+    document.getElementById(
+        'baseConsignado'
+    ).textContent =
+        moeda(base);
 
 
-    if(perc <= 0){
+    if(
+        percentual <= 0
+    ){
 
-        mostrarStatus(
-            'Informe o percentual de garantia do contrato.',
+        mostrarStatusConsignado(
+            'Informe o percentual de garantia do contrato para calcular o limite do eConsignado.',
             'warning'
         );
 
@@ -1677,12 +1869,14 @@ function calcularConsignado(){
 
     const limiteGarantia =
         base *
-        (perc / 100);
+        (
+            percentual / 100
+        );
 
 
     /*
-     * O limite efetivo é o menor valor entre
-     * a garantia calculada e o saldo devedor.
+     * Se houver saldo devedor informado,
+     * considera-se o menor valor.
      */
 
     let limiteEfetivo =
@@ -1700,180 +1894,76 @@ function calcularConsignado(){
     }
 
 
-    const diferenca =
+    const margem =
         limiteEfetivo -
         desconto;
 
 
     document.getElementById(
-        'resultadoBase'
-    ).textContent =
-        moeda(base);
-
-
-    document.getElementById(
-        'resultadoPercentual'
-    ).textContent =
-        percentual(perc);
-
-
-    document.getElementById(
-        'resultadoLimite'
+        'limiteGarantia'
     ).textContent =
         moeda(limiteEfetivo);
 
 
     document.getElementById(
-        'resultadoDesconto'
+        'descontoRealizado'
     ).textContent =
         moeda(desconto);
 
 
-    let statusTexto = '';
+    document.getElementById(
+        'margem'
+    ).textContent =
+        moeda(Math.abs(margem));
 
 
-    if(desconto <= limiteEfetivo + 0.01){
+    if(
+        desconto <=
+        limiteEfetivo + 0.01
+    ){
 
-        statusTexto =
+        mostrarStatusConsignado(
+
             '<strong>🟢 DESCONTO DENTRO DO LIMITE</strong><br><br>' +
 
-            'O desconto informado de <strong>' +
-            moeda(desconto) +
-            '</strong> não ultrapassa o limite calculado de <strong>' +
+            'Limite calculado: <strong>' +
             moeda(limiteEfetivo) +
-            '</strong>.' +
+            '</strong><br>' +
 
-            '<br><br>' +
+            'Desconto realizado: <strong>' +
+            moeda(desconto) +
+            '</strong><br>' +
 
-            'Margem restante: <strong>' +
-            moeda(Math.max(0,diferenca)) +
-            '</strong>.';
+            'Diferença disponível: <strong>' +
+            moeda(Math.max(0,margem)) +
+            '</strong>.',
 
-        document.getElementById(
-            'status'
-        ).className =
-            'status ok';
+            'ok'
+        );
 
     }
     else{
 
-        statusTexto =
+        mostrarStatusConsignado(
+
             '<strong>🔴 DESCONTO ACIMA DO LIMITE</strong><br><br>' +
 
-            'O desconto informado de <strong>' +
-            moeda(desconto) +
-            '</strong> excede o limite calculado de <strong>' +
+            'Limite calculado: <strong>' +
             moeda(limiteEfetivo) +
-            '</strong>.' +
+            '</strong><br>' +
 
-            '<br><br>' +
+            'Desconto realizado: <strong>' +
+            moeda(desconto) +
+            '</strong><br>' +
 
             'Excesso identificado: <strong>' +
-            moeda(Math.abs(diferenca)) +
-            '</strong>.';
+            moeda(Math.abs(margem)) +
+            '</strong>.',
 
-        document.getElementById(
-            'status'
-        ).className =
-            'status error';
-
-    }
-
-
-    document.getElementById(
-        'status'
-    ).innerHTML =
-        statusTexto;
-
-
-    montarMemoria(
-        base,
-        perc,
-        limiteGarantia,
-        saldo,
-        limiteEfetivo,
-        desconto,
-        diferenca
-    );
-
-
-    atualizarChecklist(
-        base,
-        perc,
-        saldo,
-        desconto,
-        limiteEfetivo
-    );
-
-}
-
-
-/* =====================================================
-   MEMÓRIA
-===================================================== */
-
-function montarMemoria(
-    base,
-    perc,
-    limiteGarantia,
-    saldo,
-    limiteEfetivo,
-    desconto,
-    diferenca
-){
-
-    let html='';
-
-
-    html += linha(
-        'Remuneração disponível',
-        moeda(base)
-    );
-
-
-    html += linha(
-        'Percentual de garantia',
-        percentual(perc)
-    );
-
-
-    html += linha(
-        'Remuneração disponível × percentual',
-        moeda(limiteGarantia)
-    );
-
-
-    if(saldo > 0){
-
-        html += linha(
-            'Saldo devedor',
-            moeda(saldo)
-        );
-
-        html += linha(
-            'Limite efetivo considerado',
-            moeda(limiteEfetivo)
+            'error'
         );
 
     }
-
-
-    html += linha(
-        'Desconto efetivamente realizado',
-        moeda(desconto)
-    );
-
-
-    html += linha(
-        'Diferença',
-        moeda(Math.abs(diferenca))
-    );
-
-
-    document.getElementById(
-        'memoria'
-    ).innerHTML =
-        html;
 
 }
 
@@ -1907,71 +1997,45 @@ function linha(
 
 
 /* =====================================================
-   CHECKLIST
-===================================================== */
-
-function atualizarChecklist(
-    base,
-    perc,
-    saldo,
-    desconto,
-    limite
-){
-
-    document.getElementById(
-        'checkBase'
-    ).textContent =
-        base > 0
-        ? '✓ Informada'
-        : '—';
-
-
-    document.getElementById(
-        'checkPercentual'
-    ).textContent =
-        perc > 0
-        ? '✓ Informado'
-        : '—';
-
-
-    document.getElementById(
-        'checkSaldo'
-    ).textContent =
-        saldo > 0
-        ? '✓ Informado'
-        : '⚠ Não informado';
-
-
-    document.getElementById(
-        'checkDesconto'
-    ).textContent =
-        desconto <= limite + 0.01
-        ? '✓ Dentro do limite'
-        : '✕ Acima do limite';
-
-}
-
-
-/* =====================================================
    STATUS
 ===================================================== */
 
 function mostrarStatus(
-    mensagem,
+    texto,
     tipo
 ){
 
-    const status =
+    const el =
         document.getElementById(
             'status'
         );
 
-    status.className =
+    el.className =
         'status ' +
         tipo;
 
-    status.innerHTML =
-        mensagem;
+    el.innerHTML =
+        texto;
+
+}
+
+
+function mostrarStatusConsignado(
+    texto,
+    tipo
+){
+
+    const el =
+        document.getElementById(
+            'statusConsignado'
+        );
+
+    el.className =
+        'status ' +
+        tipo;
+
+    el.innerHTML =
+        texto;
 
 }
 
@@ -1982,70 +2046,69 @@ function mostrarStatus(
 
 function limpar(){
 
-    const campos = [
+    document
+        .querySelectorAll('input')
+        .forEach(
+            function(input){
 
-        'bruto',
-        'remuneracaoDisponivel',
-        'salario',
-        'aviso',
-        'ferias',
-        'decimoTerceiro',
-        'inss',
-        'irrf',
-        'outrosDescontos',
-        'voluntarios',
-        'percentual',
-        'saldoDevedor',
-        'descontoEfetivado'
+                input.value='';
 
-    ];
-
-
-    campos.forEach(
-        function(id){
-
-            document.getElementById(
-                id
-            ).value='';
-
-        }
-    );
+            }
+        );
 
 
     document.getElementById(
-        'resultadoBase'
+        'totalSomado'
     ).textContent =
         'R$ 0,00';
 
 
     document.getElementById(
-        'resultadoPercentual'
-    ).textContent =
-        '0,00%';
-
-
-    document.getElementById(
-        'resultadoLimite'
+        'totalDeduzido'
     ).textContent =
         'R$ 0,00';
 
 
     document.getElementById(
-        'resultadoDesconto'
+        'baseCalculada'
     ).textContent =
         'R$ 0,00';
 
 
     document.getElementById(
-        'resultadoComposicao'
-    ).innerHTML =
-        '';
+        'diferencaBase'
+    ).textContent =
+        'R$ 0,00';
+
+
+    document.getElementById(
+        'baseConsignado'
+    ).textContent =
+        'R$ 0,00';
+
+
+    document.getElementById(
+        'limiteGarantia'
+    ).textContent =
+        'R$ 0,00';
+
+
+    document.getElementById(
+        'descontoRealizado'
+    ).textContent =
+        'R$ 0,00';
+
+
+    document.getElementById(
+        'margem'
+    ).textContent =
+        'R$ 0,00';
 
 
     document.getElementById(
         'memoria'
     ).innerHTML =
-        'Informe os dados e clique em <strong>Conferir eConsignado</strong>.';
+        'Preencha os campos e clique em <strong>Calcular conferência</strong>.';
 
 
     document.getElementById(
@@ -2055,33 +2118,9 @@ function limpar(){
 
 
     document.getElementById(
-        'status'
-    ).innerHTML =
-        '';
-
-
-    document.getElementById(
-        'checkBase'
-    ).textContent =
-        '—';
-
-
-    document.getElementById(
-        'checkPercentual'
-    ).textContent =
-        '—';
-
-
-    document.getElementById(
-        'checkSaldo'
-    ).textContent =
-        '—';
-
-
-    document.getElementById(
-        'checkDesconto'
-    ).textContent =
-        '—';
+        'statusConsignado'
+    ).className =
+        'status';
 
 }
 

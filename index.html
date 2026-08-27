@@ -1,472 +1,1753 @@
-from pathlib import Path
+# `index.html` — Controle Financeiro
 
-p = Path("/mnt/data/index_ecosignado_rescisao_atualizado_v2.html")
-html = p.read_text(encoding="utf-8")
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
 
-# Rebuild a clean GitHub-ready index from the user's supplied version plus requested UI.
-# The existing file already contains the requested calculator; make the top actions robust.
-# Ensure action bar is directly after header.
-header_end = html.find("</header>")
-actions_start = html.find('<div class="actions">')
-if header_end != -1 and actions_start != -1:
-    actions_end = html.find("</div>", actions_start)
-    actions_block = html[actions_start:actions_end+6]
-    # Remove existing action block
-    html = html[:actions_start] + html[actions_end+6:]
-    # Insert directly after header
-    header_end = html.find("</header>")
-    html = html[:header_end+9] + "\n\n" + actions_block + "\n" + html[header_end+9:]
+<head>
 
-# Make actions visually top-level and responsive.
-if ".actions{" in html:
-    html = html.replace(
-        ".actions{\n  display:flex;\n  flex-wrap:wrap;\n  gap:10px;\n  margin-top:20px;\n}",
-        """.actions{
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-  margin:0 0 18px;
-  padding:14px;
-  background:#fff;
-  border:1px solid #e5e7eb;
-  border-radius:16px;
-  box-shadow:0 4px 18px rgba(0,0,0,.05);
-  position:sticky;
-  top:10px;
-  z-index:100;
-}
+  <meta charset="UTF-8">
 
-.actions button{
-  flex:1 1 auto;
-}"""
-    )
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
-# Ensure config CSS exists.
-if ".btn-config{" not in html:
-    marker = ".btn-irrf:hover{\n  background:#6d28d9;\n}"
-    css = marker + """
+  <title>Controle Financeiro</title>
 
-/* =========================================================
-   BOTÃO CONFIGURAÇÕES
-========================================================= */
+  <style>
 
-.btn-config{
-  background:#0f766e;
-  color:#fff;
-}
+    /* =========================================================
+       RESET
+    ========================================================= */
 
-.btn-config:hover{
-  background:#115e59;
-}"""
-    html = html.replace(marker, css)
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-# Add GitHub-ready modal if missing.
-if 'id="modalConfiguracoes"' not in html:
-    modal = r'''
-<!-- =====================================================
-     MODAL — CONFIGURAÇÕES NECESSÁRIAS
-===================================================== -->
-<div id="modalConfiguracoes" class="modal-config" aria-hidden="true">
-  <div class="modal-config-conteudo" role="dialog" aria-modal="true" aria-labelledby="tituloConfiguracoes">
 
-    <div class="modal-config-header">
-      <div>
-        <div id="tituloConfiguracoes" class="modal-config-titulo">
-          ⚙️ Configurações necessárias
-        </div>
-        <div class="modal-config-subtitulo">
-          Conferência das rubricas, naturezas e incidências do Crédito do Trabalhador
-        </div>
+    /* =========================================================
+       BASE
+    ========================================================= */
+
+    body {
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Arial,
+        sans-serif;
+
+      background: #f4f7fb;
+      color: #1f2937;
+      min-height: 100vh;
+    }
+
+
+    /* =========================================================
+       CONTAINER
+    ========================================================= */
+
+    .container {
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+
+
+    /* =========================================================
+       CABEÇALHO
+    ========================================================= */
+
+    .header {
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 24px;
+      margin-bottom: 20px;
+
+      box-shadow:
+        0 4px 16px rgba(15, 23, 42, 0.06);
+
+      border: 1px solid #e8edf3;
+    }
+
+    .header-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand-icon {
+      width: 48px;
+      height: 48px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 14px;
+
+      background: #2563eb;
+      color: #ffffff;
+
+      font-size: 24px;
+      flex-shrink: 0;
+    }
+
+    .header h1 {
+      font-size: 24px;
+      font-weight: 700;
+      color: #111827;
+      margin-bottom: 4px;
+    }
+
+    .header p {
+      font-size: 14px;
+      color: #6b7280;
+    }
+
+
+    /* =========================================================
+       COMPETÊNCIA
+    ========================================================= */
+
+    .competencia-box {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 8px 12px;
+    }
+
+    .competencia-box label {
+      font-size: 13px;
+      font-weight: 600;
+      color: #64748b;
+      white-space: nowrap;
+    }
+
+    .competencia-box input {
+      border: 0;
+      outline: none;
+      background: transparent;
+
+      font-size: 14px;
+      font-weight: 600;
+      color: #1e293b;
+
+      cursor: pointer;
+    }
+
+
+    /* =========================================================
+       AÇÕES
+    ========================================================= */
+
+    .acoes {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+
+    .btn {
+      width: 100%;
+      min-height: 54px;
+
+      border: 0;
+      border-radius: 12px;
+
+      padding: 12px 18px;
+
+      font-size: 14px;
+      font-weight: 600;
+
+      cursor: pointer;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+
+      transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease,
+        background 0.15s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn:active {
+      transform: translateY(0);
+    }
+
+    .btn-primary {
+      background: #2563eb;
+      color: #ffffff;
+
+      box-shadow:
+        0 4px 10px rgba(37, 99, 235, 0.18);
+    }
+
+    .btn-primary:hover {
+      background: #1d4ed8;
+    }
+
+    .btn-secondary {
+      background: #ffffff;
+      color: #2563eb;
+
+      border: 1px solid #dbe4f0;
+    }
+
+    .btn-secondary:hover {
+      background: #f8fafc;
+    }
+
+    .btn-warning {
+      background: #ffffff;
+      color: #b45309;
+
+      border: 1px solid #f1dfc1;
+    }
+
+    .btn-warning:hover {
+      background: #fffbeb;
+    }
+
+
+    /* =========================================================
+       TÍTULO DA SEÇÃO
+    ========================================================= */
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      margin-bottom: 12px;
+    }
+
+    .section-title h2 {
+      font-size: 17px;
+      font-weight: 700;
+      color: #1f2937;
+    }
+
+    .section-title span {
+      font-size: 12px;
+      color: #64748b;
+    }
+
+
+    /* =========================================================
+       CARDS DO RESUMO
+    ========================================================= */
+
+    .resumo-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+
+    .card {
+      background: #ffffff;
+
+      border: 1px solid #e8edf3;
+      border-radius: 16px;
+
+      padding: 18px;
+
+      box-shadow:
+        0 3px 12px rgba(15, 23, 42, 0.04);
+    }
+
+    .resumo-card {
+      min-height: 128px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .resumo-card::after {
+      content: "";
+      position: absolute;
+
+      width: 5px;
+      height: 100%;
+
+      left: 0;
+      top: 0;
+
+      background: #2563eb;
+    }
+
+    .resumo-label {
+      font-size: 12px;
+      color: #64748b;
+      font-weight: 600;
+
+      margin-bottom: 9px;
+      padding-left: 4px;
+    }
+
+    .resumo-valor {
+      font-size: 21px;
+      font-weight: 700;
+      color: #111827;
+
+      padding-left: 4px;
+      word-break: break-word;
+    }
+
+    .resumo-info {
+      font-size: 11px;
+      color: #94a3b8;
+
+      margin-top: 8px;
+      padding-left: 4px;
+    }
+
+
+    /* =========================================================
+       CARDS DE MOVIMENTAÇÃO
+    ========================================================= */
+
+    .movimentacao-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+
+    .mov-card {
+      padding: 20px;
+    }
+
+    .mov-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      margin-bottom: 16px;
+    }
+
+    .mov-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .mov-icon {
+      width: 36px;
+      height: 36px;
+
+      border-radius: 10px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      font-size: 18px;
+    }
+
+    .receber-icon {
+      background: #ecfdf5;
+      color: #059669;
+    }
+
+    .pagar-icon {
+      background: #fef2f2;
+      color: #dc2626;
+    }
+
+    .mov-valor {
+      font-size: 23px;
+      font-weight: 700;
+    }
+
+    .valor-receber {
+      color: #059669;
+    }
+
+    .valor-pagar {
+      color: #dc2626;
+    }
+
+    .mov-linha {
+      display: flex;
+      justify-content: space-between;
+
+      padding-top: 11px;
+      margin-top: 11px;
+
+      border-top: 1px solid #eef2f7;
+
+      font-size: 12px;
+      color: #64748b;
+    }
+
+    .mov-linha strong {
+      color: #334155;
+      font-weight: 600;
+    }
+
+
+    /* =========================================================
+       SALDO
+    ========================================================= */
+
+    .saldo-card {
+      background: #ffffff;
+
+      border: 1px solid #e8edf3;
+      border-radius: 16px;
+
+      padding: 22px;
+
+      margin-bottom: 20px;
+
+      box-shadow:
+        0 3px 12px rgba(15, 23, 42, 0.04);
+    }
+
+    .saldo-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .saldo-label {
+      font-size: 13px;
+      color: #64748b;
+      margin-bottom: 7px;
+    }
+
+    .saldo-valor {
+      font-size: 30px;
+      font-weight: 750;
+      color: #111827;
+    }
+
+    .saldo-descricao {
+      font-size: 12px;
+      color: #94a3b8;
+      margin-top: 5px;
+    }
+
+    .saldo-status {
+      padding: 8px 13px;
+      border-radius: 20px;
+
+      font-size: 12px;
+      font-weight: 700;
+
+      white-space: nowrap;
+    }
+
+    .saldo-positivo {
+      background: #ecfdf5;
+      color: #047857;
+    }
+
+    .saldo-negativo {
+      background: #fef2f2;
+      color: #b91c1c;
+    }
+
+    .saldo-zero {
+      background: #f1f5f9;
+      color: #475569;
+    }
+
+
+    /* =========================================================
+       RODAPÉ
+    ========================================================= */
+
+    .footer {
+      text-align: center;
+
+      padding: 12px 0 5px;
+
+      color: #94a3b8;
+      font-size: 11px;
+    }
+
+
+    /* =========================================================
+       LOADING
+    ========================================================= */
+
+    .loading {
+      position: fixed;
+
+      inset: 0;
+
+      background: rgba(255, 255, 255, 0.82);
+
+      display: none;
+      align-items: center;
+      justify-content: center;
+
+      z-index: 9999;
+
+      backdrop-filter: blur(2px);
+    }
+
+    .loading.active {
+      display: flex;
+    }
+
+    .loading-box {
+      background: #ffffff;
+
+      border: 1px solid #e2e8f0;
+      border-radius: 14px;
+
+      padding: 22px 28px;
+
+      box-shadow:
+        0 10px 35px rgba(15, 23, 42, 0.12);
+
+      text-align: center;
+    }
+
+    .spinner {
+      width: 30px;
+      height: 30px;
+
+      margin: 0 auto 12px;
+
+      border: 3px solid #dbeafe;
+      border-top-color: #2563eb;
+
+      border-radius: 50%;
+
+      animation: girar 0.8s linear infinite;
+    }
+
+    @keyframes girar {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .loading-text {
+      font-size: 13px;
+      color: #475569;
+      font-weight: 600;
+    }
+
+
+    /* =========================================================
+       RESPONSIVO
+    ========================================================= */
+
+    @media (max-width: 900px) {
+
+      .resumo-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .acoes {
+        grid-template-columns: 1fr;
+      }
+
+    }
+
+
+    @media (max-width: 650px) {
+
+      .container {
+        padding: 14px;
+      }
+
+      .header {
+        padding: 18px;
+      }
+
+      .header-top {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .competencia-box {
+        justify-content: space-between;
+      }
+
+      .resumo-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .movimentacao-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .saldo-content {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .saldo-status {
+        align-self: flex-start;
+      }
+
+      .saldo-valor {
+        font-size: 26px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+  <!-- =======================================================
+       LOADING
+  ======================================================== -->
+
+  <div
+    id="loading"
+    class="loading"
+  >
+
+    <div class="loading-box">
+
+      <div class="spinner"></div>
+
+      <div class="loading-text">
+        Carregando informações...
       </div>
-      <button type="button" class="modal-fechar" onclick="fecharConfiguracoes()" aria-label="Fechar">×</button>
-    </div>
 
-    <div class="modal-config-corpo">
-
-      <div class="config-alerta">
-        <strong>Importante:</strong> o nome da rubrica, isoladamente, não define sua
-        elegibilidade. Confira a natureza da rubrica e as incidências informadas no
-        eSocial, além da versão vigente do Manual Operacional do Empregador.
-      </div>
-
-      <h3>1. Rubricas a conferir na remuneração disponível</h3>
-
-      <div class="config-grid">
-        <div class="config-item"><strong>Saldo de salário</strong><span>Conferir a natureza e o tratamento da parcela no eSocial.</span></div>
-        <div class="config-item"><strong>Horas extras</strong><span>Considerar quando constituírem parcela remuneratória elegível.</span></div>
-        <div class="config-item"><strong>Anuênio / tempo de serviço</strong><span>Considerar conforme a natureza remuneratória efetivamente cadastrada.</span></div>
-        <div class="config-item"><strong>Adicional noturno</strong><span>Conferir o enquadramento da rubrica e suas incidências.</span></div>
-        <div class="config-item"><strong>Insalubridade</strong><span>Conferir a natureza e a incidência da rubrica.</span></div>
-        <div class="config-item"><strong>Periculosidade</strong><span>Conferir a natureza e a incidência da rubrica.</span></div>
-        <div class="config-item"><strong>DSR / reflexos</strong><span>Considerar quando decorrentes de parcelas remuneratórias elegíveis.</span></div>
-        <div class="config-item"><strong>Outras verbas salariais</strong><span>Somente quando efetivamente enquadradas na regra aplicável.</span></div>
-        <div class="config-item"><strong>Férias / 1/3</strong><span>Verificar individualmente a natureza da parcela e seu tratamento.</span></div>
-        <div class="config-item"><strong>Demais verbas</strong><span>Não incluir automaticamente apenas pelo nome da rubrica.</span></div>
-      </div>
-
-      <h3>2. Campos do eSocial que devem ser conferidos</h3>
-
-      <div class="config-tabela-wrap">
-        <table class="config-tabela">
-          <thead>
-            <tr><th>Campo</th><th>O que conferir</th></tr>
-          </thead>
-          <tbody>
-            <tr><td><strong>Natureza da rubrica</strong></td><td>Identificação correta da natureza conforme a tabela e o manual vigentes.</td></tr>
-            <tr><td><strong>codIncCP</strong></td><td>Incidência previdenciária da rubrica.</td></tr>
-            <tr><td><strong>codIncIRRF</strong></td><td>Incidência de IRRF da rubrica.</td></tr>
-            <tr><td><strong>codIncFGTS</strong></td><td>Incidência de FGTS quando aplicável.</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <h3>3. Descontos para apuração da remuneração disponível</h3>
-
-      <ul class="config-lista">
-        <li>INSS incidente sobre as parcelas que compõem a base aplicável.</li>
-        <li>IRRF quando efetivamente incidente.</li>
-        <li>Pensão alimentícia e retenções judiciais, quando aplicáveis.</li>
-        <li>Descontos legalmente exigíveis e previstos na regra aplicável.</li>
-        <li>Outros descontos somente quando houver fundamento para sua dedução.</li>
-      </ul>
-
-      <div class="config-alerta config-alerta-amarela">
-        <strong>Atenção:</strong> não trate automaticamente todo desconto da rescisão
-        como dedutível. A ferramenta deve ser utilizada como conferência e a
-        classificação precisa ser validada com a folha/eSocial.
-      </div>
-
-      <h3>4. Contratos do Crédito do Trabalhador</h3>
-
-      <div class="config-grid">
-        <div class="config-item"><strong>Instituição financeira</strong><span>Identificar o contrato/instituição para facilitar a conferência.</span></div>
-        <div class="config-item"><strong>Percentual de garantia</strong><span>Informar o percentual aplicável ao contrato.</span></div>
-        <div class="config-item"><strong>Saldo devedor</strong><span>Informar o saldo devedor atualizado do contrato.</span></div>
-        <div class="config-item"><strong>Limite global</strong><span>Conferir o limite global aplicável antes de efetivar os descontos.</span></div>
-      </div>
-
-      <h3>5. Desconto do Crédito do Trabalhador</h3>
-
-      <div class="config-tabela-wrap">
-        <table class="config-tabela">
-          <thead>
-            <tr><th>Referência</th><th>Tratamento</th></tr>
-          </thead>
-          <tbody>
-            <tr><td><strong>Natureza 9253</strong></td><td>Conferir a utilização para o desconto do Crédito do Trabalhador conforme orientação vigente do eSocial.</td></tr>
-            <tr><td><strong>codIncCP</strong></td><td>Conferir a configuração vigente para a rubrica do desconto.</td></tr>
-            <tr><td><strong>codIncIRRF</strong></td><td>Conferir a configuração vigente para a rubrica do desconto.</td></tr>
-            <tr><td><strong>codIncFGTS</strong></td><td>Conferir a configuração vigente para a rubrica do desconto.</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <h3>6. 13º salário</h3>
-
-      <div class="config-alerta">
-        <strong>Conferência separada:</strong> o 13º possui tratamento próprio.
-        Por isso, a calculadora mantém campos específicos para o 13º e suas
-        incidências, evitando misturá-lo automaticamente com a base principal.
-      </div>
-
-      <h3>7. Checklist antes de fechar a rescisão</h3>
-
-      <ol class="config-lista-ordenada">
-        <li>Identificar todas as rubricas da rescisão.</li>
-        <li>Conferir a natureza de cada rubrica.</li>
-        <li>Conferir <strong>codIncCP</strong>, <strong>codIncIRRF</strong> e, quando aplicável, <strong>codIncFGTS</strong>.</li>
-        <li>Separar parcelas que não integram a remuneração disponível.</li>
-        <li>Apurar a remuneração disponível.</li>
-        <li>Aplicar o percentual de garantia de cada contrato.</li>
-        <li>Comparar o resultado com o saldo devedor atualizado.</li>
-        <li>Conferir o limite global.</li>
-        <li>Registrar corretamente o desconto na folha/eSocial.</li>
-      </ol>
-
-      <div class="config-fonte">
-        <strong>Fonte de conferência:</strong> Manual Operacional do Empregador —
-        Crédito do Trabalhador, disponível no Portal do Ministério do Trabalho e
-        Emprego. Utilize sempre a versão vigente do manual.
-      </div>
-
-    </div>
-
-    <div class="modal-config-footer">
-      <button type="button" class="btn-secondary" onclick="fecharConfiguracoes()">Fechar</button>
     </div>
 
   </div>
-</div>
-'''
-    html = html.replace("</body>", modal + "\n</body>")
 
-# Add modal CSS.
-if ".modal-config{" not in html:
-    css = r'''
-/* =========================================================
-   MODAL DE CONFIGURAÇÕES
-========================================================= */
 
-.modal-config{
-  display:none;
-  position:fixed;
-  inset:0;
-  z-index:9999;
-  background:rgba(15,23,42,.62);
-  padding:18px;
-  overflow:auto;
-}
+  <!-- =======================================================
+       CONTAINER PRINCIPAL
+  ======================================================== -->
 
-.modal-config.aberto{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
+  <main class="container">
 
-.modal-config-conteudo{
-  width:min(1050px,100%);
-  max-height:94vh;
-  background:#fff;
-  border-radius:16px;
-  overflow:hidden;
-  box-shadow:0 20px 60px rgba(0,0,0,.28);
-  display:flex;
-  flex-direction:column;
-}
 
-.modal-config-header{
-  display:flex;
-  align-items:flex-start;
-  justify-content:space-between;
-  gap:15px;
-  padding:20px 22px;
-  border-bottom:1px solid #e5e7eb;
-}
+    <!-- =====================================================
+         CABEÇALHO
+    ====================================================== -->
 
-.modal-config-titulo{
-  color:#123b68;
-  font-size:20px;
-  font-weight:bold;
-}
+    <section class="header">
 
-.modal-config-subtitulo{
-  color:#64748b;
-  font-size:12px;
-  margin-top:5px;
-}
+      <div class="header-top">
 
-.modal-fechar{
-  width:38px;
-  height:38px;
-  padding:0;
-  background:#f1f5f9;
-  color:#475569;
-  font-size:25px;
-}
+        <div class="brand">
 
-.modal-config-corpo{
-  padding:22px;
-  overflow:auto;
-}
+          <div class="brand-icon">
+            💰
+          </div>
 
-.modal-config-corpo h3{
-  margin:22px 0 11px;
-  color:#123b68;
-  font-size:15px;
-}
+          <div>
 
-.modal-config-corpo h3:first-of-type{
-  margin-top:0;
-}
+            <h1>
+              Controle Financeiro
+            </h1>
 
-.config-grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:10px;
-}
+            <p>
+              Gestão de lançamentos e fluxo financeiro
+            </p>
 
-.config-item{
-  padding:12px;
-  border:1px solid #e2e8f0;
-  border-radius:9px;
-  background:#f8fafc;
-}
+          </div>
 
-.config-item strong{
-  display:block;
-  margin-bottom:4px;
-  color:#1e3a5f;
-  font-size:13px;
-}
+        </div>
 
-.config-item span{
-  color:#64748b;
-  font-size:12px;
-  line-height:1.5;
-}
 
-.config-alerta{
-  padding:13px;
-  border-radius:9px;
-  background:#eff6ff;
-  border:1px solid #bfdbfe;
-  color:#1e40af;
-  font-size:12px;
-  line-height:1.6;
-}
+        <div class="competencia-box">
 
-.config-alerta-amarela{
-  background:#fffbeb;
-  border-color:#fde68a;
-  color:#92400e;
-}
+          <label for="competencia">
+            Competência
+          </label>
 
-.config-tabela-wrap{
-  overflow-x:auto;
-}
+          <input
+            type="month"
+            id="competencia"
+          >
 
-.config-tabela{
-  width:100%;
-  min-width:650px;
-  border-collapse:collapse;
-}
+        </div>
 
-.config-tabela th{
-  background:#f1f5f9;
-  padding:10px;
-  font-size:11px;
-  text-align:left;
-}
+      </div>
 
-.config-tabela td{
-  padding:10px;
-  border-bottom:1px solid #e5e7eb;
-  font-size:11px;
-  line-height:1.5;
-  vertical-align:top;
-}
+    </section>
 
-.config-lista,
-.config-lista-ordenada{
-  margin:8px 0;
-  padding-left:22px;
-  color:#475569;
-  font-size:12px;
-  line-height:1.75;
-}
 
-.config-fonte{
-  margin-top:20px;
-  padding:13px;
-  border:1px solid #e2e8f0;
-  border-radius:9px;
-  background:#f8fafc;
-  color:#64748b;
-  font-size:11px;
-  line-height:1.6;
-}
+    <!-- =====================================================
+         AÇÕES
+    ====================================================== -->
 
-.modal-config-footer{
-  display:flex;
-  justify-content:flex-end;
-  padding:14px 22px;
-  border-top:1px solid #e5e7eb;
-}
+    <section class="acoes">
 
-@media(max-width:650px){
-  .actions{
-    position:static;
-  }
+      <button
+        type="button"
+        class="btn btn-primary"
+        onclick="abrirPagina('lancamento')"
+      >
+        <span>➕</span>
+        <span>Novo Lançamento</span>
+      </button>
 
-  .actions button{
-    width:100%;
-  }
 
-  .config-grid{
-    grid-template-columns:1fr;
-  }
+      <button
+        type="button"
+        class="btn btn-secondary"
+        onclick="abrirRelatorio()"
+      >
+        <span>📊</span>
+        <span>Relatório Financeiro</span>
+      </button>
 
-  .modal-config{
-    padding:8px;
-  }
 
-  .modal-config-conteudo{
-    max-height:96vh;
-  }
+      <button
+        type="button"
+        class="btn btn-warning"
+        onclick="abrirPagina('pendentes')"
+      >
+        <span>📋</span>
+        <span>Lançamentos Pendentes</span>
+      </button>
 
-  .modal-config-header,
-  .modal-config-corpo{
-    padding:16px;
-  }
-}
-'''
-    html = html.replace("</style>", css + "\n</style>", 1)
+    </section>
 
-# Add modal JS.
-if "function abrirConfiguracoes()" not in html:
-    js = r'''
-/* =========================================================
-   CONFIGURAÇÕES NECESSÁRIAS
-========================================================= */
 
-function abrirConfiguracoes(){
+    <!-- =====================================================
+         RESUMO
+    ====================================================== -->
 
-  const modal = document.getElementById('modalConfiguracoes');
+    <section>
 
-  if(!modal) return;
+      <div class="section-title">
 
-  modal.classList.add('aberto');
-  modal.setAttribute('aria-hidden','false');
-  document.body.style.overflow = 'hidden';
+        <h2>
+          Resumo Geral
+        </h2>
 
-}
+        <span id="competenciaTexto">
+          -
+        </span>
 
-function fecharConfiguracoes(){
+      </div>
 
-  const modal = document.getElementById('modalConfiguracoes');
 
-  if(!modal) return;
+      <div class="resumo-grid">
 
-  modal.classList.remove('aberto');
-  modal.setAttribute('aria-hidden','true');
-  document.body.style.overflow = '';
 
-}
+        <!-- SALDO INICIAL -->
 
-document.addEventListener('keydown', function(event){
+        <div class="card resumo-card">
 
-  if(event.key === 'Escape'){
-    fecharConfiguracoes();
-  }
+          <div class="resumo-label">
+            SALDO INICIAL
+          </div>
 
-});
+          <div
+            id="saldoInicial"
+            class="resumo-valor"
+          >
+            R$ 0,00
+          </div>
 
-document.addEventListener('click', function(event){
+          <div class="resumo-info">
+            Saldo informado na aba Saldos
+          </div>
 
-  const modal = document.getElementById('modalConfiguracoes');
+        </div>
 
-  if(modal && event.target === modal){
-    fecharConfiguracoes();
-  }
 
-});
-'''
-    html = html.replace("</script>", js + "\n</script>", 1)
+        <!-- RECEITAS -->
 
-# GitHub Pages-friendly: use relative behavior, no external dependencies.
-# Make print hide modal even if opened.
-print_css = """
-@media print{
-  .actions,
-  .modal-config{
-    display:none !important;
-  }
-}
-"""
-if "@media print{" in html and ".modal-config" not in html[html.find("@media print{"):html.find("@media print{")+300]:
-    html = html.replace("@media print{", print_css + "\n@media print{", 1)
+        <div class="card resumo-card">
 
-out = Path("/mnt/data/index.html")
-out.write_text(html, encoding="utf-8")
-print(f"Arquivo criado: {out}")
-print(f"Tamanho: {out.stat().st_size:,} bytes")
+          <div class="resumo-label">
+            A RECEBER
+          </div>
+
+          <div
+            id="receber"
+            class="resumo-valor"
+          >
+            R$ 0,00
+          </div>
+
+          <div class="resumo-info">
+            Contas a receber
+          </div>
+
+        </div>
+
+
+        <!-- DESPESAS -->
+
+        <div class="card resumo-card">
+
+          <div class="resumo-label">
+            A PAGAR
+          </div>
+
+          <div
+            id="pagar"
+            class="resumo-valor"
+          >
+            R$ 0,00
+          </div>
+
+          <div class="resumo-info">
+            Contas a pagar
+          </div>
+
+        </div>
+
+
+        <!-- SALDO BANCO -->
+
+        <div class="card resumo-card">
+
+          <div class="resumo-label">
+            SALDO DO BANCO
+          </div>
+
+          <div
+            id="saldoBanco"
+            class="resumo-valor"
+          >
+            R$ 0,00
+          </div>
+
+          <div class="resumo-info">
+            Resultado financeiro
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         MOVIMENTAÇÃO
+    ====================================================== -->
+
+    <section>
+
+      <div class="section-title">
+
+        <h2>
+          Movimentação
+        </h2>
+
+      </div>
+
+
+      <div class="movimentacao-grid">
+
+
+        <!-- RECEBIMENTOS -->
+
+        <div class="card mov-card">
+
+          <div class="mov-header">
+
+            <div class="mov-title">
+
+              <div class="mov-icon receber-icon">
+                ↑
+              </div>
+
+              <span>
+                Recebimentos
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <div
+            id="recebido"
+            class="mov-valor valor-receber"
+          >
+            R$ 0,00
+          </div>
+
+
+          <div class="mov-linha">
+
+            <span>
+              Total recebido
+            </span>
+
+            <strong id="recebidoInfo">
+              R$ 0,00
+            </strong>
+
+          </div>
+
+        </div>
+
+
+        <!-- PAGAMENTOS -->
+
+        <div class="card mov-card">
+
+          <div class="mov-header">
+
+            <div class="mov-title">
+
+              <div class="mov-icon pagar-icon">
+                ↓
+              </div>
+
+              <span>
+                Pagamentos
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <div
+            id="pago"
+            class="mov-valor valor-pagar"
+          >
+            R$ 0,00
+          </div>
+
+
+          <div class="mov-linha">
+
+            <span>
+              Total pago
+            </span>
+
+            <strong id="pagoInfo">
+              R$ 0,00
+            </strong>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         SALDO FINAL
+    ====================================================== -->
+
+    <section class="saldo-card">
+
+      <div class="saldo-content">
+
+        <div>
+
+          <div class="saldo-label">
+            SALDO PROJETADO
+          </div>
+
+          <div
+            id="saldoFinal"
+            class="saldo-valor"
+          >
+            R$ 0,00
+          </div>
+
+          <div class="saldo-descricao">
+            Saldo inicial + recebimentos − pagamentos
+          </div>
+
+        </div>
+
+
+        <div
+          id="saldoStatus"
+          class="saldo-status saldo-zero"
+        >
+          Equilibrado
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         RODAPÉ
+    ====================================================== -->
+
+    <footer class="footer">
+
+      Controle Financeiro
+      &nbsp;•&nbsp;
+      Gestão financeira mensal
+
+    </footer>
+
+
+  </main>
+
+
+  <!-- =======================================================
+       JAVASCRIPT
+  ======================================================== -->
+
+  <script>
+
+
+    /* =======================================================
+       VARIÁVEIS
+    ======================================================== */
+
+    let competenciaAtual = '';
+
+
+    /* =======================================================
+       INICIALIZAÇÃO
+    ======================================================== */
+
+    document.addEventListener(
+      'DOMContentLoaded',
+      function () {
+
+        const campo =
+          document.getElementById('competencia');
+
+
+        const agora =
+          new Date();
+
+
+        const ano =
+          agora.getFullYear();
+
+
+        const mes =
+          String(
+            agora.getMonth() + 1
+          ).padStart(2, '0');
+
+
+        const competenciaPadrao =
+          ano + '-' + mes;
+
+
+        campo.value =
+          competenciaPadrao;
+
+
+        competenciaAtual =
+          competenciaPadrao;
+
+
+        atualizarTextoCompetencia(
+          competenciaPadrao
+        );
+
+
+        campo.addEventListener(
+          'change',
+          function () {
+
+            if (!this.value) {
+              return;
+            }
+
+
+            competenciaAtual =
+              this.value;
+
+
+            atualizarTextoCompetencia(
+              competenciaAtual
+            );
+
+
+            carregarResumo();
+
+          }
+        );
+
+
+        carregarResumo();
+
+      }
+    );
+
+
+    /* =======================================================
+       TEXTO DA COMPETÊNCIA
+    ======================================================== */
+
+    function atualizarTextoCompetencia(
+      competencia
+    ) {
+
+      const elemento =
+        document.getElementById(
+          'competenciaTexto'
+        );
+
+
+      if (!competencia) {
+
+        elemento.textContent = '-';
+
+        return;
+      }
+
+
+      const partes =
+        competencia.split('-');
+
+
+      if (partes.length !== 2) {
+
+        elemento.textContent =
+          competencia;
+
+        return;
+      }
+
+
+      const ano =
+        partes[0];
+
+
+      const mes =
+        parseInt(
+          partes[1],
+          10
+        );
+
+
+      const nomesMeses = [
+        'Janeiro',
+        'Fevereiro',
+        'Março',
+        'Abril',
+        'Maio',
+        'Junho',
+        'Julho',
+        'Agosto',
+        'Setembro',
+        'Outubro',
+        'Novembro',
+        'Dezembro'
+      ];
+
+
+      elemento.textContent =
+        nomesMeses[mes - 1] +
+        ' / ' +
+        ano;
+
+    }
+
+
+    /* =======================================================
+       FORMATAÇÃO MONETÁRIA
+    ======================================================== */
+
+    function formatarMoeda(
+      valor
+    ) {
+
+      let numero =
+        Number(valor);
+
+
+      if (!Number.isFinite(numero)) {
+        numero = 0;
+      }
+
+
+      return numero.toLocaleString(
+        'pt-BR',
+        {
+          style: 'currency',
+          currency: 'BRL'
+        }
+      );
+
+    }
+
+
+    /* =======================================================
+       CONVERTER VALOR
+    ======================================================== */
+
+    function numeroSeguro(
+      valor
+    ) {
+
+      if (
+        valor === null ||
+        valor === undefined ||
+        valor === ''
+      ) {
+
+        return 0;
+
+      }
+
+
+      if (
+        typeof valor === 'number' &&
+        Number.isFinite(valor)
+      ) {
+
+        return valor;
+
+      }
+
+
+      let texto =
+        String(valor)
+          .trim()
+          .replace(/\s/g, '');
+
+
+      if (
+        texto.includes(',') &&
+        texto.includes('.')
+      ) {
+
+        texto =
+          texto.replace(
+            /\./g,
+            ''
+          );
+
+        texto =
+          texto.replace(
+            ',',
+            '.'
+          );
+
+      }
+      else if (
+        texto.includes(',')
+      ) {
+
+        texto =
+          texto.replace(
+            ',',
+            '.'
+          );
+
+      }
+
+
+      const numero =
+        Number(texto);
+
+
+      return Number.isFinite(numero)
+        ? numero
+        : 0;
+
+    }
+
+
+    /* =======================================================
+       CARREGAR RESUMO
+    ======================================================== */
+
+    function carregarResumo() {
+
+      mostrarLoading(true);
+
+
+      if (
+        typeof google === 'undefined' ||
+        !google.script ||
+        !google.script.run
+      ) {
+
+        console.warn(
+          'google.script.run não está disponível.'
+        );
+
+
+        mostrarLoading(false);
+
+        return;
+
+      }
+
+
+      google.script.run
+
+        .withSuccessHandler(
+          function (resumo) {
+
+            try {
+
+              preencherResumo(
+                resumo
+              );
+
+            }
+            catch (erro) {
+
+              console.error(
+                erro
+              );
+
+              mostrarErro(
+                'Não foi possível processar o resumo financeiro.'
+              );
+
+            }
+            finally {
+
+              mostrarLoading(false);
+
+            }
+
+          }
+        )
+
+        .withFailureHandler(
+          function (erro) {
+
+            console.error(
+              'Erro ao obter resumo:',
+              erro
+            );
+
+
+            mostrarLoading(false);
+
+
+            mostrarErro(
+              obterMensagemErro(
+                erro
+              )
+            );
+
+          }
+        )
+
+        .obterResumo(
+          competenciaAtual
+        );
+
+    }
+
+
+    /* =======================================================
+       PREENCHER RESUMO
+    ======================================================== */
+
+    function preencherResumo(
+      resumo
+    ) {
+
+      if (
+        !resumo ||
+        typeof resumo !== 'object'
+      ) {
+
+        resumo = {};
+
+      }
+
+
+      const saldoInicial =
+        numeroSeguro(
+          resumo.saldoInicial
+        );
+
+
+      const receber =
+        numeroSeguro(
+          resumo.receber
+        );
+
+
+      const pagar =
+        numeroSeguro(
+          resumo.pagar
+        );
+
+
+      const recebido =
+        numeroSeguro(
+          resumo.recebido
+        );
+
+
+      const pago =
+        numeroSeguro(
+          resumo.pago
+        );
+
+
+      let saldoBanco;
+
+
+      if (
+        resumo.saldoBanco !== undefined &&
+        resumo.saldoBanco !== null &&
+        resumo.saldoBanco !== ''
+      ) {
+
+        saldoBanco =
+          numeroSeguro(
+            resumo.saldoBanco
+          );
+
+      }
+      else {
+
+        saldoBanco =
+          saldoInicial +
+          recebido -
+          pago;
+
+      }
+
+
+      const saldoFinal =
+        saldoBanco;
+
+
+      document.getElementById(
+        'saldoInicial'
+      ).textContent =
+        formatarMoeda(
+          saldoInicial
+        );
+
+
+      document.getElementById(
+        'receber'
+      ).textContent =
+        formatarMoeda(
+          receber
+        );
+
+
+      document.getElementById(
+        'pagar'
+      ).textContent =
+        formatarMoeda(
+          pagar
+        );
+
+
+      document.getElementById(
+        'saldoBanco'
+      ).textContent =
+        formatarMoeda(
+          saldoBanco
+        );
+
+
+      document.getElementById(
+        'recebido'
+      ).textContent =
+        formatarMoeda(
+          recebido
+        );
+
+
+      document.getElementById(
+        'recebidoInfo'
+      ).textContent =
+        formatarMoeda(
+          recebido
+        );
+
+
+      document.getElementById(
+        'pago'
+      ).textContent =
+        formatarMoeda(
+          pago
+        );
+
+
+      document.getElementById(
+        'pagoInfo'
+      ).textContent =
+        formatarMoeda(
+          pago
+        );
+
+
+      document.getElementById(
+        'saldoFinal'
+      ).textContent =
+        formatarMoeda(
+          saldoFinal
+        );
+
+
+      atualizarStatusSaldo(
+        saldoFinal
+      );
+
+    }
+
+
+    /* =======================================================
+       STATUS DO SALDO
+    ======================================================== */
+
+    function atualizarStatusSaldo(
+      saldo
+    ) {
+
+      const elemento =
+        document.getElementById(
+          'saldoStatus'
+        );
+
+
+      elemento.className =
+        'saldo-status';
+
+
+      if (saldo > 0.009) {
+
+        elemento.classList.add(
+          'saldo-positivo'
+        );
+
+        elemento.textContent =
+          'Saldo positivo';
+
+      }
+      else if (saldo < -0.009) {
+
+        elemento.classList.add(
+          'saldo-negativo'
+        );
+
+        elemento.textContent =
+          'Saldo negativo';
+
+      }
+      else {
+
+        elemento.classList.add(
+          'saldo-zero'
+        );
+
+        elemento.textContent =
+          'Equilibrado';
+
+      }
+
+    }
+
+
+    /* =======================================================
+       NAVEGAÇÃO
+    ======================================================== */
+
+    function abrirPagina(
+      pagina
+    ) {
+
+      if (!pagina) {
+        return;
+      }
+
+
+      mostrarLoading(true);
+
+
+      const url =
+        '?page=' +
+        encodeURIComponent(
+          pagina
+        );
+
+
+      window.top.location.href =
+        url;
+
+    }
+
+
+    /* =======================================================
+       ABRIR RELATÓRIO
+    ======================================================== */
+
+    function abrirRelatorio() {
+
+      const competencia =
+        document.getElementById(
+          'competencia'
+        ).value;
+
+
+      if (!competencia) {
+
+        alert(
+          'Selecione uma competência.'
+        );
+
+        return;
+
+      }
+
+
+      const url =
+        '?page=relatorio' +
+        '&competencia=' +
+        encodeURIComponent(
+          competencia
+        );
+
+
+      window.open(
+        url,
+        '_blank'
+      );
+
+    }
+
+
+    /* =======================================================
+       LOADING
+    ======================================================== */
+
+    function mostrarLoading(
+      mostrar
+    ) {
+
+      const loading =
+        document.getElementById(
+          'loading'
+        );
+
+
+      if (mostrar) {
+
+        loading.classList.add(
+          'active'
+        );
+
+      }
+      else {
+
+        loading.classList.remove(
+          'active'
+        );
+
+      }
+
+    }
+
+
+    /* =======================================================
+       ERRO
+    ======================================================== */
+
+    function obterMensagemErro(
+      erro
+    ) {
+
+      if (!erro) {
+
+        return 'Ocorreu um erro ao carregar os dados.';
+
+      }
+
+
+      if (
+        typeof erro === 'string'
+      ) {
+
+        return erro;
+
+      }
+
+
+      if (
+        erro.message
+      ) {
+
+        return erro.message;
+
+      }
+
+
+      return 'Ocorreu um erro ao carregar os dados.';
+
+    }
+
+
+    function mostrarErro(
+      mensagem
+    ) {
+
+      alert(
+        mensagem ||
+        'Ocorreu um erro.'
+      );
+
+    }
+
+
+    /* =======================================================
+       EXPOSIÇÃO GLOBAL
+       Garante que os onclick funcionem no Apps Script.
+    ======================================================== */
+
+    window.abrirPagina =
+      abrirPagina;
+
+
+    window.abrirRelatorio =
+      abrirRelatorio;
+
+
+    window.carregarResumo =
+      carregarResumo;
+
+
+  </script>
+
+
+</body>
+
+</html>
+```

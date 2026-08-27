@@ -1,51 +1,50 @@
 from pathlib import Path
 
-src = Path("/mnt/data/index_ecosignado_rescisao_atualizado.html")
-html = src.read_text(encoding="utf-8") if src.exists() else ""
+p = Path("/mnt/data/index_ecosignado_rescisao_atualizado_v2.html")
+html = p.read_text(encoding="utf-8")
 
-# Move existing actions block from its old location to immediately after header.
-start = html.find('<div class="container">')
-header_end = html.find('</header>', start)
-actions_start = html.find('<!-- =====================================================\n     AÇÕES', header_end)
-actions_div_start = html.find('<div class="actions">', actions_start)
-actions_div_end = html.find('</div>', actions_div_start)
-if actions_div_start != -1 and actions_div_end != -1:
-    actions_block = html[actions_div_start:actions_div_end+6]
-    # Remove old block including preceding comment section.
-    comment_end = html.find('-->', actions_start)
-    remove_end = actions_div_end + 6
-    html = html[:actions_start] + html[remove_end:]
-    # Re-find header end after removal and insert actions after header.
-    header_end = html.find('</header>', start)
-    insert_pos = header_end + len('</header>')
-    html = html[:insert_pos] + '\n\n' + actions_block + '\n' + html[insert_pos:]
+# Rebuild a clean GitHub-ready index from the user's supplied version plus requested UI.
+# The existing file already contains the requested calculator; make the top actions robust.
+# Ensure action bar is directly after header.
+header_end = html.find("</header>")
+actions_start = html.find('<div class="actions">')
+if header_end != -1 and actions_start != -1:
+    actions_end = html.find("</div>", actions_start)
+    actions_block = html[actions_start:actions_end+6]
+    # Remove existing action block
+    html = html[:actions_start] + html[actions_end+6:]
+    # Insert directly after header
+    header_end = html.find("</header>")
+    html = html[:header_end+9] + "\n\n" + actions_block + "\n" + html[header_end+9:]
 
-# If source doesn't have the configuration button, add it to actions.
-if 'abrirConfiguracoes' not in html:
-    marker = '''<button
-type="button"
-class="btn-irrf"
-onclick="abrirIRRFINSS()"
->
-🧾 IRRF / INSS
-</button>'''
-    replacement = marker + '''
+# Make actions visually top-level and responsive.
+if ".actions{" in html:
+    html = html.replace(
+        ".actions{\n  display:flex;\n  flex-wrap:wrap;\n  gap:10px;\n  margin-top:20px;\n}",
+        """.actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin:0 0 18px;
+  padding:14px;
+  background:#fff;
+  border:1px solid #e5e7eb;
+  border-radius:16px;
+  box-shadow:0 4px 18px rgba(0,0,0,.05);
+  position:sticky;
+  top:10px;
+  z-index:100;
+}
 
-<button
-type="button"
-class="btn-config"
-onclick="abrirConfiguracoes()"
->
-⚙️ Ver configurações necessárias
-</button>'''
-    html = html.replace(marker, replacement)
+.actions button{
+  flex:1 1 auto;
+}"""
+    )
 
-# Add config button style if absent.
-if '.btn-config' not in html:
-    css_marker = '''.btn-irrf:hover{
-  background:#6d28d9;
-}'''
-    css_add = css_marker + '''
+# Ensure config CSS exists.
+if ".btn-config{" not in html:
+    marker = ".btn-irrf:hover{\n  background:#6d28d9;\n}"
+    css = marker + """
 
 /* =========================================================
    BOTÃO CONFIGURAÇÕES
@@ -58,243 +57,154 @@ if '.btn-config' not in html:
 
 .btn-config:hover{
   background:#115e59;
-}'''
-    html = html.replace(css_marker, css_add)
+}"""
+    html = html.replace(marker, css)
 
-# Add configuration modal before closing body if absent.
+# Add GitHub-ready modal if missing.
 if 'id="modalConfiguracoes"' not in html:
     modal = r'''
 <!-- =====================================================
      MODAL — CONFIGURAÇÕES NECESSÁRIAS
 ===================================================== -->
-
 <div id="modalConfiguracoes" class="modal-config" aria-hidden="true">
-
-  <div class="modal-config-conteudo">
+  <div class="modal-config-conteudo" role="dialog" aria-modal="true" aria-labelledby="tituloConfiguracoes">
 
     <div class="modal-config-header">
       <div>
-        <div class="modal-config-titulo">
+        <div id="tituloConfiguracoes" class="modal-config-titulo">
           ⚙️ Configurações necessárias
         </div>
         <div class="modal-config-subtitulo">
-          Conferência das rubricas e parâmetros do Crédito do Trabalhador na rescisão
+          Conferência das rubricas, naturezas e incidências do Crédito do Trabalhador
         </div>
       </div>
-
-      <button
-        type="button"
-        class="modal-fechar"
-        onclick="fecharConfiguracoes()"
-        aria-label="Fechar"
-      >×</button>
+      <button type="button" class="modal-fechar" onclick="fecharConfiguracoes()" aria-label="Fechar">×</button>
     </div>
 
     <div class="modal-config-corpo">
 
       <div class="config-alerta">
-        <strong>Importante:</strong>
-        a classificação deve ser conferida na folha/eSocial e no
-        Manual Operacional do Empregador do Crédito do Trabalhador.
-        O sistema não deve decidir a natureza da rubrica apenas pelo nome.
+        <strong>Importante:</strong> o nome da rubrica, isoladamente, não define sua
+        elegibilidade. Confira a natureza da rubrica e as incidências informadas no
+        eSocial, além da versão vigente do Manual Operacional do Empregador.
       </div>
 
-      <h3>1. Rubricas que podem compor a remuneração disponível</h3>
+      <h3>1. Rubricas a conferir na remuneração disponível</h3>
 
       <div class="config-grid">
-
-        <div class="config-item">
-          <strong>Saldo de salário</strong>
-          <span>Verificar a natureza utilizada no eSocial e sua incidência.</span>
-        </div>
-
-        <div class="config-item">
-          <strong>Horas extras</strong>
-          <span>Incluir quando constituírem parcela remuneratória elegível.</span>
-        </div>
-
-        <div class="config-item">
-          <strong>Adicionais salariais</strong>
-          <span>Ex.: noturno, insalubridade, periculosidade e tempo de serviço.</span>
-        </div>
-
-        <div class="config-item">
-          <strong>DSR / reflexos</strong>
-          <span>Considerar quando decorrentes de parcelas remuneratórias elegíveis.</span>
-        </div>
-
-        <div class="config-item">
-          <strong>Outras verbas salariais</strong>
-          <span>Somente quando enquadradas na regra e corretamente classificadas.</span>
-        </div>
-
-        <div class="config-item">
-          <strong>Férias e 1/3</strong>
-          <span>Devem ser tratadas conforme a natureza específica da parcela no eSocial.</span>
-        </div>
-
+        <div class="config-item"><strong>Saldo de salário</strong><span>Conferir a natureza e o tratamento da parcela no eSocial.</span></div>
+        <div class="config-item"><strong>Horas extras</strong><span>Considerar quando constituírem parcela remuneratória elegível.</span></div>
+        <div class="config-item"><strong>Anuênio / tempo de serviço</strong><span>Considerar conforme a natureza remuneratória efetivamente cadastrada.</span></div>
+        <div class="config-item"><strong>Adicional noturno</strong><span>Conferir o enquadramento da rubrica e suas incidências.</span></div>
+        <div class="config-item"><strong>Insalubridade</strong><span>Conferir a natureza e a incidência da rubrica.</span></div>
+        <div class="config-item"><strong>Periculosidade</strong><span>Conferir a natureza e a incidência da rubrica.</span></div>
+        <div class="config-item"><strong>DSR / reflexos</strong><span>Considerar quando decorrentes de parcelas remuneratórias elegíveis.</span></div>
+        <div class="config-item"><strong>Outras verbas salariais</strong><span>Somente quando efetivamente enquadradas na regra aplicável.</span></div>
+        <div class="config-item"><strong>Férias / 1/3</strong><span>Verificar individualmente a natureza da parcela e seu tratamento.</span></div>
+        <div class="config-item"><strong>Demais verbas</strong><span>Não incluir automaticamente apenas pelo nome da rubrica.</span></div>
       </div>
 
-      <h3>2. Naturezas / incidências que precisam ser conferidas</h3>
+      <h3>2. Campos do eSocial que devem ser conferidos</h3>
 
       <div class="config-tabela-wrap">
         <table class="config-tabela">
           <thead>
-            <tr>
-              <th>Referência</th>
-              <th>Configuração / tratamento</th>
-            </tr>
+            <tr><th>Campo</th><th>O que conferir</th></tr>
           </thead>
           <tbody>
-            <tr>
-              <td><strong>Naturezas 6003, 6004, 6006 e 6007</strong></td>
-              <td>Conferir o enquadramento das verbas rescisórias elegíveis no leiaute e no manual vigente.</td>
-            </tr>
-            <tr>
-              <td><strong>codIncCP</strong></td>
-              <td>Conferir a incidência previdenciária efetivamente informada para cada rubrica.</td>
-            </tr>
-            <tr>
-              <td><strong>codIncIRRF</strong></td>
-              <td>Conferir a incidência de IRRF da rubrica conforme sua natureza.</td>
-            </tr>
-            <tr>
-              <td><strong>Natureza 9253</strong></td>
-              <td>Utilizada para o desconto relativo ao Crédito do Trabalhador, conforme orientação do eSocial.</td>
-            </tr>
+            <tr><td><strong>Natureza da rubrica</strong></td><td>Identificação correta da natureza conforme a tabela e o manual vigentes.</td></tr>
+            <tr><td><strong>codIncCP</strong></td><td>Incidência previdenciária da rubrica.</td></tr>
+            <tr><td><strong>codIncIRRF</strong></td><td>Incidência de IRRF da rubrica.</td></tr>
+            <tr><td><strong>codIncFGTS</strong></td><td>Incidência de FGTS quando aplicável.</td></tr>
           </tbody>
         </table>
       </div>
 
-      <h3>3. Descontos que devem ser avaliados</h3>
+      <h3>3. Descontos para apuração da remuneração disponível</h3>
 
       <ul class="config-lista">
-        <li>INSS sobre parcelas que tenham incidência previdenciária.</li>
+        <li>INSS incidente sobre as parcelas que compõem a base aplicável.</li>
         <li>IRRF quando efetivamente incidente.</li>
         <li>Pensão alimentícia e retenções judiciais, quando aplicáveis.</li>
-        <li>Adiantamentos e outros descontos legalmente exigíveis.</li>
-        <li>Descontos voluntários somente quando admitidos pela regra aplicável.</li>
-        <li>FIES, quando houver previsão e enquadramento aplicável.</li>
+        <li>Descontos legalmente exigíveis e previstos na regra aplicável.</li>
+        <li>Outros descontos somente quando houver fundamento para sua dedução.</li>
       </ul>
 
-      <h3>4. O que não deve ser tratado automaticamente como base</h3>
-
       <div class="config-alerta config-alerta-amarela">
-        <strong>Não basta o nome da rubrica.</strong>
-        Verbas indenizatórias ou parcelas sem enquadramento na remuneração
-        disponível não devem ser incluídas automaticamente. A classificação
-        deve ser validada pela natureza da rubrica, incidências do eSocial e
-        orientação vigente do Crédito do Trabalhador.
+        <strong>Atenção:</strong> não trate automaticamente todo desconto da rescisão
+        como dedutível. A ferramenta deve ser utilizada como conferência e a
+        classificação precisa ser validada com a folha/eSocial.
       </div>
 
-      <h3>5. Contratos de Crédito do Trabalhador</h3>
+      <h3>4. Contratos do Crédito do Trabalhador</h3>
 
       <div class="config-grid">
+        <div class="config-item"><strong>Instituição financeira</strong><span>Identificar o contrato/instituição para facilitar a conferência.</span></div>
+        <div class="config-item"><strong>Percentual de garantia</strong><span>Informar o percentual aplicável ao contrato.</span></div>
+        <div class="config-item"><strong>Saldo devedor</strong><span>Informar o saldo devedor atualizado do contrato.</span></div>
+        <div class="config-item"><strong>Limite global</strong><span>Conferir o limite global aplicável antes de efetivar os descontos.</span></div>
+      </div>
 
-        <div class="config-item">
-          <strong>Percentual de garantia</strong>
-          <span>Informar o percentual de verbas rescisórias dado em garantia para o contrato.</span>
-        </div>
+      <h3>5. Desconto do Crédito do Trabalhador</h3>
 
-        <div class="config-item">
-          <strong>Saldo devedor</strong>
-          <span>Informar o saldo devedor atualizado do contrato.</span>
-        </div>
-
-        <div class="config-item">
-          <strong>Valor do contrato</strong>
-          <span>O desconto efetivo deve respeitar o limite resultante da aplicação do percentual e o saldo devedor.</span>
-        </div>
-
-        <div class="config-item">
-          <strong>Contrato com garantia de 0%</strong>
-          <span>Não deve gerar desconto de garantia sobre as verbas rescisórias.</span>
-        </div>
-
+      <div class="config-tabela-wrap">
+        <table class="config-tabela">
+          <thead>
+            <tr><th>Referência</th><th>Tratamento</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Natureza 9253</strong></td><td>Conferir a utilização para o desconto do Crédito do Trabalhador conforme orientação vigente do eSocial.</td></tr>
+            <tr><td><strong>codIncCP</strong></td><td>Conferir a configuração vigente para a rubrica do desconto.</td></tr>
+            <tr><td><strong>codIncIRRF</strong></td><td>Conferir a configuração vigente para a rubrica do desconto.</td></tr>
+            <tr><td><strong>codIncFGTS</strong></td><td>Conferir a configuração vigente para a rubrica do desconto.</td></tr>
+          </tbody>
+        </table>
       </div>
 
       <h3>6. 13º salário</h3>
 
       <div class="config-alerta">
-        <strong>Conferência separada:</strong>
-        o 13º salário possui tratamento próprio e não deve ser misturado
-        automaticamente à base de verbas rescisórias utilizada nesta tela.
+        <strong>Conferência separada:</strong> o 13º possui tratamento próprio.
+        Por isso, a calculadora mantém campos específicos para o 13º e suas
+        incidências, evitando misturá-lo automaticamente com a base principal.
       </div>
 
-      <h3>7. Configuração da rubrica do desconto</h3>
-
-      <div class="config-tabela-wrap">
-        <table class="config-tabela">
-          <thead>
-            <tr>
-              <th>Campo</th>
-              <th>Referência</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Natureza da rubrica</td>
-              <td><strong>9253</strong> — conferir conforme manual/eSocial vigente.</td>
-            </tr>
-            <tr>
-              <td>codIncFGTS</td>
-              <td><strong>31</strong>, conforme orientação aplicável à rubrica.</td>
-            </tr>
-            <tr>
-              <td>codIncCP</td>
-              <td><strong>00</strong>, conforme orientação aplicável à rubrica.</td>
-            </tr>
-            <tr>
-              <td>codIncIRRF</td>
-              <td><strong>9</strong>, conforme orientação aplicável à rubrica.</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <h3>8. Conferência no desligamento</h3>
+      <h3>7. Checklist antes de fechar a rescisão</h3>
 
       <ol class="config-lista-ordenada">
-        <li>Identificar as rubricas da rescisão.</li>
+        <li>Identificar todas as rubricas da rescisão.</li>
         <li>Conferir a natureza de cada rubrica.</li>
-        <li>Conferir <strong>codIncCP</strong> e <strong>codIncIRRF</strong>.</li>
+        <li>Conferir <strong>codIncCP</strong>, <strong>codIncIRRF</strong> e, quando aplicável, <strong>codIncFGTS</strong>.</li>
         <li>Separar parcelas que não integram a remuneração disponível.</li>
         <li>Apurar a remuneração disponível.</li>
         <li>Aplicar o percentual de garantia de cada contrato.</li>
         <li>Comparar o resultado com o saldo devedor atualizado.</li>
-        <li>Registrar o desconto na rescisão conforme as regras do Crédito do Trabalhador/eSocial.</li>
+        <li>Conferir o limite global.</li>
+        <li>Registrar corretamente o desconto na folha/eSocial.</li>
       </ol>
 
       <div class="config-fonte">
-        <strong>Fonte oficial:</strong>
-        Manual Operacional do Empregador — Crédito do Trabalhador,
-        disponível no Portal do Ministério do Trabalho e Emprego.
-        Sempre utilize a versão vigente do manual.
+        <strong>Fonte de conferência:</strong> Manual Operacional do Empregador —
+        Crédito do Trabalhador, disponível no Portal do Ministério do Trabalho e
+        Emprego. Utilize sempre a versão vigente do manual.
       </div>
 
     </div>
 
     <div class="modal-config-footer">
-      <button
-        type="button"
-        class="btn-secondary"
-        onclick="fecharConfiguracoes()"
-      >
-        Fechar
-      </button>
+      <button type="button" class="btn-secondary" onclick="fecharConfiguracoes()">Fechar</button>
     </div>
 
   </div>
-
 </div>
 '''
-    html = html.replace('</body>', modal + '\n</body>')
+    html = html.replace("</body>", modal + "\n</body>")
 
 # Add modal CSS.
-if '.modal-config{' not in html:
+if ".modal-config{" not in html:
     css = r'''
 /* =========================================================
-   MODAL CONFIGURAÇÕES
+   MODAL DE CONFIGURAÇÕES
 ========================================================= */
 
 .modal-config{
@@ -303,8 +213,8 @@ if '.modal-config{' not in html:
   inset:0;
   z-index:9999;
   background:rgba(15,23,42,.62);
-  padding:20px;
-  overflow-y:auto;
+  padding:18px;
+  overflow:auto;
 }
 
 .modal-config.aberto{
@@ -315,19 +225,19 @@ if '.modal-config{' not in html:
 
 .modal-config-conteudo{
   width:min(1050px,100%);
-  max-height:92vh;
-  overflow:hidden;
+  max-height:94vh;
   background:#fff;
   border-radius:16px;
-  box-shadow:0 20px 60px rgba(0,0,0,.25);
+  overflow:hidden;
+  box-shadow:0 20px 60px rgba(0,0,0,.28);
   display:flex;
   flex-direction:column;
 }
 
 .modal-config-header{
   display:flex;
-  justify-content:space-between;
   align-items:flex-start;
+  justify-content:space-between;
   gap:15px;
   padding:20px 22px;
   border-bottom:1px solid #e5e7eb;
@@ -349,22 +259,20 @@ if '.modal-config{' not in html:
   width:38px;
   height:38px;
   padding:0;
-  border-radius:8px;
   background:#f1f5f9;
   color:#475569;
   font-size:25px;
-  line-height:1;
 }
 
 .modal-config-corpo{
   padding:22px;
-  overflow-y:auto;
+  overflow:auto;
 }
 
 .modal-config-corpo h3{
+  margin:22px 0 11px;
   color:#123b68;
   font-size:15px;
-  margin:22px 0 11px;
 }
 
 .modal-config-corpo h3:first-of-type{
@@ -378,21 +286,20 @@ if '.modal-config{' not in html:
 }
 
 .config-item{
-  background:#f8fafc;
+  padding:12px;
   border:1px solid #e2e8f0;
   border-radius:9px;
-  padding:12px;
+  background:#f8fafc;
 }
 
 .config-item strong{
   display:block;
+  margin-bottom:4px;
   color:#1e3a5f;
   font-size:13px;
-  margin-bottom:4px;
 }
 
 .config-item span{
-  display:block;
   color:#64748b;
   font-size:12px;
   line-height:1.5;
@@ -426,17 +333,16 @@ if '.modal-config{' not in html:
 
 .config-tabela th{
   background:#f1f5f9;
-  color:#334155;
   padding:10px;
   font-size:11px;
   text-align:left;
 }
 
 .config-tabela td{
-  border-bottom:1px solid #e5e7eb;
   padding:10px;
+  border-bottom:1px solid #e5e7eb;
   font-size:11px;
-  line-height:1.45;
+  line-height:1.5;
   vertical-align:top;
 }
 
@@ -452,9 +358,9 @@ if '.modal-config{' not in html:
 .config-fonte{
   margin-top:20px;
   padding:13px;
-  background:#f8fafc;
   border:1px solid #e2e8f0;
   border-radius:9px;
+  background:#f8fafc;
   color:#64748b;
   font-size:11px;
   line-height:1.6;
@@ -468,6 +374,14 @@ if '.modal-config{' not in html:
 }
 
 @media(max-width:650px){
+  .actions{
+    position:static;
+  }
+
+  .actions button{
+    width:100%;
+  }
+
   .config-grid{
     grid-template-columns:1fr;
   }
@@ -486,11 +400,10 @@ if '.modal-config{' not in html:
   }
 }
 '''
-    # Put modal CSS before responsive section.
-    html = html.replace('/* =========================================================\n   RESPONSIVO', css + '\n\n/* =========================================================\n   RESPONSIVO', 1)
+    html = html.replace("</style>", css + "\n</style>", 1)
 
-# Add JS modal functions before initialization.
-if 'function abrirConfiguracoes()' not in html:
+# Add modal JS.
+if "function abrirConfiguracoes()" not in html:
     js = r'''
 /* =========================================================
    CONFIGURAÇÕES NECESSÁRIAS
@@ -498,32 +411,24 @@ if 'function abrirConfiguracoes()' not in html:
 
 function abrirConfiguracoes(){
 
-  const modal =
-    document.getElementById('modalConfiguracoes');
+  const modal = document.getElementById('modalConfiguracoes');
 
-  if(!modal){
-    return;
-  }
+  if(!modal) return;
 
   modal.classList.add('aberto');
   modal.setAttribute('aria-hidden','false');
-
   document.body.style.overflow = 'hidden';
 
 }
 
 function fecharConfiguracoes(){
 
-  const modal =
-    document.getElementById('modalConfiguracoes');
+  const modal = document.getElementById('modalConfiguracoes');
 
-  if(!modal){
-    return;
-  }
+  if(!modal) return;
 
   modal.classList.remove('aberto');
   modal.setAttribute('aria-hidden','true');
-
   document.body.style.overflow = '';
 
 }
@@ -538,21 +443,30 @@ document.addEventListener('keydown', function(event){
 
 document.addEventListener('click', function(event){
 
-  const modal =
-    document.getElementById('modalConfiguracoes');
+  const modal = document.getElementById('modalConfiguracoes');
 
-  if(
-    modal &&
-    event.target === modal
-  ){
+  if(modal && event.target === modal){
     fecharConfiguracoes();
   }
 
 });
 '''
-    html = html.replace('/* =========================================================\n   INICIALIZAÇÃO', js + '\n\n/* =========================================================\n   INICIALIZAÇÃO', 1)
+    html = html.replace("</script>", js + "\n</script>", 1)
 
-# Ensure actions are hidden in print remains okay.
-out = Path("/mnt/data/index_ecosignado_rescisao_atualizado_v2.html")
+# GitHub Pages-friendly: use relative behavior, no external dependencies.
+# Make print hide modal even if opened.
+print_css = """
+@media print{
+  .actions,
+  .modal-config{
+    display:none !important;
+  }
+}
+"""
+if "@media print{" in html and ".modal-config" not in html[html.find("@media print{"):html.find("@media print{")+300]:
+    html = html.replace("@media print{", print_css + "\n@media print{", 1)
+
+out = Path("/mnt/data/index.html")
 out.write_text(html, encoding="utf-8")
-print(out)
+print(f"Arquivo criado: {out}")
+print(f"Tamanho: {out.stat().st_size:,} bytes")

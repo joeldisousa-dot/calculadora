@@ -252,6 +252,68 @@ th.number {
   color: var(--primary-dark);
 }
 
+/* ============================================================
+   LOG
+   ============================================================ */
+
+.log-container {
+  position: relative;
+}
+
+.log-calculo {
+  background: #101820;
+  color: #d9f0ff;
+  border: 1px solid #263746;
+  border-radius: 12px;
+  padding: 18px;
+  min-height: 220px;
+  max-height: 650px;
+  overflow: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+  font-family:
+    Consolas,
+    "Courier New",
+    monospace;
+  font-size: 12px;
+  line-height: 1.65;
+  box-shadow:
+    inset 0 0 20px rgba(0,0,0,.18);
+}
+
+.log-calculo .log-destaque {
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.log-calculo::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.log-calculo::-webkit-scrollbar-track {
+  background: #18232d;
+}
+
+.log-calculo::-webkit-scrollbar-thumb {
+  background: #46657c;
+  border-radius: 10px;
+}
+
+.log-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+.log-status {
+  color: var(--muted);
+  font-size: 12px;
+}
+
 .alert {
   display: none;
   padding: 13px 15px;
@@ -423,6 +485,36 @@ footer {
   .tabs {
     flex-direction: column;
   }
+
+  .log-calculo {
+    font-size: 11px;
+    padding: 13px;
+  }
+}
+
+@media print {
+
+  header {
+    box-shadow: none;
+  }
+
+  .buttons,
+  .modal-overlay {
+    display: none !important;
+  }
+
+  .card {
+    box-shadow: none;
+    break-inside: avoid;
+  }
+
+  .log-calculo {
+    max-height: none;
+    overflow: visible;
+    background: white;
+    color: black;
+    border: 1px solid #999;
+  }
 }
 </style>
 </head>
@@ -432,7 +524,9 @@ footer {
 <header>
   <div class="header-content">
     <h1>🧮 Calculadora INSS e IRRF</h1>
-    <p>Cálculo automático por faixa e gerenciamento das tabelas vigentes.</p>
+    <p>
+      Cálculo automático por faixa e gerenciamento das tabelas vigentes.
+    </p>
   </div>
 </header>
 
@@ -440,19 +534,32 @@ footer {
 
   <div id="alerta" class="alert"></div>
 
-  <!-- DADOS DO CÁLCULO -->
+  <!-- ==========================================================
+       DADOS
+       ========================================================== -->
+
   <section class="card">
+
     <h2>📋 Dados para cálculo</h2>
 
     <div class="grid">
 
       <div class="field">
-        <label for="competencia">Competência</label>
-        <input type="date" id="competencia">
+        <label for="competencia">
+          Competência
+        </label>
+
+        <input
+          type="date"
+          id="competencia"
+        >
       </div>
 
       <div class="field">
-        <label for="baseINSS">Base INSS</label>
+        <label for="baseINSS">
+          Base INSS
+        </label>
+
         <input
           type="text"
           id="baseINSS"
@@ -465,6 +572,7 @@ footer {
         <label for="rendimentosIRRF">
           Rendimentos tributáveis IRRF
         </label>
+
         <input
           type="text"
           id="rendimentosIRRF"
@@ -477,6 +585,7 @@ footer {
         <label for="dependentes">
           Dependentes IRRF
         </label>
+
         <input
           type="number"
           id="dependentes"
@@ -488,12 +597,17 @@ footer {
 
     </div>
 
-    <div class="grid" style="margin-top:15px;">
+    <div
+      class="grid"
+      style="margin-top:15px;"
+    >
 
       <div class="field">
+
         <label for="pensao">
           Pensão alimentícia dedutível
         </label>
+
         <input
           type="text"
           id="pensao"
@@ -501,21 +615,46 @@ footer {
           value="0,00"
           oninput="mascaraMoeda(this)"
         >
+
       </div>
 
       <div class="field">
-        <label>Base INSS utilizada</label>
-        <input id="baseINSSExibida" readonly>
+
+        <label>
+          Base INSS utilizada
+        </label>
+
+        <input
+          id="baseINSSExibida"
+          readonly
+        >
+
       </div>
 
       <div class="field">
-        <label>Rendimentos IRRF utilizados</label>
-        <input id="baseIRRFExibida" readonly>
+
+        <label>
+          Rendimentos IRRF utilizados
+        </label>
+
+        <input
+          id="baseIRRFExibida"
+          readonly
+        >
+
       </div>
 
       <div class="field">
-        <label>Tabelas vigentes</label>
-        <input id="statusVigencia" readonly>
+
+        <label>
+          Tabelas vigentes
+        </label>
+
+        <input
+          id="statusVigencia"
+          readonly
+        >
+
       </div>
 
     </div>
@@ -527,123 +666,306 @@ footer {
     </p>
 
     <div class="buttons">
-      <button class="btn-primary" onclick="calcular()">
+
+      <button
+        class="btn-primary"
+        onclick="calcular()"
+      >
         🧮 Calcular INSS e IRRF
       </button>
 
-      <button class="btn-secondary" onclick="atualizarTabelasVigentes()">
+      <button
+        class="btn-secondary"
+        onclick="atualizarTabelasVigentes()"
+      >
         🔄 Atualizar tabelas
       </button>
 
-      <button class="btn-light" onclick="abrirGerenciadorTabelas()">
+      <button
+        class="btn-light"
+        onclick="abrirGerenciadorTabelas()"
+      >
         ⚙️ Cadastrar/editar tabelas
       </button>
 
-      <button class="btn-warning" onclick="carregarExemplo()">
+      <button
+        class="btn-warning"
+        onclick="carregarExemplo()"
+      >
         📋 Carregar exemplo
       </button>
 
-      <button class="btn-light" onclick="limpar()">
+      <button
+        class="btn-light"
+        onclick="limpar()"
+      >
         🧹 Limpar
       </button>
 
-      <button class="btn-light" onclick="window.print()">
+      <button
+        class="btn-light"
+        onclick="window.print()"
+      >
         🖨️ Imprimir
       </button>
+
     </div>
+
   </section>
 
 
-  <!-- RESULTADOS -->
+  <!-- ==========================================================
+       RESULTADOS
+       ========================================================== -->
+
   <section class="card">
+
     <h2>📊 Resultado do cálculo</h2>
 
     <div class="results">
 
       <div class="result-card inss">
-        <div class="label">INSS</div>
-        <div class="value" id="resultadoINSS">R$ 0,00</div>
+
+        <div class="label">
+          INSS
+        </div>
+
+        <div
+          class="value"
+          id="resultadoINSS"
+        >
+          R$ 0,00
+        </div>
+
       </div>
 
       <div class="result-card irrf">
-        <div class="label">IRRF</div>
-        <div class="value" id="resultadoIRRF">R$ 0,00</div>
+
+        <div class="label">
+          IRRF
+        </div>
+
+        <div
+          class="value"
+          id="resultadoIRRF"
+        >
+          R$ 0,00
+        </div>
+
       </div>
 
       <div class="result-card">
-        <div class="label">Base de cálculo IRRF</div>
-        <div class="value" id="resultadoBaseIRRF">R$ 0,00</div>
+
+        <div class="label">
+          Base de cálculo IRRF
+        </div>
+
+        <div
+          class="value"
+          id="resultadoBaseIRRF"
+        >
+          R$ 0,00
+        </div>
+
       </div>
 
       <div class="result-card total">
-        <div class="label">Total INSS + IRRF</div>
-        <div class="value" id="resultadoTotal">R$ 0,00</div>
+
+        <div class="label">
+          Total INSS + IRRF
+        </div>
+
+        <div
+          class="value"
+          id="resultadoTotal"
+        >
+          R$ 0,00
+        </div>
+
       </div>
 
     </div>
+
   </section>
 
 
-  <!-- TABELA INSS -->
+  <!-- ==========================================================
+       TABELA INSS
+       ========================================================== -->
+
   <section class="card">
+
     <h2>🟢 Tabela INSS vigente</h2>
 
-    <div id="statusINSS" class="status-tabela">
+    <div
+      id="statusINSS"
+      class="status-tabela"
+    >
       Carregando tabela...
     </div>
 
     <div class="table-wrapper">
+
       <table>
+
         <thead>
+
           <tr>
+
             <th>Faixa</th>
-            <th class="number">De</th>
-            <th class="number">Até</th>
-            <th class="number">Alíquota</th>
-            <th class="number">Valor da faixa</th>
-            <th class="number">Contribuição</th>
+
+            <th class="number">
+              De
+            </th>
+
+            <th class="number">
+              Até
+            </th>
+
+            <th class="number">
+              Alíquota
+            </th>
+
+            <th class="number">
+              Valor da faixa
+            </th>
+
+            <th class="number">
+              Contribuição
+            </th>
+
           </tr>
+
         </thead>
 
         <tbody id="tabelaINSS"></tbody>
+
       </table>
+
     </div>
+
   </section>
 
 
-  <!-- TABELA IRRF -->
+  <!-- ==========================================================
+       TABELA IRRF
+       ========================================================== -->
+
   <section class="card">
+
     <h2>🔴 Tabela IRRF vigente</h2>
 
-    <div id="statusIRRF" class="status-tabela">
+    <div
+      id="statusIRRF"
+      class="status-tabela"
+    >
       Carregando tabela...
     </div>
 
     <div class="table-wrapper">
+
       <table>
+
         <thead>
+
           <tr>
+
             <th>Faixa</th>
-            <th class="number">De</th>
-            <th class="number">Até</th>
-            <th class="number">Alíquota</th>
-            <th class="number">Parcela a deduzir</th>
+
+            <th class="number">
+              De
+            </th>
+
+            <th class="number">
+              Até
+            </th>
+
+            <th class="number">
+              Alíquota
+            </th>
+
+            <th class="number">
+              Parcela a deduzir
+            </th>
+
           </tr>
+
         </thead>
 
         <tbody id="tabelaIRRF"></tbody>
+
       </table>
+
     </div>
+
   </section>
 
 
-  <!-- MEMÓRIA -->
+  <!-- ==========================================================
+       MEMÓRIA
+       ========================================================== -->
+
   <section class="card">
+
     <h2>🧾 Memória de cálculo</h2>
 
-    <div id="memoriaCalculo" class="memory">
-      Informe os valores e clique em <strong>Calcular INSS e IRRF</strong>.
+    <div
+      id="memoriaCalculo"
+      class="memory"
+    >
+      Informe os valores e clique em
+      <strong>Calcular INSS e IRRF</strong>.
     </div>
+
+  </section>
+
+
+  <!-- ==========================================================
+       LOG DETALHADO
+       ========================================================== -->
+
+  <section class="card">
+
+    <div class="log-info">
+
+      <div>
+
+        <h2 style="margin-bottom:5px;">
+          📜 Log detalhado do cálculo
+        </h2>
+
+        <div class="log-status">
+          O log apresenta passo a passo os valores utilizados
+          na apuração do INSS e do IRRF.
+        </div>
+
+      </div>
+
+      <div class="buttons" style="margin-top:0;">
+
+        <button
+          class="btn-secondary btn-small"
+          onclick="copiarLog()"
+        >
+          📋 Copiar log
+        </button>
+
+        <button
+          class="btn-light btn-small"
+          onclick="limparLog()"
+        >
+          🧹 Limpar log
+        </button>
+
+      </div>
+
+    </div>
+
+    <pre
+      id="logCalculo"
+      class="log-calculo"
+    >Aguardando cálculo...</pre>
+
   </section>
 
 </div>
@@ -658,12 +980,18 @@ footer {
      MODAL DE TABELAS
      ============================================================ -->
 
-<div id="modalTabelas" class="modal-overlay">
+<div
+  id="modalTabelas"
+  class="modal-overlay"
+>
 
   <div class="modal">
 
     <div class="modal-header">
-      <h2>⚙️ Cadastro das tabelas INSS e IRRF</h2>
+
+      <h2>
+        ⚙️ Cadastro das tabelas INSS e IRRF
+      </h2>
 
       <button
         class="close"
@@ -671,6 +999,7 @@ footer {
       >
         ×
       </button>
+
     </div>
 
     <div class="modal-body">
@@ -696,46 +1025,72 @@ footer {
       </div>
 
 
-      <!-- SELECTOR DE TABELA -->
-
       <div class="grid">
 
         <div class="field">
-          <label>Tabela cadastrada</label>
+
+          <label>
+            Tabela cadastrada
+          </label>
 
           <select
             id="tabelaSelecionada"
             onchange="carregarTabelaSelecionada()"
           ></select>
+
         </div>
 
         <div class="field">
-          <label>Nome da tabela</label>
+
+          <label>
+            Nome da tabela
+          </label>
+
           <input id="nomeTabela">
+
         </div>
 
         <div class="field">
-          <label>Início da vigência</label>
-          <input type="date" id="inicioVigencia">
+
+          <label>
+            Início da vigência
+          </label>
+
+          <input
+            type="date"
+            id="inicioVigencia"
+          >
+
         </div>
 
         <div class="field">
-          <label>Fim da vigência</label>
-          <input type="date" id="fimVigencia">
+
+          <label>
+            Fim da vigência
+          </label>
+
+          <input
+            type="date"
+            id="fimVigencia"
+          >
+
         </div>
 
       </div>
 
 
-      <!-- CAMPOS ESPECÍFICOS IRRF -->
+      <!-- IRRF -->
 
       <div id="configIRRF">
 
-        <h3>Parâmetros adicionais do IRRF</h3>
+        <h3>
+          Parâmetros adicionais do IRRF
+        </h3>
 
         <div class="grid">
 
           <div class="field">
+
             <label>
               Dedução mensal por dependente
             </label>
@@ -745,9 +1100,11 @@ footer {
               type="text"
               oninput="mascaraMoeda(this)"
             >
+
           </div>
 
           <div class="field">
+
             <label>
               Desconto simplificado mensal
             </label>
@@ -757,6 +1114,7 @@ footer {
               type="text"
               oninput="mascaraMoeda(this)"
             >
+
           </div>
 
         </div>
@@ -764,11 +1122,14 @@ footer {
 
         <div class="reducao-box">
 
-          <h3>Redução do IRRF — regra vigente</h3>
+          <h3>
+            Redução do IRRF — regra vigente
+          </h3>
 
           <div class="grid">
 
             <div class="field">
+
               <label>
                 Rendimentos até
               </label>
@@ -778,9 +1139,11 @@ footer {
                 type="text"
                 oninput="mascaraMoeda(this)"
               >
+
             </div>
 
             <div class="field">
+
               <label>
                 Valor máximo da redução
               </label>
@@ -790,9 +1153,11 @@ footer {
                 type="text"
                 oninput="mascaraMoeda(this)"
               >
+
             </div>
 
             <div class="field">
+
               <label>
                 Faixa da fórmula — início
               </label>
@@ -802,9 +1167,11 @@ footer {
                 type="text"
                 oninput="mascaraMoeda(this)"
               >
+
             </div>
 
             <div class="field">
+
               <label>
                 Faixa da fórmula — fim
               </label>
@@ -814,9 +1181,11 @@ footer {
                 type="text"
                 oninput="mascaraMoeda(this)"
               >
+
             </div>
 
             <div class="field">
+
               <label>
                 Parcela fixa da fórmula
               </label>
@@ -826,9 +1195,11 @@ footer {
                 type="text"
                 oninput="mascaraMoeda(this)"
               >
+
             </div>
 
             <div class="field">
+
               <label>
                 Fator da fórmula
               </label>
@@ -838,6 +1209,7 @@ footer {
                 type="number"
                 step="0.000001"
               >
+
             </div>
 
           </div>
@@ -847,9 +1219,9 @@ footer {
       </div>
 
 
-      <!-- FAIXAS -->
-
-      <h3>Faixas da tabela</h3>
+      <h3>
+        Faixas da tabela
+      </h3>
 
       <div id="editorFaixas"></div>
 
@@ -899,7 +1271,9 @@ footer {
       </p>
 
     </div>
+
   </div>
+
 </div>
 
 
@@ -930,9 +1304,13 @@ const TABELAS_PADRAO = {
 
     {
       id: 'INSS-2026',
+
       nome: 'INSS Empregado — 2026',
+
       vigenciaInicio: '2026-01-01',
+
       vigenciaFim: '',
+
       teto: 8475.55,
 
       faixas: [
@@ -966,17 +1344,20 @@ const TABELAS_PADRAO = {
         }
 
       ]
+
     }
 
   ],
-
 
   irrf: [
 
     {
       id: 'IRRF-2026',
+
       nome: 'IRRF Mensal — 2026',
+
       vigenciaInicio: '2026-01-01',
+
       vigenciaFim: '',
 
       dependente: 189.59,
@@ -984,14 +1365,19 @@ const TABELAS_PADRAO = {
       simplificado: 607.20,
 
       reducao: {
+
         ate: 5000.00,
+
         maxima: 312.89,
 
         formulaInicio: 5000.01,
+
         formulaFim: 7350.00,
 
         formulaFixa: 978.62,
+
         formulaFator: 0.133145
+
       },
 
       faixas: [
@@ -1032,6 +1418,7 @@ const TABELAS_PADRAO = {
         }
 
       ]
+
     }
 
   ]
@@ -1054,78 +1441,104 @@ function arredondar(valor) {
 
 function numero(valor) {
 
-  if (valor === null || valor === undefined) {
+  if (
+    valor === null ||
+    valor === undefined
+  ) {
     return 0;
   }
 
-  if (typeof valor === 'number') {
+  if (
+    typeof valor === 'number'
+  ) {
     return valor;
   }
 
-  let texto = String(valor)
-    .replace(/\s/g, '')
-    .replace(/R\$/gi, '')
-    .trim();
+  let texto =
+    String(valor)
+      .replace(/\s/g, '')
+      .replace(/R\$/gi, '')
+      .trim();
 
   if (!texto) {
     return 0;
   }
 
-  texto = texto.replace(/\./g, '');
-  texto = texto.replace(',', '.');
+  texto =
+    texto.replace(/\./g, '');
 
-  const n = Number(texto);
+  texto =
+    texto.replace(',', '.');
 
-  return Number.isFinite(n) ? n : 0;
+  const n =
+    Number(texto);
+
+  return Number.isFinite(n)
+    ? n
+    : 0;
 
 }
 
 
 function moeda(valor) {
 
-  return Number(valor || 0).toLocaleString(
-    'pt-BR',
-    {
-      style: 'currency',
-      currency: 'BRL'
-    }
-  );
+  return Number(valor || 0)
+    .toLocaleString(
+      'pt-BR',
+      {
+        style: 'currency',
+        currency: 'BRL'
+      }
+    );
 
 }
 
 
 function numeroExibicao(valor) {
 
-  return Number(valor || 0).toLocaleString(
-    'pt-BR',
-    {
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2
-    }
-  );
+  return Number(valor || 0)
+    .toLocaleString(
+      'pt-BR',
+      {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      }
+    );
+
+}
+
+
+function percentual(valor) {
+
+  return `${numeroExibicao(valor)}%`;
 
 }
 
 
 function mascaraMoeda(campo) {
 
-  let valor = campo.value
-    .replace(/\D/g, '');
+  let valor =
+    campo.value.replace(/\D/g, '');
 
   if (!valor) {
+
     campo.value = '';
+
     return;
+
   }
 
-  valor = Number(valor) / 100;
+  valor =
+    Number(valor) / 100;
 
-  campo.value = valor.toLocaleString(
-    'pt-BR',
-    {
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2
-    }
-  );
+  campo.value =
+    valor.toLocaleString(
+      'pt-BR',
+      {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      }
+    );
 
 }
 
@@ -1136,17 +1549,21 @@ function mascaraMoeda(campo) {
 
 function dataHoje() {
 
-  const hoje = new Date();
+  const hoje =
+    new Date();
 
-  const ano = hoje.getFullYear();
+  const ano =
+    hoje.getFullYear();
 
-  const mes = String(
-    hoje.getMonth() + 1
-  ).padStart(2, '0');
+  const mes =
+    String(
+      hoje.getMonth() + 1
+    ).padStart(2, '0');
 
-  const dia = String(
-    hoje.getDate()
-  ).padStart(2, '0');
+  const dia =
+    String(
+      hoje.getDate()
+    ).padStart(2, '0');
 
   return `${ano}-${mes}-${dia}`;
 
@@ -1159,9 +1576,12 @@ function formatarData(data) {
     return '';
   }
 
-  const partes = data.split('-');
+  const partes =
+    data.split('-');
 
-  if (partes.length !== 3) {
+  if (
+    partes.length !== 3
+  ) {
     return data;
   }
 
@@ -1188,18 +1608,24 @@ function carregarTabelas() {
   try {
 
     const salvo =
-      localStorage.getItem(STORAGE_KEY);
+      localStorage.getItem(
+        STORAGE_KEY
+      );
 
     if (salvo) {
 
-      const dados = JSON.parse(salvo);
+      const dados =
+        JSON.parse(salvo);
 
-      tabelas = dados;
+      tabelas =
+        dados;
 
     } else {
 
       tabelas =
-        clonar(TABELAS_PADRAO);
+        clonar(
+          TABELAS_PADRAO
+        );
 
       salvarTabelas();
 
@@ -1210,7 +1636,9 @@ function carregarTabelas() {
     console.error(erro);
 
     tabelas =
-      clonar(TABELAS_PADRAO);
+      clonar(
+        TABELAS_PADRAO
+      );
 
   }
 
@@ -1231,7 +1659,10 @@ function salvarTabelas() {
    TABELA VIGENTE
    ============================================================ */
 
-function obterTabelaVigente(tipo, data) {
+function obterTabelaVigente(
+  tipo,
+  data
+) {
 
   const lista =
     tabelas[tipo] || [];
@@ -1244,25 +1675,32 @@ function obterTabelaVigente(tipo, data) {
     data || dataHoje();
 
   const validas =
-    lista.filter(tabela => {
+    lista.filter(
+      tabela => {
 
-      const inicio =
-        tabela.vigenciaInicio;
+        const inicio =
+          tabela.vigenciaInicio;
 
-      const fim =
-        tabela.vigenciaFim;
+        const fim =
+          tabela.vigenciaFim;
 
-      if (competencia < inicio) {
-        return false;
+        if (
+          competencia < inicio
+        ) {
+          return false;
+        }
+
+        if (
+          fim &&
+          competencia > fim
+        ) {
+          return false;
+        }
+
+        return true;
+
       }
-
-      if (fim && competencia > fim) {
-        return false;
-      }
-
-      return true;
-
-    });
+    );
 
   if (!validas.length) {
 
@@ -1270,9 +1708,10 @@ function obterTabelaVigente(tipo, data) {
       .slice()
       .sort(
         (a, b) =>
-          b.vigenciaInicio.localeCompare(
-            a.vigenciaInicio
-          )
+          b.vigenciaInicio
+            .localeCompare(
+              a.vigenciaInicio
+            )
       )[0];
 
   }
@@ -1281,9 +1720,10 @@ function obterTabelaVigente(tipo, data) {
     .slice()
     .sort(
       (a, b) =>
-        b.vigenciaInicio.localeCompare(
-          a.vigenciaInicio
-        )
+        b.vigenciaInicio
+          .localeCompare(
+            a.vigenciaInicio
+          )
     )[0];
 
 }
@@ -1293,7 +1733,10 @@ function obterTabelaVigente(tipo, data) {
    CÁLCULO INSS
    ============================================================ */
 
-function calcularINSS(base, tabela) {
+function calcularINSS(
+  base,
+  tabela
+) {
 
   base =
     arredondar(
@@ -1304,17 +1747,24 @@ function calcularINSS(base, tabela) {
 
     return {
       total: 0,
+      base: 0,
+      teto: 0,
       faixas: []
     };
 
   }
 
   const teto =
-    Number(tabela.teto || 0);
+    Number(
+      tabela.teto || 0
+    );
 
   const baseLimitada =
     teto > 0
-      ? Math.min(base, teto)
+      ? Math.min(
+          base,
+          teto
+        )
       : base;
 
   let total = 0;
@@ -1325,7 +1775,9 @@ function calcularINSS(base, tabela) {
     (faixa, index) => {
 
       const minimo =
-        Number(faixa.min || 0);
+        Number(
+          faixa.min || 0
+        );
 
       const maximo =
         faixa.max === null ||
@@ -1334,7 +1786,9 @@ function calcularINSS(base, tabela) {
           ? baseLimitada
           : Number(faixa.max);
 
-      if (baseLimitada <= minimo) {
+      if (
+        baseLimitada <= minimo
+      ) {
         return;
       }
 
@@ -1353,24 +1807,32 @@ function calcularINSS(base, tabela) {
       const contribuicao =
         arredondar(
           valorFaixa *
-          Number(faixa.aliquota || 0) /
+          Number(
+            faixa.aliquota || 0
+          ) /
           100
         );
 
-      total += contribuicao;
+      total +=
+        contribuicao;
 
       memoria.push({
 
-        faixa: index + 1,
+        faixa:
+          index + 1,
 
         minimo,
 
         maximo,
 
+        limite,
+
         valorFaixa,
 
         aliquota:
-          Number(faixa.aliquota || 0),
+          Number(
+            faixa.aliquota || 0
+          ),
 
         contribuicao
 
@@ -1381,11 +1843,19 @@ function calcularINSS(base, tabela) {
 
   return {
 
-    total: arredondar(total),
+    total:
+      arredondar(total),
 
-    base: baseLimitada,
+    base:
+      baseLimitada,
 
-    faixas: memoria
+    teto,
+
+    baseInformada:
+      base,
+
+    faixas:
+      memoria
 
   };
 
@@ -1396,14 +1866,19 @@ function calcularINSS(base, tabela) {
    CÁLCULO IRRF
    ============================================================ */
 
-function obterFaixaIRRF(base, tabela) {
+function obterFaixaIRRF(
+  base,
+  tabela
+) {
 
   for (
     const faixa of tabela.faixas
   ) {
 
     const minimo =
-      Number(faixa.min || 0);
+      Number(
+        faixa.min || 0
+      );
 
     const maximo =
       faixa.max === null ||
@@ -1438,23 +1913,35 @@ function calcularIRRF(
 
   rendimentos =
     arredondar(
-      Math.max(0, rendimentos)
+      Math.max(
+        0,
+        rendimentos
+      )
     );
 
   inss =
     arredondar(
-      Math.max(0, inss)
+      Math.max(
+        0,
+        inss
+      )
     );
 
   dependentes =
     Math.max(
       0,
-      parseInt(dependentes || 0, 10)
+      parseInt(
+        dependentes || 0,
+        10
+      )
     );
 
   pensao =
     arredondar(
-      Math.max(0, pensao)
+      Math.max(
+        0,
+        pensao
+      )
     );
 
 
@@ -1468,12 +1955,16 @@ function calcularIRRF(
   }
 
 
+  const valorDependente =
+    Number(
+      tabela.dependente || 0
+    );
+
+
   const deducaoDependentes =
     arredondar(
       dependentes *
-      Number(
-        tabela.dependente || 0
-      )
+      valorDependente
     );
 
 
@@ -1541,13 +2032,19 @@ function calcularIRRF(
 
       usarSimplificado,
 
+      valorDependente,
+
       aliquota: 0,
 
       parcelaDeduzir: 0,
 
       impostoBruto: 0,
 
-      reducao: 0
+      reducao: 0,
+
+      faixa: null,
+
+      regraReducao: null
 
     };
 
@@ -1559,14 +2056,24 @@ function calcularIRRF(
       Math.max(
         0,
         base *
-        Number(faixa.aliquota || 0) /
+        Number(
+          faixa.aliquota || 0
+        ) /
         100 -
-        Number(faixa.deducao || 0)
+        Number(
+          faixa.deducao || 0
+        )
       )
     );
 
 
   let reducao = 0;
+
+  let regraReducao = {
+    tipo: 'Nenhuma redução aplicada.',
+    formula: ''
+  };
+
 
   const regra =
     tabela.reducao;
@@ -1576,36 +2083,90 @@ function calcularIRRF(
 
     if (
       rendimentos <=
-      Number(regra.ate || 0)
+      Number(
+        regra.ate || 0
+      )
     ) {
+
+      const reducaoCalculada =
+        Number(
+          regra.maxima || 0
+        );
 
       reducao =
         Math.min(
           impostoBruto,
-          Number(regra.maxima || 0)
+          reducaoCalculada
         );
+
+      regraReducao = {
+
+        tipo:
+          'Rendimentos dentro da faixa de redução máxima.',
+
+        formula:
+          `MIN(${moeda(impostoBruto)}, ` +
+          `${moeda(reducaoCalculada)})`
+
+      };
 
     } else if (
       rendimentos >=
-      Number(regra.formulaInicio || 0) &&
+      Number(
+        regra.formulaInicio || 0
+      ) &&
       rendimentos <=
-      Number(regra.formulaFim || 0)
+      Number(
+        regra.formulaFim || 0
+      )
     ) {
 
-      reducao =
+      const reducaoCalculada =
         Math.max(
           0,
 
-          Number(regra.formulaFixa || 0) -
-          Number(regra.formulaFator || 0) *
+          Number(
+            regra.formulaFixa || 0
+          ) -
+
+          Number(
+            regra.formulaFator || 0
+          ) *
           rendimentos
         );
+
 
       reducao =
         Math.min(
           impostoBruto,
-          reducao
+          reducaoCalculada
         );
+
+
+      regraReducao = {
+
+        tipo:
+          'Rendimentos dentro da faixa com fórmula de redução.',
+
+        formula:
+          `${moeda(regra.formulaFixa)} - ` +
+          `(${numeroExibicao(regra.formulaFator)} × ` +
+          `${moeda(rendimentos)}) = ` +
+          `${moeda(reducaoCalculada)}`
+
+      };
+
+    } else {
+
+      regraReducao = {
+
+        tipo:
+          'Rendimentos fora das faixas de redução.',
+
+        formula:
+          'Nenhuma redução aplicada.'
+
+      };
 
     }
 
@@ -1642,17 +2203,646 @@ function calcularIRRF(
 
     usarSimplificado,
 
+    valorDependente,
+
     aliquota:
-      Number(faixa.aliquota || 0),
+      Number(
+        faixa.aliquota || 0
+      ),
 
     parcelaDeduzir:
-      Number(faixa.deducao || 0),
+      Number(
+        faixa.deducao || 0
+      ),
 
     impostoBruto,
 
-    reducao
+    reducao,
+
+    faixa,
+
+    regraReducao
 
   };
+
+}
+
+
+/* ============================================================
+   LOG
+   ============================================================ */
+
+function linhaLog(
+  texto = ''
+) {
+
+  return texto + '\n';
+
+}
+
+
+function cabecalhoLog(
+  titulo
+) {
+
+  return (
+    '\n' +
+    '============================================================\n' +
+    titulo + '\n' +
+    '============================================================\n'
+  );
+
+}
+
+
+function intervaloFaixa(
+  faixa
+) {
+
+  const maximo =
+    faixa.max === null ||
+    faixa.max === '' ||
+    faixa.max === undefined
+      ? 'sem limite'
+      : moeda(faixa.max);
+
+  return (
+    `${moeda(faixa.min)} até ${maximo}`
+  );
+
+}
+
+
+function gerarLogCalculo(
+  competencia,
+  tabelaINSS,
+  tabelaIRRF,
+  baseINSSInformada,
+  rendimentosInformados,
+  dependentes,
+  pensao,
+  calculoINSS,
+  calculoIRRF,
+  total
+) {
+
+  const agora =
+    new Date();
+
+  const dataHora =
+    agora.toLocaleString(
+      'pt-BR'
+    );
+
+
+  let log = '';
+
+
+  log += cabecalhoLog(
+    'LOG DETALHADO — CÁLCULO INSS + IRRF'
+  );
+
+
+  log += linhaLog(
+    `Data/hora do cálculo: ${dataHora}`
+  );
+
+  log += linhaLog(
+    `Competência: ${formatarData(competencia)}`
+  );
+
+
+  log += cabecalhoLog(
+    '1. DADOS INFORMADOS'
+  );
+
+
+  log += linhaLog(
+    `Base INSS informada: ${moeda(baseINSSInformada)}`
+  );
+
+  log += linhaLog(
+    `Rendimentos tributáveis IRRF informados: ${moeda(rendimentosInformados)}`
+  );
+
+  log += linhaLog(
+    `Dependentes: ${dependentes}`
+  );
+
+  log += linhaLog(
+    `Pensão alimentícia dedutível: ${moeda(pensao)}`
+  );
+
+
+  log += cabecalhoLog(
+    '2. TABELAS UTILIZADAS'
+  );
+
+
+  log += linhaLog(
+    `INSS: ${tabelaINSS.nome}`
+  );
+
+  log += linhaLog(
+    `Vigência INSS: ${formatarData(tabelaINSS.vigenciaInicio)}` +
+    (
+      tabelaINSS.vigenciaFim
+        ? ` até ${formatarData(tabelaINSS.vigenciaFim)}`
+        : ' em vigor'
+    )
+  );
+
+  log += linhaLog(
+    `IRRF: ${tabelaIRRF.nome}`
+  );
+
+  log += linhaLog(
+    `Vigência IRRF: ${formatarData(tabelaIRRF.vigenciaInicio)}` +
+    (
+      tabelaIRRF.vigenciaFim
+        ? ` até ${formatarData(tabelaIRRF.vigenciaFim)}`
+        : ' em vigor'
+    )
+  );
+
+
+  /* ==========================================================
+     INSS
+     ========================================================== */
+
+  log += cabecalhoLog(
+    '3. CÁLCULO DO INSS'
+  );
+
+
+  log += linhaLog(
+    `Base informada: ${moeda(baseINSSInformada)}`
+  );
+
+  log += linhaLog(
+    `Teto utilizado: ${moeda(calculoINSS.teto)}`
+  );
+
+  log += linhaLog(
+    `Base considerada para o INSS: ${moeda(calculoINSS.base)}`
+  );
+
+
+  if (
+    baseINSSInformada >
+    calculoINSS.base
+  ) {
+
+    log += linhaLog(
+      `Base limitada ao teto: SIM`
+    );
+
+  } else {
+
+    log += linhaLog(
+      `Base limitada ao teto: NÃO`
+    );
+
+  }
+
+
+  log += '\n';
+
+
+  if (
+    calculoINSS.faixas.length === 0
+  ) {
+
+    log += linhaLog(
+      'Nenhuma faixa do INSS foi utilizada.'
+    );
+
+  } else {
+
+    calculoINSS.faixas.forEach(
+      item => {
+
+        log += linhaLog(
+          `Faixa ${item.faixa}: ` +
+          `${moeda(item.minimo)} até ` +
+          (
+            item.maximo === Infinity
+              ? 'sem limite'
+              : moeda(item.maximo)
+          )
+        );
+
+        log += linhaLog(
+          `  Base aplicada na faixa: ${moeda(item.valorFaixa)}`
+        );
+
+        log += linhaLog(
+          `  Alíquota: ${percentual(item.aliquota)}`
+        );
+
+        log += linhaLog(
+          `  Fórmula: ${moeda(item.valorFaixa)} × ` +
+          `${percentual(item.aliquota)}`
+        );
+
+        log += linhaLog(
+          `  Contribuição da faixa: ${moeda(item.contribuicao)}`
+        );
+
+        log += '\n';
+
+      }
+    );
+
+  }
+
+
+  log += linhaLog(
+    `TOTAL INSS = ${moeda(calculoINSS.total)}`
+  );
+
+
+  /* ==========================================================
+     IRRF
+     ========================================================== */
+
+  log += cabecalhoLog(
+    '4. CÁLCULO DO IRRF'
+  );
+
+
+  log += linhaLog(
+    `Rendimentos tributáveis: ${moeda(calculoIRRF.rendimentos)}`
+  );
+
+  log += linhaLog(
+    `(-) INSS dedutível: ${moeda(calculoIRRF.inss)}`
+  );
+
+  log += linhaLog(
+    `Quantidade de dependentes: ${dependentes}`
+  );
+
+  log += linhaLog(
+    `Valor por dependente: ${moeda(calculoIRRF.valorDependente)}`
+  );
+
+  log += linhaLog(
+    `(-) Dedução por dependentes: ${moeda(calculoIRRF.deducaoDependentes)}`
+  );
+
+  log += linhaLog(
+    `(-) Pensão alimentícia: ${moeda(pensao)}`
+  );
+
+
+  log += '\n';
+
+
+  log += linhaLog(
+    `Deduções legais = ` +
+    `${moeda(calculoIRRF.inss)} + ` +
+    `${moeda(calculoIRRF.deducaoDependentes)} + ` +
+    `${moeda(pensao)}`
+  );
+
+  log += linhaLog(
+    `Deduções legais = ${moeda(calculoIRRF.deducaoLegal)}`
+  );
+
+  log += linhaLog(
+    `Desconto simplificado disponível: ${moeda(calculoIRRF.deducaoSimplificada)}`
+  );
+
+
+  log += '\n';
+
+
+  if (
+    calculoIRRF.usarSimplificado
+  ) {
+
+    log += linhaLog(
+      `Deduções escolhidas: DESCONTO SIMPLIFICADO`
+    );
+
+    log += linhaLog(
+      `Comparação: ${moeda(calculoIRRF.deducaoSimplificada)} > ` +
+      `${moeda(calculoIRRF.deducaoLegal)}`
+    );
+
+  } else {
+
+    log += linhaLog(
+      `Deduções escolhidas: DEDUÇÕES LEGAIS`
+    );
+
+    log += linhaLog(
+      `Comparação: ${moeda(calculoIRRF.deducaoLegal)} >= ` +
+      `${moeda(calculoIRRF.deducaoSimplificada)}`
+    );
+
+  }
+
+
+  log += linhaLog(
+    `Deduções utilizadas: ${moeda(calculoIRRF.deducaoUtilizada)}`
+  );
+
+
+  log += '\n';
+
+
+  log += linhaLog(
+    `Base IRRF = ${moeda(calculoIRRF.rendimentos)} - ` +
+    `${moeda(calculoIRRF.deducaoUtilizada)}`
+  );
+
+  log += linhaLog(
+    `Base de cálculo IRRF = ${moeda(calculoIRRF.base)}`
+  );
+
+
+  if (
+    calculoIRRF.faixa
+  ) {
+
+    log += '\n';
+
+    log += linhaLog(
+      `Faixa IRRF encontrada: ${intervaloFaixa(calculoIRRF.faixa)}`
+    );
+
+    log += linhaLog(
+      `Alíquota aplicada: ${percentual(calculoIRRF.aliquota)}`
+    );
+
+    log += linhaLog(
+      `Parcela a deduzir: ${moeda(calculoIRRF.parcelaDeduzir)}`
+    );
+
+
+    log += '\n';
+
+
+    log += linhaLog(
+      `Imposto bruto = ` +
+      `${moeda(calculoIRRF.base)} × ` +
+      `${percentual(calculoIRRF.aliquota)} - ` +
+      `${moeda(calculoIRRF.parcelaDeduzir)}`
+    );
+
+    log += linhaLog(
+      `Imposto bruto = ${moeda(calculoIRRF.impostoBruto)}`
+    );
+
+  } else {
+
+    log += linhaLog(
+      'Nenhuma faixa do IRRF encontrada.'
+    );
+
+  }
+
+
+  /* REDUÇÃO */
+
+  log += '\n';
+
+  log += linhaLog(
+    'REDUÇÃO DO IRRF'
+  );
+
+  log += linhaLog(
+    calculoIRRF.regraReducao?.tipo ||
+    'Nenhuma regra de redução.'
+  );
+
+  if (
+    calculoIRRF.regraReducao?.formula
+  ) {
+
+    log += linhaLog(
+      `Fórmula da redução: ${calculoIRRF.regraReducao.formula}`
+    );
+
+  }
+
+  log += linhaLog(
+    `Redução aplicada: ${moeda(calculoIRRF.reducao)}`
+  );
+
+
+  log += '\n';
+
+
+  log += linhaLog(
+    `IRRF devido = ${moeda(calculoIRRF.impostoBruto)} - ` +
+    `${moeda(calculoIRRF.reducao)}`
+  );
+
+  log += linhaLog(
+    `IRRF DEVIDO = ${moeda(calculoIRRF.total)}`
+  );
+
+
+  /* ==========================================================
+     TOTAL
+     ========================================================== */
+
+  log += cabecalhoLog(
+    '5. RESULTADO FINAL'
+  );
+
+
+  log += linhaLog(
+    `INSS: ${moeda(calculoINSS.total)}`
+  );
+
+  log += linhaLog(
+    `IRRF: ${moeda(calculoIRRF.total)}`
+  );
+
+  log += linhaLog(
+    '------------------------------------------------------------'
+  );
+
+  log += linhaLog(
+    `TOTAL INSS + IRRF = ${moeda(total)}`
+  );
+
+
+  log += '\n';
+
+  log += linhaLog(
+    '============================================================'
+  );
+
+  log += linhaLog(
+    'CÁLCULO CONCLUÍDO COM SUCESSO'
+  );
+
+  log += linhaLog(
+    '============================================================'
+  );
+
+
+  document.getElementById(
+    'logCalculo'
+  ).textContent =
+    log;
+
+
+  const logElemento =
+    document.getElementById(
+      'logCalculo'
+    );
+
+  logElemento.scrollTop =
+    logElemento.scrollHeight;
+
+}
+
+
+/* ============================================================
+   COPIAR LOG
+   ============================================================ */
+
+async function copiarLog() {
+
+  const elemento =
+    document.getElementById(
+      'logCalculo'
+    );
+
+  const texto =
+    elemento.textContent || '';
+
+
+  if (
+    !texto ||
+    texto === 'Aguardando cálculo...'
+  ) {
+
+    mostrarAlerta(
+      'Não há log de cálculo para copiar.',
+      'error'
+    );
+
+    return;
+
+  }
+
+
+  try {
+
+    if (
+      navigator.clipboard &&
+      navigator.clipboard.writeText
+    ) {
+
+      await navigator.clipboard.writeText(
+        texto
+      );
+
+    } else {
+
+      copiarLogFallback(texto);
+
+    }
+
+
+    mostrarAlerta(
+      'Log copiado para a área de transferência.',
+      'success'
+    );
+
+  } catch (erro) {
+
+    try {
+
+      copiarLogFallback(texto);
+
+      mostrarAlerta(
+        'Log copiado para a área de transferência.',
+        'success'
+      );
+
+    } catch (erroFallback) {
+
+      console.error(
+        erroFallback
+      );
+
+      mostrarAlerta(
+        'Não foi possível copiar o log.',
+        'error'
+      );
+
+    }
+
+  }
+
+}
+
+
+function copiarLogFallback(texto) {
+
+  const textarea =
+    document.createElement(
+      'textarea'
+    );
+
+  textarea.value =
+    texto;
+
+  textarea.style.position =
+    'fixed';
+
+  textarea.style.left =
+    '-999999px';
+
+  textarea.style.top =
+    '-999999px';
+
+  document.body.appendChild(
+    textarea
+  );
+
+  textarea.focus();
+
+  textarea.select();
+
+  const sucesso =
+    document.execCommand(
+      'copy'
+    );
+
+  document.body.removeChild(
+    textarea
+  );
+
+  if (!sucesso) {
+
+    throw new Error(
+      'Falha ao copiar o log.'
+    );
+
+  }
+
+}
+
+
+/* ============================================================
+   LIMPAR LOG
+   ============================================================ */
+
+function limparLog() {
+
+  document.getElementById(
+    'logCalculo'
+  ).textContent =
+    'Aguardando cálculo...';
 
 }
 
@@ -1664,6 +2854,7 @@ function calcularIRRF(
 function calcular() {
 
   esconderAlerta();
+
 
   const competencia =
     document.getElementById(
@@ -1811,31 +3002,41 @@ function calcular() {
   document.getElementById(
     'baseINSSExibida'
   ).value =
-    moeda(calculoINSS.base);
+    moeda(
+      calculoINSS.base
+    );
 
 
   document.getElementById(
     'baseIRRFExibida'
   ).value =
-    moeda(rendimentosIRRF);
+    moeda(
+      rendimentosIRRF
+    );
 
 
   document.getElementById(
     'resultadoINSS'
   ).textContent =
-    moeda(calculoINSS.total);
+    moeda(
+      calculoINSS.total
+    );
 
 
   document.getElementById(
     'resultadoIRRF'
   ).textContent =
-    moeda(calculoIRRF.total);
+    moeda(
+      calculoIRRF.total
+    );
 
 
   document.getElementById(
     'resultadoBaseIRRF'
   ).textContent =
-    moeda(calculoIRRF.base);
+    moeda(
+      calculoIRRF.base
+    );
 
 
   document.getElementById(
@@ -1867,6 +3068,35 @@ function calcular() {
   );
 
 
+  /*
+     GERA O LOG COMPLETO
+  */
+
+  gerarLogCalculo(
+
+    competencia,
+
+    tabelaINSS,
+
+    tabelaIRRF,
+
+    baseINSS,
+
+    rendimentosIRRF,
+
+    dependentes,
+
+    pensao,
+
+    calculoINSS,
+
+    calculoIRRF,
+
+    total
+
+  );
+
+
   document.getElementById(
     'statusVigencia'
   ).value =
@@ -1874,7 +3104,7 @@ function calcular() {
 
 
   mostrarAlerta(
-    'Cálculo realizado com sucesso.',
+    'Cálculo realizado com sucesso. O log detalhado foi atualizado.',
     'success'
   );
 
@@ -1897,29 +3127,37 @@ function montarTabelaINSS(
 
   tbody.innerHTML = '';
 
+
   tabela.faixas.forEach(
     (faixa, index) => {
 
       const memoria =
         calculo.faixas.find(
           item =>
-            item.faixa === index + 1
+            item.faixa ===
+            index + 1
         );
 
 
       const tr =
-        document.createElement('tr');
+        document.createElement(
+          'tr'
+        );
 
 
       if (memoria) {
+
         tr.className =
           'faixa-atual';
+
       }
 
 
       tr.innerHTML = `
 
-        <td>${index + 1}ª faixa</td>
+        <td>
+          ${index + 1}ª faixa
+        </td>
 
         <td class="number">
           ${moeda(faixa.min)}
@@ -1955,7 +3193,9 @@ function montarTabelaINSS(
 
       `;
 
-      tbody.appendChild(tr);
+      tbody.appendChild(
+        tr
+      );
 
     }
   );
@@ -1997,28 +3237,38 @@ function montarTabelaIRRF(
 
       const atual =
         calculo.base >=
-        Number(faixa.min || 0) &&
+        Number(
+          faixa.min || 0
+        ) &&
         (
           faixa.max === null ||
           faixa.max === '' ||
           calculo.base <=
-          Number(faixa.max)
+          Number(
+            faixa.max
+          )
         );
 
 
       const tr =
-        document.createElement('tr');
+        document.createElement(
+          'tr'
+        );
 
 
       if (atual) {
+
         tr.className =
           'faixa-atual';
+
       }
 
 
       tr.innerHTML = `
 
-        <td>${index + 1}ª faixa</td>
+        <td>
+          ${index + 1}ª faixa
+        </td>
 
         <td class="number">
           ${moeda(faixa.min)}
@@ -2043,7 +3293,9 @@ function montarTabelaIRRF(
       `;
 
 
-      tbody.appendChild(tr);
+      tbody.appendChild(
+        tr
+      );
 
     }
   );
@@ -2079,6 +3331,7 @@ function montarMemoria(
 
   let html = '';
 
+
   html += `
     <strong>Competência:</strong>
     ${formatarData(competencia)}
@@ -2099,6 +3352,7 @@ function montarMemoria(
 
 
   html += `
+
     <hr>
 
     <strong>Rendimentos tributáveis IRRF:</strong>
@@ -2164,6 +3418,7 @@ function montarMemoria(
 
 
   html += `
+
     <hr>
 
     <strong>Total INSS + IRRF:</strong>
@@ -2176,7 +3431,8 @@ function montarMemoria(
 
   document.getElementById(
     'memoriaCalculo'
-  ).innerHTML = html;
+  ).innerHTML =
+    html;
 
 }
 
@@ -2240,17 +3496,13 @@ function atualizarTabelasVigentes() {
     'Atualizadas';
 
 
-  /*
-     Se houver valores informados,
-     recalcula automaticamente.
-  */
-
   const base =
     numero(
       document.getElementById(
         'baseINSS'
       ).value
     );
+
 
   const rendimento =
     numero(
@@ -2282,14 +3534,16 @@ function atualizarTabelasVigentes() {
 
 
 /* ============================================================
-   GERENCIADOR DE TABELAS
+   GERENCIADOR
    ============================================================ */
 
 function abrirGerenciadorTabelas() {
 
   document.getElementById(
     'modalTabelas'
-  ).style.display = 'block';
+  ).style.display =
+    'block';
+
 
   selecionarTipoTabela(
     tipoTabelaAtual
@@ -2302,14 +3556,18 @@ function fecharGerenciadorTabelas() {
 
   document.getElementById(
     'modalTabelas'
-  ).style.display = 'none';
+  ).style.display =
+    'none';
 
 }
 
 
-function selecionarTipoTabela(tipo) {
+function selecionarTipoTabela(
+  tipo
+) {
 
-  tipoTabelaAtual = tipo;
+  tipoTabelaAtual =
+    tipo;
 
 
   document.getElementById(
@@ -2349,37 +3607,51 @@ function preencherListaTabelas() {
     );
 
 
-  select.innerHTML = '';
+  select.innerHTML =
+    '';
 
 
   const lista =
-    tabelas[tipoTabelaAtual] || [];
+    tabelas[
+      tipoTabelaAtual
+    ] || [];
 
 
   lista
     .slice()
     .sort(
       (a, b) =>
-        b.vigenciaInicio.localeCompare(
-          a.vigenciaInicio
-        )
+        b.vigenciaInicio
+          .localeCompare(
+            a.vigenciaInicio
+          )
     )
-    .forEach(tabela => {
+    .forEach(
+      tabela => {
 
-      const option =
-        document.createElement(
-          'option'
+        const option =
+          document.createElement(
+            'option'
+          );
+
+
+        option.value =
+          tabela.id;
+
+
+        option.textContent =
+          `${tabela.nome} — ` +
+          `${formatarData(
+            tabela.vigenciaInicio
+          )}`;
+
+
+        select.appendChild(
+          option
         );
 
-      option.value =
-        tabela.id;
-
-      option.textContent =
-        `${tabela.nome} — ${formatarData(tabela.vigenciaInicio)}`;
-
-      select.appendChild(option);
-
-    });
+      }
+    );
 
 
   if (lista.length) {
@@ -2396,7 +3668,7 @@ function preencherListaTabelas() {
 
 
 /* ============================================================
-   CARREGAR TABELA NO EDITOR
+   CARREGAR TABELA
    ============================================================ */
 
 function carregarTabelaSelecionada() {
@@ -2408,11 +3680,12 @@ function carregarTabelaSelecionada() {
 
 
   const tabela =
-    tabelas[tipoTabelaAtual]
-      .find(
-        item =>
-          item.id === id
-      );
+    tabelas[
+      tipoTabelaAtual
+    ].find(
+      item =>
+        item.id === id
+    );
 
 
   if (!tabela) {
@@ -2501,7 +3774,8 @@ function carregarTabelaSelecionada() {
     document.getElementById(
       'reducaoFormulaFator'
     ).value =
-      tabela.reducao?.formulaFator ?? '';
+      tabela.reducao?.formulaFator ??
+      '';
 
   }
 
@@ -2517,14 +3791,18 @@ function carregarTabelaSelecionada() {
    EDITOR DE FAIXAS
    ============================================================ */
 
-function montarEditorFaixas(faixas) {
+function montarEditorFaixas(
+  faixas
+) {
 
   const container =
     document.getElementById(
       'editorFaixas'
     );
 
-  container.innerHTML = '';
+
+  container.innerHTML =
+    '';
 
 
   faixas.forEach(
@@ -2578,7 +3856,9 @@ function adicionarFaixaDOM(
 
 
   const div =
-    document.createElement('div');
+    document.createElement(
+      'div'
+    );
 
 
   div.className =
@@ -2591,7 +3871,9 @@ function adicionarFaixaDOM(
 
       <div class="field">
 
-        <label>Mínimo</label>
+        <label>
+          Mínimo
+        </label>
 
         <input
           class="faixa-min"
@@ -2601,10 +3883,11 @@ function adicionarFaixaDOM(
 
       </div>
 
-
       <div class="field">
 
-        <label>Máximo</label>
+        <label>
+          Máximo
+        </label>
 
         <input
           class="faixa-max"
@@ -2613,16 +3896,19 @@ function adicionarFaixaDOM(
             faixa.max === null ||
             faixa.max === undefined
               ? ''
-              : numeroExibicao(faixa.max)
+              : numeroExibicao(
+                  faixa.max
+                )
           }"
         >
 
       </div>
 
-
       <div class="field">
 
-        <label>Alíquota %</label>
+        <label>
+          Alíquota %
+        </label>
 
         <input
           class="faixa-aliquota"
@@ -2633,10 +3919,11 @@ function adicionarFaixaDOM(
 
       </div>
 
-
       <div class="field">
 
-        <label>Dedução</label>
+        <label>
+          Dedução
+        </label>
 
         <input
           class="faixa-deducao"
@@ -2645,7 +3932,6 @@ function adicionarFaixaDOM(
         >
 
       </div>
-
 
       <button
         class="btn-danger btn-small"
@@ -2659,20 +3945,27 @@ function adicionarFaixaDOM(
   `;
 
 
-  container.appendChild(div);
+  container.appendChild(
+    div
+  );
 
 }
 
 
-function removerFaixa(botao) {
+function removerFaixa(
+  botao
+) {
 
   const faixa =
     botao.closest(
       '.faixa-editor'
     );
 
+
   if (faixa) {
+
     faixa.remove();
+
   }
 
 }
@@ -2691,11 +3984,12 @@ function salvarTabelaAtual() {
 
 
   const tabela =
-    tabelas[tipoTabelaAtual]
-      .find(
-        item =>
-          item.id === id
-      );
+    tabelas[
+      tipoTabelaAtual
+    ].find(
+      item =>
+        item.id === id
+    );
 
 
   if (!tabela) {
@@ -2752,7 +4046,10 @@ function salvarTabelaAtual() {
 
     tabela.teto =
       tabela.faixas.reduce(
-        (maior, faixa) =>
+        (
+          maior,
+          faixa
+        ) =>
           faixa.max !== null
             ? Math.max(
                 maior,
@@ -2843,6 +4140,7 @@ function salvarTabelaAtual() {
     document.getElementById(
       'tabelaSelecionada'
     );
+
 
   select.value =
     tabela.id;
@@ -2943,7 +4241,8 @@ function limparEditorTabela() {
 
   document.getElementById(
     'inicioVigencia'
-  ).value = dataHoje();
+  ).value =
+    dataHoje();
 
 
   document.getElementById(
@@ -2953,7 +4252,8 @@ function limparEditorTabela() {
 
   document.getElementById(
     'editorFaixas'
-  ).innerHTML = '';
+  ).innerHTML =
+    '';
 
 }
 
@@ -2985,11 +4285,11 @@ function restaurarTabelaPadraoAtual() {
 
   tabelas[
     tipoTabelaAtual
-  ] = padrao;
+  ] =
+    padrao;
 
 
   salvarTabelas();
-
 
   preencherListaTabelas();
 
@@ -3042,7 +4342,6 @@ function excluirTabelaAtual() {
 
 
   salvarTabelas();
-
 
   preencherListaTabelas();
 
@@ -3107,32 +4406,38 @@ function limpar() {
 
   document.getElementById(
     'baseINSS'
-  ).value = '';
+  ).value =
+    '';
 
 
   document.getElementById(
     'rendimentosIRRF'
-  ).value = '';
+  ).value =
+    '';
 
 
   document.getElementById(
     'dependentes'
-  ).value = '0';
+  ).value =
+    '0';
 
 
   document.getElementById(
     'pensao'
-  ).value = '0,00';
+  ).value =
+    '0,00';
 
 
   document.getElementById(
     'baseINSSExibida'
-  ).value = '';
+  ).value =
+    '';
 
 
   document.getElementById(
     'baseIRRFExibida'
-  ).value = '';
+  ).value =
+    '';
 
 
   document.getElementById(
@@ -3163,6 +4468,9 @@ function limpar() {
     'memoriaCalculo'
   ).innerHTML =
     'Informe os valores e clique em <strong>Calcular INSS e IRRF</strong>.';
+
+
+  limparLog();
 
 
   esconderAlerta();

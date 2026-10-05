@@ -104,6 +104,16 @@ body{
   color:#92400e;
 }
 
+.success-box{
+  background:#f0fdf4;
+  border:1px solid #bbf7d0;
+  color:#166534;
+  padding:14px;
+  border-radius:10px;
+  font-size:13px;
+  line-height:1.6;
+}
+
 /* =========================================================
    FORMULÁRIOS
 ========================================================= */
@@ -126,7 +136,8 @@ label{
   margin-bottom:7px;
 }
 
-input{
+input,
+select{
   width:100%;
   height:43px;
   border:1px solid #d1d5db;
@@ -137,7 +148,8 @@ input{
   background:#fff;
 }
 
-input:focus{
+input:focus,
+select:focus{
   border-color:#2563eb;
   box-shadow:0 0 0 3px rgba(37,99,235,.1);
 }
@@ -304,36 +316,6 @@ input:focus{
   color:#92400e;
 }
 
-.limite-item .titulo{
-  font-size:10px;
-  color:#64748b;
-  margin-bottom:6px;
-}
-
-.limite-item .valor{
-  font-size:18px;
-  color:#123b68;
-  font-weight:bold;
-}
-
-.excesso{
-  background:#fff1f2;
-  border-color:#fecdd3;
-}
-
-.excesso .valor{
-  color:#be123c;
-}
-
-.permitido{
-  background:#f0fdf4;
-  border-color:#bbf7d0;
-}
-
-.permitido .valor{
-  color:#166534;
-}
-
 /* =========================================================
    RESULTADOS
 ========================================================= */
@@ -377,6 +359,16 @@ input:focus{
 
 .result.percentual .result-value{
   color:#6d28d9;
+}
+
+.result.inss{
+  background:#ecfdf5;
+  border-color:#a7f3d0;
+}
+
+.result.irrf{
+  background:#f5f3ff;
+  border-color:#ddd6fe;
 }
 
 /* =========================================================
@@ -433,8 +425,24 @@ input:focus{
   color:#6d28d9;
 }
 
+.memory-row.inss{
+  background:#ecfdf5;
+  border:1px solid #a7f3d0;
+  border-radius:6px;
+  padding:11px;
+  color:#047857;
+}
+
+.memory-row.irrf{
+  background:#f5f3ff;
+  border:1px solid #ddd6fe;
+  border-radius:6px;
+  padding:11px;
+  color:#6d28d9;
+}
+
 /* =========================================================
-   TABELA
+   TABELAS
 ========================================================= */
 
 .table-wrap{
@@ -487,6 +495,16 @@ td{
 .tag.excesso{
   background:#fee2e2;
   color:#991b1b;
+}
+
+.tag.inss{
+  background:#d1fae5;
+  color:#047857;
+}
+
+.tag.irrf{
+  background:#ede9fe;
+  color:#6d28d9;
 }
 
 /* =========================================================
@@ -585,6 +603,27 @@ button:hover{
   color:#fff;
 }
 
+.btn-inss{
+  background:#047857;
+  color:#fff;
+}
+
+.btn-update{
+  background:#2563eb;
+  color:#fff;
+}
+
+.btn-danger{
+  background:#dc2626;
+  color:#fff;
+}
+
+.btn-small{
+  height:34px;
+  padding:0 10px;
+  font-size:11px;
+}
+
 /* =========================================================
    MODAL
 ========================================================= */
@@ -606,7 +645,7 @@ button:hover{
 }
 
 .modal{
-  width:min(1050px,100%);
+  width:min(1100px,100%);
   max-height:92vh;
   overflow:auto;
   background:#fff;
@@ -709,6 +748,141 @@ button:hover{
 }
 
 /* =========================================================
+   TABELA DE FAIXAS
+========================================================= */
+
+.faixas-container{
+  margin-top:15px;
+}
+
+.faixa-card{
+  background:#fff;
+  border:1px solid #dbe3ec;
+  border-radius:12px;
+  margin-bottom:12px;
+  overflow:hidden;
+}
+
+.faixa-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:#f8fafc;
+  padding:11px 14px;
+  border-bottom:1px solid #e5e7eb;
+}
+
+.faixa-header strong{
+  color:#123b68;
+  font-size:13px;
+}
+
+.faixa-grid{
+  display:grid;
+  grid-template-columns:1.1fr 1.1fr .8fr 1fr;
+  gap:10px;
+  padding:12px;
+}
+
+.faixa-grid label{
+  font-size:10px;
+}
+
+.faixa-grid input{
+  height:38px;
+  font-size:12px;
+}
+
+.tabela-status{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:10px;
+  padding:12px;
+  background:#f8fafc;
+  border:1px solid #e2e8f0;
+  border-radius:10px;
+  margin-bottom:15px;
+}
+
+.status-vigente{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  background:#dcfce7;
+  color:#166534;
+  padding:6px 10px;
+  border-radius:20px;
+  font-size:11px;
+  font-weight:bold;
+}
+
+.status-vigente::before{
+  content:'●';
+}
+
+/* =========================================================
+   CÁLCULO TRIBUTÁRIO
+========================================================= */
+
+.tributos-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:14px;
+}
+
+.tributo-card{
+  border-radius:12px;
+  padding:15px;
+  border:1px solid #e2e8f0;
+  background:#f8fafc;
+}
+
+.tributo-card h3{
+  margin:0 0 6px;
+  color:#123b68;
+  font-size:14px;
+}
+
+.tributo-card .valor{
+  font-size:20px;
+  font-weight:bold;
+  margin-top:7px;
+}
+
+.tributo-inss{
+  background:#ecfdf5;
+  border-color:#a7f3d0;
+}
+
+.tributo-inss .valor{
+  color:#047857;
+}
+
+.tributo-irrf{
+  background:#f5f3ff;
+  border-color:#ddd6fe;
+}
+
+.tributo-irrf .valor{
+  color:#6d28d9;
+}
+
+.tributo-base{
+  background:#eff6ff;
+  border-color:#bfdbfe;
+}
+
+.tributo-base .valor{
+  color:#1d4ed8;
+}
+
+.tributo-info{
+  background:#fff;
+}
+
+/* =========================================================
    RESPONSIVO
 ========================================================= */
 
@@ -719,7 +893,8 @@ button:hover{
   }
 
   .resumo-contratos,
-  .limite-grid{
+  .limite-grid,
+  .tributos-grid{
     grid-template-columns:repeat(2,1fr);
   }
 
@@ -729,6 +904,10 @@ button:hover{
 
   .results{
     grid-template-columns:repeat(2,1fr);
+  }
+
+  .faixa-grid{
+    grid-template-columns:1fr 1fr;
   }
 
 }
@@ -744,7 +923,9 @@ button:hover{
   .resumo-contratos,
   .limite-grid,
   .contrato-grid,
-  .config-grid{
+  .config-grid,
+  .tributos-grid,
+  .faixa-grid{
     grid-template-columns:1fr;
   }
 
@@ -759,6 +940,11 @@ button:hover{
   .limite-header{
     align-items:flex-start;
     flex-direction:column;
+  }
+
+  .memory-row{
+    flex-direction:column;
+    gap:5px;
   }
 
 }
@@ -806,12 +992,13 @@ button:hover{
 
 <p>
 Apure a <strong>remuneração disponível na rescisão</strong>,
-aplique o percentual de garantia informado no Portal Emprega Brasil
-e confira o limite pelo saldo devedor de cada contrato.
+calcule automaticamente o <strong>INSS</strong> e o
+<strong>IRRF</strong> pelas tabelas cadastradas e confira
+o limite de desconto dos contratos de eConsignado.
 </p>
 
 <span class="badge">
-CRÉDITO DO TRABALHADOR — REGRA DE GARANTIA EM VERBAS RESCISÓRIAS
+CRÉDITO DO TRABALHADOR — INSS E IRRF AUTOMÁTICOS
 </span>
 
 </header>
@@ -857,9 +1044,25 @@ CRÉDITO DO TRABALHADOR — REGRA DE GARANTIA EM VERBAS RESCISÓRIAS
 <button
   type="button"
   class="btn-irrf"
-  onclick="abrirIRRFINSS()"
+  onclick="abrirTabelaIRRF()"
 >
-🧾 IRRF / INSS
+🧾 Tabela IRRF
+</button>
+
+<button
+  type="button"
+  class="btn-inss"
+  onclick="abrirTabelaINSS()"
+>
+🛡️ Tabela INSS
+</button>
+
+<button
+  type="button"
+  class="btn-update"
+  onclick="atualizarTabelas()"
+>
+🔄 Atualizar tabelas por faixa
 </button>
 
 <button
@@ -867,7 +1070,7 @@ CRÉDITO DO TRABALHADOR — REGRA DE GARANTIA EM VERBAS RESCISÓRIAS
   class="btn-config"
   onclick="abrirConfiguracoes()"
 >
-⚙️ Ver configurações necessárias
+⚙️ Configurações
 </button>
 
 </div>
@@ -885,31 +1088,215 @@ CRÉDITO DO TRABALHADOR — REGRA DE GARANTIA EM VERBAS RESCISÓRIAS
 <div class="info">
 
 <strong>1.</strong>
-Informe somente as rubricas que efetivamente compõem
-a remuneração disponível segundo o eSocial e o Manual do Crédito do Trabalhador.
+Informe os vencimentos que efetivamente compõem
+a remuneração considerada.
 
 <br>
 
 <strong>2.</strong>
-Informe os descontos dedutíveis conforme a regra oficial.
+O sistema calcula automaticamente o
+<strong>INSS</strong> pelas faixas progressivas cadastradas.
 
 <br>
 
 <strong>3.</strong>
-Informe os contratos e o percentual de verbas rescisórias
-dado em garantia.
+O sistema calcula automaticamente o
+<strong>IRRF</strong>, considerando INSS, dependentes e
+desconto simplificado quando aplicável.
 
 <br>
 
 <strong>4.</strong>
-Informe o saldo devedor atualizado obtido no Portal Emprega Brasil.
+O INSS e o IRRF calculados são incluídos automaticamente
+nos descontos da remuneração disponível.
 
 <br>
 
 <strong>5.</strong>
+Informe os contratos, percentuais de garantia e saldos devedores.
+
+<br>
+
+<strong>6.</strong>
 O desconto de cada contrato será o
 <strong>menor</strong> entre o valor calculado pelo percentual
-de garantia e o saldo devedor atualizado.
+e o saldo devedor atualizado.
+
+</div>
+
+</section>
+
+<!-- =========================================================
+     BASES TRIBUTÁRIAS
+========================================================= -->
+
+<section class="card">
+
+<div class="card-title">
+🧾 Bases para INSS e IRRF
+</div>
+
+<div class="grid">
+
+<div class="field">
+
+<label for="baseINSS">
+Base de cálculo do INSS
+</label>
+
+<input
+  id="baseINSS"
+  type="text"
+  placeholder="R$ 0,00"
+  oninput="formatarMoeda(this);calcularTributos()"
+>
+
+<div class="help">
+Informe a base efetivamente sujeita à contribuição previdenciária.
+Se deixar em branco, o sistema utilizará o total dos vencimentos
+informados.
+</div>
+
+</div>
+
+<div class="field">
+
+<label for="rendimentosIRRF">
+Rendimentos tributáveis para IRRF
+</label>
+
+<input
+  id="rendimentosIRRF"
+  type="text"
+  placeholder="R$ 0,00"
+  oninput="formatarMoeda(this);calcularTributos()"
+>
+
+<div class="help">
+Base de rendimentos tributáveis utilizada na regra de redução
+do IRRF de 2026. Se deixar em branco, será utilizado o total
+dos vencimentos.
+</div>
+
+</div>
+
+<div class="field">
+
+<label for="dependentes">
+Quantidade de dependentes
+</label>
+
+<input
+  id="dependentes"
+  type="number"
+  min="0"
+  step="1"
+  value="0"
+  oninput="calcularTributos()"
+>
+
+<div class="help">
+Dedução por dependente conforme tabela cadastrada do IRRF.
+</div>
+
+</div>
+
+<div class="field">
+
+<label for="outrasDeducoesIRRF">
+Outras deduções legais para IRRF
+</label>
+
+<input
+  id="outrasDeducoesIRRF"
+  type="text"
+  placeholder="R$ 0,00"
+  oninput="formatarMoeda(this);calcularTributos()"
+>
+
+<div class="help">
+Pensão alimentícia e outras deduções legais que efetivamente
+devam compor a base do IRRF.
+</div>
+
+</div>
+
+</div>
+
+<div
+  class="tributos-grid"
+  style="margin-top:18px"
+>
+
+<div class="tributo-card tributo-base">
+
+<h3>
+Base INSS
+</h3>
+
+<div
+  class="valor"
+  id="resumoBaseINSS"
+>
+R$ 0,00
+</div>
+
+</div>
+
+<div class="tributo-card tributo-inss">
+
+<h3>
+INSS calculado
+</h3>
+
+<div
+  class="valor"
+  id="resumoINSS"
+>
+R$ 0,00
+</div>
+
+</div>
+
+<div class="tributo-card tributo-base">
+
+<h3>
+Base IRRF
+</h3>
+
+<div
+  class="valor"
+  id="resumoBaseIRRF"
+>
+R$ 0,00
+</div>
+
+</div>
+
+<div class="tributo-card tributo-irrf">
+
+<h3>
+IRRF calculado
+</h3>
+
+<div
+  class="valor"
+  id="resumoIRRF"
+>
+R$ 0,00
+</div>
+
+</div>
+
+</div>
+
+<div
+  id="detalhesTributos"
+  class="memory"
+>
+
+Informe os valores para visualizar a memória de cálculo do
+INSS e IRRF.
 
 </div>
 
@@ -1107,10 +1494,6 @@ GARANTIA TOTAL INFORMADA
 
 </div>
 
-<!-- =========================================================
-     CONFERÊNCIA DOS CONTRATOS
-========================================================= -->
-
 <div class="limite-card">
 
 <div class="limite-header">
@@ -1229,7 +1612,7 @@ Informe os percentuais dos contratos e clique em
 <section class="card">
 
 <div class="card-title">
-➖ Descontos considerados
+➖ Outros descontos considerados
 </div>
 
 <div
@@ -1237,11 +1620,12 @@ Informe os percentuais dos contratos e clique em
   id="descontos"
 ></div>
 
-<div class="help">
+<div class="info" style="margin-top:15px">
 
-São deduzidos os descontos que atendem aos critérios
-do § 2º do art. 30 da Portaria MTE nº 435/2025
-e às regras específicas da rescisão.
+<strong>INSS e IRRF não são digitados nesta seção.</strong>
+
+Eles são calculados automaticamente pelas tabelas cadastradas
+e adicionados ao total de descontos.
 
 </div>
 
@@ -1348,6 +1732,58 @@ R$ 0,00
 
 </div>
 
+<div class="result inss">
+
+<div class="result-title">
+INSS CALCULADO
+</div>
+
+<div
+  class="result-value"
+  id="descontoINSS"
+>
+R$ 0,00
+</div>
+
+</div>
+
+<div class="result irrf">
+
+<div class="result-title">
+IRRF CALCULADO
+</div>
+
+<div
+  class="result-value"
+  id="descontoIRRF"
+>
+R$ 0,00
+</div>
+
+</div>
+
+<div class="result desconto">
+
+<div class="result-title">
+OUTROS DESCONTOS
+</div>
+
+<div
+  class="result-value"
+  id="outrosDescontos"
+>
+R$ 0,00
+</div>
+
+</div>
+
+</div>
+
+<div
+  class="results"
+  style="margin-top:14px"
+>
+
 <div class="result desconto">
 
 <div class="result-title">
@@ -1393,21 +1829,10 @@ R$ 0,00
 
 </div>
 
-</div>
-
-<!-- =========================================================
-     PERCENTUAL TOTAL EFETIVO
-========================================================= -->
-
-<div
-  class="results"
-  style="margin-top:14px"
->
-
 <div class="result percentual">
 
 <div class="result-title">
-PERCENTUAL TOTAL EFETIVAMENTE DESCONTADO
+% TOTAL EFETIVAMENTE DESCONTADO
 </div>
 
 <div
@@ -1420,10 +1845,6 @@ PERCENTUAL TOTAL EFETIVAMENTE DESCONTADO
 </div>
 
 </div>
-
-<!-- =========================================================
-     MEMÓRIA DOS CONTRATOS
-========================================================= -->
 
 <div class="memory">
 
@@ -1440,14 +1861,10 @@ Informe os contratos e clique em
 
 </div>
 
-<!-- =========================================================
-     MEMÓRIA GERAL
-========================================================= -->
-
 <div class="memory">
 
 <h3>
-🧾 Memória de cálculo
+🧾 Memória de cálculo geral
 </h3>
 
 <div id="memoria">
@@ -1503,13 +1920,43 @@ Soma das rubricas elegíveis informadas na ferramenta.
 <tr>
 
 <td>
+<span class="tag inss">
+INSS
+</span>
+</td>
+
+<td>
+Cálculo progressivo pelas faixas vigentes cadastradas.
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+<span class="tag irrf">
+IRRF
+</span>
+</td>
+
+<td>
+Base após INSS e demais deduções, utilizando a opção mais
+vantajosa entre deduções legais e desconto simplificado,
+seguida da aplicação da tabela progressiva e da redução vigente.
+</td>
+
+</tr>
+
+<tr>
+
+<td>
 <span class="tag desconto">
 DESCONTOS
 </span>
 </td>
 
 <td>
-Dedução dos descontos elegíveis informados.
+INSS + IRRF + demais descontos efetivamente informados.
 </td>
 
 </tr>
@@ -1570,34 +2017,6 @@ Soma dos descontos efetivos de todos os contratos.
 
 </tr>
 
-<tr>
-
-<td>
-<span class="tag limite">
-% TOTAL DESCONTADO
-</span>
-</td>
-
-<td>
-Total consignado ÷ remuneração disponível × 100.
-</td>
-
-</tr>
-
-<tr>
-
-<td>
-<span class="tag excesso">
-SEM GARANTIA
-</span>
-</td>
-
-<td>
-Contrato com percentual igual a 0% não gera desconto na rescisão.
-</td>
-
-</tr>
-
 </tbody>
 
 </table>
@@ -1606,18 +2025,10 @@ Contrato com percentual igual a 0% não gera desconto na rescisão.
 
 </section>
 
-<!-- =========================================================
-     ALERTA
-========================================================= -->
-
 <div
   id="alerta"
   class="alert"
 ></div>
-
-<!-- =========================================================
-     ATENÇÃO
-========================================================= -->
 
 <section class="card">
 
@@ -1634,9 +2045,9 @@ folha/eSocial, natureza da rubrica,
 e os dados atualizados do
 <strong>Portal Emprega Brasil</strong>.
 
-Para a rescisão, o Manual versão 2.1 de 26/06/2026
-determina a aplicação do percentual de garantia de cada contrato
-sobre a remuneração disponível e a limitação pelo saldo devedor.
+O cálculo tributário desta página utiliza as tabelas cadastradas
+na ferramenta. Antes de utilizar em produção, confira a vigência
+e a incidência específica de cada verba.
 
 </div>
 
@@ -1646,11 +2057,288 @@ sobre a remuneração disponível e a limitação pelo saldo devedor.
   style="text-align:center;color:#94a3b8;font-size:11px;padding:15px"
 >
 
-Conferência baseada no Manual de Orientação do Empregador —
-Programa Crédito do Trabalhador —
-versão 2.1 — 26/06/2026.
+Conferência do Crédito do Trabalhador — INSS e IRRF
+com tabelas parametrizadas por vigência.
 
 </footer>
+
+</div>
+
+<!-- =========================================================
+     MODAL TABELAS
+========================================================= -->
+
+<div
+  id="modalTabelas"
+  class="modal-backdrop"
+  onclick="fecharModalFundo(event)"
+>
+
+<div class="modal">
+
+<div class="modal-header">
+
+<h2 id="tituloTabela">
+⚙️ Cadastro de tabela
+</h2>
+
+<button
+  type="button"
+  class="modal-close"
+  onclick="fecharModal('modalTabelas')"
+>
+✕
+</button>
+
+</div>
+
+<div class="modal-body">
+
+<div class="tabela-status">
+
+<div>
+
+<strong id="tipoTabelaAtual">
+Tabela
+</strong>
+
+<div
+  class="help"
+  id="vigenciaTabelaAtual"
+>
+Vigência
+</div>
+
+</div>
+
+<div class="status-vigente">
+TABELA VIGENTE
+</div>
+
+</div>
+
+<div class="grid">
+
+<div class="field">
+
+<label for="tabelaTipo">
+Tipo de tabela
+</label>
+
+<select id="tabelaTipo">
+
+<option value="INSS">
+INSS
+</option>
+
+<option value="IRRF">
+IRRF
+</option>
+
+</select>
+
+</div>
+
+<div class="field">
+
+<label for="tabelaVigencia">
+Início da vigência
+</label>
+
+<input
+  id="tabelaVigencia"
+  type="date"
+>
+
+</div>
+
+</div>
+
+<div
+  class="info"
+  style="margin-top:16px"
+>
+
+O botão <strong>Atualizar tabelas por faixa</strong> salva
+as alterações feitas nas faixas e recarrega imediatamente
+os valores utilizados pelo cálculo.
+
+</div>
+
+<div
+  id="faixasContainer"
+  class="faixas-container"
+></div>
+
+<div
+  id="configIRRF"
+  style="display:none"
+>
+
+<div class="config-box config-blue">
+
+<h3>
+Parâmetros adicionais do IRRF
+</h3>
+
+<div class="grid">
+
+<div class="field">
+
+<label for="dependenteValor">
+Dedução por dependente
+</label>
+
+<input
+  id="dependenteValor"
+  type="text"
+  placeholder="R$ 0,00"
+>
+
+</div>
+
+<div class="field">
+
+<label for="simplificadoValor">
+Desconto simplificado mensal
+</label>
+
+<input
+  id="simplificadoValor"
+  type="text"
+  placeholder="R$ 0,00"
+>
+
+</div>
+
+<div class="field">
+
+<label for="reducaoAte">
+Rendimentos até este valor
+</label>
+
+<input
+  id="reducaoAte"
+  type="text"
+  placeholder="R$ 0,00"
+>
+
+</div>
+
+<div class="field">
+
+<label for="reducaoMaxima">
+Redução máxima
+</label>
+
+<input
+  id="reducaoMaxima"
+  type="text"
+  placeholder="R$ 0,00"
+>
+
+</div>
+
+<div class="field">
+
+<label for="reducaoInicio">
+Início da redução linear
+</label>
+
+<input
+  id="reducaoInicio"
+  type="text"
+  placeholder="R$ 0,00"
+>
+
+</div>
+
+<div class="field">
+
+<label for="reducaoFim">
+Fim da redução
+</label>
+
+<input
+  id="reducaoFim"
+  type="text"
+  placeholder="R$ 0,00"
+>
+
+</div>
+
+<div class="field">
+
+<label for="reducaoConstante">
+Constante da redução linear
+</label>
+
+<input
+  id="reducaoConstante"
+  type="text"
+  placeholder="Ex.: 0,133145"
+>
+
+</div>
+
+<div class="field">
+
+<label for="reducaoIntercepto">
+Intercepto da redução
+</label>
+
+<input
+  id="reducaoIntercepto"
+  type="text"
+  placeholder="R$ 978,62"
+>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div
+  style="
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:18px;
+  "
+>
+
+<button
+  type="button"
+  class="btn-update"
+  onclick="salvarTabelaAtual()"
+>
+🔄 Atualizar tabelas por faixa
+</button>
+
+<button
+  type="button"
+  class="btn-success"
+  onclick="restaurarTabela2026()"
+>
+♻️ Restaurar tabela oficial 2026
+</button>
+
+<button
+  type="button"
+  class="btn-secondary"
+  onclick="fecharModal('modalTabelas')"
+>
+Fechar
+</button>
+
+</div>
+
+</div>
+
+</div>
 
 </div>
 
@@ -1664,18 +2352,12 @@ versão 2.1 — 26/06/2026.
   onclick="fecharConfiguracoes(event)"
 >
 
-<div
-  class="modal"
-  role="dialog"
-  aria-modal="true"
-  aria-labelledby="tituloConfiguracoes"
->
+<div class="modal">
 
 <div class="modal-header">
 
-<h2 id="tituloConfiguracoes">
-⚙️ Configurações necessárias —
-Crédito do Trabalhador na rescisão
+<h2>
+⚙️ Configurações da ferramenta
 </h2>
 
 <button
@@ -1692,160 +2374,28 @@ Crédito do Trabalhador na rescisão
 
 <div class="config-grid">
 
-<div class="config-box config-blue">
-
-<h3>
-1. Dados do contrato
-</h3>
-
-<ul>
-
-<li>
-Consultar o contrato atualizado no
-<strong>Portal Emprega Brasil</strong>.
-</li>
-
-<li>
-Informar a instituição financeira.
-</li>
-
-<li>
-Informar o <strong>saldo devedor atualizado</strong>.
-</li>
-
-<li>
-Informar o
-<strong>percentual das verbas rescisórias dado em garantia</strong>.
-</li>
-
-<li>
-Se a garantia for <strong>0%</strong>,
-não realizar desconto do contrato na rescisão.
-</li>
-
-</ul>
-
-</div>
-
 <div class="config-box config-ok">
 
 <h3>
-2. Rubricas de vencimento que entram
+🛡️ INSS
 </h3>
 
 <ul>
 
 <li>
-<strong>codIncCP = 11</strong>
+Cálculo progressivo por faixa.
 </li>
 
 <li>
-<strong>codIncCP = 12</strong>
+Tabela parametrizada por vigência.
 </li>
 
 <li>
-<strong>6003</strong> — Aviso prévio indenizado.
+Permite alterar limites e alíquotas.
 </li>
 
 <li>
-<strong>6004</strong> — Férias em dobro indenizadas.
-</li>
-
-<li>
-<strong>6006</strong> — Férias proporcionais.
-</li>
-
-<li>
-<strong>6007</strong> — Férias vencidas.
-</li>
-
-<li>
-<strong>1/3 sobre férias</strong> —
-conferir natureza e incidência.
-</li>
-
-</ul>
-
-</div>
-
-<div class="config-box config-yellow">
-
-<h3>
-3. Descontos que devem ser deduzidos
-</h3>
-
-<ul>
-
-<li>
-Rubricas de desconto com
-<strong>codIncCP = 11 ou 12</strong>.
-</li>
-
-<li>
-Contribuição previdenciária:
-<strong>31, 32, 34 e 35</strong>.
-</li>
-
-<li>
-IRRF:
-<strong>codIncIRRF = 31 ou 32</strong>.
-</li>
-
-<li>
-<strong>9213</strong> — Pensão alimentícia.
-</li>
-
-<li>
-<strong>9214</strong> — Adiantamento do 13º.
-</li>
-
-<li>
-<strong>9218</strong> — Retenções judiciais.
-</li>
-
-<li>
-<strong>9260</strong> — FIES.
-</li>
-
-<li>
-<strong>6901</strong> — Desconto do aviso prévio.
-</li>
-
-<li>
-<strong>6904</strong> — Multa do art. 480 da CLT.
-</li>
-
-</ul>
-
-</div>
-
-<div class="config-box config-no">
-
-<h3>
-4. Rubricas que não entram
-</h3>
-
-<ul>
-
-<li>
-Vencimentos sem incidência previdenciária
-que não estejam expressamente incluídos.
-</li>
-
-<li>
-Descontos voluntários autorizados pelo empregado.
-</li>
-
-<li>
-Exemplos:
-<strong>2501 — Prêmio</strong>
-e
-<strong>1810 — Vale Transporte</strong>.
-</li>
-
-<li>
-<strong>9216 — Desconto de Vale Transporte</strong>
-foi considerado não dedutível no exemplo oficial.
+O cálculo é separado do IRRF.
 </li>
 
 </ul>
@@ -1855,111 +2405,58 @@ foi considerado não dedutível no exemplo oficial.
 <div class="config-box config-blue">
 
 <h3>
-5. Fórmula da remuneração disponível
+🧾 IRRF
 </h3>
 
-<p>
-<strong>
-Remuneração disponível =
-vencimentos elegíveis − descontos elegíveis.
-</strong>
-</p>
+<ul>
 
-<p>
-Na rescisão, considerar as rubricas rescisórias
-previstas na regra aplicável.
-</p>
+<li>
+Tabela progressiva por faixa.
+</li>
 
-</div>
+<li>
+Dedução por dependente.
+</li>
 
-<div class="config-box config-ok">
+<li>
+Desconto simplificado mensal.
+</li>
 
-<h3>
-6. Fórmula de cada contrato
-</h3>
+<li>
+Redução do imposto parametrizada.
+</li>
 
-<p>
-<strong>
-Valor pelo percentual =
-remuneração disponível × percentual de garantia ÷ 100.
-</strong>
-</p>
-
-<p>
-<strong>
-Desconto efetivo =
-menor entre o valor pelo percentual e o saldo devedor atualizado.
-</strong>
-</p>
-
-<p>
-Os contratos são calculados individualmente.
-</p>
+</ul>
 
 </div>
 
 <div class="config-box config-yellow">
 
 <h3>
-7. eSocial — rubrica do consignado
+📊 Atualização das tabelas
 </h3>
 
-<ul>
-
-<li>
-Natureza:
-<strong>9253</strong>.
-</li>
-
-<li>
-Utilizada nos eventos remuneratórios aplicáveis,
-inclusive <strong>S-2299</strong>.
-</li>
-
-<li>
-<strong>codIncFGTS = 31</strong>.
-</li>
-
-<li>
-<strong>codIncCP = 00</strong>.
-</li>
-
-<li>
-<strong>codIncIRRF = 9</strong>.
-</li>
-
-</ul>
+<p>
+As tabelas ficam armazenadas no navegador.
+Ao clicar em
+<strong>Atualizar tabelas por faixa</strong>,
+os valores cadastrados passam a ser utilizados imediatamente
+nos próximos cálculos.
+</p>
 
 </div>
 
 <div class="config-box config-no">
 
 <h3>
-8. Atenções específicas
+⚠️ Conferência
 </h3>
 
-<ul>
-
-<li>
-Não utilizar o grupo
-<strong>{consigFGTS}</strong>
-no S-2299 para contratos do Programa Crédito do Trabalhador.
-</li>
-
-<li>
-Não descontar a parcela do consignado na folha anual do 13º salário.
-</li>
-
-<li>
-Consultar os dados atualizados no Portal Emprega Brasil.
-</li>
-
-<li>
-Se não houver percentual de garantia,
-não descontar o contrato na rescisão.
-</li>
-
-</ul>
+<p>
+A ferramenta não substitui a conferência da incidência
+das rubricas no eSocial e das regras específicas aplicáveis
+à folha ou à rescisão.
+</p>
 
 </div>
 
@@ -1967,17 +2464,11 @@ não descontar o contrato na rescisão.
 
 <div class="config-note">
 
-<strong>Fonte oficial:</strong>
-Manual de Orientação do Empregador —
-Programa Crédito do Trabalhador —
-versão 2.1, de 26/06/2026.
+<strong>Vigência padrão carregada:</strong>
+01/01/2026.
 
-A classificação efetiva de cada rubrica deve ser conferida
-no eSocial, especialmente nos campos
-<strong>natRubr</strong>,
-<strong>codIncCP</strong>
-e
-<strong>codIncIRRF</strong>.
+As tabelas padrão de 2026 foram parametrizadas com base
+nas publicações oficiais utilizadas como referência para esta versão.
 
 </div>
 
@@ -1986,23 +2477,146 @@ e
 </div>
 
 </div>
-
-<!-- =========================================================
-     JAVASCRIPT
-========================================================= -->
 
 <script>
 
 'use strict';
 
 /* =========================================================
-   CONFIGURAÇÕES
+   CONFIGURAÇÕES GERAIS
 ========================================================= */
 
 const QUANTIDADE_CONTRATOS = 4;
 
-const URL_IRRF_INSS =
-  'https://joeldisousa-dot.github.io/calculadora/IRRF_INSS.html';
+const STORAGE_INSS =
+  'calculadora_inss_tabelas_vigencia';
+
+const STORAGE_IRRF =
+  'calculadora_irrf_tabelas_vigencia';
+
+/* =========================================================
+   TABELA OFICIAL PADRÃO 2026
+========================================================= */
+
+const TABELA_INSS_2026 = {
+
+  tipo:'INSS',
+
+  vigencia:'2026-01-01',
+
+  faixas:[
+
+    {
+      minimo:0,
+      maximo:1621.00,
+      aliquota:7.5
+    },
+
+    {
+      minimo:1621.01,
+      maximo:2902.84,
+      aliquota:9
+    },
+
+    {
+      minimo:2902.85,
+      maximo:4354.27,
+      aliquota:12
+    },
+
+    {
+      minimo:4354.28,
+      maximo:8475.55,
+      aliquota:14
+    }
+
+  ]
+
+};
+
+/*
+   IRRF 2026
+
+   A tabela progressiva mensal é cadastrada
+   separadamente da regra de redução.
+*/
+
+const TABELA_IRRF_2026 = {
+
+  tipo:'IRRF',
+
+  vigencia:'2026-01-01',
+
+  dependente:189.59,
+
+  simplificado:607.20,
+
+  reducaoAte:5000.00,
+
+  reducaoMaxima:312.89,
+
+  reducaoInicio:5000.01,
+
+  reducaoFim:7350.00,
+
+  reducaoConstante:0.133145,
+
+  reducaoIntercepto:978.62,
+
+  faixas:[
+
+    {
+      minimo:0,
+      maximo:2428.80,
+      aliquota:0,
+      deducao:0
+    },
+
+    {
+      minimo:2428.81,
+      maximo:2826.65,
+      aliquota:7.5,
+      deducao:182.16
+    },
+
+    {
+      minimo:2826.66,
+      maximo:3751.05,
+      aliquota:15,
+      deducao:394.16
+    },
+
+    {
+      minimo:3751.06,
+      maximo:4664.68,
+      aliquota:22.5,
+      deducao:675.49
+    },
+
+    {
+      minimo:4664.69,
+      maximo:null,
+      aliquota:27.5,
+      deducao:908.73
+    }
+
+  ]
+
+};
+
+/* =========================================================
+   TABELAS EM MEMÓRIA
+========================================================= */
+
+let tabelaINSS = carregarTabela(
+  STORAGE_INSS,
+  TABELA_INSS_2026
+);
+
+let tabelaIRRF = carregarTabela(
+  STORAGE_IRRF,
+  TABELA_IRRF_2026
+);
 
 /* =========================================================
    VENCIMENTOS
@@ -2010,158 +2624,233 @@ const URL_IRRF_INSS =
 
 const VENCIMENTOS = [
 
-  ['saldoSalario',
-   'Saldo de salário',
-   'codIncCP 11/12'],
+  [
+    'saldoSalario',
+    'Saldo de salário',
+    'codIncCP 11/12'
+  ],
 
-  ['horasExtras',
-   'Horas extras',
-   'codIncCP 11/12'],
+  [
+    'horasExtras',
+    'Horas extras',
+    'codIncCP 11/12'
+  ],
 
-  ['anuenio',
-   'Anuênio / adicional por tempo de serviço',
-   'codIncCP 11/12'],
+  [
+    'anuenio',
+    'Anuênio / adicional por tempo de serviço',
+    'codIncCP 11/12'
+  ],
 
-  ['adicionalNoturno',
-   'Adicional noturno',
-   'codIncCP 11/12'],
+  [
+    'adicionalNoturno',
+    'Adicional noturno',
+    'codIncCP 11/12'
+  ],
 
-  ['insalubridade',
-   'Adicional de insalubridade',
-   'codIncCP 11/12'],
+  [
+    'insalubridade',
+    'Adicional de insalubridade',
+    'codIncCP 11/12'
+  ],
 
-  ['periculosidade',
-   'Adicional de periculosidade',
-   'codIncCP 11/12'],
+  [
+    'periculosidade',
+    'Adicional de periculosidade',
+    'codIncCP 11/12'
+  ],
 
-  ['dsr',
-   'DSR / reflexos',
-   'codIncCP 11/12, quando aplicável'],
+  [
+    'dsr',
+    'DSR / reflexos',
+    'codIncCP 11/12, quando aplicável'
+  ],
 
-  ['outrasSalariais',
-   'Outras verbas salariais',
-   'somente se elegíveis'],
+  [
+    'outrasSalariais',
+    'Outras verbas salariais',
+    'somente se elegíveis'
+  ],
 
-  ['avisoPrevio',
-   'Aviso-prévio indenizado',
-   'natureza 6003'],
+  [
+    'avisoPrevio',
+    'Aviso-prévio indenizado',
+    'natureza 6003'
+  ],
 
-  ['feriasProporcionais',
-   'Férias proporcionais',
-   'natureza 6006'],
+  [
+    'feriasProporcionais',
+    'Férias proporcionais',
+    'natureza 6006'
+  ],
 
-  ['feriasVencidas',
-   'Férias vencidas',
-   'natureza 6007'],
+  [
+    'feriasVencidas',
+    'Férias vencidas',
+    'natureza 6007'
+  ],
 
-  ['feriasDobro',
-   'Férias em dobro indenizadas',
-   'natureza 6004'],
+  [
+    'feriasDobro',
+    'Férias em dobro indenizadas',
+    'natureza 6004'
+  ],
 
-  ['tercoFerias',
-   '1/3 constitucional sobre férias',
-   'conferir natureza/incidência'],
+  [
+    'tercoFerias',
+    '1/3 constitucional sobre férias',
+    'conferir natureza/incidência'
+  ],
 
-  ['outrasFerias',
-   'Outras férias indenizadas',
-   'somente se expressamente enquadradas'],
+  [
+    'outrasFerias',
+    'Outras férias indenizadas',
+    'somente se expressamente enquadradas'
+  ],
 
-  ['proventoAdicional1',
-   'Provento adicional 1',
-   'classificar antes de incluir'],
+  [
+    'proventoAdicional1',
+    'Provento adicional 1',
+    'classificar antes de incluir'
+  ],
 
-  ['proventoAdicional2',
-   'Provento adicional 2',
-   'classificar antes de incluir'],
+  [
+    'proventoAdicional2',
+    'Provento adicional 2',
+    'classificar antes de incluir'
+  ],
 
-  ['proventoAdicional3',
-   'Provento adicional 3',
-   'classificar antes de incluir'],
+  [
+    'proventoAdicional3',
+    'Provento adicional 3',
+    'classificar antes de incluir'
+  ],
 
-  ['proventoAdicional4',
-   'Provento adicional 4',
-   'classificar antes de incluir']
+  [
+    'proventoAdicional4',
+    'Provento adicional 4',
+    'classificar antes de incluir'
+  ]
 
 ];
 
 /* =========================================================
-   DESCONTOS
+   OUTROS DESCONTOS
 ========================================================= */
 
 const DESCONTOS = [
 
-  ['inss',
-   'INSS sobre remuneração',
-   'codIncCP 31/32/34/35, conforme o caso'],
+  [
+    'pensao',
+    'Pensão alimentícia',
+    'natureza 9213'
+  ],
 
-  ['irrf',
-   'IRRF sobre remuneração',
-   'codIncIRRF 31/32, conforme o caso'],
+  [
+    'retencaoJudicial',
+    'Retenção judicial',
+    'natureza 9218'
+  ],
 
-  ['pensao',
-   'Pensão alimentícia',
-   'natureza 9213'],
+  [
+    'adiantamento13',
+    'Desconto de adiantamento do 13º',
+    'natureza 9214'
+  ],
 
-  ['retencaoJudicial',
-   'Retenção judicial',
-   'natureza 9218'],
+  [
+    'fies',
+    'FIES',
+    'natureza 9260'
+  ],
 
-  ['adiantamento13',
-   'Desconto de adiantamento do 13º',
-   'natureza 9214'],
+  [
+    'descontoAviso',
+    'Desconto de aviso-prévio',
+    'natureza 6901'
+  ],
 
-  ['fies',
-   'FIES',
-   'natureza 9260'],
+  [
+    'multa480',
+    'Multa do art. 480 da CLT',
+    'natureza 6904'
+  ],
 
-  ['descontoAviso',
-   'Desconto de aviso-prévio',
-   'natureza 6901'],
-
-  ['multa480',
-   'Multa do art. 480 da CLT',
-   'natureza 6904'],
-
-  ['outrosCompulsorios',
-   'Outros descontos compulsórios',
-   'somente se efetivamente compulsório']
+  [
+    'outrosCompulsorios',
+    'Outros descontos compulsórios',
+    'somente se efetivamente compulsório'
+  ]
 
 ];
 
 /* =========================================================
-   CRIA CAMPOS
+   STORAGE
 ========================================================= */
 
-function criarCampos(lista,destino){
+function carregarTabela(
+  chave,
+  padrao
+){
 
-  const el =
-    document.getElementById(destino);
+  try{
 
-  if(!el)return;
+    const salvo =
+      localStorage.getItem(chave);
 
-  el.innerHTML =
-    lista.map(([id,nome,natureza]) => `
+    if(!salvo){
 
-      <div class="field">
+      localStorage.setItem(
+        chave,
+        JSON.stringify(padrao)
+      );
 
-        <label for="${id}">
-          ${nome}
-        </label>
+      return JSON.parse(
+        JSON.stringify(padrao)
+      );
 
-        <input
-          id="${id}"
-          type="text"
-          placeholder="R$ 0,00"
-          oninput="formatarMoeda(this)"
-        >
+    }
 
-        <div class="nature">
-          ${natureza}
-        </div>
+    const tabela =
+      JSON.parse(salvo);
 
-      </div>
+    if(
+      !tabela ||
+      !Array.isArray(tabela.faixas)
+    ){
 
-    `).join('');
+      throw new Error(
+        'Tabela inválida'
+      );
+
+    }
+
+    return tabela;
+
+  }
+  catch(e){
+
+    return JSON.parse(
+      JSON.stringify(padrao)
+    );
+
+  }
+
+}
+
+/* =========================================================
+   SALVA TABELA
+========================================================= */
+
+function salvarStorage(
+  chave,
+  tabela
+){
+
+  localStorage.setItem(
+    chave,
+    JSON.stringify(tabela)
+  );
 
 }
 
@@ -2182,7 +2871,7 @@ function moeda(v){
 }
 
 /* =========================================================
-   CONVERTE TEXTO PARA NÚMERO
+   NÚMERO
 ========================================================= */
 
 function numero(v){
@@ -2195,15 +2884,17 @@ function numero(v){
     return 0;
   }
 
-  let s = String(v)
-    .replace(/R\$/g,'')
-    .replace(/\s/g,'');
+  let s =
+    String(v)
+      .replace(/R\$/g,'')
+      .replace(/\s/g,'');
 
   if(s.includes(',')){
 
-    s = s
-      .replace(/\./g,'')
-      .replace(',','.');
+    s =
+      s
+        .replace(/\./g,'')
+        .replace(',','.');
 
   }
 
@@ -2242,7 +2933,7 @@ function formatarMoeda(campo){
 }
 
 /* =========================================================
-   OBTÉM VALOR
+   VALOR
 ========================================================= */
 
 function valor(id){
@@ -2274,12 +2965,6 @@ function percentual(id){
     return 0;
   }
 
-  /*
-     Percentual de garantia:
-     mínimo 0%
-     máximo 100%
-  */
-
   return Math.min(
     100,
     Math.max(0,n)
@@ -2288,7 +2973,49 @@ function percentual(id){
 }
 
 /* =========================================================
-   LINHA DA MEMÓRIA
+   CRIA CAMPOS
+========================================================= */
+
+function criarCampos(
+  lista,
+  destino
+){
+
+  const el =
+    document.getElementById(destino);
+
+  if(!el)return;
+
+  el.innerHTML =
+    lista.map(
+      ([id,nome,natureza]) => `
+
+      <div class="field">
+
+        <label for="${id}">
+          ${nome}
+        </label>
+
+        <input
+          id="${id}"
+          type="text"
+          placeholder="R$ 0,00"
+          oninput="formatarMoeda(this)"
+        >
+
+        <div class="nature">
+          ${natureza}
+        </div>
+
+      </div>
+
+      `
+    ).join('');
+
+}
+
+/* =========================================================
+   LINHA MEMÓRIA
 ========================================================= */
 
 function linha(
@@ -2312,6 +3039,615 @@ function linha(
     </div>
 
   `;
+
+}
+
+/* =========================================================
+   TOTAL VENCIMENTOS
+========================================================= */
+
+function obterTotalVencimentos(){
+
+  return VENCIMENTOS.reduce(
+    (s,[id]) =>
+      s + valor(id),
+    0
+  );
+
+}
+
+/* =========================================================
+   CÁLCULO INSS PROGRESSIVO
+========================================================= */
+
+function calcularINSS(
+  base
+){
+
+  base =
+    Math.max(
+      0,
+      Number(base || 0)
+    );
+
+  if(base <= 0){
+
+    return {
+      valor:0,
+      faixa:null,
+      detalhes:[]
+    };
+
+  }
+
+  const faixas =
+    [...tabelaINSS.faixas]
+      .sort(
+        (a,b) =>
+          a.minimo - b.minimo
+      );
+
+  let total = 0;
+
+  let detalhes = [];
+
+  let restante = base;
+
+  for(let i=0;i<faixas.length;i++){
+
+    const f =
+      faixas[i];
+
+    const limiteSuperior =
+      f.maximo === null ||
+      f.maximo === undefined
+        ? Infinity
+        : f.maximo;
+
+    const inicio =
+      i === 0
+        ? 0
+        : faixas[i-1].maximo;
+
+    if(base <= inicio){
+
+      continue;
+
+    }
+
+    const parcela =
+      Math.min(
+        base,
+        limiteSuperior
+      ) - inicio;
+
+    if(parcela <= 0){
+
+      continue;
+
+    }
+
+    const valorFaixa =
+      parcela *
+      Number(f.aliquota || 0) /
+      100;
+
+    total +=
+      valorFaixa;
+
+    detalhes.push({
+
+      faixa:i+1,
+
+      minimo:f.minimo,
+
+      maximo:f.maximo,
+
+      parcela,
+
+      aliquota:f.aliquota,
+
+      valor:valorFaixa
+
+    });
+
+  }
+
+  return {
+
+    valor:Math.max(
+      0,
+      total
+    ),
+
+    faixa:
+      detalhes.length
+        ? detalhes[detalhes.length-1]
+        : null,
+
+    detalhes
+
+  };
+
+}
+
+/* =========================================================
+   ENCONTRA FAIXA IRRF
+========================================================= */
+
+function encontrarFaixaIRRF(
+  base
+){
+
+  const faixas =
+    [...tabelaIRRF.faixas]
+      .sort(
+        (a,b) =>
+          a.minimo - b.minimo
+      );
+
+  for(
+    const f of faixas
+  ){
+
+    const max =
+      f.maximo === null ||
+      f.maximo === undefined
+        ? Infinity
+        : f.maximo;
+
+    if(
+      base >= f.minimo &&
+      base <= max
+    ){
+
+      return f;
+
+    }
+
+  }
+
+  return null;
+
+}
+
+/* =========================================================
+   CÁLCULO IRRF
+========================================================= */
+
+function calcularIRRF(
+  rendimentoTributavel,
+  inss,
+  dependentes,
+  outrasDeducoes
+){
+
+  rendimentoTributavel =
+    Math.max(
+      0,
+      Number(rendimentoTributavel || 0)
+    );
+
+  inss =
+    Math.max(
+      0,
+      Number(inss || 0)
+    );
+
+  dependentes =
+    Math.max(
+      0,
+      parseInt(
+        dependentes || 0,
+        10
+      )
+    );
+
+  outrasDeducoes =
+    Math.max(
+      0,
+      Number(outrasDeducoes || 0)
+    );
+
+  const deducaoDependentes =
+    dependentes *
+    Number(
+      tabelaIRRF.dependente || 0
+    );
+
+  /*
+     DEDUÇÕES LEGAIS
+  */
+
+  const baseLegal =
+    Math.max(
+      0,
+      rendimentoTributavel -
+      inss -
+      deducaoDependentes -
+      outrasDeducoes
+    );
+
+  /*
+     DESCONTO SIMPLIFICADO
+  */
+
+  const simplificado =
+    Number(
+      tabelaIRRF.simplificado || 0
+    );
+
+  const baseSimplificada =
+    Math.max(
+      0,
+      rendimentoTributavel -
+      simplificado
+    );
+
+  /*
+     Escolhe a menor base.
+  */
+
+  const usarSimplificado =
+    baseSimplificada <
+    baseLegal;
+
+  const base =
+    usarSimplificado
+      ? baseSimplificada
+      : baseLegal;
+
+  const faixa =
+    encontrarFaixaIRRF(
+      base
+    );
+
+  if(!faixa){
+
+    return {
+
+      valor:0,
+
+      base,
+
+      baseLegal,
+
+      baseSimplificada,
+
+      usarSimplificado,
+
+      faixa:null,
+
+      impostoAntesReducao:0,
+
+      reducao:0,
+
+      deducaoDependentes,
+
+      detalhes:
+        'Não foi encontrada faixa de IRRF.'
+
+    };
+
+  }
+
+  const impostoAntesReducao =
+    Math.max(
+      0,
+      (
+        base *
+        Number(faixa.aliquota || 0) /
+        100
+      ) -
+      Number(faixa.deducao || 0)
+    );
+
+  /*
+     REDUÇÃO 2026
+  */
+
+  let reducao = 0;
+
+  if(
+    rendimentoTributavel <=
+    Number(
+      tabelaIRRF.reducaoAte || 0
+    )
+  ){
+
+    reducao =
+      Math.min(
+        impostoAntesReducao,
+        Number(
+          tabelaIRRF.reducaoMaxima || 0
+        )
+      );
+
+  }
+  else if(
+    rendimentoTributavel >
+      Number(
+        tabelaIRRF.reducaoInicio || 0
+      ) &&
+    rendimentoTributavel <=
+      Number(
+        tabelaIRRF.reducaoFim || 0
+      )
+  ){
+
+    reducao =
+      Number(
+        tabelaIRRF.reducaoIntercepto || 0
+      ) -
+      (
+        Number(
+          tabelaIRRF.reducaoConstante || 0
+        ) *
+        rendimentoTributavel
+      );
+
+    reducao =
+      Math.max(
+        0,
+        Math.min(
+          impostoAntesReducao,
+          reducao
+        )
+      );
+
+  }
+
+  const imposto =
+    Math.max(
+      0,
+      impostoAntesReducao -
+      reducao
+    );
+
+  return {
+
+    valor:imposto,
+
+    base,
+
+    baseLegal,
+
+    baseSimplificada,
+
+    usarSimplificado,
+
+    faixa,
+
+    impostoAntesReducao,
+
+    reducao,
+
+    deducaoDependentes,
+
+    detalhes:''
+
+  };
+
+}
+
+/* =========================================================
+   CÁLCULO DOS TRIBUTOS
+========================================================= */
+
+function calcularTributos(){
+
+  const total =
+    obterTotalVencimentos();
+
+  const campoBaseINSS =
+    document.getElementById(
+      'baseINSS'
+    );
+
+  const campoIRRF =
+    document.getElementById(
+      'rendimentosIRRF'
+    );
+
+  const baseINSS =
+    campoBaseINSS &&
+    campoBaseINSS.value.trim() !== ''
+      ? numero(campoBaseINSS.value)
+      : total;
+
+  const rendimentoIRRF =
+    campoIRRF &&
+    campoIRRF.value.trim() !== ''
+      ? numero(campoIRRF.value)
+      : total;
+
+  const dependentes =
+    Number(
+      document.getElementById(
+        'dependentes'
+      )?.value || 0
+    );
+
+  const outrasDeducoes =
+    valor(
+      'outrasDeducoesIRRF'
+    );
+
+  const inss =
+    calcularINSS(
+      baseINSS
+    );
+
+  const irrf =
+    calcularIRRF(
+      rendimentoIRRF,
+      inss.valor,
+      dependentes,
+      outrasDeducoes
+    );
+
+  document.getElementById(
+    'resumoBaseINSS'
+  ).textContent =
+    moeda(baseINSS);
+
+  document.getElementById(
+    'resumoINSS'
+  ).textContent =
+    moeda(inss.valor);
+
+  document.getElementById(
+    'resumoBaseIRRF'
+  ).textContent =
+    moeda(irrf.base);
+
+  document.getElementById(
+    'resumoIRRF'
+  ).textContent =
+    moeda(irrf.valor);
+
+  /*
+     Atualiza automaticamente
+     os descontos calculados.
+  */
+
+  atualizarMemoriaTributos(
+    baseINSS,
+    inss,
+    rendimentoIRRF,
+    irrf,
+    dependentes,
+    outrasDeducoes
+  );
+
+  return {
+
+    baseINSS,
+
+    inss,
+
+    rendimentoIRRF,
+
+    irrf,
+
+    dependentes,
+
+    outrasDeducoes
+
+  };
+
+}
+
+/* =========================================================
+   MEMÓRIA TRIBUTÁRIA
+========================================================= */
+
+function atualizarMemoriaTributos(
+  baseINSS,
+  inss,
+  rendimentoIRRF,
+  irrf,
+  dependentes,
+  outrasDeducoes
+){
+
+  let html = '';
+
+  html += linha(
+    'Base de cálculo do INSS',
+    moeda(baseINSS)
+  );
+
+  inss.detalhes.forEach(
+    d => {
+
+      const faixaTexto =
+        d.maximo === null
+          ? 'Acima de '+moeda(d.minimo)
+          : moeda(d.minimo)+' até '+moeda(d.maximo);
+
+      html += linha(
+        `INSS — Faixa ${d.faixa} (${faixaTexto}) — ${Number(d.aliquota).toFixed(2)}%`,
+        moeda(d.valor),
+        'inss'
+      );
+
+    }
+  );
+
+  html += linha(
+    'TOTAL INSS',
+    moeda(inss.valor),
+    'inss'
+  );
+
+  html += linha(
+    'Rendimentos tributáveis para IRRF',
+    moeda(rendimentoIRRF)
+  );
+
+  html += linha(
+    'Dedução por dependentes',
+    moeda(irrf.deducaoDependentes)
+  );
+
+  html += linha(
+    'Outras deduções legais',
+    moeda(outrasDeducoes)
+  );
+
+  html += linha(
+    'Base legal do IRRF',
+    moeda(irrf.baseLegal)
+  );
+
+  html += linha(
+    'Base com desconto simplificado',
+    moeda(irrf.baseSimplificada)
+  );
+
+  html += linha(
+    'Base escolhida para IRRF',
+    moeda(irrf.base),
+    'destaque'
+  );
+
+  if(irrf.faixa){
+
+    const faixaTexto =
+      irrf.faixa.maximo === null
+        ? 'Acima de '+moeda(irrf.faixa.minimo)
+        : moeda(irrf.faixa.minimo)+' até '+moeda(irrf.faixa.maximo);
+
+    html += linha(
+      `IRRF — Faixa ${faixaTexto} — ${Number(irrf.faixa.aliquota).toFixed(2)}%`,
+      moeda(irrf.impostoAntesReducao),
+      'irrf'
+    );
+
+  }
+
+  html += linha(
+    'IRRF antes da redução',
+    moeda(irrf.impostoAntesReducao)
+  );
+
+  html += linha(
+    'Redução do IRRF',
+    moeda(irrf.reducao),
+    'irrf'
+  );
+
+  html += linha(
+    'TOTAL IRRF',
+    moeda(irrf.valor),
+    'irrf'
+  );
+
+  document.getElementById(
+    'detalhesTributos'
+  ).innerHTML =
+    html;
 
 }
 
@@ -2353,7 +3689,10 @@ function obterContratos(){
 
       percentual:p,
 
-      saldo:Math.max(0,saldo),
+      saldo:Math.max(
+        0,
+        saldo
+      ),
 
       informado:
         (
@@ -2374,23 +3713,9 @@ function obterContratos(){
    CALCULA CONTRATOS
 ========================================================= */
 
-/*
-   REGRA:
-
-   1. Valor pelo percentual:
-      remuneração disponível × percentual / 100
-
-   2. Desconto efetivo:
-      menor entre:
-      - valor pelo percentual
-      - saldo devedor atualizado
-
-   3. Cada contrato é calculado individualmente.
-
-   4. Saldo não informado NÃO é tratado como ilimitado.
-*/
-
-function calcularContratos(remuneracao){
+function calcularContratos(
+  remuneracao
+){
 
   const contratos =
     obterContratos();
@@ -2403,108 +3728,83 @@ function calcularContratos(remuneracao){
 
   let totalEfetivo = 0;
 
-  contratos.forEach(c => {
+  contratos.forEach(
+    c => {
 
-    if(c.informado){
+      if(c.informado){
 
-      quantidade++;
+        quantidade++;
 
-    }
+      }
 
-    totalPercentual +=
-      c.percentual;
+      totalPercentual +=
+        c.percentual;
 
-    totalSaldo +=
-      c.saldo;
+      totalSaldo +=
+        c.saldo;
 
-    /*
-       Valor teórico pelo percentual
-    */
+      c.valorPorPercentual =
+        remuneracao *
+        c.percentual /
+        100;
 
-    c.valorPorPercentual =
-      remuneracao *
-      c.percentual /
-      100;
+      if(
+        c.percentual <= 0 ||
+        c.saldo <= 0
+      ){
 
-    /*
-       Se percentual = 0,
-       desconto = 0.
+        c.valorEfetivo = 0;
 
-       Se saldo = 0,
-       desconto = 0.
+      }
+      else{
 
-       Caso contrário:
-       menor entre valor calculado
-       e saldo devedor.
-    */
+        c.valorEfetivo =
+          Math.min(
+            c.valorPorPercentual,
+            c.saldo
+          );
 
-    if(
-      c.percentual <= 0 ||
-      c.saldo <= 0
-    ){
+      }
 
-      c.valorEfetivo = 0;
-
-    }
-    else{
-
-      c.valorEfetivo =
-        Math.min(
-          c.valorPorPercentual,
-          c.saldo
+      c.limitadoPeloSaldo =
+        (
+          c.valorEfetivo <
+          c.valorPorPercentual
         );
 
-    }
+      totalEfetivo +=
+        c.valorEfetivo;
 
-    /*
-       Identifica se houve limitação
-       pelo saldo devedor.
-    */
+      const campo =
+        document.getElementById(
+          'valorGarantia'+c.numero
+        );
 
-    c.limitadoPeloSaldo =
-      (
-        c.valorEfetivo <
-        c.valorPorPercentual
-      );
+      if(campo){
 
-    totalEfetivo +=
-      c.valorEfetivo;
+        campo.textContent =
+          moeda(c.valorEfetivo);
 
-    const campo =
-      document.getElementById(
-        'valorGarantia'+c.numero
-      );
-
-    if(campo){
-
-      campo.textContent =
-        moeda(c.valorEfetivo);
+      }
 
     }
-
-  });
-
-  /*
-     Maior percentual individual
-  */
+  );
 
   const percentuaisComGarantia =
     contratos.filter(
-      c => c.percentual > 0
+      c =>
+        c.percentual > 0
     );
 
   const maiorPercentual =
     percentuaisComGarantia.length
       ? Math.max(
           ...percentuaisComGarantia.map(
-            c => c.percentual
+            c =>
+              c.percentual
           )
         )
       : 0;
-
-  /*
-     Contratos sem garantia
-  */
 
   const semGarantia =
     contratos.filter(
@@ -2512,16 +3812,6 @@ function calcularContratos(remuneracao){
         c.informado &&
         c.percentual <= 0
     ).length;
-
-  /*
-     Percentual total efetivamente
-     descontado sobre a remuneração.
-
-     Fórmula:
-       total consignado
-       ÷ remuneração disponível
-       × 100
-  */
 
   const percentualEfetivo =
     remuneracao > 0
@@ -2554,7 +3844,7 @@ function calcularContratos(remuneracao){
 }
 
 /* =========================================================
-   ATUALIZA RESUMO DOS CONTRATOS
+   ATUALIZA RESUMO
 ========================================================= */
 
 function atualizarResumoContratos(
@@ -2571,10 +3861,6 @@ function atualizarResumoContratos(
   ).textContent =
     moeda(dados.totalSaldo);
 
-  /*
-     SOMA DOS PERCENTUAIS INFORMADOS
-  */
-
   document.getElementById(
     'percentualTotal'
   ).textContent =
@@ -2587,19 +3873,11 @@ function atualizarResumoContratos(
     dados.totalPercentual.toFixed(2)
     + '%';
 
-  /*
-     MAIOR GARANTIA INDIVIDUAL
-  */
-
   document.getElementById(
     'maiorPercentual'
   ).textContent =
     dados.maiorPercentual.toFixed(2)
     + '%';
-
-  /*
-     PERCENTUAL TOTAL EFETIVAMENTE DESCONTADO
-  */
 
   document.getElementById(
     'percentualEfetivo'
@@ -2612,10 +3890,6 @@ function atualizarResumoContratos(
   ).textContent =
     dados.percentualEfetivo.toFixed(2)
     + '%';
-
-  /*
-     CONTRATOS SEM GARANTIA
-  */
 
   document.getElementById(
     'contratosSemGarantia'
@@ -2632,10 +3906,6 @@ function atualizarResumoContratos(
       'mensagemLimite'
     );
 
-  /*
-     STATUS
-  */
-
   if(dados.quantidade === 0){
 
     status.className =
@@ -2650,10 +3920,6 @@ function atualizarResumoContratos(
     return;
 
   }
-
-  /*
-     CONTRATOS SEM GARANTIA
-  */
 
   if(dados.semGarantia > 0){
 
@@ -2670,7 +3936,9 @@ function atualizarResumoContratos(
        na rescisão.`;
 
   }
-  else if(dados.percentualEfetivo > 100){
+  else if(
+    dados.percentualEfetivo > 100
+  ){
 
     status.className =
       'status excesso';
@@ -2703,7 +3971,7 @@ function atualizarResumoContratos(
 }
 
 /* =========================================================
-   MEMÓRIA DOS CONTRATOS
+   MEMÓRIA CONTRATOS
 ========================================================= */
 
 function montarMemoriaContratos(
@@ -2713,94 +3981,68 @@ function montarMemoriaContratos(
 
   let html = '';
 
-  dados.contratos.forEach(c => {
+  dados.contratos.forEach(
+    c => {
 
-    if(!c.informado)return;
-
-    html += linha(
-      `Contrato ${c.numero} — ${c.instituicao}`,
-      c.percentual.toFixed(2)+'%'
-    );
-
-    /*
-       SEM GARANTIA
-    */
-
-    if(c.percentual <= 0){
+      if(!c.informado)return;
 
       html += linha(
-        'Garantia de verbas rescisórias',
-        '0,00% — sem desconto',
-        'alerta'
+        `Contrato ${c.numero} — ${c.instituicao}`,
+        c.percentual.toFixed(2)+'%'
       );
 
-      return;
+      if(c.percentual <= 0){
 
-    }
+        html += linha(
+          'Garantia de verbas rescisórias',
+          '0,00% — sem desconto',
+          'alerta'
+        );
 
-    /*
-       SALDO NÃO INFORMADO
-    */
+        return;
 
-    if(c.saldo <= 0){
+      }
+
+      if(c.saldo <= 0){
+
+        html += linha(
+          `Saldo devedor — Contrato ${c.numero}`,
+          'R$ 0,00 — nenhum desconto calculado',
+          'alerta'
+        );
+
+        return;
+
+      }
+
+      html += linha(
+        `Valor pelo percentual — Contrato ${c.numero}`,
+        moeda(c.valorPorPercentual)
+      );
 
       html += linha(
         `Saldo devedor — Contrato ${c.numero}`,
-        'R$ 0,00 — nenhum desconto calculado',
-        'alerta'
+        moeda(c.saldo)
       );
 
-      return;
+      if(c.limitadoPeloSaldo){
 
-    }
+        html += linha(
+          'Limitado ao saldo devedor',
+          moeda(c.valorEfetivo),
+          'destaque'
+        );
 
-    /*
-       VALOR PELO PERCENTUAL
-    */
-
-    html += linha(
-      `Valor pelo percentual — Contrato ${c.numero}`,
-      moeda(c.valorPorPercentual)
-    );
-
-    /*
-       SALDO
-    */
-
-    html += linha(
-      `Saldo devedor — Contrato ${c.numero}`,
-      moeda(c.saldo)
-    );
-
-    /*
-       LIMITADO PELO SALDO
-    */
-
-    if(c.limitadoPeloSaldo){
+      }
 
       html += linha(
-        'Limitado ao saldo devedor',
+        `Valor efetivo a descontar — Contrato ${c.numero}`,
         moeda(c.valorEfetivo),
         'destaque'
       );
 
     }
-
-    /*
-       VALOR EFETIVO
-    */
-
-    html += linha(
-      `Valor efetivo a descontar — Contrato ${c.numero}`,
-      moeda(c.valorEfetivo),
-      'destaque'
-    );
-
-  });
-
-  /*
-     TOTAIS
-  */
+  );
 
   html += linha(
     'REMUNERAÇÃO DISPONÍVEL',
@@ -2830,12 +4072,63 @@ function montarMemoriaContratos(
 
 function calcular(){
 
+  const totalVencimentos =
+    obterTotalVencimentos();
+
   /*
-     TOTAL DE VENCIMENTOS
+     Atualiza bases automáticas
+     somente se estiverem vazias.
   */
 
-  const totalVencimentos =
-    VENCIMENTOS.reduce(
+  const baseINSSCampo =
+    document.getElementById(
+      'baseINSS'
+    );
+
+  const irrfCampo =
+    document.getElementById(
+      'rendimentosIRRF'
+    );
+
+  if(
+    baseINSSCampo &&
+    baseINSSCampo.value.trim() === ''
+  ){
+
+    baseINSSCampo.value =
+      moeda(totalVencimentos);
+
+  }
+
+  if(
+    irrfCampo &&
+    irrfCampo.value.trim() === ''
+  ){
+
+    irrfCampo.value =
+      moeda(totalVencimentos);
+
+  }
+
+  /*
+     TRIBUTOS
+  */
+
+  const tributos =
+    calcularTributos();
+
+  const totalINSS =
+    tributos.inss.valor;
+
+  const totalIRRF =
+    tributos.irrf.valor;
+
+  /*
+     OUTROS DESCONTOS
+  */
+
+  const outrosDescontos =
+    DESCONTOS.reduce(
       (s,[id]) =>
         s + valor(id),
       0
@@ -2846,14 +4139,12 @@ function calcular(){
   */
 
   const totalDescontos =
-    DESCONTOS.reduce(
-      (s,[id]) =>
-        s + valor(id),
-      0
-    );
+    totalINSS +
+    totalIRRF +
+    outrosDescontos;
 
   /*
-     REMUNERAÇÃO DISPONÍVEL
+     REMUNERAÇÃO
   */
 
   const remuneracao =
@@ -2882,6 +4173,21 @@ function calcular(){
     moeda(totalVencimentos);
 
   document.getElementById(
+    'descontoINSS'
+  ).textContent =
+    moeda(totalINSS);
+
+  document.getElementById(
+    'descontoIRRF'
+  ).textContent =
+    moeda(totalIRRF);
+
+  document.getElementById(
+    'outrosDescontos'
+  ).textContent =
+    moeda(outrosDescontos);
+
+  document.getElementById(
     'totalDescontos'
   ).textContent =
     moeda(totalDescontos);
@@ -2896,27 +4202,15 @@ function calcular(){
   ).textContent =
     moeda(dados.totalEfetivo);
 
-  /*
-     PERCENTUAL TOTAL EFETIVO
-  */
-
   document.getElementById(
     'percentualTotalEfetivo'
   ).textContent =
     dados.percentualEfetivo.toFixed(2)
     + '%';
 
-  /*
-     RESUMO
-  */
-
   atualizarResumoContratos(
     dados
   );
-
-  /*
-     MEMÓRIA CONTRATOS
-  */
 
   document.getElementById(
     'memoriaContratos'
@@ -2955,9 +4249,38 @@ function calcular(){
   m.push(
     linha(
       'TOTAL DE VENCIMENTOS',
-      moeda(totalVencimentos)
+      moeda(totalVencimentos),
+      'destaque'
     )
   );
+
+  /*
+     INSS
+  */
+
+  m.push(
+    linha(
+      '(-) INSS calculado',
+      moeda(totalINSS),
+      'inss'
+    )
+  );
+
+  /*
+     IRRF
+  */
+
+  m.push(
+    linha(
+      '(-) IRRF calculado',
+      moeda(totalIRRF),
+      'irrf'
+    )
+  );
+
+  /*
+     OUTROS DESCONTOS
+  */
 
   DESCONTOS.forEach(
     ([id,nome]) => {
@@ -2994,10 +4317,6 @@ function calcular(){
     )
   );
 
-  /*
-     CONTRATOS
-  */
-
   dados.contratos.forEach(
     c => {
 
@@ -3019,10 +4338,6 @@ function calcular(){
     }
   );
 
-  /*
-     TOTAL CONSIGNADO
-  */
-
   m.push(
     linha(
       'TOTAL CONSIGNADO NA RESCISÃO',
@@ -3030,10 +4345,6 @@ function calcular(){
       'destaque'
     )
   );
-
-  /*
-     PERCENTUAL TOTAL EFETIVO
-  */
 
   m.push(
     linha(
@@ -3091,7 +4402,9 @@ function calcular(){
      ALERTA
   */
 
-  if(dados.percentualEfetivo > 100){
+  if(
+    dados.percentualEfetivo > 100
+  ){
 
     mostrarAlerta(
       `Atenção: o total consignado de
@@ -3108,12 +4421,12 @@ function calcular(){
 
     mostrarAlerta(
       `Conferência realizada.
+       INSS: ${moeda(totalINSS)}.
+       IRRF: ${moeda(totalIRRF)}.
        Remuneração disponível:
        ${moeda(remuneracao)}.
        Total consignado:
-       ${moeda(dados.totalEfetivo)}.
-       Percentual total efetivamente descontado:
-       ${dados.percentualEfetivo.toFixed(2)}%.`,
+       ${moeda(dados.totalEfetivo)}.`,
       'success'
     );
 
@@ -3135,7 +4448,8 @@ function mostrarAlerta(
       'alerta'
     );
 
-  a.textContent = msg;
+  a.textContent =
+    msg;
 
   a.className =
     'alert '+tipo;
@@ -3164,21 +4478,62 @@ function esconderAlerta(){
 function limpar(){
 
   document
-    .querySelectorAll('input')
+    .querySelectorAll(
+      'input'
+    )
     .forEach(
-      e => e.value=''
+      e => {
+
+        if(
+          e.id === 'dependentes'
+        ){
+
+          e.value='0';
+
+        }
+        else{
+
+          e.value='';
+
+        }
+
+      }
     );
 
-  [
-    'totalVencimentos',
-    'totalDescontos',
-    'remuneracaoDisponivel',
+  document.getElementById(
+    'totalVencimentos'
+  ).textContent =
+    'R$ 0,00';
+
+  document.getElementById(
+    'descontoINSS'
+  ).textContent =
+    'R$ 0,00';
+
+  document.getElementById(
+    'descontoIRRF'
+  ).textContent =
+    'R$ 0,00';
+
+  document.getElementById(
+    'outrosDescontos'
+  ).textContent =
+    'R$ 0,00';
+
+  document.getElementById(
+    'totalDescontos'
+  ).textContent =
+    'R$ 0,00';
+
+  document.getElementById(
+    'remuneracaoDisponivel'
+  ).textContent =
+    'R$ 0,00';
+
+  document.getElementById(
     'descontoConsignado'
-  ].forEach(
-    id =>
-      document.getElementById(id)
-        .textContent='R$ 0,00'
-  );
+  ).textContent =
+    'R$ 0,00';
 
   document.getElementById(
     'percentualTotalEfetivo'
@@ -3189,6 +4544,26 @@ function limpar(){
     'percentualEfetivoResumo'
   ).textContent =
     '0,00%';
+
+  document.getElementById(
+    'resumoBaseINSS'
+  ).textContent =
+    'R$ 0,00';
+
+  document.getElementById(
+    'resumoINSS'
+  ).textContent =
+    'R$ 0,00';
+
+  document.getElementById(
+    'resumoBaseIRRF'
+  ).textContent =
+    'R$ 0,00';
+
+  document.getElementById(
+    'resumoIRRF'
+  ).textContent =
+    'R$ 0,00';
 
   for(
     let i=1;
@@ -3263,6 +4638,11 @@ function limpar(){
   ).innerHTML =
     'Informe os contratos e clique em <strong>Calcular conferência</strong>.';
 
+  document.getElementById(
+    'detalhesTributos'
+  ).innerHTML =
+    'Informe os valores para visualizar a memória de cálculo do INSS e IRRF.';
+
   esconderAlerta();
 
 }
@@ -3295,12 +4675,6 @@ function carregarExemplo(){
     tercoFerias:
       'R$ 1.083,33',
 
-    inss:
-      'R$ 670,00',
-
-    irrf:
-      'R$ 450,00',
-
     pensao:
       'R$ 2.500,00',
 
@@ -3329,7 +4703,10 @@ function carregarExemplo(){
       '0',
 
     saldo3:
-      'R$ 5.000,00'
+      'R$ 5.000,00',
+
+    dependentes:
+      '0'
 
   };
 
@@ -3343,7 +4720,8 @@ function carregarExemplo(){
 
       if(e){
 
-        e.value = v;
+        e.value =
+          v;
 
       }
 
@@ -3355,21 +4733,758 @@ function carregarExemplo(){
 }
 
 /* =========================================================
-   IRRF / INSS
+   ABRIR TABELA INSS
 ========================================================= */
 
-function abrirIRRFINSS(){
+function abrirTabelaINSS(){
 
-  window.open(
-    URL_IRRF_INSS,
-    '_blank',
-    'noopener,noreferrer'
+  document.getElementById(
+    'tabelaTipo'
+  ).value =
+    'INSS';
+
+  carregarEditorTabela();
+
+  abrirModal(
+    'modalTabelas'
   );
 
 }
 
 /* =========================================================
-   MODAL
+   ABRIR TABELA IRRF
+========================================================= */
+
+function abrirTabelaIRRF(){
+
+  document.getElementById(
+    'tabelaTipo'
+  ).value =
+    'IRRF';
+
+  carregarEditorTabela();
+
+  abrirModal(
+    'modalTabelas'
+  );
+
+}
+
+/* =========================================================
+   ABRIR MODAL
+========================================================= */
+
+function abrirModal(id){
+
+  const modal =
+    document.getElementById(id);
+
+  if(!modal)return;
+
+  modal.classList.add(
+    'aberto'
+  );
+
+  document.body.style.overflow =
+    'hidden';
+
+}
+
+/* =========================================================
+   FECHAR MODAL
+========================================================= */
+
+function fecharModal(id){
+
+  const modal =
+    document.getElementById(id);
+
+  if(!modal)return;
+
+  modal.classList.remove(
+    'aberto'
+  );
+
+  document.body.style.overflow =
+    '';
+
+}
+
+/* =========================================================
+   FECHAR CLICANDO NO FUNDO
+========================================================= */
+
+function fecharModalFundo(event){
+
+  if(
+    event.target.id ===
+    'modalTabelas'
+  ){
+
+    fecharModal(
+      'modalTabelas'
+    );
+
+  }
+
+}
+
+/* =========================================================
+   EDITOR DA TABELA
+========================================================= */
+
+function carregarEditorTabela(){
+
+  const tipo =
+    document.getElementById(
+      'tabelaTipo'
+    ).value;
+
+  const tabela =
+    tipo === 'INSS'
+      ? tabelaINSS
+      : tabelaIRRF;
+
+  document.getElementById(
+    'tituloTabela'
+  ).textContent =
+    tipo === 'INSS'
+      ? '🛡️ Cadastro da tabela INSS'
+      : '🧾 Cadastro da tabela IRRF';
+
+  document.getElementById(
+    'tipoTabelaAtual'
+  ).textContent =
+    'Tabela '+tipo;
+
+  document.getElementById(
+    'vigenciaTabelaAtual'
+  ).textContent =
+    'Vigência a partir de '+
+    formatarData(
+      tabela.vigencia
+    );
+
+  document.getElementById(
+    'tabelaVigencia'
+  ).value =
+    tabela.vigencia;
+
+  const container =
+    document.getElementById(
+      'faixasContainer'
+    );
+
+  container.innerHTML =
+    tabela.faixas.map(
+      (f,index) => {
+
+        return `
+
+        <div class="faixa-card">
+
+          <div class="faixa-header">
+
+            <strong>
+              Faixa ${index+1}
+            </strong>
+
+            <button
+              type="button"
+              class="btn-danger btn-small"
+              onclick="excluirFaixa(${index})"
+            >
+              Excluir
+            </button>
+
+          </div>
+
+          <div class="faixa-grid">
+
+            <div class="field">
+
+              <label>
+                Valor mínimo
+              </label>
+
+              <input
+                type="text"
+                data-faixa="${index}"
+                data-campo="minimo"
+                value="${moeda(f.minimo)}"
+                oninput="formatarMoeda(this)"
+              >
+
+            </div>
+
+            <div class="field">
+
+              <label>
+                Valor máximo
+              </label>
+
+              <input
+                type="text"
+                data-faixa="${index}"
+                data-campo="maximo"
+                value="${
+                  f.maximo === null
+                    ? ''
+                    : moeda(f.maximo)
+                }"
+                oninput="formatarMoeda(this)"
+              >
+
+            </div>
+
+            <div class="field">
+
+              <label>
+                Alíquota %
+              </label>
+
+              <input
+                type="number"
+                step="0.000001"
+                data-faixa="${index}"
+                data-campo="aliquota"
+                value="${f.aliquota}"
+              >
+
+            </div>
+
+            ${
+              tipo === 'IRRF'
+                ? `
+
+                <div class="field">
+
+                  <label>
+                    Parcela a deduzir
+                  </label>
+
+                  <input
+                    type="text"
+                    data-faixa="${index}"
+                    data-campo="deducao"
+                    value="${moeda(f.deducao || 0)}"
+                    oninput="formatarMoeda(this)"
+                  >
+
+                </div>
+
+                `
+                : `
+                <div></div>
+                `
+            }
+
+          </div>
+
+        </div>
+
+        `;
+
+      }
+    ).join('');
+
+  document.getElementById(
+    'configIRRF'
+  ).style.display =
+    tipo === 'IRRF'
+      ? 'block'
+      : 'none';
+
+  if(tipo === 'IRRF'){
+
+    document.getElementById(
+      'dependenteValor'
+    ).value =
+      moeda(
+        tabela.dependente
+      );
+
+    document.getElementById(
+      'simplificadoValor'
+    ).value =
+      moeda(
+        tabela.simplificado
+      );
+
+    document.getElementById(
+      'reducaoAte'
+    ).value =
+      moeda(
+        tabela.reducaoAte
+      );
+
+    document.getElementById(
+      'reducaoMaxima'
+    ).value =
+      moeda(
+        tabela.reducaoMaxima
+      );
+
+    document.getElementById(
+      'reducaoInicio'
+    ).value =
+      moeda(
+        tabela.reducaoInicio
+      );
+
+    document.getElementById(
+      'reducaoFim'
+    ).value =
+      moeda(
+        tabela.reducaoFim
+      );
+
+    document.getElementById(
+      'reducaoConstante'
+    ).value =
+      tabela.reducaoConstante;
+
+    document.getElementById(
+      'reducaoIntercepto'
+    ).value =
+      moeda(
+        tabela.reducaoIntercepto
+      );
+
+  }
+
+  /*
+     Botão para adicionar faixa
+  */
+
+  container.insertAdjacentHTML(
+    'beforeend',
+
+    `
+
+    <button
+      type="button"
+      class="btn-secondary"
+      onclick="adicionarFaixa()"
+      style="margin:4px 0 15px"
+    >
+      ➕ Adicionar faixa
+    </button>
+
+    `
+
+  );
+
+}
+
+/* =========================================================
+   ADICIONAR FAIXA
+========================================================= */
+
+function adicionarFaixa(){
+
+  const tipo =
+    document.getElementById(
+      'tabelaTipo'
+    ).value;
+
+  const tabela =
+    tipo === 'INSS'
+      ? tabelaINSS
+      : tabelaIRRF;
+
+  const ultima =
+    tabela.faixas[
+      tabela.faixas.length-1
+    ];
+
+  const minimo =
+    ultima &&
+    ultima.maximo !== null
+      ? Number(ultima.maximo)+0.01
+      : 0;
+
+  tabela.faixas.push({
+
+    minimo,
+
+    maximo:null,
+
+    aliquota:0,
+
+    ...(tipo === 'IRRF'
+      ? {deducao:0}
+      : {})
+
+  });
+
+  carregarEditorTabela();
+
+}
+
+/* =========================================================
+   EXCLUIR FAIXA
+========================================================= */
+
+function excluirFaixa(
+  index
+){
+
+  const tipo =
+    document.getElementById(
+      'tabelaTipo'
+    ).value;
+
+  const tabela =
+    tipo === 'INSS'
+      ? tabelaINSS
+      : tabelaIRRF;
+
+  if(
+    tabela.faixas.length <= 1
+  ){
+
+    alert(
+      'A tabela precisa possuir pelo menos uma faixa.'
+    );
+
+    return;
+
+  }
+
+  tabela.faixas.splice(
+    index,
+    1
+  );
+
+  carregarEditorTabela();
+
+}
+
+/* =========================================================
+   CAPTURA EDITOR
+========================================================= */
+
+function capturarTabelaEditor(){
+
+  const tipo =
+    document.getElementById(
+      'tabelaTipo'
+    ).value;
+
+  const tabela =
+    tipo === 'INSS'
+      ? tabelaINSS
+      : tabelaIRRF;
+
+  const nova =
+    JSON.parse(
+      JSON.stringify(tabela)
+    );
+
+  nova.vigencia =
+    document.getElementById(
+      'tabelaVigencia'
+    ).value ||
+    '2026-01-01';
+
+  const campos =
+    document.querySelectorAll(
+      '#faixasContainer [data-faixa]'
+    );
+
+  campos.forEach(
+    campo => {
+
+      const index =
+        Number(
+          campo.dataset.faixa
+        );
+
+      const nome =
+        campo.dataset.campo;
+
+      let valorCampo;
+
+      if(
+        nome === 'aliquota'
+      ){
+
+        valorCampo =
+          Number(
+            campo.value || 0
+          );
+
+      }
+      else if(
+        nome === 'maximo' &&
+        campo.value.trim() === ''
+      ){
+
+        valorCampo =
+          null;
+
+      }
+      else{
+
+        valorCampo =
+          numero(
+            campo.value
+          );
+
+      }
+
+      if(
+        nova.faixas[index]
+      ){
+
+        nova.faixas[index][nome] =
+          valorCampo;
+
+      }
+
+    }
+  );
+
+  if(tipo === 'IRRF'){
+
+    nova.dependente =
+      numero(
+        document.getElementById(
+          'dependenteValor'
+        ).value
+      );
+
+    nova.simplificado =
+      numero(
+        document.getElementById(
+          'simplificadoValor'
+        ).value
+      );
+
+    nova.reducaoAte =
+      numero(
+        document.getElementById(
+          'reducaoAte'
+        ).value
+      );
+
+    nova.reducaoMaxima =
+      numero(
+        document.getElementById(
+          'reducaoMaxima'
+        ).value
+      );
+
+    nova.reducaoInicio =
+      numero(
+        document.getElementById(
+          'reducaoInicio'
+        ).value
+      );
+
+    nova.reducaoFim =
+      numero(
+        document.getElementById(
+          'reducaoFim'
+        ).value
+      );
+
+    nova.reducaoConstante =
+      Number(
+        document.getElementById(
+          'reducaoConstante'
+        ).value || 0
+      );
+
+    nova.reducaoIntercepto =
+      numero(
+        document.getElementById(
+          'reducaoIntercepto'
+        ).value
+      );
+
+  }
+
+  return nova;
+
+}
+
+/* =========================================================
+   ATUALIZAR TABELA
+========================================================= */
+
+function salvarTabelaAtual(){
+
+  const tipo =
+    document.getElementById(
+      'tabelaTipo'
+    ).value;
+
+  const nova =
+    capturarTabelaEditor();
+
+  nova.faixas =
+    nova.faixas
+      .sort(
+        (a,b) =>
+          a.minimo -
+          b.minimo
+      );
+
+  if(tipo === 'INSS'){
+
+    tabelaINSS =
+      nova;
+
+    salvarStorage(
+      STORAGE_INSS,
+      tabelaINSS
+    );
+
+  }
+  else{
+
+    tabelaIRRF =
+      nova;
+
+    salvarStorage(
+      STORAGE_IRRF,
+      tabelaIRRF
+    );
+
+  }
+
+  carregarEditorTabela();
+
+  calcularTributos();
+
+  mostrarAlerta(
+    `Tabela ${tipo} atualizada com sucesso.
+     Vigência: ${formatarData(nova.vigencia)}.
+     ${nova.faixas.length} faixa(s) cadastrada(s).`,
+    'success'
+  );
+
+}
+
+/* =========================================================
+   BOTÃO ATUALIZAR TABELAS
+========================================================= */
+
+function atualizarTabelas(){
+
+  /*
+     Abre o editor da tabela INSS
+     para atualização por faixa.
+  */
+
+  document.getElementById(
+    'tabelaTipo'
+  ).value =
+    'INSS';
+
+  carregarEditorTabela();
+
+  abrirModal(
+    'modalTabelas'
+  );
+
+}
+
+/* =========================================================
+   RESTAURAR 2026
+========================================================= */
+
+function restaurarTabela2026(){
+
+  const tipo =
+    document.getElementById(
+      'tabelaTipo'
+    ).value;
+
+  if(
+    !confirm(
+      `Deseja restaurar a tabela oficial de ${tipo} de 2026?`
+    )
+  ){
+
+    return;
+
+  }
+
+  if(tipo === 'INSS'){
+
+    tabelaINSS =
+      JSON.parse(
+        JSON.stringify(
+          TABELA_INSS_2026
+        )
+      );
+
+    salvarStorage(
+      STORAGE_INSS,
+      tabelaINSS
+    );
+
+  }
+  else{
+
+    tabelaIRRF =
+      JSON.parse(
+        JSON.stringify(
+          TABELA_IRRF_2026
+        )
+      );
+
+    salvarStorage(
+      STORAGE_IRRF,
+      tabelaIRRF
+    );
+
+  }
+
+  carregarEditorTabela();
+
+  calcularTributos();
+
+  mostrarAlerta(
+    `Tabela ${tipo} de 2026 restaurada com sucesso.`,
+    'success'
+  );
+
+}
+
+/* =========================================================
+   DATA
+========================================================= */
+
+function formatarData(
+  data
+){
+
+  if(!data)return '';
+
+  const partes =
+    String(data)
+      .split('-');
+
+  if(partes.length !== 3){
+    return data;
+  }
+
+  return (
+    partes[2] +
+    '/' +
+    partes[1] +
+    '/' +
+    partes[0]
+  );
+
+}
+
+/* =========================================================
+   CONFIGURAÇÕES
 ========================================================= */
 
 function abrirConfiguracoes(){
@@ -3397,14 +5512,6 @@ function fecharConfiguracoes(
       'modalConfiguracoes'
     );
 
-  /*
-     Se clicou dentro do modal,
-     não fechar.
-
-     Se clicou no fundo,
-     fechar.
-  */
-
   if(
     event &&
     event.target !== modal
@@ -3424,31 +5531,53 @@ function fecharConfiguracoes(
 }
 
 /* =========================================================
-   ESC FECHA MODAL
+   ESC
 ========================================================= */
 
 document.addEventListener(
   'keydown',
   e => {
 
-    if(e.key === 'Escape'){
+    if(
+      e.key !== 'Escape'
+    ){
 
-      const modal =
-        document.getElementById(
-          'modalConfiguracoes'
-        );
-
-      modal.classList.remove(
-        'aberto'
-      );
-
-      document.body.style.overflow =
-        '';
+      return;
 
     }
 
+    document
+      .querySelectorAll(
+        '.modal-backdrop.aberto'
+      )
+      .forEach(
+        modal => {
+
+          modal.classList.remove(
+            'aberto'
+          );
+
+        }
+      );
+
+    document.body.style.overflow =
+      '';
+
   }
 );
+
+/* =========================================================
+   ALTERAÇÃO DO TIPO DE TABELA
+========================================================= */
+
+document
+  .getElementById(
+    'tabelaTipo'
+  )
+  .addEventListener(
+    'change',
+    carregarEditorTabela
+  );
 
 /* =========================================================
    INICIALIZAÇÃO
@@ -3463,6 +5592,12 @@ criarCampos(
   DESCONTOS,
   'descontos'
 );
+
+/*
+   Inicializa valores dos resumos.
+*/
+
+calcularTributos();
 
 </script>
 
